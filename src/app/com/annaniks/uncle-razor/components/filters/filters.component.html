@@ -1,0 +1,52 @@
+<div [ngClass]="{'has-border':!isBorder,'no-border':isBorder}" class="filters_content">
+    <div class="filters_container">
+        <p class="header">Цена (руб.)</p>
+
+        <div class="inputs-container" display-flex justify-content-space-beetwen>
+            <label>
+                <span>От</span>
+                <input type="number" (ngModelChange)="changeMinValue($event)" [(ngModel)]="min">
+            </label>
+            <label>
+                <span>До</span>
+                <input type="number" (ngModelChange)="changeMaxValue($event)" [(ngModel)]="max">
+            </label>
+        </div>
+        <form [formGroup]="filterForm">
+            <div class="custom-slider">
+                <ng5-slider formControlName="price" (ngModelChange)="changeSlider($event)" [options]="options">
+                </ng5-slider>
+            </div>
+            <div class="dropdown">
+                <div class="dropdown_item">
+                    <p-multiSelect [showHeader]="false" [options]="cities" formControlName="city" optionLabel="name"
+                        [selectedItemsLabel]="'Выбраны {0} варианта'" [defaultLabel]="'Страна'"></p-multiSelect>
+                    <!-- <p-dropdown [options]="cities" formControlName="city" optionLabel="name" placeholder="Страна">
+                    </p-dropdown> -->
+                </div>
+                <!-- <div class="dropdown_item" *ngFor="let item of attributes">
+                        <p-dropdown [options]="item.attributValue" [formControlName]="'att'+item.name" [placeholder]="item.name" optionLabel="value"></p-dropdown>
+                    </div> -->
+                <div *ngIf="brands && brands.length>0" class="dropdown_item">
+                    <p-multiSelect  [emptyFilterMessage]="'Результаты не найдены'" [options]="brands" formControlName="brand" optionLabel="name"
+                        [selectedItemsLabel]="'Выбраны {0} варианта'" [defaultLabel]="'Бренд'"></p-multiSelect>
+                    <!-- <p-dropdown [options]="brands" formControlName="brand" placeholder="Производитель"
+                        optionLabel="name"></p-dropdown> -->
+                </div>
+                <div class="dropdown_item">
+                    <p-multiSelect [showHeader]="false" [options]="reduction" formControlName="sale"
+                        optionLabel="reduction" [selectedItemsLabel]="'Выбраны {0} варианта'" [defaultLabel]="'Скидки'">
+                    </p-multiSelect>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="show_variants" (click)="onClickFilter()">
+                    <span>Показать варианты</span>
+                </button>
+                <button class="clear_filters" (click)="onClickClearFilters()">
+                    <span>Сбросить фильтры</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

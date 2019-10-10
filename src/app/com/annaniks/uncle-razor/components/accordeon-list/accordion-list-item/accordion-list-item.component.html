@@ -1,0 +1,17 @@
+<div class="search" *ngIf="isBrand">
+    <div class="search_input">
+        <input (ngModelChange)="search($event)" [(ngModel)]="searchValue" type="search">
+        <i class="material-icons">
+            search
+        </i>
+    </div>
+</div>
+<div class="container scroll">
+    <div *ngFor="let item of array" (click)="select(item)">
+        <span class="item">
+            <span>{{item.name}}</span>
+            <span [class.active]="item.isSelect" class="checkbox"></span>
+        </span>
+    </div>
+    <div *ngIf="isBrand && (!array || !array.length)">Результаты не найдены</div>
+</div>

@@ -1,0 +1,135 @@
+.login_content{
+    width: 100%;
+    position: relative;
+    .login_container{
+        width: 100%;
+        padding:20px 20px 0 20px;
+        .label{
+            font-size: 26px;
+            line-height: 20px;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        .form_group{
+            margin-top: 15px;
+            label{
+                font-size: 13px;
+                line-height: 20px;
+            }
+            input[type=text],input[type=password]{
+                margin-top:10px;
+                border-radius: 0 ;
+                -webkit-border-radius: 0px ;
+                -moz-border-radius: 0px ;
+                -khtml-border-radius: 0px;
+                -webkit-appearance: none;
+                border: 1px solid #cccccc;
+                height: 41px;
+                width: 100%;
+                font-weight: 500;
+            }
+            &:first-child{
+                margin-top: 0;
+            }
+        }
+        .remember_me{
+            margin-top: 16px;
+            span{
+                margin-left:10px;
+                font-size: 12px;
+            }
+        }
+        .buttons{
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .login{
+                transition: all 0.5s;
+                background-color: black;
+                border:1px solid black;
+                border:none;
+                border-radius: 0 ;
+                -webkit-border-radius: 0px ;
+                -moz-border-radius: 0px ;
+                -khtml-border-radius: 0px;
+                -webkit-appearance: none;
+                padding:14px 20px;
+                cursor: pointer;
+                span{
+                    text-transform: uppercase;
+                    color:white;
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    
+                }
+                &:hover{
+                    background-color: white;
+                    border:1px solid black;
+                    span{
+                        color:black;
+                    }
+                }
+            }
+            .restore_password{
+                cursor: pointer;
+                text-align: center;
+                font-size: 13px;
+                padding:0;
+                width: 100%;
+                line-height: 20px;
+                text-decoration: underline;
+            }
+            
+        }
+        .login_social{
+            .social_label{
+                margin-top: 25px;
+                font-size: 20px;
+                line-height: 20px;
+                font-weight: 300
+            }
+            .social_icons{
+                width: 106px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .icon{
+                    width: 30px;
+                    height: 30px;
+                    background-color: red;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+    .close_button{
+        background-color: #bdbdbd;
+        border-radius: 50%;
+        width: 19px;
+        height: 19px;
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+        i{
+            font-size: 15px;
+            margin:auto;
+            color:white;
+        }
+    }
+}
+
+:host ::ng-deep{
+    .ui-chkbox .ui-chkbox-box.ui-state-active{
+        border-color: black !important;
+        background-color: black !important;
+    }
+    .ui-chkbox .ui-chkbox-box{
+        border-radius: 0 !important
+      }    
+}
+

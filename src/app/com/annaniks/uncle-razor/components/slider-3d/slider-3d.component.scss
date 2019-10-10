@@ -1,0 +1,29 @@
+
+.leftRs{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    height: fit-content;
+    border:none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.rightRs{
+    position: absolute;
+    top:0;
+    bottom:0;
+    right: 0;
+    margin:auto;
+    height: fit-content;
+    border:none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.icon{
+    color:black;
+    font-size: 30px;
+}

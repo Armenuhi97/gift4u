@@ -1,0 +1,7 @@
+<div class="categories_content">
+    <div [ngClass]="{'has-border':!isBorder,'no-border':isBorder}" class="categories_container">
+        <div class="items" [class.multi_select]="multiSelect">
+            <app-category [isMain]="isMain" (getSelectsArray)="selectedArray($event,item)" [multiSelect]="multiSelect" *ngFor="let item of categories" [isParent]="isParent" [isSlideNav]="isSlideNav" [isCloseMenu]="isCloseMenu" [category]="item"></app-category>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+.goods_list{
+    .header{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+        .label{
+            font-size: 26px;
+            line-height: 18px;
+            text-transform: uppercase;
+            margin: auto;
+            padding: 0 20px;
+            position: relative;
+            background-color: white;
+        }
+        .line{
+            width: 100%;
+            height: 1px;
+            background-color: #d2d2d2;
+            margin-top: -9.5px;
+        }
+    }
+    .items{
+        display: flex;
+      //  justify-content: space-between;
+        flex-wrap: wrap;        
+    }
+}

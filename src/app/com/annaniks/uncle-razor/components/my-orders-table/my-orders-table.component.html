@@ -1,0 +1,56 @@
+<table class="products-table">
+    <thead>
+        <th class="t-head">
+            №
+        </th>
+        <th class="product-header t-head">
+            ТОВАР
+        </th>
+        <th class="t-head">
+            КОЛ-ВО
+        </th>
+        <th class="t-head">
+            ЦЕНА
+        </th>
+        <th>
+            ЦЕНА СО СКИДКОЙ
+        </th>
+        <th class="t-head">
+            СУММА
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products;let ind=index;" [routerLink]="'/catalog/'+item.id" cursor-pointer>
+            <td class="t-body">
+                {{ind+1}}
+            </td>
+            <td class="t-body">
+                <div class="product_descp">
+                    <div class="img">
+                        <img [src]="fileUrl+'products/'+item?.smallImage">
+                    </div>
+                    <div>
+                        <p>
+                            {{item?.name}}
+                        </p>
+                        <p>
+                            <b>АРТИКУЛ: {{item?.sku}}</b>
+                        </p>
+                    </div>
+                </div>
+            </td>
+            <td class="t-body">
+                {{item?.quantity}}
+            </td>
+            <td class="t-body">
+                {{item?.price}}
+            </td>
+            <td class="t-body">
+                {{item?.discountPrice}}
+            </td>
+            <td class="t-body">
+                {{(item?.discountPrice) ? item?.quantity * item?.discountPrice : item?.quantity * +item?.price}}
+            </td>
+        </tr>
+    </tbody>
+</table>

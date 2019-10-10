@@ -1,0 +1,77 @@
+.brands_content{
+    .brands_container{
+        .brands_list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            // justify-content: space-between;
+            .item{
+                padding:2em;
+                width: 20%;
+                height: 200px;
+                min-width: fit-content;
+                .img{
+                    cursor: pointer;
+                    width: 100%;
+                    height: 100%;
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    -webkit-filter: grayscale(1);
+                    min-width: 120px;
+                    filter: grayscale(1);
+                    &:hover{
+                        -webkit-filter: grayscale(0);
+                        filter: grayscale(0);
+                        transition: all 0.5s;
+                    }
+                }
+                
+            }
+            // .item:nth-child(5n+4), .item:nth-child(5n+3), .item:nth-child(5n+2), .item:nth-child(5n+1), .item:nth-child(4), .item:nth-child(3), .item:nth-child(2), .item:nth-child(1) {
+            //     border-right: 1px solid #a0918d;
+            // }
+            // .item + .item + .item + .item + .item + .item {
+            //     border-top: 1px solid #a0918d;
+            // }
+        }
+    }
+}
+
+@media only screen and (max-width: 937px) and (min-width:752px) {
+    .item{
+        width: 25% !important;
+    }
+}
+
+@media only screen and (max-width:751px) and (min-width:568px){
+    .item{
+        width: 33.333333333% !important;
+    }
+}
+@media only screen and (max-width:567px){
+    .brands_list{
+        justify-content: space-between 
+    }
+}
+@media only screen and (max-width:567px) and (min-width:383px){
+    .item{
+        width: 50% !important;
+    }
+}
+
+
+@media only screen and (max-width:387px){
+    .item{
+        padding: 1em !important;
+        width: 50% !important;
+        margin: 0 auto
+       // width: 50% !important;
+    }
+}
+@media only screen and (max-width:300px){
+    .item{
+        padding: 0.5em !important;
+       // width: 50% !important;
+    }
+}

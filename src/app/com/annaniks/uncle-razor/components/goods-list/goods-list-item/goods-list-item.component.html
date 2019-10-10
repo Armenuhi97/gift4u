@@ -1,0 +1,38 @@
+<div class="goods_list_item" [ngStyle]="{'min-width':style?.minWidth}" (onmouseenter)="onMouseEnter()">
+    <div class="goods_list_container">
+        <div>
+            <div class="header">
+                <a [routerLink]="'/catalog/'+product?.id">
+                    <p cursor-pointer><span>{{product?.brandName}}</span></p>
+                </a>
+                <div class="rating">
+                    <app-rating (onSetRaing)="handleSetRating($event)" [rating]="productRating"></app-rating>
+                </div>
+            </div>
+            <div class="image" cursor-pointer>
+                <a [routerLink]="'/catalog/'+product?.id"  display-block>
+                    <img type="image" [src]="fileUrl+'products/'+product?.smallImage" [alt]="product?.alt" width="182px"
+                        height="195px" />
+                </a>
+            </div>
+            <div class="description" cursor-pointer>
+                <a [routerLink]="'/catalog/'+product?.id" >
+                    <span>{{product?.name | splice_text:80:30}}</span>
+                </a>
+            </div>
+        </div>
+        <!-- <span class="ct_text" font-weight-bold
+            *ngIf="product?.countProduct!=''">{{(+product.countProduct > 0) ? 'Есть в наличии' : 'Нет в наличии'}}</span> -->
+        <div class="info">
+            <div class="price">
+                <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat}} ₽</p>
+                <p class="current_price">
+                    {{(product.specificPrice) ? product?.specificPrice : product?.price_with_vat}}
+                    ₽</p>
+            </div>
+            <div class="basket_button">
+                <button (click)="onClickAddBasket()">В корзину</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="back_call_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="back_call_container">
+        <p class="label">Обратный звонок</p>
+        <span class="message">Перезвоним через 10 секунд</span>
+        <p error text-align-center>{{errorMessage}}</p>
+        <form [formGroup]="backCallForm">
+            <div class="form_group">
+                <label>Ваше имя</label>
+                <input type="text" formControlName="name" />
+                <span required-field *ngIf="backCallForm.get('name').hasError('required') && backCallForm.get('name').touched">Это
+                        обязательное поле *</span>
+            </div>
+            <div class="form_group">
+                <label>Телефон</label>
+                <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00"/>
+                <span required-field *ngIf="backCallForm.get('phone').hasError('required') && backCallForm.get('phone').touched">Это
+                    обязательное поле *</span>
+            </div>
+            <div class="buttons">
+                <button class="send" [disabled]="backCallForm.invalid || loading" [ngClass]="{'disabled':backCallForm.invalid || loading}" (click)="onClickSend()">
+                    <span>Отправить</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

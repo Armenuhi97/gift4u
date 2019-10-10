@@ -1,0 +1,156 @@
+<div class="user_info_content">
+    <div class="user_info_container">
+        <div>
+            <div class="welcome-text"> Добро пожаловать,{{userInfo?.name}}!</div>
+            <div class="user_info">
+                <div margin-horizontal-auto text-align-center>
+                    <div [ngClass]="{'hidden':!isGet,'show':isGet}" class="image_container" position-relative>
+                        <img height="156px" object-fit-contain [src]="defaultImage" width="156px">
+                        <div class="camera-container">
+                            <label cursor-pointer margin-auto for="file-upload" class="custom-file-upload">
+                                <input id="file-upload" (change)="changeImage($event)" type="file" />
+                                <i class="material-icons">
+                                    {{uploadIcon}}
+                                </i>
+                            </label>
+                        </div>
+                    </div>
+                    <div>{{(userInfo?.priceWithBonus) ? userInfo?.priceWithBonus : 0}} ₽</div>
+                </div>
+                <div class="user">
+                    <div class="left">
+                        <div class="info_group">
+                            <p><span><b>Пол: </b></span>{{getGender()}}<span></span></p>
+                        </div>
+                        <div class="info_group">
+                            <p><span><b>ДАТА РОЖДЕНИЯ: </b></span><span>{{userInfo.birthday | date_format}}</span></p>
+                        </div>
+                        <div class="info_group">
+                            <p><span><b>ГОРОД: </b></span><span>{{userInfo?.cityCountriesName}}</span></p>
+                        </div>
+
+                    </div>
+                    <div class="right">
+                        <div class="info_group">
+                            <p class="right-content"><span>
+                                    <b>ТЕЛЕФОН:</b></span>
+                                <span>{{getPhoneNumber(userInfo?.phone)}}</span></p>
+                        </div>
+                        <div class="info_group">
+                            <p><span><b>E-MAIL: </b></span><span break-word>{{userInfo?.email}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cards-entity">
+            <div class="welcome-text"> Ваша карта привилегий</div>
+            <div class="card-container">
+                <div text-align-center>
+                    <img height="120px" src="/assets/images/logo.jpg" width="120px">
+                    <div>{{(userInfo?.balance) ? userInfo.balance : 0}} B</div>
+                </div>
+                <div class="entity-container">
+
+                    <div class="entity-list">
+                        <div class="left">
+                            <div class="info_group">
+                                <p><span><b>Номер карты: </b></span><span>-</span></p>
+                            </div>
+                            <div class="info_group">
+                                <p><span><b>Статус карты: </b></span>{{getStatus()}}<span></span></p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="info_group">
+                                <p class="right-content"><span><b>Процент возврата:
+                                        </b></span><span>{{userInfo?.percent || 0}}%</span></p>
+                            </div>
+                            <div class="info_group">
+                                <p><span><b>Сумма накоплений: </b></span><span>{{userInfo?.orderSum || 0}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div display-flex justify-content-space-around flex-wrap-wrap>
+            <div class="circle_item">
+                <div class="circle">
+                    <span class="value">{{(userInfo?.orderSum) ? userInfo?.orderSum : 0}}</span>
+                </div>
+                <div class="label">
+                    Сумма покупок
+                </div>
+            </div>
+            <div class="circle_item">
+                <div class="circle">
+                    <span class="value">
+                        <span class="value">{{(userInfo?.priceWithBonus) ? userInfo?.priceWithBonus : 0}}</span>
+                    </span>
+                </div>
+                <div class="label">
+                    Бонусы
+                </div>
+            </div>
+            <div class="circle_item">
+                <div class="circle">
+                    <span class="value">{{(userInfo?.balance) ? userInfo.balance : 0}}</span>
+                </div>
+                <div class="label">
+                    Баланс
+                </div>
+            </div>
+        </div> -->
+        <div class="gift_certificate">
+            <div class="gift_certificate_container">
+                <div class="gift-icon">
+                    <!-- src="assets/images/gift.png" -->
+                    <div class="gift-image"></div>
+                </div>
+                <div class="content" *ngIf="!isActiveGift">
+                    <p *ngIf="giftError" error no-margin full-width>
+                        НЕ ПРАВИЛЬНЫЙ КОД
+                    </p>
+                    <div class="code_c">
+
+                        <form class="four-parts" [formGroup]="giftForm" *ngIf="giftForm" display-flex
+                            justify-content-space-beetwen>
+                            <div display-flex class="input_wrapper">
+                                <input class="gift_input" formControlName="part1" text-align-center mask="(0000)"
+                                    type="text">
+                                <input class="gift_input" formControlName="part2" text-align-center mask="(0000)"
+                                    type="text">
+                                <input class="gift_input" formControlName="part3" text-align-center mask="(0000)"
+                                    type="text">
+                                <input class="gift_input" formControlName="part4" text-align-center mask="(0000)"
+                                    type="text">
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="button">
+                        <p>введите номер подарочного сертификата</p>
+                        <div class="gift-with-one-part" display-flex align-items-center>
+                            <div [formGroup]="giftFullForm" class="one-parts">
+                                <input class="gift_input" formControlName="parts" text-align-center
+                                    mask="(0000) (0000) (0000) (0000)" type="text">
+                            </div>
+                            <button [disabled]="giftForm?.invalid && giftFullForm?.invalid"
+                                [ngClass]="{'disabled':(giftForm?.invalid && giftFullForm?.invalid)}"
+                                (click)="onClickActivate()">
+                                Активировать
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <p color-white text-align-center full-width *ngIf="isActiveGift">
+                    ВАШ КОД УСПЕШНО АКТИВИРОВАН
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</div>

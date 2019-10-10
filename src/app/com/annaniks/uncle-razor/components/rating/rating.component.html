@@ -1,0 +1,7 @@
+<div class="rating" [ngStyle]="{'font-size':size+'px','width':width+'px','color':color}" (mouseleave)="onOutStars()">
+    <div #starContainer>
+        <i class="star br-unit br-fraction" [ngClass]="{'selected' : starIndex >= ind+1}"
+            *ngFor="let item of starsCountArray;let ind=index;" (mouseenter)="onHoverStar(ind)"
+            (click)="onClickStar(ind)"></i>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div *ngFor="let address of addresses" class="table-content">
+    <table>
+        <caption>
+            <div class="table-header">
+                <div>{{address?.name}}</div>
+                <div margin-left-auto display-flex>
+                    <i *ngIf="address.status == true" class="material-icons">
+                        check_circle_outline
+                    </i>
+                    <i (click)="delete(address)" cursor-pointer class="material-icons">
+                        delete
+                    </i>
+                    <i (click)="edit(address)" cursor-pointer class="material-icons">
+                        edit
+                    </i>
+                    <i (click)="showHide(address)" cursor-pointer class="material-icons">
+                        {{address.icon}}
+                    </i>
+                </div>
+            </div>
+        </caption>
+        <thead>
+            <tr *ngIf="address.showOrHide">
+                <th>НАЗВАНИЕ</th>
+                <th>ФИО</th>
+                <th>ТЕЛЕФОН</th>
+                <th>ИНДЕКС</th>
+                <th>ГОРОД</th>
+                <th>АДРЕС</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="address.showOrHide">
+                <td>
+                    <div>{{address?.name}}</div>
+                </td>
+                <td>
+                    <div>{{address?.fullName}} </div>
+                </td>
+                <td>
+                    <div> +7{{address?.phone}}</div>
+                </td>
+                <td>
+                    <div> {{address?.index}}</div>
+                </td>
+                <td>
+                    <div> {{address?.cityCountriesName}}</div>
+                </td>
+                <td>
+                    <div> {{address?.address}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="selectMainAddress(address)" [disabled]="address.status == true" class="button select">ВЫБРАТЬ КАК
+        ОСНОВНОЙ АДРЕС</button>
+</div>
+<div class="add">
+    <button cursor-pointer (click)="addAddress()" class="button">ДОБАВИТЬ НОВЫЙ АДРЕС</button>
+</div>

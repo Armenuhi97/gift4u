@@ -1,0 +1,54 @@
+<div class="login_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="login_container">
+        <p class="label">Вход в кабинет</p>
+        <p *ngIf="data && data.isReview">Отзывы могут оставлять только зарегестрированные пользователи.</p>
+        <p error>{{errorMessage}}</p>
+        <form [formGroup]="loginForm">
+            <div class="form_group">
+                <label for='email'>E-mail:</label>
+                <input type="text" formControlName="email" />
+                <span required-field
+                    *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Это
+                    обязательное поле *</span>
+                <span required-field
+                    *ngIf="loginForm.get('email').hasError('pattern') && loginForm.get('email').touched">Введите
+                    правильный email *</span>
+            </div>
+            <div class="form_group">
+                <label for='email'>Пароль:</label>
+                <input type="password" formControlName="password" />
+                <span required-field
+                    *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Это
+                    обязательное поле *</span>
+            </div>
+            <div class="remember_me">
+                <div display-flex align-items-center>
+                    <p-checkbox binary="true" formControlName="remember"></p-checkbox>
+                    <span>Запомнить</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="login" (click)="onClickLogin()" [disabled]="loginForm.invalid"
+                    [ngClass]="{'disabled':loginForm.invalid}">
+                    <span>Войти</span>
+                </button>
+                <div>
+                    <p class="restore_password" (click)="onClickRecoverPassowrd()">Восстановить пароль</p>
+                    <p *ngIf="data && data.isRegistr" class="restore_password" (click)="openRegistrationModal()">Регистрация</p>
+                </div>
+            </div>
+
+        </form>
+        <!-- <div class="login_social">
+            <p class="social_label">Войти с помощью соцсетей</p>
+            <div class="social_icons">
+                <div class="icon"></div>
+                <div class="icon"></div>
+                <div class="icon"></div>
+            </div>
+        </div> -->
+    </div>
+</div>

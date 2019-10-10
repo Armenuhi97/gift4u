@@ -1,0 +1,37 @@
+.desc{
+    .label{
+        margin:0;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom:35px;
+    }
+    .description{
+        display: flex;
+        // align-items: center;
+        // flex-wrap: wrap;
+        &_item{
+            display: block;
+            color:#8a8a8a;
+            font-weight: 300;
+            span{
+                font-weight: normal;
+                color:#8a8a8a;
+            }
+            
+        }
+        .bold{
+            color:black;
+            font-weight: bold;
+        }
+       
+    }
+    .brand_image{
+        max-width: 100%;
+        margin-left:auto;
+        max-height: 150px;
+        width: auto;
+        height: auto;
+    }
+}

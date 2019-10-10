@@ -1,0 +1,42 @@
+<td>
+    <div display-flex align-items-center cursor-pointer [routerLink]="'/catalog/'+basketItem.id">
+        <img [src]="fileUrl+'products/'+basketItem?.image" width="auto" height="68px" style="margin-right: 50px" />
+        <p class="name">{{basketItem?.name}}</p>
+    </div>
+</td>
+<td>
+    <div class="price">
+        <p class="old" *ngIf="basketItem.specificPrice">{{(basketItem?.specificPrice) ? basketItem?.price_with_vat : ''
+            }} ₽</p>
+        <p class="new">{{(basketItem?.specificPrice) ? basketItem?.specificPrice : basketItem?.price_with_vat}} ₽</p>
+    </div>
+</td>
+<td>
+    <div class="count flex_element">
+        <div width-fit margin-horizontal-auto display-flex align-items-center justify-content-space-beetwen>
+            <button (click)="onClickDecrement()">
+                <i class="material-icons">
+                    expand_more
+                </i>
+            </button>
+            <input type="text" disabled  [(ngModel)]="basketItem.count" />
+            <button (click)="onClickIncrement()">
+                <i class="material-icons">
+                    keyboard_arrow_up
+                </i>
+            </button>
+        </div>
+    </div>
+</td>
+<td>
+    <div class="price flex_element">
+        <p class="new">{{currentPrice}} ₽</p>
+    </div>
+</td>
+<td>
+    <div class="delete" display-flex>
+        <button cursor-pointer margin-left-auto (click)="onClickDelete()">
+            <i class="material-icons">close</i>
+        </button>
+    </div>
+</td>

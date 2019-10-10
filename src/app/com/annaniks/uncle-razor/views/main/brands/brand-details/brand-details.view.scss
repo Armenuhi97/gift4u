@@ -1,0 +1,82 @@
+app-goods-list-item{
+    width: 25% !important;
+    padding:0.5em;
+}
+@media only screen and(max-width:920px){
+    .brand_details_content{
+        border-top: 1px solid #d2d2d2;
+    }
+}
+@media only screen and (max-width: 1162px) and (min-width:695px) {
+    app-goods-list-item{
+        width: 33.3333% !important;
+    }
+}
+
+@media only screen and (max-width: 695px) and (min-width:470px) {
+    app-goods-list-item{
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 470px){
+    app-goods-list-item{
+        width: 50% !important;
+    }
+}
+.brand_details_content{
+    margin-top: 24px;
+}
+.info_content{
+    width: 100%;
+    margin:20px auto;
+    .img{
+        max-width: 200px;
+        max-height: 200px;
+        min-width: 200px;
+        // padding:0.5em;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        // border:1px solid black;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .title{
+        display: block;
+        line-height: 16px;
+        height: 209px;
+        overflow: hidden;
+        box-shadow: 0px -35px 26px #fff inset;
+      
+    }
+    .show {
+        overflow: visible !important;
+        height: auto !important;
+        p{
+            color:red;
+        }
+    }
+    
+    .show_bttn{
+        margin-top: 10px;
+        color:black;
+        text-decoration: underline;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+  
+}
+
+:host ::ng-deep{
+    .title{
+        p:first-child{
+            margin:0;
+        }
+    }
+}
+
+

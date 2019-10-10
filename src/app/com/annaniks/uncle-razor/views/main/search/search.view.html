@@ -1,0 +1,16 @@
+<div class="search_content">
+    <div class="search_container" container>
+        <app-box>
+            <div *ngIf="productsCount && productsCount>0">
+                <app-goods-list>
+                    <app-goods-list-item *ngFor="let item of products" [product]="item"></app-goods-list-item>
+                </app-goods-list>
+                <app-paginator [count]="productsCount" [pageLength]="pageLength" [currentPage]="page" [currentPage]="page"
+                    (paginate)="onPageChange($event)"></app-paginator>
+            </div>
+            <div class="not_found" *ngIf="(!productsCount || productsCount==0) && !loading">
+                <p text-align-center>По вашему запросу ничего не найдено</p>
+            </div>
+        </app-box>
+    </div>
+</div>

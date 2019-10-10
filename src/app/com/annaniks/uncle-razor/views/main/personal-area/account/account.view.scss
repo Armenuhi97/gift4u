@@ -1,0 +1,177 @@
+.account_content{
+    width: 90% !important;
+    margin: 0 auto !important;
+    .account_container{
+        padding-top: 15px;
+        color: black;
+        .main-right{
+            margin:0 10px;
+        }
+        .main-right-heading{
+            width: 90%;
+            margin-top: 25px;
+            display: flex;
+            justify-content: flex-start;
+        
+        }
+        .main-right form{
+            width: 100%;
+            //margin: 25px  0;
+        }
+    
+        .first3,.second3{
+            width: 100%;
+        }
+        .first3 input,.second3 input{
+            width:94% ;
+            height: 40px;
+            padding-left: 11px;
+            margin-top: 5px;
+        }
+        .main-right-bottom{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: 10px 0 5px 0;
+        }
+        .main-right-bottom button{
+            width: 124px;
+            height: 35px;
+            border:0;
+            border-radius: 0 ;
+            -webkit-border-radius: 0px ;
+            -moz-border-radius: 0px ;
+            -khtml-border-radius: 0px;
+            -webkit-appearance: none;
+            background-color: black;
+            color: white;
+            margin-right:28px;
+            font-size: 12px;
+            transition: all 0.5s;
+            cursor: pointer;
+            &:hover{
+                background-color: white;
+                border:1px solid black;
+                color:black;
+            }
+        }
+        .button-right{
+            font-size: 13px;
+        }
+        .star{
+            color: black;
+        }
+        .fa{
+            color: #b29559;
+            margin-right: 18px;
+        }     
+        .change_password_text{
+            font-size: 14px;
+        }
+    }
+}
+.form_group{
+    .label{
+        font-size: 14px;
+    }
+    div{
+        margin: 0 13px 16px 0;
+        i{
+            margin-left:10px;
+            user-select: none;
+            cursor: pointer;
+            color:black;
+        }
+    }
+    
+  
+}
+.gender{
+    margin: 20px 0;
+    .gender-container{
+        display: flex;
+        align-items: center;
+        mat-checkbox{
+            margin-right: 20px
+        }
+       
+    }
+}
+.mat-radio-button{
+    margin-right: 20px !important
+}
+.change_password_wrapper{
+    margin-top: 5px;
+}
+    .input_wrapper{
+        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        .gift_input{
+            margin:0.5em;
+            width: 25% !important;
+        }
+    }
+    .main-right-bottom{
+        flex-direction: row-reverse;
+        button{
+            margin-left: 28px !important;
+            margin-right: 0 !important;
+        }
+    }
+
+input[type=text], input[type=tel], input[type=email]{
+    border-radius: 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    -webkit-appearance: none;
+    border: 1px solid #cccccc
+}
+:host ::ng-deep{
+    p-calendar {
+        .ui-inputtext {
+            width: calc(100% - 33px);
+        }
+    }
+}
+
+p-dropdown{       
+    margin-top: 5px;
+}
+.main-left{
+    width: 100% !important;
+}
+.material-icons{
+    display: none
+}
+input,.date{
+    width: 100% !important;
+}
+.form_group{
+    div{
+        margin: 0 0 16px 0 !important;
+    }
+}
+.content{
+    flex-direction: column;
+}
+.main-right{
+    width: 100% !important;
+    margin-left:0 !important;
+    form{
+        width: 100% !important;
+    }
+}
+.main-inside{
+    flex-direction: column !important;
+}
+.city{
+    p-dropdown{
+        width: 100% !important;
+    }
+}  
+body .ui-dropdown{
+    max-width: 100% !important;
+} 

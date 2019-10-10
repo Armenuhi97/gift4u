@@ -1,0 +1,57 @@
+<!-- <ui-carousel [infinite]="true" [autoPlay]="false" [fade]="false" [speed]="200" [height]="itemHeight+'px'"
+    *ngIf="carouselItems && carouselItems.length>0">
+    <ui-carousel-item *ngFor="let item of carouselItems">
+        <div class="carousel_item" *ngIf="carouselType=='main'">
+            <div class="info_content">
+                <p class="label">{{item.name}} </p>
+                <p class="under">
+                    {{item.content}}
+                </p>
+                <div display-flex>
+                    <button (click)="onClickMoreInfo(item)">
+                        <span>Узнать больше</span>
+                    </button>
+                </div>
+            </div>
+            <div class="image" cursor-pointer (click)="onClickMoreInfo(item)"
+                [ngStyle]="{'background-image':'url('+fileUrl+prefix+item[imageKey]+')'}">
+            </div>
+        </div>
+        <div class="carousel_item" *ngIf="carouselType=='small'" no-padding (click)="onClickCarouselItem(item)"
+            cursor-pointer>
+            <div class="small_image" [ngStyle]="{'background-image':'url('+fileUrl+'partners/'+item.image+')'}"></div>
+        </div>
+        <div class="carousel_item_good" *ngIf="carouselType=='good'">
+            <app-goods-list-item [product]="item"></app-goods-list-item>
+        </div>
+    </ui-carousel-item>
+</ui-carousel> -->
+<!-- style="visibility: hidden" -->
+<ngx-slick-carousel (init)="slickInit($event)" [ngClass]="{'init':isInit,'uninit':!isInit}" class="carousel"
+    #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let item of carouselItems" class="slide"
+        [ngStyle]="{'height':(itemHeight!='inherit') ? itemHeight+'px' : 'inherit'}">
+        <div class="carousel_item" *ngIf="carouselType=='main'">
+            <!-- <div class="info_content">
+                <p class="label">{{item.name}} </p>
+                <p class="under">
+                    {{item.content}}
+                </p>
+                <div display-flex>
+                    <button (click)="onClickMoreInfo(item)">
+                        <span>Узнать больше</span>
+                    </button>
+                </div>
+            </div> -->
+            <img class="image" cursor-pointer (click)="onClickMoreInfo(item)" [src]="fileUrl+prefix+item[imageKey]"
+                [alt]="item?.content">
+        </div>
+        <div class="carousel_item" *ngIf="carouselType=='small'" no-padding (click)="onClickCarouselItem(item)"
+            cursor-pointer>
+            <div class="small_image" [ngStyle]="{'background-image':'url('+fileUrl+'partners/'+item.image+')'}"></div>
+        </div>
+        <div class="carousel_item_good" *ngIf="carouselType=='good'">
+            <app-goods-list-item [product]="item"></app-goods-list-item>
+        </div>
+    </div>
+</ngx-slick-carousel>

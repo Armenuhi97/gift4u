@@ -1,0 +1,10 @@
+<div class="discount_content">
+    <div class="discount_container" container>
+        <app-box [header]="'СКИДКИ'">
+            <announcement-list>
+                <announcement-list-item *ngFor="let item of discountInfo" [value]="item">
+                </announcement-list-item>
+            </announcement-list>
+        </app-box>
+    </div>
+</div>

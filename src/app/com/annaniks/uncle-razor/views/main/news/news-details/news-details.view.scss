@@ -1,0 +1,53 @@
+.info_content{
+    width: 100%;
+    margin:20px auto;
+    .img{
+        max-width: 200px;
+        max-height: 200px;
+        min-width: 200px;
+        // padding:0.5em;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        // border:1px solid black;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .title{
+        display: block;
+        line-height: 16px;
+        height: 209px;
+        overflow: hidden;
+        box-shadow: 0px -35px 26px #fff inset;
+      
+    }
+    .show {
+        overflow: visible !important;
+        height: auto !important;
+        p{
+            color:red;
+        }
+    }
+    
+    .show_bttn{
+        margin-top: 10px;
+        color:black;
+        text-decoration: underline;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+  
+}
+
+:host ::ng-deep{
+    .title{
+        p:first-child{
+            margin:0;
+        }
+    }
+}
+
+

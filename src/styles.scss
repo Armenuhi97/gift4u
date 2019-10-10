@@ -1,0 +1,226 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+@import 'src/app/com/annaniks/styles/variables.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+    outline: none !important;
+}
+
+*{
+    font-family: 'Roboto';
+}
+*:focus {
+    outline:0 !important;
+}
+.ui-dropdown,.ui-multiselect,.ui-multiselect-header .ui-inputtext{
+    border: 1px solid #d2d2d2 !important;
+    outline: none !important
+  }
+.route_step{
+    width: 100%;
+    margin-top: 23px;
+   
+}
+
+@media only screen and (max-width:920px){
+    .route_step{
+        margin-top: 10px !important;
+        padding-top: 10px;
+        border-top: 1px solid #f2f2f2;
+        padding-bottom: 10px;
+        border: 1px solid #f2f2f2;
+    }
+}
+body{
+    margin:0;
+    padding:0;
+}
+
+.disabled{
+    opacity: .5;
+    
+}
+
+.overflow_inherit{
+    .mat-dialog-container{
+        overflow: inherit !important;
+    }
+}
+.filter_category_modal{
+    .mat-dialog-container{
+        padding: 0 !important;
+        border-radius: 0 !important;
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        -khtml-border-radius: 0px !important;
+        -webkit-appearance: none !important;
+    }
+
+}
+img{
+    pointer-events: none;
+}
+
+
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hover_underline{
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.a-left{
+    background: black !important;
+    opacity: 1 !important;
+    //padding:5px !important;
+    pointer-events: auto !important;
+    &::before{
+        content:none !important;
+    }
+}
+
+.a-right{
+    background: black !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    //padding:5px !important;
+    &::before{
+        content:none !important;
+    }
+}
+
+a{
+    color:black !important;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background{
+    background-color: white !important;
+    border: 1px solid grey !important;
+
+}
+.mat-checkbox-checkmark-path {
+    stroke: black !important;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: grey;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: grey;
+}
+.ui-dropdown{
+    min-width: 100% !important;
+}
+.ui-multiselect{
+    width: 100% !important;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -khtml-border-radius: 0px !important;
+    -webkit-appearance: none !important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar,.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+    background: grey !important
+}
+.material-icons{
+    font-family: 'Material Icons' !important;
+}
+@media only screen and (max-width: 550px){
+    *{
+        cursor: none !important
+    }
+}
+.lb-nav a.lb-next, .lb-nav a.lb-prev{
+    opacity: 1 !important;
+    position: fixed;
+    width: 75px !important;
+    top: 0 !important;
+    // position: fixed;
+    // height: 50px;
+    // width: 50px;
+    // top: calc(50% - 50px/2);
+    &:hover{
+        background-color: #8080801a;
+    }
+}
+.lb-nav .lb-prev{
+    background-image: url('./assets/images/icon_left.png') !important;
+    background-size: 27px 52px !important;
+    background-position: center !important;
+}
+.lb-nav .lb-next{
+    // right: 18px !important;
+    background-image: url('./assets/images/icon_right.png') !important;
+    background-size: 27px 52px !important;
+    background-position: center !important;
+}
+
+.swiper-pagination-bullet-active{
+    background: grey !important;
+    border: none !important
+}
+
+.lb-dataContainer{
+    position: fixed;
+    top: 10px;
+    // right: 18px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    z-index: 99999999999;
+}
+.lb-data .lb-details{
+    display: none
+}
+.light-box-modal{
+    .mat-dialog-container{
+        border-radius: 0 !important;
+        -webkit-border-radius: 0px !important;
+        -moz-border-radius: 0px !important;
+        -khtml-border-radius: 0px !important;
+        padding: 0 !important;
+        -webkit-appearance: none !important;
+    }
+}
+.light-box-container{
+    .swiper-button-next,.swiper-button-prev, .swiper-button-disabled{
+        display: none !important
+    }
+    .swiper-pagination-handle{
+        display: flex !important;
+        align-items: center !important;
+    }
+    .swiper-pagination-bullets{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 15px !important;
+    }
+}
+.lb-outerContainer{
+    border-radius: 0 !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -khtml-border-radius: 0px !important;
+    -webkit-appearance: none !important;
+}
+.lightbox .lb-image{
+    width: 100% !important;
+    height: 100% !important; 
+    border-radius: 0 !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -khtml-border-radius: 0px !important;
+    -webkit-appearance: none !important;
+    border: none !important
+}
+.ui-corner-all{
+    border-radius:0 !important 
+}
+.ui-dropdown .ui-dropdown-panel{
+    z-index: 1 !important;
+}
+

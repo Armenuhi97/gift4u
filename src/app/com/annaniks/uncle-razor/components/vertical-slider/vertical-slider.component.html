@@ -1,0 +1,7 @@
+<div class="content-container" *ngIf="!loading">
+   <swiper class="swiper-container" [config]="config" [disabled]="disabled" *ngIf="sliderItems.length>0">
+      <div *ngFor="let slide of sliderItems;let ind=index" class="swiper-slide" (click)="onClickImage(ind)">
+         <div class="item" [ngStyle]="{'background-image':'url('+fileUrl+'products/'+slide.name+')'}"></div>
+      </div>
+   </swiper>
+</div>

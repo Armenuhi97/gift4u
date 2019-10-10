@@ -1,0 +1,7 @@
+<div class="announcement_list_item" (click)="onClickItem()">
+    <div class="announcement_list_item_container">
+        <div class="img" [ngStyle]="{'background-image':'url('+fileUrl+'hhh/'+announcementInfo?.image}"></div>
+        <p class="title">{{announcementInfo?.title}}</p>
+        <p class="description" [innerHTML]="announcementInfo?.description"></p>
+    </div>
+</div>

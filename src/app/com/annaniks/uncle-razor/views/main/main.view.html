@@ -1,0 +1,17 @@
+<app-loading></app-loading>
+<div class="page_content">
+    <div class="top_content">
+        <app-topbar [settings]="settings"></app-topbar>
+        <app-catalog [catalogItems]="categories"></app-catalog>
+        <app-slide-nav [slideNavItems]="categories"></app-slide-nav>
+    </div>
+    <div class="middle_content">
+        <p-toast></p-toast>
+        <section>
+            <router-outlet></router-outlet>
+        </section>
+    </div>
+    <div class="bottom_content">
+        <app-footer [categories]="categories" [settings]="settings" [socialItems]="socialItems"></app-footer>
+    </div>
+</div>

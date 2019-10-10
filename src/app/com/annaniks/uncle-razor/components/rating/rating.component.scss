@@ -1,0 +1,33 @@
+.rating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    margin:0 auto;
+    user-select: none;
+    i{
+        font-size: inherit;
+        color:inherit;
+    }
+    
+    .br-unit{
+        cursor: pointer;
+        font: normal normal normal 20px/1 FontAwesome;
+        font-size: inherit !important;
+        margin-right: 2px;
+    }
+
+    .br-unit:after{
+        content: "\F006";
+        color: black;
+    }
+
+    .br-unit-fracion:after{
+        content: "\F123" !important;
+    }
+}
+
+.selected::after{
+    content: "\F005" !important;
+    color: inherit  !important;
+}

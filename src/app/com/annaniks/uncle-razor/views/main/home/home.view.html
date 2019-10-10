@@ -1,0 +1,140 @@
+<div>
+    <div class="slider">
+        <div container>
+            <app-slider [carouselItems]="banners" [carouselType]="'main'" [imageKey]="imageKey"></app-slider>
+        </div>
+    </div>
+    <div container>
+        <div>
+            <div>
+                <div class="items">
+                    <div class="item">
+                        <div class="icon">
+                            <img src="/assets/images/carV.png" width="64px" height="64px">
+                        </div>
+                        <div class="label">
+                            Быстрая доставка
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon">
+                            <img src="/assets/images/humanV.png" width="64px" height="64px">
+                        </div>
+                        <div class="label">
+                            Индивидуальный подход
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon">
+                            <img src="/assets/images/moneyV.png" width="64px" height="64px">
+                        </div>
+                        <div class="label">
+                            Удобный способ оплаты
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon">
+                            <img src="/assets/images/prizeV.png" width="64px" height="64px">
+                        </div>
+                        <div class="label">
+                            100% оригинальное качество
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popular_goods">
+                <app-box [isP]="true" [header]="'Популярные товары'">
+                    <app-slider [carouselType]="'good'" [carouselItems]="popularProducts" [itemHeight]="'inherit'">
+                    </app-slider>
+                </app-box>
+            </div>
+            <div class="disc_block">
+                <div class="cont">
+                    <div class="labels_wrapper">
+                        <p class="label">5 любых восков со скидкой</p>
+                        <span class="under">Большой ассортимент восков на любой выбор</span>
+                    </div>
+                    <div class="img_items">
+                        <div class="img_item" style="background-image:url(/assets/images/Layer6530.png)"></div>
+                        <div class="img_item" style="background-image:url(/assets/images/Layer653.png)"></div>
+                        <div class="img_item" style="background-image:url(/assets/images/Layer_653.png)"></div>
+                        <div class="img_item" style="background-image:url(/assets/images/Layer_6531.png)"></div>
+                        <div class="img_item" style="background-image:url(/assets/images/Layer_6532.png)"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="special_goods">
+                <app-box [isP]="true" [header]="'Спецпредложения'">
+                    <app-goods-list>
+                        <app-slider [carouselType]="'good'" [carouselItems]="specialProducts" [itemHeight]="'inherit'">
+                        </app-slider>
+                    </app-goods-list>
+                </app-box>
+            </div>
+            <div display-flex class="blocks">
+                <div class="left">
+                    <div class="cont" *ngIf="!isSubscribed">
+                        <p class="label">ПОДПИСКА НА НОВОСТИ, АКЦИИ И СКИДКИ</p>
+                        <div class="form_group">
+                            <input type="text" [formControl]="emailFormControl" placeholder="Введите ваш email" />
+                            <button (click)="onClickSubscribe()" [disabled]="emailFormControl.invalid"
+                                [ngClass]="{'disabled':emailFormControl.invalid}"><span>Подписаться</span></button>
+                        </div>
+                        <span required-field
+                            *ngIf="emailFormControl.hasError('required') && emailFormControl.touched">Это
+                            обязательное поле *</span>
+                        <span required-field
+                            *ngIf="emailFormControl.hasError('email') && emailFormControl.touched">Введите
+                            правильный email *</span>
+                    </div>
+                    <div class="cont" *ngIf="isSubscribed">
+                        <p class="label">Спасибо Вы успешно подписаны !</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="cont">
+                        <div class="labels_wrapper">
+                            <p class="label">Присоединяетесь</p>
+                            <span class="under">К нам в социальных сетях</span>
+                        </div>
+                        <div class="social_items">
+                            <div class="social_item" *ngFor="let item of socialNetworks"
+                                (click)="onClickSocialItems(item)"
+                                [ngStyle]="{'background-image':'url('+fileUrl+'socialnetworks/'+item.image+')'}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="new_goods">
+                <app-box [isP]="true" [header]="'НОВИНКИ НА САЙТЕ'">
+                    <app-goods-list>
+                        <app-slider [carouselType]="'good'" [carouselItems]="newProducts" [itemHeight]="'inherit'">
+                        </app-slider>
+                    </app-goods-list>
+                </app-box>
+            </div>
+            <div class="market_parfum">
+                <app-box [header]="magazinInfo?.title">
+                    <div class="content">
+                        <p class="text" none-select [innerHTML]="magazinInfo?.description">
+                        </p>
+                    </div>
+                </app-box>
+            </div>
+            <!-- <div class="video">
+                <app-box [header]="'Видео о продукции'">
+                    <div class="video_content">
+                        <app-slider-3d [carouselItems]="videos"></app-slider-3d>
+                    </div>
+                </app-box>
+            </div>
+            <div class="our_partners">
+                <div class="partners_content">
+                    <app-box [header]="'НАШИ ПАРТНЕРЫ'">
+                        <app-slider [itemHeight]="152" [carouselType]="'small'" [carouselItems]="partners"></app-slider>
+                    </app-box>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

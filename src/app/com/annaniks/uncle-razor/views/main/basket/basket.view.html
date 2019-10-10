@@ -1,0 +1,304 @@
+<div container>
+    <div class="route_step">
+        <app-route-step [routes]="routeSteps"></app-route-step>
+    </div>
+    <div content *ngIf="isPaymentChecked">
+        <h1 text-align-center>{{message}}</h1>
+    </div>
+    <div content *ngIf="basketProducts && basketProducts.length>0 && isPaymentChecked" class="basket_container">
+
+        <app-box [header]="'Корзина'" [marginTop]="'30px'">
+            <div class="basket_items">
+                <app-basket-list>
+                    <tr basketListItem *ngFor="let item of basketProducts;let ind=index;" [basketItem]="item"
+                        (deleteEvent)="handleDeleteEvent(ind)"></tr>
+                </app-basket-list>
+            </div>
+            <div class="basket_info">
+                <div>
+                    <div class="discount">
+                        <input type="text" placeholder="Введите промокод скидки" [formControl]="promoCodeFormControl" />
+                        <button class="get_discount"
+                            [disabled]="promoCodeFormControl.invalid || promoCodeLoading || isPromocode"
+                            [ngClass]="{'disabled':promoCodeFormControl.invalid || promoCodeLoading || isPromocode}"
+                            (click)="onClickGetDiscount()">Получить
+                            скидку</button>
+                    </div>
+                    <span display-block full-width
+                        [ngStyle]="{'color':(isPromocode) ? 'green' : 'red','font-size':'13px'}">{{promoCodeMessage}}</span>
+                    <span display-block required-field
+                        *ngIf="promoCodeFormControl.hasError('required') && promoCodeFormControl.touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="isPackContainer">
+                    <div class="checkbox">
+                        <label class="container">
+                            <input type="checkbox" [(ngModel)]="isPack">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="center" (click)="onClickisPack()">
+                        <div class="top">Упаковать в подарочную упаковку</div>
+                        <div class="bottom">(+150 руб к заказу)</div>
+                    </div>
+                </div>
+                <p>ИТОГО: <span [ngClass]="{'discount_price':isPromocode}">{{totalPrice}} ₽</span>
+                    <span *ngIf="isPromocode"> - {{discountPrice}} ₽</span>
+                </p>
+            </div>
+            <div class="make_order" *ngIf="orderStep!=2">
+                <button (click)="onClickMakeOrder()">
+                    <span>Оформить заказ</span>
+                </button>
+            </div>
+        </app-box>
+        <app-box [header]="'Оформить заказ'" *ngIf="orderStep==2">
+            <p error text-align-center *ngIf="error">{{makeOrderError}}</p>
+            <div class="order_container">
+                <form [formGroup]="orderForm">
+                    <p class="label">Контактные данные</p>
+                    <div>
+                        <div class="make_order_form" align-items-center display-flex>
+                            <div class="left">
+                                <div class="form_group">
+                                    <div class="label_wrapper_left">
+                                        <label>ФИО</label>
+                                        <p class="req_message">обязательно</p>
+                                    </div>
+                                    <div class="input_container">
+                                        <input type="text" formControlName="name" />
+                                        <span required-field
+                                            *ngIf="orderForm.get('name').hasError('required') && orderForm.get('name').touched">Это
+                                            обязательное поле *</span>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_left ">
+                                        <label>Телефон</label>
+                                        <p class="req_message">обязательно</p>
+                                    </div>
+                                    <div class="input_container">
+                                        <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
+                                        <span required-field
+                                            *ngIf="orderForm.get('phone').hasError('required') && orderForm.get('phone').touched">Это
+                                            обязательное поле *</span>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_left">
+                                        <label>E-mail</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <input type="text" formControlName="email" />
+                                        <span required-field
+                                            *ngIf="orderForm.get('email').hasError('required') && orderForm.get('email').touched">Это
+                                            обязательное поле *</span>
+                                        <span required-field
+                                            *ngIf="orderForm.get('email').hasError('pattern') && orderForm.get('email').touched">Введите
+                                            правильный email *</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+
+                                <div *ngIf="isAuthorized" class="form_group">
+                                    <div class="label_wrapper_right">
+                                        <label>Основные адреса</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <p-dropdown [emptyFilterMessage]="'Результаты не найдены'" [options]="allAddresses" [filter]="true"
+                                            [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
+                                            formControlName="allAddress" placeholder="Нажмите чтобы выбрать"
+                                            optionLabel="name">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_right">
+                                        <label>Город</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <p-dropdown [options]="cities" [filter]="true" [emptyFilterMessage]="'Результаты не найдены'"
+                                            [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
+                                            formControlName="city" placeholder="Нажмите чтобы выбрать"
+                                            optionLabel="name"></p-dropdown>
+                                        <span required-field
+                                            *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">Это
+                                            обязательное поле *</span>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_right">
+                                        <label>Адрес</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <input type="text" formControlName="address" />
+                                        <span required-field
+                                            *ngIf="orderForm.get('address').hasError('required') && orderForm.get('address').touched">Это
+                                            обязательное поле *</span>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_right">
+                                        <label>Индекс</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <input type="text" OnlyNumber="true" formControlName="index" />
+                                        <span required-field
+                                            *ngIf="orderForm.get('index').hasError('required') && orderForm.get('index').touched">Это
+                                            обязательное поле *</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <div class="label_wrapper">
+                                <label>Комментарий</label>
+                                <p class="req_message">не обязательно</p>
+                            </div>
+                            <div class="input_container textarea">
+                                <textarea formControlName="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="totalPrice" display-flex justify-content-space-beetwen>
+                            <!-- <p><span font-weight-bold>ИТОГО:</span>{{fullPrice}}</p>
+                            <p><span font-weight-bold>{{bonusPrice}}</span></p> -->
+                        </div>
+                        <div class="payment_method" display-flex>
+                            <div class="left-container">
+                                <p class="label">Способ доставки</p>
+                                <span required-field
+                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">Это
+                                    обязательное поле *</span>
+                                <div class="items">
+                                    <div class="item" *ngFor="let item of visibleCarrierTypes;let ind=index;">
+                                        <label style="margin-top: 10px;" class="container">
+                                            <input type="radio" formControlName="shipping_method" [value]="item.id"
+                                                name="shipping_method">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <div align-items-center display-flex class="img_wrapper">
+                                            <img [src]="fileUrl+'carriers/'+item.logo" />
+                                            <span class="label">{{item.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="center-container">
+                                <p class="label">Способ оплаты</p>
+                                <span required-field
+                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">Это
+                                    обязательное поле *</span>
+                                <div class="items">
+                                    <div display-flex align-items-center class="item right_item"
+                                        [ngClass]="setDisabledPaymentMethods(paymethod)"
+                                        *ngFor="let paymethod of visiblePaymentMethods"
+                                        (click)="onClickPayNow(paymethod)">
+                                        <label class="container payment-container">
+                                            <input type="radio" formControlName="payment_method" [value]="paymethod.id"
+                                                name="payment_method">
+                                            <span class="checkmark" top-0></span>
+                                        </label>
+                                        <div class="text_wrapper text_payment">
+                                            <p class="header">{{paymethod?.header}}</p>
+                                            <p class="under">
+                                                {{paymethod?.under}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-container">
+                                <p class="label" *ngIf="isAuthorized">Внутренний баланс</p>
+                                <span required-field
+                                    *ngIf="orderForm.get('payment_method').hasError('required') && orderForm.get('payment_method').touched">Это
+                                    обязательное поле *</span>
+                                <div class="items">
+                                    <div display-flex align-items-center [ngClass]="{'disabled-balance':userBalance<=0}"
+                                        class="item right_item balance_item " *ngIf="isAuthorized">
+                                        <label class="container payment-container"
+                                            [ngClass]="{'disabled':userBalance<=0}">
+                                            <input type="checkbox" formControlName="isBalance" name="payment_method">
+                                            <span class="checkmark checkbox" top-0></span>
+                                        </label>
+                                        <div class="text_wrapper text_bonus">
+                                            <p class="header">Из баланса</p>
+                                            <p class="under">
+                                                Ваш баланс {{userBalance}}
+                                            </p>
+                                            <!-- <p class="under" error>
+                                                {{checkUserBalance('balance','баланс')}}
+                                            </p> -->
+                                            <p class="under" error *ngIf="userBalance<=0">
+                                                Ваш баланс недостаточен для оплаты
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div display-flex align-items-center [ngClass]="{'disabled-bonuce':userBonuce<=0}"
+                                        class="item right_item" *ngIf="isAuthorized">
+                                        <label class="container payment-container"
+                                            [ngClass]="{'disabled':userBonuce<=0}">
+                                            <input type="checkbox" formControlName="isBonuce" name="payment_method">
+                                            <span class="checkmark checkbox" top-0></span>
+                                        </label>
+                                        <div class="text_wrapper">
+                                            <p class="header">С бонусами</p>
+                                            <p class="under">
+                                                Ваш бонус {{userBonuce}}
+                                            </p>
+                                            <p class="under" error *ngIf="userBonuce<=0">
+                                                Вашего бонуса недостаточно для оплаты
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="price_container">
+                            <div class="sh_price">
+                                <span class="key">СУММА ЗАКАЗА</span>
+                                <span class="value">{{totalPrice}}
+                                    ₽</span>
+                            </div>
+                            <div class="sh_price">
+                                <span class="key">ДОСТАВКА</span>
+                                <span class="value">{{shippingPrice}} ₽ <span class="abs_cont"
+                                        *ngIf="shippingPrice==0 && (orderForm.get('payment_method').value==4 || orderForm.get('payment_method').value==5)">(300
+                                        ₽ СТРАХОВОЙ ВЗНОС)</span></span>
+                            </div>
+                            <div class="sh_price">
+                                <span class="key">КОМИССИЯ</span>
+                                <span class="value">{{codPrice}} ₽</span></div>
+                            <div class="sh_price">
+                                <span class="key">ИТОГО К ОПЛАТЕ НА МЕСТЕ</span>
+                                <div [ngClass]="{'paylater':isPromocode && payLaterPrice}">
+                                    <span [ngClass]="{'discount_price':isPromocode && payLaterPrice}"
+                                        class="value">{{payLaterPrice}} ₽
+                                    </span>
+                                    <span *ngIf="isPromocode && payLaterPrice"> - {{discountPayLaterPrice}} ₽</span>
+                                </div>
+                            </div>
+                            <div class="sh_price">
+                                <span class="key">ИТОГО К ОПЛАТЕ СЕЙЧАС</span>
+                                <span class="value">{{payNowPrice}} ₽</span>
+                            </div>
+                        </div>
+                        <div class="make_order">
+                            <button (click)="onClickMakeOrder()" [disabled]="orderForm.invalid || loading"
+                                [ngClass]="{'disabled':orderForm.invalid || loading}">
+                                <span>Оформить заказ</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </app-box>
+    </div>
+    <div class="empty_basket"
+        *ngIf="((basketProducts && basketProducts.length==0) || !basketProducts) && isPaymentChecked">
+        <h1>Ваша корзина пуста</h1>
+    </div>
+
+</div>

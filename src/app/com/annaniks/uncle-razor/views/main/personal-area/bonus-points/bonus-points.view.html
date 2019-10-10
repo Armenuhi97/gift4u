@@ -1,0 +1,23 @@
+<div *ngIf="isGet">
+    <div class="bonus-table">
+        <table *ngIf="bonusPoint[0]">
+            <tr class="table-header">
+                <th>ЗАКАЗ №</th>
+                <th>ДАТА</th>
+                <th>СУММА</th>
+                <th>БОНУСЫ</th>
+                <th>ПРОЦЕНТ ВОЗВРАТА</th>
+                <th>СТАТУС</th>
+            </tr>
+            <tr *ngFor="let bonus of bonusPoint">
+                <td>{{bonus?.orderId}}</td>
+                <td>{{bonus?.created_at | date: 'dd.MM.yyyy'}}</td>
+                <td>{{bonus?.total}}</td>
+                <td>{{bonus?.bonus}}</td>
+                <td>{{bonus?.percent}}%</td>
+                <td uppercase>{{(bonus?.status) == '1'? 'Зачислен':'Возврат'}}</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="!bonusPoint[0]" class="default-text"> Пусто </div>
+</div>

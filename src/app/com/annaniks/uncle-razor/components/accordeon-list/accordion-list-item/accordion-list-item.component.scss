@@ -1,0 +1,80 @@
+.search{
+    text-align: center;
+    background: #f1f1f1;
+    padding-bottom: 18px;
+    .search_input{
+        position: relative;
+        width: 95%;
+        margin: 0 auto;    
+        input{
+            border: 1px solid #b9b9b9;
+            width: 100%;
+            margin: 10px auto;
+            padding: 6px 40px 8px 10px;
+            border-radius: 0;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -khtml-border-radius: 0px;
+            -webkit-appearance: none;
+            height: 40px;
+        }
+        i{
+            position: absolute;
+            top: 18px;
+            right: 7px
+        }
+    }
+}
+.container{
+    padding: 12px 11px 0 11px;
+    .item{
+       display: flex;
+       align-items: center;
+       justify-content: space-between; 
+       span{
+        font-size: 15px;
+        line-height: 28px;
+        font-weight: 400;
+       }    
+    }
+    .checkbox{
+        border: 1px solid black;
+        height: 12px;
+        width: 12px;
+        margin-right: 4px;
+        background: white;
+    }
+    .active{
+        background: black 
+    }
+}
+.scroll{
+    max-height: 195px;
+    overflow: scroll;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #80808057;
+    border-radius: 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    -webkit-appearance: none;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0;  
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    -webkit-appearance: none;
+    background-color: #ffffff; 
+}

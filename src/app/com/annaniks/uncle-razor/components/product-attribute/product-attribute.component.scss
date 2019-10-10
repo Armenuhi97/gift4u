@@ -1,0 +1,37 @@
+.product_size{
+    margin-top: 10px;
+    .label{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .item{
+        margin-top: 6px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border:2px solid #f2f2f2;
+        display: flex;
+        margin:0 0.25em;
+        cursor: pointer;
+        .size_label{
+            line-height:11.25px;
+            font-weight: bold;
+            font-weight:500;
+            text-align: center;
+            display: block;
+            margin:auto;
+            p{
+                font-size: 10px;
+                font-weight:400;
+            }
+        }
+    }
+    .activeSizeItem{
+        background-color: #cea556;
+        border-color:#cea556;
+        color:white;
+    }
+    &:first-child{
+        margin-top: 0;
+    }
+}

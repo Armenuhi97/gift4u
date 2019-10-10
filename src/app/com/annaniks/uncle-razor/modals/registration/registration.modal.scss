@@ -1,0 +1,114 @@
+.registration_content{
+    width: 100%;
+    position: relative;
+    .registration_container{
+        width: 100%;
+        padding:20px 20px 0 20px;
+        .label{
+            font-size: 26px;
+            line-height: 20px;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form_group{
+            width: 50%;
+            margin-top:15px;
+            label{
+                font-size: 13px;
+                line-height: 20px;
+            }
+            input[type=text],input[type=password]{
+                margin-top:10px;
+                border-radius: 0 ;
+                -webkit-border-radius: 0px ;
+                -moz-border-radius: 0px ;
+                -khtml-border-radius: 0px;
+                -webkit-appearance: none;
+                border: 1px solid #cccccc;
+                height: 41px;
+                width: 100%;
+                font-weight: 500;
+            }
+            &:first-child{
+                margin-right:28px;
+            }
+
+            :host ::ng-deep{
+                .ui-dropdown label.ui-dropdown-label{
+                    padding:11px;
+                }
+            }
+        }
+        .left{
+            width: 50%;
+        }
+        .right{
+            width: 50%;
+        }
+        .buttons{
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .registration{
+                transition: all 0.5s;
+                background-color: black;
+                border:1px solid black;
+                border-radius: 0 ;
+                -webkit-border-radius: 0px ;
+                -moz-border-radius: 0px ;
+                -khtml-border-radius: 0px;
+                -webkit-appearance: none;
+                padding:14px 20px;
+                cursor: pointer;
+                span{
+                    text-transform: uppercase;
+                    color:white;
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    
+                }
+                &:hover{
+                    background-color: white;
+                    border-color:black;
+                    span{
+                        color:black;
+                    }
+                }
+            }
+        }
+    }
+    .close_button{
+        background-color: #bdbdbd;
+        border-radius: 50%;
+        width: 19px;
+        height: 19px;
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+        i{
+            font-size: 15px;
+            margin:auto;
+            color:white;
+        }
+    }
+}
+
+@media only screen and (max-width:745px){
+    .form_row{
+        flex-direction: column;
+        .form_group{
+            width: 100% !important;
+            margin-right: 0 !important;
+        }
+    }
+    .buttons{
+        button{
+            margin: 0 auto;
+        }
+    }
+}

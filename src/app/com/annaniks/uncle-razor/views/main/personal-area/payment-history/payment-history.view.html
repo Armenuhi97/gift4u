@@ -1,0 +1,25 @@
+<div *ngIf="isGet">
+    <div *ngIf="paymentHistory[0]" style="overflow-x:auto">
+        <table>
+            <tr class="table-header">
+                <th>ЗАКАЗ №</th>
+                <th>ДАТА</th>
+                <th>СУММА</th>
+                <th>ОПЛАТА ДЕНЬГАМИ</th>
+                <th>ОПЛАТА БОНУСАМИ</th>
+                <th>СПОСОБ ОПЛАТЫ</th>
+                <th>СТАТУС</th>
+            </tr>
+            <tr *ngFor="let history of paymentHistory">
+                <td>{{history?.orderId}}</td>
+                <td>{{history?.date | date: 'dd.MM.yyyy'}}</td>
+                <td>{{history?.total}}</td>
+                <td>{{history?.priceWithoutSale}}</td>
+                <td>{{history?.bonus}}</td>
+                <td>{{history?.cashTitle}}</td>
+                <td>{{history?.statusName}}</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="!paymentHistory[0]" class="default-text"> Пусто </div>
+</div>

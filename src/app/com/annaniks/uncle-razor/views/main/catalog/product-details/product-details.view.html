@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="route_step" container>
+        <app-route-step [routes]="routeSteps"></app-route-step>
+    </div>
+    <div class="wrapper">
+        <div class="product_info">
+            <div class="product_info_container" container>
+                <div class="product_images">
+                    <app-vertical-slider *ngIf="product.productImages" [sliderItems]="product.productImages"
+                        (mainImageEvent)="handleMainImageEvent($event)"></app-vertical-slider>
+                </div>
+                <div class="product_description">
+                    <div class="sm_product_data">
+                        <h1 class="product_name">{{product.name}}</h1>
+                        <div align-items-center display-flex justify-conten-space-between>
+                            <span class="product_id">Артикул: <b>{{product.sku}}</b></span>
+                            <!-- <span class="pr_d">{{product.title}}</span> -->
+                            <div class="product_rating" margin-left-2 display-flex>
+                                <app-rating [size]="16" margin-right-auto margin-left-auto
+                                    (onSetRaing)="handleSetRating($event)" [rating]="productRating"></app-rating>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img_wrapper">
+                        <div position-relative>
+                            <div class="favorite_icon">
+                                <i (click)="addOrRemoveBookmark()" *ngIf="isAuthorized" class="material-icons">
+                                    {{activeIcon}}
+                                </i>
+                            </div>
+                            <div (click)="onClickMainImage()">
+                                <img class="main_image" [alt]="product?.alt" [src]="fileUrl+'products/'+mainImage">
+                            </div>
+                        </div>
+                        <app-vertical-slider class="sm_slider" [sliderItems]="product.productImages"
+                            [config]="{direction:'horizontal',slidesPerView:3}"
+                            (mainImageEvent)="handleMainImageEvent($event)"></app-vertical-slider>
+                    </div>
+                    <div class="product_data">
+                        <h1 class="product_name">{{product.name}}</h1>
+                        <span class="product_id">Артикул: <b>{{product.sku}}</b></span>
+
+                        <!-- <span class="pr_d">{{product.title}}</span> -->
+                        <div class="product_rating" display-flex>
+                            <app-rating [size]="16" margin-left-auto [rating]="productRating"
+                                (onSetRaing)="handleSetRating($event)">
+                            </app-rating>
+                        </div>
+                        <!-- <span class="ct_text"
+                                font-weight-bold *ngIf="product?.countProduct">{{(+product.countProduct > 0 && product.countProduct!='') ? 'Есть в наличии' : 'Нет в наличии'}}</span> -->
+                        <div class="product_type">
+                            <div display-flex full-width justify-content-space-beetwen>
+                                <div class="attributes_wrapper">
+                                    <app-product-attribute [attribute]="attr" *ngFor="let attr of combinedAttributes"
+                                        (selectAttribute)="handleSelectedAttribute($event,attr)">
+                                    </app-product-attribute>
+                                </div>
+                                <div class="product_count">
+                                    <p no-margin class="label" text-align-center>Выберите количество</p>
+                                    <div class="count" display-flex>
+                                        <div width-fit margin-auto display-flex align-items-center
+                                            justify-content-space-beetwen>
+                                            <button (click)="onClickDecrement()">
+                                                <i class="material-icons">
+                                                    expand_more
+                                                </i>
+                                            </button>
+                                            <input type="text" disabled [(ngModel)]="count" />
+                                            <button (click)="onClickIncrement()">
+                                                <i class="material-icons">
+                                                    keyboard_arrow_up
+                                                </i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_price">
+
+                            <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? product?.price_with_vat : ''
+                                }} ₽</p>
+
+                            <p class="current_price">
+                                {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ₽</p>
+                            <span class="disc_text long_text">
+                                Мы возвращаем от 3% до 15% на бонусный счёт.
+                            </span>
+                            <span class="disc_text" *ngIf="isAuthorized" font-weight-bold>вернём {{bonusPrice}} руб.
+                                обратно</span>
+                            <a class="disc_text" href="/settings/club" font-weight-bold>Подробнее</a>
+                        </div>
+                        <div class="buttons">
+                            <!-- <div class="oneclick_button">
+                                    <button (click)="onClickBuyOneClick()">Купить в 1 клик</button>
+                                </div> -->
+
+                            <div class="basket_button sm_buscet_button" (click)="onClickAddBasket()">
+                                <button>Добавить в корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail_container" container>
+            <div class="tab_bar">
+                <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='description'}"
+                    (click)="onClickTabItem('description')">
+                    <span class="label">Описание</span>
+                </div>
+                <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='characteristic'}"
+                    (click)="onClickTabItem('characteristic')">
+                    <span class="label">Характеристики</span>
+                </div>
+                <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='reviews'}"
+                    (click)="onClickTabItem('reviews')">
+                    <span class="label">Отзывы</span>
+                </div>
+            </div>
+            <div class="tabs_content" [class.no-padding]="activeTabItem == 'reviews'" [ngSwitch]="activeTabItem">
+                <app-description *ngSwitchCase="'description'" [data]="product"></app-description>
+                <app-characteristic *ngSwitchCase="'characteristic'" [data]="product"></app-characteristic>
+                <app-reviews *ngSwitchCase="'reviews'" [id]="id" [data]="reviews"></app-reviews>
+            </div>
+            <!-- <app-box [header]="'С ЭТИМ ТОВАРОМ ПОКУПАЮТ'">
+                    <app-slider [carouselType]="'good'" [carouselItems]="[{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]}]"
+                        [itemHeight]="inherit"></app-slider>
+                </app-box> -->
+            <div class="products">
+                <app-box [isP]="true" [header]="'ПОХОЖИЕ ТОВАРЫ'">
+                    <app-slider [carouselType]="'good'" [carouselItems]="product?.similarProducts"
+                        [itemHeight]="'inherit'"></app-slider>
+                </app-box>
+            </div>
+        </div>
+
+    </div>
+</div>

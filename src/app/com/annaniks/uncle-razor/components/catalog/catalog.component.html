@@ -1,0 +1,40 @@
+<div class="catalog_content" id="catalog" [ngClass]="{'scroll':scroll}">
+    <div class="catalog_container" container>
+        <div class="header">
+            <div class="item" [ngClass]="{'active_item':activeTab=='catalog'}" (click)="onClickHeader('catalog')">
+                <div class="label">КАТАЛОГ</div>
+            </div>
+            <div class="item" [ngClass]="{'active_item':activeTab=='information'}"
+                (click)="onClickHeader('information')">
+                <div class="label">ИНФОРМАЦИЯ</div>
+            </div>
+        </div>
+        <div class="content">
+            <!-- [routerLinkActiveOptions]="{exact: true}" -->
+            <a class="item" *ngFor="let item of catalogItems" [class.active_item]="isLinkActive(item)">
+                <div [routerLink]="(activeTab=='catalog') ? '/catalog' : item.routerLink"
+                    [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}' class="label">
+                    {{item.name || item.label}}
+                </div>
+                <div class="item___overlay">
+                    <div *ngFor="let subItem of item.subCategory;let ind = index"
+                        [ngStyle]="{width:(100/item.subCategory.length)+'%'}">
+                        <p class="sub_label sub_header" [routerLink]="'/catalog'"
+                            [queryParams]="getQuerySendObject(item.name,item.id,subItem.name,subItem.id)">
+                            <i display-none class="arrow">&gt;</i>{{subItem?.name}}</p>
+                        <a no-margin class="sub_label" [routerLink]="'/catalog'"
+                            [queryParams]="getQuerySendObject(item.name,item.id,subCategoryItem.name,subCategoryItem.id)"
+                            [queryParamsHandling]="merge"
+                            *ngFor="let subCategoryItem of subItem.subCategory;let ind = index"><span
+                                margin-left-20>{{subCategoryItem?.name}}</span></a>
+                        <!-- <i class="arrow">&gt;</i> -->
+                    </div>
+                </div>
+            </a>
+            <div class="item" routerLink="/brands" (click)="onClickItem()" *ngIf="activeTab=='catalog'"
+                routerLinkActive="active_item" [routerLinkActiveOptions]="{exact: true}">
+                <div class="label">Бренды</div>
+            </div>
+        </div>
+    </div>
+</div>

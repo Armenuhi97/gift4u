@@ -1,0 +1,9 @@
+<div class="route_step_container">
+    <div class="route_state_content"
+        *ngIf="(breadcrumbs && breadcrumbs.length==1 && breadcrumbs[0].label=='Главная') ? false : true">
+        <div *ngFor="let item of breadcrumbs;let i=index;" [routerLink]="'/'+item.url" [queryParams]="item.queryParams">
+            <span class="label">{{item.label}}</span> <i class="material-icons icon"
+                *ngIf="i!=breadcrumbs.length-1">{{arrow_icon}}</i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="select_city_content">
+    <div class="select_city_container">
+        <h1 text-align-center class="label">Ваш город</h1>
+        <form [formGroup]="selectCityForm">
+            <div class="form_group">
+                <p-dropdown [emptyFilterMessage]="'Результаты не найдены'" [options]="cities" [filter]="true" [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
+                    formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name"></p-dropdown>
+            </div>
+            <div class="set_city">
+                <button (click)="onClickSetSity()" [disabled]="selectCityForm.invalid || loading" [ngClass]="{'disabled':selectCityForm.invalid || loading}">
+                    <span>Выбрать</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="buy_one_click_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="buy_one_click_container">
+        <p class="label">Купить в один клик</p>
+        <span class="message">Введите номер и мы вам перезвоним</span>
+        <form [formGroup]="buyOneClickForm">
+            <div class="form_group">
+                <input type="text" formControlName="name" placeholder="ФИО"/>
+            </div>
+            <div class="form_group" display-flex align-items-center>
+                <input type="text" formControlName="phone" placeholder="+8 ( ____ )  ____ - ___ - ___"/>
+                <button class="send">
+                    <span>Отправить</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

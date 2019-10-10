@@ -1,0 +1,73 @@
+<div class="registration_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="registration_container">
+        <p class="label">Регистрация</p>
+        <p error *ngIf="error" text-align-center>{{error}}</p>
+        <form [formGroup]="registrationForm">
+            <div display-flex align-items-center class="form_row">
+                <div class="form_group">
+                    <label>Ваше имя</label>
+                    <input formControlName="name" type="text" />
+                    <span required-field
+                        *ngIf="registrationForm.get('name').hasError('required') && registrationForm.get('name').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Номер телефона</label>
+                    <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
+                    <span required-field
+                        *ngIf="registrationForm.get('phone').hasError('required') && registrationForm.get('phone').touched">Это
+                        обязательное поле *</span>
+                </div>
+            </div>
+            <div display-flex align-items-center class="form_row">
+                <div class="form_group">
+                    <label>Email: </label>
+                    <input type="text" formControlName="email" />
+                    <span required-field
+                        *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">Это
+                        обязательное поле *</span>
+                    <span required-field
+                        *ngIf="registrationForm.get('email').hasError('pattern') && registrationForm.get('email').touched">Введите
+                        правильный email *</span>
+                </div>
+                <div class="form_group">
+                    <label>Ваш город: </label>
+                    <p-dropdown [options]="cities"
+                        [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
+                        formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name"></p-dropdown>
+                    <span required-field
+                        *ngIf="registrationForm.get('city').hasError('required') && registrationForm.get('city').touched">Это
+                        обязательное поле *</span>
+                </div>
+            </div>
+            <div display-flex align-items-center class="form_row">
+                <div class="form_group">
+                    <label>Пароль: </label>
+                    <input type="password" formControlName="password" autocomplete="none" />
+                    <span required-field
+                        *ngIf="registrationForm.get('password').hasError('required') && registrationForm.get('password').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Подтвердить пароль: </label>
+                    <input type="password" formControlName="confirmPassword" autocomplete="none" />
+                    <span required-field
+                        *ngIf="registrationForm.get('confirmPassword').hasError('MatchPassword') && registrationForm.get('confirmPassword').touched">Пароли
+                        не совпадают *</span>
+                    <span required-field
+                        *ngIf="registrationForm.get('confirmPassword').hasError('required') && registrationForm.get('confirmPassword').touched">Это
+                        обязательное поле *</span>
+                </div>
+            </div>
+        </form>
+        <div class="buttons">
+            <button class="registration" [disabled]="registrationForm.invalid"
+                [ngClass]="{'disabled':registrationForm.invalid}" (click)="onClickRegister()">
+                <span>Регистрация</span>
+            </button>
+        </div>
+    </div>
+</div>

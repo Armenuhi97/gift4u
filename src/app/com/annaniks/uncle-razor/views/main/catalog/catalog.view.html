@@ -1,0 +1,25 @@
+<div container>
+    <div class="route_step">
+        <app-route-step [routes]="routeSteps"></app-route-step>
+    </div>
+
+    <div display-flex class="content">
+        <div class="categories">
+            <app-categories [categories]="categories" [isMain]="false" *ngIf="categories && categories.length>0"></app-categories>
+            <div class="show_filters"><span (click)="onClickShowFilters()">{{(!showFilters) ? 'Показать' : 'Скрыть'}}
+                    фильтры</span></div>
+            <app-filters [item]="isChangeCategory" *ngIf="showFilters"></app-filters>
+        </div>
+        <div class="items">
+            <app-box [isFilter]="true" [header]="label" [headerPosition]="'left'" [searchVisible]="true">
+                <app-goods-list>
+                    <app-goods-list-item *ngFor="let item of products" [product]="item"></app-goods-list-item>
+                </app-goods-list>
+                <div class="no-products" *ngIf="isGet && (!products || !(products.length>0))">Не найдено похожих товаров
+                </div>
+                <app-paginator *ngIf="products && products.length>0" [count]="productsCount" [pageLength]="pageLength"
+                    [currentPage]="page" (paginate)="onPageChange($event)"></app-paginator>
+            </app-box>
+        </div>
+    </div>
+</div>

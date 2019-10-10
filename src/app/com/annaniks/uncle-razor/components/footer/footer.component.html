@@ -1,0 +1,60 @@
+<footer class="footer_content">
+    <div class="footer_container" container>
+        <div class="center">
+            <div class="logo ">
+                <img src="/assets/images/logo_wh.png" width="162px" height="162px" />
+                <!-- <div class="social">
+                    <div class="social_items">
+                        <div class="item" cursor-pointer *ngFor="let item of socialItems"
+                            (click)="onClickSocialItem(item)"
+                            [ngStyle]="{'background-image':'url('+fileUrl+'socialnetworks/'+item?.image+')'}"></div>
+                    </div>
+                    <p class="label">
+                        Copyright бородач.com © 2018
+                    </p>
+                </div> -->
+            </div>
+            <div class="map_item">
+                <p class="header">О компании</p>
+                <p class="items " *ngFor="let item of menuItems" (click)="onClickMenuItem(item)" cursor-pointer>
+                    <!-- <span class="arrow">></span> -->
+                    <span class="hover_underline">{{item.label}}</span>
+                </p>
+            </div>
+            <div class="map_item">
+                <p class="header">Каталог товаров</p>
+                <p class="items" *ngFor="let item of categories" cursor-pointer routerLink="/catalog"
+                    [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}'>
+                    <!-- <span class="arrow">></span> -->
+                    <span class="hover_underline">
+                        {{item.name}}
+                    </span>
+                </p>
+            </div>
+            <div class="map_item" display-flex flex-direction-column>
+                <p class="header">Контакты</p>
+                <div class="items it" display-flex align-items-center>
+                    <img class="icon" src="/assets/images/location_f.png" alt="" width="18px" height="21px">
+                    <p class="text font_14">{{address}}</p>
+                </div>
+                <div class="items it" display-flex align-items-center>
+                    <img class="icon" src="/assets/images/phone_f.png" alt="" width="14px" height="27px">
+                    <div>
+                        <div><a href="tel:{{phone}}" color-white class="text">{{phone}}</a></div>
+                        <div><a href="tel:{{phone_2}}" color-white class="text">{{phone_2}}</a></div>
+                    </div>
+                </div>
+                <div class="items it" display-flex align-items-center>
+                    <img class="icon" src="/assets/images/message_f.png" alt="" width="18px" height="14px">
+                    <p class="text">{{email}}</p>
+                </div>
+                <div class="items it" cursor-pointer (click)="onClickSocialItem(item)" display-flex align-items-center
+                    *ngFor="let item of socialItems">
+                    <img class="icon" [src]="fileUrl+'socialnetworks/'+item?.image" alt="">
+                    <p class="text">Магазин «Дядя Бритва»️️</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

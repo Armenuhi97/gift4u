@@ -1,0 +1,23 @@
+<div class="desc">
+    <p class="label">
+        Характеристики
+    </p>
+    <div class="description">
+        <div>
+            <span class="description_item bold">Бренд: <span class="">{{characteristicData.brandName}}</span></span>
+            <span class="description_item bold"> Страна бренда: <span
+                class="">{{characteristicData.brandCountryName}}</span></span>
+            <span class="description_item bold"> Страна производитель: <span
+                    class="">{{characteristicData.cityName}}</span></span>
+            
+            <span class="description_item bold" *ngIf="characteristicData.composition"> Состав: <span
+                    class="">{{characteristicData?.composition}}</span></span>
+            <span class="description_item bold" *ngIf="characteristicData.weight"> Вес: <span
+                    class="">{{characteristicData?.weight}}</span></span>
+            <span class="description_item" *ngFor="let item of characteristicData.attributeSet"><span
+                    *ngIf="item.AttributeProductValue.length>0" class="bold">{{item.name}}:</span>
+                <span class="">{{item.AttributeProductValue[0]?.value}}</span> </span>
+        </div>
+        <img class="brand_image" [src]="fileUrl+'brand/'+characteristicData?.brandImage">
+    </div>
+</div>

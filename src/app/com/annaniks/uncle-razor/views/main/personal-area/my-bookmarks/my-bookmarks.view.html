@@ -1,0 +1,11 @@
+<div id="bookmark" *ngIf="isGet">
+    <div *ngIf="bookmarks[0]" class="items">
+        <app-goods-list>
+            <app-goods-list-item [style]="{'minWidth':'80px'}" *ngFor="let item of products" [product]="item">
+            </app-goods-list-item>
+        </app-goods-list>
+        <app-paginator [count]="bookmarkCount" [pageLength]="pageLength" [currentPage]="page"
+            (paginate)="onPageChange($event)"></app-paginator>
+    </div>
+    <div *ngIf="!bookmarks[0]" class="default-text">Пусто</div>
+</div>

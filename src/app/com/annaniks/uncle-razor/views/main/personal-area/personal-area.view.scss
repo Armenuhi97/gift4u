@@ -1,0 +1,152 @@
+.main{
+    width:100%;
+}
+app-box{
+    width: 100%;
+}
+.main-inside{
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #787878;
+    font-size: 16px;
+}
+.main-heading{
+    width: 100%;
+    text-align: center;
+    margin: 22px 0 28px 0;
+    font-size: 26px;
+     color: #252525;
+}
+.main-left{
+    width: 323px;
+    border:1px solid #e9e9e9;
+}
+.main-left-item{
+    padding: 25px 0 20px 22px;
+    border-bottom:1px solid #e9e9e9;
+    cursor: pointer;
+    color: #4f4f4f;
+}
+.main-left-item:hover{
+    font-weight: bold;
+}
+.main-right{
+    width: calc(100% - 323px);
+    border:1px solid #e9e9e9;
+    margin-left:18px;
+}
+.main-right-heading{
+    width: 90%;
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+
+}
+.main-right form{
+    width: 90%;
+    margin: 25px  0;
+    display: flex;
+    justify-content: space-between
+}
+.first3,.second3{
+    width: 49%;
+}
+.first3 input,.second3 input{
+    width:94% ;
+    height: 40px;
+    margin: 0 13px 16px 0;
+    padding-left: 11px;
+}
+.main-right-bottom{
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+.main-right-bottom button{
+    width: 124px;
+    height: 35px;
+    border:0;
+    border-radius: 0 ;
+    -webkit-border-radius: 0px ;
+    -moz-border-radius: 0px ;
+    -khtml-border-radius: 0px;
+    -webkit-appearance: none;
+    background-color: #b29559;
+    color: white;
+    margin-right:28px;
+    font-size: 12px;
+}
+.button-right{
+    font-size: 13px;
+}
+.star{
+    color: #b29559;
+}
+.fa{
+    color: black;
+    font-weight: bold;
+    margin-right: 18px;
+}
+
+.label{
+    font-size: 16px;
+    //line-height: 48px;
+}
+
+.active_tab{
+    color:black !important;
+    font-weight: bold;
+}
+.collapsible{
+    display: none
+}
+@media only screen and (max-width:920px){
+    .main-left{
+        width: 100% !important;
+    }  
+    .main-right{
+        width: 100% !important;
+        margin-left:0 !important;
+        form{
+            width: 100% !important;
+        }
+    }
+    collapsible-list{
+        margin-bottom: 0 !important
+    }
+    .main-left-item{
+        padding: 18px;
+    }
+    
+    app-box{
+        display: none;
+    }
+    .main-inside{
+        
+        flex-direction: column !important;
+    }
+    .collapsible{
+        display: block
+    }
+}
+.waves-effect.active .fa-chevron-down{
+    display:none;
+}
+
+.waves-effect.active .fa-chevron-right{
+    display:block;
+}
+
+.waves-effect .fa-chevron-down{
+    display:none;
+}
+.active{
+    transform: rotate(90deg);
+    transition: all 0.3s
+}
+.unactive{
+    transform: rotate(0deg);
+    transition: all 0.3s
+}

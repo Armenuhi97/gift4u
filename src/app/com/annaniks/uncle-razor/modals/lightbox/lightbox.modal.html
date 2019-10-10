@@ -1,0 +1,16 @@
+<!-- <div class="lightbox_container" position-relative>
+    <div class="lightbox_content">
+        <i class="material-icons left-icon" (click)="onClickArrow('pervious')">keyboard_arrow_left</i>
+        <div #img class="image" [ngStyle]="{'background-image':'url('+fileUrl+'products/'+currentImage+')'}"></div>
+        <i class="material-icons right-icon" (click)="onClickArrow('next')">keyboard_arrow_right</i>
+    </div>
+</div> -->
+<div> <i class="material-icons left-icon close" (click)="close()">close</i></div>
+<div class="light-box-container">
+    <swiper [(index)]="startIndex" class="swiper-container" [config]="config" 
+        fxFlex="auto">
+        <div *ngFor="let slide of images" class="swiper-slide">
+            <div class="image" [ngStyle]="getImage(slide)"></div>
+        </div>        
+    </swiper>
+</div>

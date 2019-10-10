@@ -1,0 +1,12 @@
+<div class="product_size">
+    <p no-margin text-align-center class="label">Выберите {{attribute?.name}}</p>
+    <div class="items" justify-content-center display-flex>
+        <div class="item" [ngClass]="{'activeSizeItem':activeSizeItem===ind}" *ngFor="let item of attribute.values;let ind=index"
+            [ngStyle]="setAttributeStyle(attribute,item)" (click)="onClickItem(ind)">
+            <span class="size_label" *ngIf="attrCondition">
+                {{item.value}}
+                <!-- <p no-margin>мл․</p> -->
+            </span>
+        </div>
+    </div>
+</div>

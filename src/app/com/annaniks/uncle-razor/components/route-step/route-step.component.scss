@@ -1,0 +1,42 @@
+.route_step_container{
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    .route_state_content{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        line-height: 15px;
+        div{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            .label{
+                font-size: 14px;
+                color:#686868;
+                text-transform: uppercase;
+            }
+            .icon{
+                margin:0 3px;
+            }
+        }
+    }
+}
+@media only screen and (max-width:550px) {
+    .route_step_container{
+        .route_state_content{
+            div{
+                .label{
+                    font-size: 8px !important;
+                
+                }
+            }
+            i{
+                font-size: 15px !important
+            }
+            .icon{
+                margin:0 !important;
+            }
+        }
+    } 
+}

@@ -1,0 +1,63 @@
+<div class="my-orders-content">
+    <div *ngIf="isGet" class="my-orders-container">
+        <p-table *ngIf="orderHistory[0]" [value]="orderHistory.order" dataKey="id">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th style="width: 3em"></th>
+                    <th class="t-head">ЗАКАЗ №</th>
+                    <th class="t-head">ДАТА</th>
+                    <th class="t-head">СУММА</th>
+                    <th class="t-head">СПОСОБ ОПЛАТЫ</th>
+                    <th class="t-head">СПОСОБ ДОСТАВКИ</th>
+                    <th class="t-head">СТАТУС</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+                <tr>
+                    <td class="arrow">
+                        <a href="#" [pRowToggler]="rowData">
+                            <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                        </a>
+                    </td>
+                    <td class="t-body">{{rowData?.id}}</td>
+                    <td class="t-body">{{rowData?.created_at}}</td>
+                    <td class="t-body">{{rowData?.total}}</td>
+                    <td class="t-body">{{(rowData?.isCash==1) ? 'НАЛИЧНЫМИ' : 'ОНЛАЙН НА САЙТЕ'}}</td>
+                    <td class="t-body">{{rowData?.carriersName}}</td>
+                    <td class="t-body">{{rowData?.statusName}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                <tr>
+                    <td class="container" [attr.colspan]="7">
+                        <!-- font-size:16px;padding:20px -->
+                        <div class="ui-g ui-fluid">
+                            <app-my-orders-table full-width [productsData]="rowData?.products"></app-my-orders-table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div *ngIf="!orderHistory[0]" class="default-text"> Пусто </div>
+        <!-- <table class="orders-table" full-width>
+            <thead>
+                <th class="t-head">ЗАКАЗ №</th>
+                <th class="t-head">ДАТА</th>
+                <th class="t-head">СУММА</th>
+                <th class="t-head">СПОСОБ ОПЛАТЫ</th>
+                <th class="t-head">СПОСОБ ДОСТАВКИ</th>
+                <th class="t-head">СТАТУС</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderHistory.order;let ind=index" (click)="openDetails(ind)">
+                    <td class="t-body">{{item?.id}}</td>
+                    <td class="t-body">{{item?.created_at}}</td>
+                    <td class="t-body">{{item?.total}}</td>
+                    <td class="t-body">{{(item?.isCash==1) ? 'НАЛИЧНЫМИ' : 'ОНЛАЙН НА САЙТЕ'}}</td>
+                    <td class="t-body">{{item?.carriersName}}</td>
+                    <td class="t-body">{{item?.statusName}}</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+</div>

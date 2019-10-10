@@ -1,0 +1,25 @@
+<div class="box_container" [ngStyle]="{'margin-top':marginTop}">
+    <div class="header">
+        <p *ngIf="isP" class="label"
+            [ngStyle]="{'margin':(headerPosition=='center') ? 'auto':'0 auto 0 0','font-size':(headerLabel && headerLabel.length>33)?'18px':'26px'}">
+            {{headerLabel}}</p>
+        <h1 *ngIf="!isP" class="label"
+            [ngStyle]="{'margin':(headerPosition=='center') ? 'auto':'0 auto 0 0','font-size':(headerLabel && headerLabel.length>33)?'18px':'26px'}">
+            {{headerLabel}}</h1>
+        <div class="line"></div>
+        <div class="search_bar" *ngIf="searchVisible">
+            <div align-items-center display-flex justify-content-space-beetwen class="search_input">
+                <p-dropdown [options]="sortings" [(ngModel)]="sort" (ngModelChange)="onChangeSort($event)"
+                    optionLabel="name" placeholder="Сортировать как" [style]="{'min-width':'200px'}"></p-dropdown>
+                <div *ngIf="isFilter" (click)="openFilterCategoryList()" display-flex class="filter-list">
+                    <i class="material-icons">
+                        filter_list
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+</div>

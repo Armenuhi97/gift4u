@@ -1,0 +1,301 @@
+.border{
+    border: 1px solid #dadfe3;
+    padding: 14px 5px;
+}
+.reviews_container{
+    margin-top: 25px;
+    .main_user_img{
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+    .answer_user_img{
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        margin: 0 auto
+    }
+    .comments_container{
+        margin-left: 10px;
+        .name{
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 25px
+        }
+        .answer_user_name{
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 25px
+        }
+        .comment_date{
+            color: grey;
+            font-size: 15px;
+            margin-right: 5px;
+            line-height: 24px;
+        }
+    }
+    .country_name{
+        color: grey;
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .comments{
+        margin-top: 15px;
+        padding-bottom: 10px;
+        ////
+        // width: 95%;
+        // margin: 0 auto;
+        .comment_type{
+            font-weight: 500;
+            font-size: 17px;
+            margin-bottom: 10px;         
+            margin-top: 6px;
+        }
+       
+    }
+    .comment_text{
+        color: grey;
+        font-weight: normal;
+        font-size: 15px
+    }
+}
+.answer_comment{
+    margin-top: 30px;
+    /////
+    // width: 95%;
+    // margin: 0 auto;
+}
+.answer_button{
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 10px;
+    width: fit-content;
+    cursor: pointer
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    ///
+    // width: 95%;
+    // margin: 20px auto 0 auto;
+    button{
+        min-height: 40px;
+        border: 1px solid;
+        font-size: 17px;
+        color: black; 
+        background: white;
+        padding: 10px 25px;
+        cursor: pointer;
+    }
+}
+.buttons button:nth-child(2){
+    margin-left: 20px;
+    background-color: black;       
+    color:white
+}
+form{
+    border: 1px solid #ccc;
+    padding: 19px;
+
+.form_group {
+    .label_wrapper_right {
+      width: 92px;
+    }
+
+    .label_wrapper_left {
+      width: 100px;
+    }
+    .input_container {
+      width: 100%;
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 0 ;
+        -webkit-border-radius: 0px ;
+        -moz-border-radius: 0px ;
+        -khtml-border-radius: 0px;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+      }
+    }
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+   
+  }
+
+    .left{
+        width: 50%;
+    }
+    .right{
+        margin-left: 15px;
+        width: calc(50% - 15px);
+    }
+    .add_comment_button{
+        margin-top: 15px;
+        height: 57px;
+        text-transform: uppercase;
+        color: white;
+        border: none;
+        font-size: 15px;
+        padding: 0 20px;
+        cursor: pointer;
+        font-weight: bold ;
+        background-color: black;       
+    }
+}
+@media screen and (max-width:550px){
+    .main_user_img{
+        height: 60px !important;
+        width: 60px !important;
+
+    }
+    .answer_user_img{
+        height: 50px !important;
+        width: 50px !important; 
+    }
+    .country_name{
+        font-size: 13px !important
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .buttons{
+        flex-direction: column;
+        button{
+            font-size: 14px !important;
+            width: 100%;
+        }
+        button:nth-child(2){
+            margin-left: 0 !important;
+            margin-top: 15px;
+        }
+    }
+    .answer_user_name{
+        font-size: 14px !important
+    }
+    .inputs_group{
+        flex-direction: column;
+        .left, .right{
+            width: 100% !important;
+            margin-left: 0 !important
+        }
+    }
+    .comment_date{
+        font-size: 13px !important;
+    }
+    .comment_type{
+        font-size: 14px !important;
+    }
+ 
+    .comment_text{
+        font-size: 13px !important
+    }
+} 
+
+@media screen and  (max-width:510px){
+    // .main_user_img{
+    //     height: 60px !important;
+    //     width: 60px !important;
+
+    // }
+    // .answer_user_img{
+    //     height: 30px !important;
+    //     width: 30px !important; 
+    // }
+    .country_name{
+        font-size: 11px !important
+    }
+    .name{
+        // font-size: 12px !important;
+        font-size: 14px !important;
+    }
+    .buttons{
+        flex-direction: column;
+          button:nth-child(2){
+            margin-left: 0 !important;
+            margin-top: 15px;
+          }
+      }
+    .answer_user_name{
+        font-size: 12px !important
+        // font-size: 13px !important;
+    }
+    .inputs_group{
+        flex-direction: column;
+        .left, .right{
+            width: 100% !important;
+            margin-left: 0 !important
+        }
+    }
+    .comment_date{
+        font-size: 11px !important;
+        // font-size: 12px !important;
+    }
+    .comment_type{
+        font-size: 12px !important;
+        // font-size: 13px !important;
+    }
+    .country_name{
+        font-size: 13px
+    }
+    .comment_text{
+        font-size: 12px !important
+    }
+}
+@media screen and  (max-width:425px){
+    form{
+        margin: 0 10px;
+    }
+    .border{
+        border-left: 0;
+        border-right: 0
+    }
+} 
+@media screen and  (max-width:300px){
+    .comments_container{
+        .comments_info{
+            display: block;
+        }
+    }
+} 
+.border-bottom{
+    border-bottom: 1px solid #d2c9c9;
+    padding-bottom: 10px;
+}
+
+.line{
+    height: 1px;
+    width: 100%;
+    background: #d2c9c9;
+    position: absolute;
+    left: 0;
+}
+
+*[height-fit]{
+    height:fit-content
+}
+*[margin-bottom-10]{
+    margin-bottom:10px
+}
+*[margin-top-5]{
+    margin-top:5px
+}
+*[margin-top-10]{
+    margin-top:10px
+}
+*[margin-bottom-7]{
+    margin-bottom:7px
+}
+*[border-bottom]{
+    padding-bottom: 10px;
+    border-bottom:1px solid #d2c9c9;
+}

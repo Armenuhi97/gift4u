@@ -1,0 +1,400 @@
+.user_info_content{
+    .user_info_container{
+        padding:0.5em;
+        .welcome-text{
+            text-align: center;
+            margin: 10px 0;
+            color: black;
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .gift_certificate{
+            .gift_certificate_container{
+                width: 100%;
+                background-color: black;
+                display: flex;
+                align-items: center;
+                padding:0.5em;
+                margin-top: 15px;
+                .gift-icon{
+                    margin: 0 auto;
+                    img{
+                        height: 120px;
+                        width: 120px;
+                    }
+                    // width: 80px;
+                    // height: 80px;
+                    // background-color:white;
+                }
+                .content{
+                   // width: 100%;
+                    padding:1em;
+                    width: fit-content;
+                    margin:0 auto;
+                    .code_c{
+                        display: flex;
+                        justify-content: space-between;
+                        input[type="text"]{
+                            width: calc(100% - 40px);;
+                            height: 25px;
+                            margin-left: 10px ;
+                            margin-top: 5px;
+                            border-radius: 0;
+                            -webkit-border-radius: 0px;
+                            -moz-border-radius: 0px;
+                            -khtml-border-radius: 0px;
+                            border: 1px solid white;
+                            -webkit-appearance: none;
+                        }
+                    }
+                    .button{
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        p{
+                            text-transform: uppercase;
+                            color:white;
+                            font-size: 18px;
+                            padding-left: 10px;
+                        }
+                        button{
+                         //   margin-right: 10px;
+                            //margin-left: 20px;
+                            text-transform: uppercase;
+                            //width: 160px;
+                            width: 151px;
+                            height: 40px;
+                            border:0;
+                            border-radius: 0 ;
+                            -webkit-border-radius: 0px ;
+                            -moz-border-radius: 0px ;
+                            -khtml-border-radius: 0px;
+                            -webkit-appearance: none;
+                            background-color: gray;
+                            border:1px solid black;
+                            color: black;
+                            font-size: 14px;
+                            transition: all 0.5s;
+                            cursor: pointer;
+
+                            &:hover{
+                                background-color: white;
+                                color:black;
+                            }
+
+                        }
+                    }
+                }
+            }
+            
+        }
+        .circle_item{
+            margin-top: 20px;
+            .circle{
+                width: 120px;
+                height: 120px;
+                background-color: black;
+                border-radius: 50%;
+                margin:0 auto;
+                display: flex;
+                .value{
+                    margin: auto;
+                    color:white;
+                    font-size: 20px;
+                }
+            }
+            .label{
+                margin-top: 10px;
+                color:black;
+                font-weight: bold;
+                font-size: 20px;
+                text-align: center;
+            }
+        }
+        .cp_label{
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .form_group{
+            .label{
+                font-size: 12px;
+            }
+            div{
+                margin: 0 13px 16px 0;
+                i{
+                    margin-left:10px;
+                    user-select: none;
+                    cursor: pointer;
+                    color:black;
+                }
+            }
+        }
+        .user_info{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            color: black;
+            border-bottom: 1px solid #80808070;
+            padding-bottom: 10px;
+            img{
+                width: 120px ;
+                height: 120px ;
+            }
+            .user{
+                display: flex;
+                flex-wrap: wrap;
+                padding-left:30px;
+                width: calc(100% - 120px);
+                .left{
+                    width: 50%;
+                }
+                .right{
+                    width: 50%;
+                }
+            }
+        }
+        .cards-entity{
+            margin-top: 15px;
+            color: black;
+            border-bottom:1px solid #80808070;
+            .card-container{
+                
+                padding-bottom: 10px;
+                display: flex;       
+                align-items: center;      
+                .entity-container{
+                    padding-left:30px;
+                    width: calc(100% - 120px);
+                
+                    .entity-list{
+                        align-content: center;
+                        display: flex;
+                        flex-wrap: wrap;                    
+                        .left{
+                            width: 50%;
+                        }
+                        .right{
+                            width: 50%;
+                        }
+                    }
+                }
+            
+            }
+        }
+    }
+    
+}
+.gift-with-one-part{
+    margin-left: 5px
+}
+.one-parts{
+    display: none
+}
+@media only screen and (max-width:963px) and (min-width:920px){
+    .button{
+        p{
+            font-size: 14px !important
+        }
+    }
+}
+@media only screen and (max-width:1130px) and (min-width:920px){
+    .content{
+        width: 100%;
+        margin-left: 0 !important
+    }
+    .button{
+     //   display: block !important;
+        button{
+            margin-left: 10px !important;
+        }
+    }
+ 
+}
+@media only screen and (max-width:860px){  
+    .content{
+        width: 100%;
+    }
+    .user_info{
+        img{
+            margin:0 auto;
+        }       
+    }
+
+}
+@media only screen and (max-width:800px){
+    .four-parts{
+        display: none
+    }
+    .one-parts{
+        display: block;
+        width: 60%;
+        input{
+            width: 100%;
+            border-radius: 0;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -webkit-appearance: none;
+            -khtml-border-radius: 0px;
+            border: 1px solid white
+        }
+    }
+    .button{
+        display: block !important;
+        p{
+            padding-left: 5px !important
+        }
+        button{
+            height: 26px !important;
+            width:40%;
+            margin-right: 0 !important;
+            margin-left: 20px !important;
+        }
+    }
+}
+.gift-image{
+    height: 120px;
+    width: 120px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../../../../../../../assets/images/gift.png');
+    margin: 0 auto;
+}
+@media only screen and (max-width:750px){
+    .gift-image{
+     //   background-image: url('../../../../../../../../assets/images/gifth2.png') !important
+    }
+    .user{
+        margin-left:0 !important;
+        flex-direction: column;
+        .left,.right{
+            width: 100% !important;
+        }
+    }
+   
+    .entity-list{
+        flex-direction: column;
+        .left,.right{
+            width: 100% !important;
+        }
+    }
+    .right-content{
+        margin-top: 0 !important
+    }
+    .user_info,.card-container{
+        font-size: 13px !important; 
+    }
+    .user_info {
+        img{
+            width: 100px !important;
+            height: 100px !important;
+        }
+    }
+    .user{
+        padding-left: 10px !important;
+    }
+    .card-container{
+        img{
+            width: 100px !important;
+            height: 100px !important;
+        }
+    }
+ 
+}
+@media only screen and (max-width:1000px){
+    .user{
+        margin-left:0 !important;
+        flex-direction: column;
+        .left,.right{
+            width: 100% !important;
+        }
+    }
+    .right-content{
+        margin-top: 0 !important
+    }
+    .entity-list{
+        flex-direction: column;
+        .left,.right{
+            width: 100% !important;
+        }
+    }
+}
+@media only screen and (max-width:920px) and (min-width:750px){
+    .user{
+        margin-left:0 !important;
+        flex-direction: initial;
+        .left,.right{
+            width: 50% !important;
+        }
+    }
+    .right-content{
+        margin-top: 16px !important
+    }
+    .entity-list{
+        flex-direction: initial;
+        .left,.right{
+            width: 50% !important;
+        }
+    }
+  
+}
+@media only screen and (max-width:500px){
+    .button{
+        p{
+            font-size: 11px !important
+        }     
+        button{
+            font-size: 10px !important;
+            width: fit-content !important;      
+        }
+    }
+    .gift-image{
+        height: 70px !important;
+        width: 70px !important;
+    
+    }
+
+}
+.image_container{
+    overflow: hidden;
+    .camera-container{
+        position: absolute;
+        width: 100%;
+        height: 28px;
+        top: -4px;
+        text-align: end;
+        z-index: 1;
+        input[type="file"] {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position:absolute;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            /*This makes the button huge. If you want a bigger button, increase the font size*/
+            font-size:50px;
+            /*Opacity settings for all browsers*/
+            opacity: 0;
+            -moz-opacity: 0;
+            filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+        }
+        .custom-file-upload{
+            position: absolute;
+            top: 3px;
+            right: -3px;
+            i{
+                font-size: 25px;
+                color: black
+            }     
+      
+        }
+     }
+}
+.hidden{
+    visibility: hidden
+}
+.show{
+    visibility: visible
+}

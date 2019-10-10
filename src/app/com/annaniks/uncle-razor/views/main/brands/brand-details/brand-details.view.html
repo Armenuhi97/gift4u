@@ -1,0 +1,24 @@
+<div class="brand_details_content">
+    <div class="brand_details_container" container>
+        <div display-none class="route_step">
+            <app-route-step [routes]="routeSteps"></app-route-step>
+        </div>
+        <div class="brand_info" *ngIf="brandInfo">
+            <h1 text-align-center>{{brandInfo?.name}}</h1>
+            <div class="info_content">
+                <img class="img" [src]="fileUrl+'brand/'+brandInfo?.image">
+                <span class="title" [innerHTML]="brandInfo?.title" [ngClass]="{'show':showMore}" none-select></span>
+                <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
+            </div>
+        </div>
+        <app-box *ngIf="productsCount && productsCount>0" [searchVisible]="true">
+            <div>
+                <app-goods-list>
+                    <app-goods-list-item *ngFor="let item of products" [product]="item"></app-goods-list-item>
+                </app-goods-list>
+                <app-paginator [count]="productsCount" [pageLength]="pageLength" [currentPage]="page"
+                    (paginate)="onPageChange($event)"></app-paginator>
+            </div>
+        </app-box>
+    </div>
+</div>

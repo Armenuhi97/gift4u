@@ -1,0 +1,89 @@
+<div class="account_content">
+    <div class="account_container">
+        <div class="information main-right">
+            <p no-margin error text-align-center>{{error}}</p>
+            <form [formGroup]="userForm">
+                <div class="content" full-width display-flex justify-content-space-beetwen>
+                    <div class="first3">
+                        <div class="form_group">
+                            <label class="label">ФИО:*</label>
+                            <div display-flex align-items-center>
+                                <input type='text' formControlName="name" placeholder="* ФИО" name="name">
+                                <!-- <i class="material-icons" (click)="onClickEditField('name')">edit</i> -->
+                            </div>
+                        </div>
+
+                        <div class="gender" display-flex align-items-center>
+                            <mat-radio-group formControlName="gender" aria-label="Select an option">
+                                <mat-radio-button *ngFor="let g of genderArray;let i=index" [value]="g.id">{{g.title}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="form_group">
+                            <label class="label">Дата рождения:*</label>
+                            <div class="date" display-flex align-items-center>
+                                <p-dropdown style="width:30%" [options]="day"
+                                    [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
+                                    placeholder="День" formControlName="day" optionLabel="day">
+                                </p-dropdown>
+                                <p-dropdown [options]="month" style="width:40%;margin-left: 10px"
+                                    [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
+                                    placeholder="Месяц" formControlName="month" optionLabel="text">
+                                </p-dropdown>
+                                <p-dropdown [options]="years" style="width:30%;margin-left: 10px"
+                                    [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
+                                    placeholder="Год" formControlName="year" optionLabel="year">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <label class="label">Город:*</label>
+                            <div class="city" display-flex align-items-center>
+                                <!-- ,'max-width':'487px' -->
+                                <p-dropdown full-width [options]="cities" [filter]="true" [emptyFilterMessage]="'Результаты не найдены'"
+                                    [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
+                                    formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name">
+                                </p-dropdown>
+                                <!-- <i class="material-icons" (click)="onClickEditField('city')">edit</i> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="second3">
+                        <div class="form_group">
+                            <label class="label">Телефон:*</label>
+                            <div display-flex align-items-center>
+                                <input type='tel' prefix="+7" mask="(000) 000 00 00" formControlName="phone"
+                                    placeholder="* Телефон" name="tel">
+                                <!-- <i class="material-icons" (click)="onClickEditField('phone')">edit</i> -->
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <label class="label">E-Mail:*</label>
+                            <div display-flex align-items-center>
+                                <input type='email' formControlName="email" placeholder="* E-Mail" name="mail">
+                                <!-- <i class="material-icons" (click)="onClickEditField('email')">edit</i> -->
+                            </div>
+                        </div>
+                        <!-- <div class="form_group">
+                            <label class="label">Индекс</label>
+                            <div display-flex align-items-center>
+                                <input type='text' formControlName="index" placeholder="Индекс" name="facs">
+                                <i class="material-icons" (click)="onClickEditField('index')">edit</i>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </form>
+            <div class="main-right-bottom">
+                <button [disabled]="userForm.invalid" [ngClass]="{'disabled':userForm.invalid}"
+                    (click)="onClickContinue()"><span>Подвердить</span></button>
+                <div class="button-right"><span><span class="star">*</span> поля обязательны для заполнения</span>
+                </div>
+            </div>
+            <div class="change_password_wrapper">
+                <app-change-password></app-change-password>
+            </div>
+        </div>
+    </div>
+</div>

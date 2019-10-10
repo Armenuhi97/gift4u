@@ -1,0 +1,240 @@
+<header class="topbar_content">
+    <div class="topbar_container" container>
+        <div class="menu_button" (click)="onClickMenuButton()">
+            <i class="material-icons menu_icon">
+                {{(openMenu) ? 'close' : 'menu'}}
+            </i>
+        </div>
+        <div class="logo" routerLink="" cursor-pointer>
+            <img src="/assets/images/logo.jpg" width="156px" height="156px" />
+        </div>
+
+        <div class="toolbar">
+            <div class="menu_items">
+                <nav class="items">
+                    <div *ngFor="let item of menuItems">
+                        <a class="label" [routerLink]="item.routerLink">{{item.label}}</a>
+                    </div>
+                    <!-- <span class="label" [routerLink]="'/news'">Новости</span>
+                    <span class="label" [routerLink]="'/discounts'">Скидки</span> -->
+                </nav>
+                <div class="location">
+                    <span class="label">Ваш город</span>
+                    <img src="/assets/images/location.png" />
+                    <span class="city_name" (click)="onClickCity()">{{city}}</span>
+                </div>
+                <div class="personal_area" cursor-pointer>
+                    <img src="/assets/images/key.png" />
+                    <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userEmail}}</span>
+                    <span class="label " *ngIf="!isAuthorized"><span class="hover_underline"
+                            (click)="onClickLogin()">Вход</span><span style="margin:0 6px">/</span><span
+                            (click)="onClickRegister()" class="hover_underline">Регистрация</span></span>
+                </div>
+            </div>
+            <div class="search_bar">
+                <div class="search_content">
+                    <div class="search_input">
+                        <form (ngSubmit)="onClickSearch()" display-flex full-width>
+                            <input type="text" [(ngModel)]="search" (ngModelChange)="onChange($event)"
+                                placeholder="Введите запрос" [ngModelOptions]="{standalone: true}">
+                            <button bg-transparent border-none type="submit">
+                                <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
+                            </button>
+                            <div class="autocomplete" *ngIf="similarProducts.length>0"
+                                (clickOutside)="onClickedOutside($event)">
+                                <div class="complete_items" *ngFor="let item of similarProducts"
+                                    (click)="onClickSimilarProducts(item.productName)">
+                                    <img [src]="fileUrl+'products/'+item.productImage">
+                                    <div height-fit>
+                                        <p class="label"><b>Имя: </b> {{item.productName | splice_search:25}}</p>
+                                        <p class="label"><b>Артикул: </b>{{item.productArticul}}</p>
+                                    </div>
+                                </div>
+                                <div justify-content-center class="complete_items all_item"
+                                    (click)="onClickSearch(true)">
+                                    <b> Показать все ({{productsCount}})</b>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div align-items-center display-flex class="work_info">
+                        <div margin-right-10>
+                            <div class="bottom">
+                                <img src="/assets/images/clock.png" />
+                                <span class="label">{{workingTime}}</span>
+                            </div>
+                            <div class="bottom" margin-top-8 display-flex align-items-center>
+                                <img class="phone_icon" src="/assets/images/Векторный смарт-объект.png" />
+                                <p class="label" no-margin text-align-center cursor-pointer (click)="onClickButton()">
+                                    Заказать
+                                    обратный звонок</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div margin-bottom-8 class="top">
+                                <img src="/assets/images/phone.png" />
+                                <a href="tel:{{phone}}" class="label phone">{{phone}}</a>
+                            </div>
+                            <div class="top">
+                                <img src="/assets/images/phone.png" />
+                                <a href="tel:{{phone_2}}" class="label phone">{{phone_2}}</a>
+                            </div>
+                            <div class="small-text" text-align-center>({{smallText}})</div>
+                        </div>
+                    </div>
+                    <div class="basket">
+                        <div display-flex class="icon">
+                            <div display-flex align-items-center>
+                                <img src="/assets/images/cart.png" />
+                                <span *ngIf="basketCount && basketCount>0" class="basket_count">{{basketCount}}</span>
+                            </div>
+                        </div>
+                        <div  class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
+                            <span class="label">Корзина</span>
+                            <span class="count">на сумму {{basketInfo?.basketPrice}}₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sm_display_topbar" container>
+        <div class="sm_topbar_container">
+            <div class="left" display-flex align-items-center>
+                <div class="icon_small" (click)="onClickMenuButton()">
+                    <i class="material-icons icon"> {{(openMenu) ? 'close' : 'menu'}}</i>
+                </div>
+                <div class="icon_small sm_search search_content">
+                    <div class="search_input sm_search_input">
+                        <form (ngSubmit)="onClickSearch()" display-flex align-items-center>
+                            <input id="search" type="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"
+                                (keydown)="onKeyPress($event)" placeholder="Введите запрос"
+                                [ngModelOptions]="{standalone: true}" />
+                            <label for="search" (click)="onClickSearch()">
+                                <i class="material-icons search_icon">search</i>
+                            </label>
+                            <div class="autocomplete sm_autocomplete" [ngStyle]="setScroll()"
+                                *ngIf="similarProducts.length>0" (clickOutside)="onClickedOutside($event)">
+                                <div class="complete_items" *ngFor="let item of similarProducts"
+                                    (click)="onClickSimilarProducts(item.productName)">
+                                    <img [src]="fileUrl+'products/'+item.productImage">
+                                    <div height-fit>
+                                        <p class="label"><b>Имя: </b> {{item.productName | splice_text:80:30}}</p>
+                                        <p class="label"><b>Артикул: </b>{{item.productArticul }}</p>
+                                    </div>
+                                </div>
+                                <div justify-content-center class="complete_items all_item"
+                                    (click)="onClickSearch(true)">
+                                    <b> Показать все ({{productsCount}})</b>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right" display-flex align-items-center>
+                <div display-flex align-center margin-right-10 class="icon_small">
+                    <div cursor-pointer (click)="onClickPersonalArea()">
+                        <img height="35" width="35" src="/assets/images/outline_account_circle_white.png" alt="">
+                    </div>
+                </div>
+                <div display-flex justify-content-flex-end class="icon_small">
+                    <div display-flex  routerLink="/basket" (click)="closeMenu()">
+                        <img height="35" width="35" src="/assets/images/outline_shopping_cart_white.png" alt="">
+                        <span *ngIf="basketCount && basketCount>0" class="basket_count_small">{{basketCount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div padding-5 display-flex align-items-center width-fit margin-horizontal-auto justify-content-center
+            class="logo">
+
+            <div class="work_info">
+                <div margin-bottom-5 display-flex align-items-center class="top">
+                    <img src="/assets/images/phone.png" />
+                    <a href="tel:{{phone}}" class="label">{{phone}}</a>
+                </div>
+                <div margin-bottom-5 display-flex align-items-center class="top">
+                    <img src="/assets/images/phone.png" />
+                    <a href="tel:{{phone_2}}" class="label">{{phone_2}}</a>
+                </div>
+
+                <div class="tel_text" text-align-center>({{smallText}})</div>
+            </div>
+            <div routerLink="">
+                <img no-margin cursor-pointer src="/assets/images/logo.jpg" class="sm_logo" width="120px" height="120px"
+                    margin-side-auto />
+            </div>
+            <div class="info">
+                <div margin-bottom-5 display-flex align-items-center class="location">
+                    <img src="/assets/images/location.png" />
+                    <span cursor-pointer class="city_name" (click)="onClickCity()">{{city}}</span>
+                </div>
+                <div display-flex align-items-center class="location">
+                    <img class="img-icon" src="/assets/images/Векторный смарт-объект.png" />
+                    <span cursor-pointer class="city_name" (click)="onClickButton()">Заказать обратный звонок</span>
+                </div>
+            </div>
+        </div>
+        <div display-flex align-items-center justify-content-center class="bottom">
+            <span class="woks_time">{{workingTime}}</span>
+        </div>
+    </div>
+    <!-- <div class="sm_d_input" container>
+        <div class="search_input">
+            <form full-width display-flex (ngSubmit)="onClickSearch()">
+                <input type="text" [(ngModel)]="search" (keydown)="onKeyPress($event)" placeholder="Введите запрос"
+                    [ngModelOptions]="{standalone: true}">
+                <button bg-transparent border-none>
+                    <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="sm_d_content" container>
+        <div class="menu_button_sm" (click)="onClickMenuButton()">
+            <i class="material-icons">
+                {{(openMenu) ? 'close' : 'menu'}}
+            </i>
+        </div>
+        <div class="work_info">
+            <div class="top">
+                <img src="/assets/images/phone.png" />
+                <a href="tel:{{phone}}" class="label">{{phone}}</a>
+            </div><a href="tel:{{phone}}" class="label">{{phone}}</a>
+            </div>
+            <div class="bottom">
+                <img src="/assets/images/clock.png" />
+                <span class="label">{{workingTime}}</span>
+            </div>
+            <p no-margin font-size-13 text-align-center cursor-pointer (click)="onClickButton()">Заказать
+                обратный звонок</p>
+        </div>
+        <div class="basket" routerLink="/basket" cursor-pointer>
+            <div class="icon">
+                <img src="/assets/images/cart.png" />
+            </div>
+        </div>
+        <div class="search_input">
+            <form (ngSubmit)="onClickSearch()" full-width display-flex>
+                <input type="text" [(ngModel)]="search" placeholder="Введите запрос"
+                    [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
+                <button bg-transparent border-none type="submit">
+                    <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
+                </button>
+                <div class="autocomplete" *ngIf="similarProducts.length>0"
+                    (clickOutside)="onClickedOutside($event)">
+                    <div class="complete_items" *ngFor="let item of similarProducts"
+                        (click)="onClickSimilarProducts(item.productName)">
+                        <img [src]="fileUrl+'products/'+item.productImage">
+                        <div height-fit>
+                            <p class="label"><b>Имя: </b> {{item.productName}}</p>
+                            <p class="label"><b>Артикул: </b>{{item.productArticul}}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+</header>

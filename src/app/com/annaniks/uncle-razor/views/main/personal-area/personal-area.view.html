@@ -1,0 +1,143 @@
+<div class="main" container [ngSwitch]="activateTab">
+    <!-- <div class="route_step">
+        <app-route-step></app-route-step>
+    </div> -->
+    <app-box [header]="headerLabel" [marginTop]="'30px'">
+        <div class="main-inside">
+            <div class="main-left">
+                <div class="main-left-item" *ngFor="let item of personalAreaItems;let ind=index;"
+                    (click)="onClickItem(item)" routerLinkActive="active_tab"
+                    [class.active_tab]="isActive(['personal-area', item.link])"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-angle-right" aria-hidden="true"></i><span
+                        class="label">{{item.label}}</span>
+                </div>
+                <div class="main-left-item" (click)="onClickLogOut()"><i class="fa fa-angle-right"
+                        aria-hidden="true"></i><span class="label">Выйти</span></div>
+            </div>
+            <div class="main-right">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </app-box>
+    <div class="collapsible">
+        <collapsible-list [type]="'accordion'">
+            <collapsible-list-item (click)="scrollTo(body1,'user-info')">
+                <collapsible-header class="waves-effect">
+                    <div id="user-info">
+                        <i *ngIf="body1"
+                            [ngClass]="{'active':body1 && body1.expanded,'unactive':body1 && !body1.expanded}"
+                            class=" fa fa-angle-right" aria-hidden="true"></i>
+                        <span>Личный кабинет</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body1 [expanded]="true">
+                    <user-info-view></user-info-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body2,'account')">
+                <collapsible-header class="waves-effect">
+                    <div id="account">
+                        <i *ngIf="body2"
+                            [ngClass]="{'active':body2 && body2.expanded,'unactive':body2 && !body2.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span> Учетная запись</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body2 [expanded]="false">
+                    <account-view></account-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body3,'address')">
+
+                <collapsible-header class="waves-effect">
+                    <div id="address">
+                        <i *ngIf="body3"
+                            [ngClass]="{'active':body3 && body3.expanded,'unactive':body3 && !body3.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span> Адреса доставки</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body3 [expanded]="false">
+                    <shipping-address-view></shipping-address-view>
+                </collapsible-body>
+
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body4,'bookmark')">
+                <collapsible-header class="waves-effect">
+                    <div id="bookmark">
+                        <i *ngIf="body4"
+                            [ngClass]="{'active':body4 && body4.expanded,'unactive':body4 && !body4.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span>Мои закладки</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body4 [expanded]="false">
+                    <my-bookmarks-view></my-bookmarks-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body5,'order')">
+                <collapsible-header class="waves-effect">
+                    <div id="order">
+                        <i *ngIf="body5"
+                            [ngClass]="{'active':body5 && body5.expanded,'unactive':body5 && !body5.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span>История заказов</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body5 [expanded]="false">
+                    <my-orders-view></my-orders-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body6,'bonus')">
+                <collapsible-header class="waves-effect">
+                    <div id="bonus">
+                        <i *ngIf="body6"
+                            [ngClass]="{'active':body6 && body6.expanded,'unactive':body6 && !body6.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span>Бонусные баллы</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body6 [expanded]="false">
+                    <bonus-points-view></bonus-points-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body7,'payment')">
+                <collapsible-header class="waves-effect">
+                    <div id="payment">
+                        <i *ngIf="body7"
+                            [ngClass]="{'active':body7 && body7.expanded,'unactive':body7 && !body7.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span>История платежей</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body7 [expanded]="false">
+                    <payment-history-view></payment-history-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+            <collapsible-list-item (click)="scrollTo(body8,'news')">
+                <collapsible-header class="waves-effect">
+                    <div id="news">
+                        <i *ngIf="body8"
+                            [ngClass]="{'active':body8 && body8.expanded,'unactive':body8 && !body8.expanded}"
+                            class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span>Подписка на новости</span>
+                    </div>
+                </collapsible-header>
+                <collapsible-body style="padding: 0" #body8 [expanded]="false">
+                    <newsletter-subscription-view></newsletter-subscription-view>
+                </collapsible-body>
+            </collapsible-list-item>
+
+        </collapsible-list>
+        <div class="main-left-item" (click)="onClickLogOut()">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <span class="label">Выйти</span></div>
+    </div>
+</div>

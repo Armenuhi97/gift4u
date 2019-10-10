@@ -1,0 +1,60 @@
+<div class="address_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="address_container">
+        <form [formGroup]="addressForm">
+            <div class="form_row">
+                <div class="form_group">
+                    <label>Имя</label>
+                    <input formControlName="name" type="text" />
+                    <span required-field
+                        *ngIf="addressForm.get('name').hasError('required') && addressForm.get('name').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>ФИО</label>
+                    <input formControlName="fullName" type="text" />
+                    <span required-field
+                        *ngIf="addressForm.get('fullName').hasError('required') && addressForm.get('fullName').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Адрес</label>
+                    <input formControlName="address" type="text" />
+                    <span required-field
+                        *ngIf="addressForm.get('address').hasError('required') && addressForm.get('address').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Индекс</label>
+                    <input formControlName="index" type="text" />
+                    <span required-field
+                        *ngIf="addressForm.get('index').hasError('required') && addressForm.get('index').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Номер телефона</label>
+                    <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
+                    <span required-field
+                        *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">Это
+                        обязательное поле *</span>
+                </div>
+                <div class="form_group">
+                    <label>Ваш город: </label>
+                    <p-dropdown [options]="cities"
+                        [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
+                        formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name"></p-dropdown>
+                    <span required-field
+                        *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">Это
+                        обязательное поле *</span>
+                </div>
+            </div>
+        </form>
+        <div class="buttons">
+            <button (click)="add()" class="registration" [disabled]="addressForm.invalid">
+                <span>{{buttonText}}</span>
+            </button>
+        </div>
+    </div>
+</div>

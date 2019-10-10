@@ -1,0 +1,12 @@
+<div [class.open-list]="category.isOpen">
+    <div [class.active]="category.isOpen" (click)="openCategory(category)" display-flex align-items-center
+        justify-content-space-beetwen class="category_name">
+        <span>{{category.name}}</span>
+        <div [ngStyle]="rotate(category)">
+            <i class="material-icons arrow_icon">
+                keyboard_arrow_right
+            </i>
+        </div>
+    </div>
+    <ng-content *ngIf="category.isOpen"></ng-content>
+</div>

@@ -1,0 +1,31 @@
+.set_city{
+    padding-top:19px;
+    button{
+        cursor: pointer;
+        border:none;
+        background-color: black;
+        border:1px solid black;
+        padding:15px 60px;
+        margin:0 auto; 
+        border-radius: 0 ;
+        -webkit-border-radius: 0px ;
+        -moz-border-radius: 0px ;
+        -khtml-border-radius: 0px;
+        -webkit-appearance: none;
+        display: block;
+        transition: all 0.5s;
+        span{
+            font-size: 13px;
+            color:white;
+            font-weight: 500;
+        } 
+        &:hover{
+            background-color: white;
+            border-color:black;
+            span{
+                color:black;
+            }
+        }
+    }
+
+}

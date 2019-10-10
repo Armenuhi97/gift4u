@@ -1,0 +1,40 @@
+<div class="add_product_basket_content">
+    <div class="close_button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+    </div>
+    <div class="add_product_basket_container">
+        <h1 text-align-center no-margin>ТОВАР ДОБАВЛЕН</h1>
+        <p text-align-center> Товар успешно добавлен в корзину:</p>
+        <div class="container">
+            <div class="product_info">
+                <img [src]="fileUrl+'products/'+product?.image">
+                <div class="text_wr">
+                    <p no-margin>{{product?.name}}</p>
+                    <div class="description">
+                        <span font-weight-bold>Количество: {{product?.count}}тов. <br>
+                            <span display-flex align-items-center> Цена։
+                                <div margin-left-7>
+                                    <div [class.specificprice]="specificPrice">{{price}} ₽</div>
+                                    <div *ngIf="specificPrice">{{specificPrice}} ₽</div>
+                                </div>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div display-flex justify-content-space-beetwen class="buttons">
+            <div class="continue">
+                <button (click)="onClickCountinue()">
+                    <span>Продолжить</span>
+                </button>
+            </div>
+            <div class="go_basket">
+                <button (click)="onClickGoBasket()">
+                    <span>Перейти в корзину </span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

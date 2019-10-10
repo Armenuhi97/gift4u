@@ -1,0 +1,12 @@
+.middle_content{
+    min-height: calc(100vh - 484px);
+}
+
+@media only screen and (max-width:920px){
+    app-catalog{
+        display: none !important;
+    }
+    // .middle_content{
+    //     margin-top: 200px;
+    // }
+}

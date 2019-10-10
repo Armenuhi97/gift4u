@@ -1,0 +1,103 @@
+.buy_one_click_content{
+    width: 100%;
+    position: relative;
+    .close_button{
+        background-color: #bdbdbd;
+        border-radius: 50%;
+        width: 19px;
+        height: 19px;
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+        i{
+            font-size: 15px;
+            margin:auto;
+            color:white;
+        }
+    }
+    .buy_one_click_container{
+        width: 100%;
+        padding:20px 20px 0 20px;
+        .label{
+            font-size: 26px;
+            line-height: 30px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        .message{
+            display: block;
+            font-size: 14px;
+            font-weight: 300;
+            width: 100%;
+        }
+        .form_group{
+            margin-top:10px;
+            label{
+                font-size: 13px;
+                line-height: 20px;
+            }
+            input[type=text]{
+                border-radius: 0 ;
+                -webkit-border-radius: 0px ;
+                -moz-border-radius: 0px ;
+                -khtml-border-radius: 0px;
+                -webkit-appearance: none;
+                border: 1px solid #cccccc;
+                height: 41px;
+                width: 100%;
+                font-weight: 500;
+            }
+
+            input[type=text]::placeholder{
+                font-size: 15px;
+                padding-left: 20px;
+                //letter-spacing: -10px;
+                line-height: auto;
+                font-weight: bold;
+            }
+
+            &:first-child{
+                margin-top: 14px;
+            }
+            .send{
+                margin-left:12px;
+                background-color: #bd9655;
+                border:none;
+                //border-radius: 3px;
+                padding:10.5px 20px;
+                cursor: pointer;
+                span{
+                    text-transform: uppercase;
+                    color:white;
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    
+                }
+            }
+        }
+        .buttons{
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .send{
+                background-color: #bd9655;
+                border:none;
+               // border-radius: 3px;
+                padding:14px 20px;
+                cursor: pointer;
+                span{
+                    text-transform: uppercase;
+                    color:white;
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    
+                }
+            }
+        }
+    }
+}

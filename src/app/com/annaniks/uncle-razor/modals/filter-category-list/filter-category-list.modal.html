@@ -1,0 +1,55 @@
+<div [ngStyle]="getHeight()" class="modal_content">
+    <div class="top-buttons" display-flex align-items-center justify-content-space-beetwen>
+        <div (click)="closeModal()" display-flex align-items-center>
+            <i class="material-icons">
+                keyboard_arrow_left
+            </i>
+            <span font-size-17>Назад в каталог</span>
+        </div>
+        <div *ngIf="allGet()" (click)="reset()">
+            <span font-size-13>Сбросить</span>
+        </div>
+    </div>
+    <div margin-top-30>
+        <accordion-list (click)="closeOtherCategory(0)" [category]="categotyListName[0]">
+            <app-categories [isMain]="false"  (getSelectsArray)="selectedArray($event)" [multiSelect]="true" [isBorder]="true"
+                [categories]="categories" *ngIf="categories && categories.length>0">
+            </app-categories>
+        </accordion-list>
+        <accordion-list (click)="closeOtherCategory(1)" [category]="categotyListName[1]">
+            <accordion-list-item [category]="'brandsId'" [isBrand]="true" [array]="brands" (getSelectedParams)="selectBrand($event)">
+            </accordion-list-item>
+        </accordion-list>
+        <accordion-list (click)="closeOtherCategory(2)" [category]="categotyListName[2]">
+            <accordion-list-item [category]="'cityId'" [isBrand]="false" [array]="cities" (getSelectedParams)="selectCity($event)">
+            </accordion-list-item>
+        </accordion-list>
+        <accordion-list (click)="closeOtherCategory(3)" [category]="categotyListName[3]">
+            <div class="inputs-container" display-flex align-items-center justify-content-space-beetwen>
+                <label for="">
+                    <span>От</span>
+                    <input [(ngModel)]="value" type="number">
+                </label>
+                <label for="">
+                    <span>До</span>
+                    <input [(ngModel)]="highValue" type="number">
+                </label>
+            </div>
+            <div text-align-center class="custom-slider">
+                <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+            </div>
+        </accordion-list>
+        <accordion-list (click)="closeOtherCategory(4)" [category]="categotyListName[4]">
+            <div text-align-center class="custom-slider">
+                <div *ngFor="let sale of sales" class="sale" display-flex align-items-center>
+                    <p-checkbox [value]="sale.reduction" [(ngModel)]="reductions" ></p-checkbox>
+                    <span>{{sale.reduction}} %</span>
+                </div>
+            </div>
+        </accordion-list>
+    </div>
+</div>
+<div class="bottom-button">
+    <button [disabled]="!allGet()" class="clean" (click)="reset()">Очистить</button>
+    <button [disabled]="!allGet()" class="apply" (click)="apply()">Применить</button>
+</div>

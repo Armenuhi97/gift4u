@@ -1,0 +1,22 @@
+app-goods-list-item{
+    width: 25% !important;
+    padding:0.5em;
+}
+
+@media only screen and (max-width: 1162px) and (min-width:695px) {
+    app-goods-list-item{
+        width: 33.3333% !important;
+    }
+}
+
+@media only screen and (max-width: 695px) and (min-width:470px) {
+    app-goods-list-item{
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 470px){
+    app-goods-list-item{
+        width: 50% !important;
+    }
+}
