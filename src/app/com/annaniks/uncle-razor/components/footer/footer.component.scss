@@ -1,7 +1,9 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .footer_content{
     width: 100%;
     // background-color: #43220d;
-    background-color: black;
+    background-color: $main-color;
     background-size: cover;
     background-position: center;
     min-height: 230px;
@@ -70,14 +72,14 @@
                     line-height: 31.2px;
                     text-transform: uppercase;
                     font-weight: 500;
-                    color:white;
+                    color:$second-color;
                 }
                 .items{
                     margin: 0;
                     padding:0;
                     font-size: 13px;
                     line-height: 31.2px;
-                    color:white;
+                    color:$second-color;
                     font-weight: 300;
                     display: flex;
                     .arrow{

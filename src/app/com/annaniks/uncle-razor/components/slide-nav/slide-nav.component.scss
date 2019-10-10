@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .slide_nav{
     width: 100%;
     overflow: auto;
@@ -33,9 +35,9 @@
         }
         .tabs{
             display: flex;
-            background: black;
+            background: $main-color;
             height: 40px;
-            color: white;
+            color: $second-color;
            // border-top: 2px solid grey;
             .tab_item{
                 margin-left: 0.5em;

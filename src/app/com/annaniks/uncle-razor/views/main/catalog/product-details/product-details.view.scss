@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 app-goods-list-item{
     width: 20%;
     padding: 0 .5em .5em .5em;
@@ -171,7 +173,7 @@ app-goods-list-item{
                                     -webkit-appearance: none;
                                     text-decoration: none;
                                     display: inline-block;
-                                    background-color: black;
+                                    background-color: $second-color;
                                     padding: 19px 23px 19px 23px;
                                     font-size: 14px;
                                     font-weight: bold;
@@ -179,8 +181,8 @@ app-goods-list-item{
                                     cursor: pointer;
                                     transition: all 0.5s;       
                                     &:hover{
-                                        border: 1px solid black;
-                                        color:black;
+                                        border: 1px solid $second-color;
+                                        color:$second-color;
                                         background-color: white;
                                     }                         
                                 }
@@ -220,13 +222,13 @@ app-goods-list-item{
         .tab_bar{
             width: 100%;
             height: 50px;
-            background-color: black;
+            background-color: $main-color;
             display: flex;
             .tab_item{
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color:white;
+                color:$second-color;
                 transition: all 0.5s;
                 cursor: pointer;
                 .label{
@@ -236,9 +238,9 @@ app-goods-list-item{
                 }
             }
             .activeTabItem{
-                color:black;
+                color:$second-color;
                 background-color:white;
-                border:1px solid black;
+                border:1px solid $second-color;
             }
         }
         .tabs_content{

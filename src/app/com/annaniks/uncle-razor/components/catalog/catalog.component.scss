@@ -1,6 +1,8 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .catalog_content{
     // background-color: #502a12;
-    background-color: black;
+    background-color: $main-color;
     .catalog_container{
         position: relative;
         .header{
@@ -60,7 +62,7 @@
                         margin-right: 10px;
                     }
                     span{
-                        color: black;
+                        color: $second-color;
                         font-size: 13px;
                         white-space: nowrap;
                         text-transform: uppercase;
@@ -78,14 +80,14 @@
             }
             .label{
                 font-size: 13px;
-                color:white;
+                color:$second-color;
                 text-transform: uppercase;
                 font-weight: 300;
             }
             &:hover{
                 background-color: white;
                 .label{
-                    color:black;
+                    color:#505768;
                 }
             }
             &:nth-child(5){

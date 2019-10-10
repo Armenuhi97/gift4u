@@ -75,7 +75,7 @@ img{
 }
 
 .a-left{
-    background: black !important;
+    background: $second-color !important;
     opacity: 1 !important;
     //padding:5px !important;
     pointer-events: auto !important;
@@ -85,7 +85,7 @@ img{
 }
 
 .a-right{
-    background: black !important;
+    background: $second-color !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     //padding:5px !important;

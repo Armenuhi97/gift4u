@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .address_content{
     width: 100%;
     position: relative;
@@ -50,8 +52,8 @@
             justify-content:center;
             .registration{
                 transition: all 0.5s;
-                background-color: black;
-                border:1px solid black;
+                background-color: $second-color;
+                border:1px solid $second-color;
                 border-radius: 0 ;
                 -webkit-border-radius: 0px ;
                 -moz-border-radius: 0px ;
@@ -69,9 +71,9 @@
                 }
                 &:hover{
                     background-color: white;
-                    border-color:black;
+                    border-color:$second-color;
                     span{
-                        color:black;
+                        color:$second-color;
                     }
                 }
             }

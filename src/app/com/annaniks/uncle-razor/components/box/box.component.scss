@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .box_container{
     margin-bottom: 28px;
     width: 100%;
@@ -91,11 +93,11 @@
     -khtml-border-radius: 0px;
     -webkit-appearance: none;
     // border-radius: 3px;
-    border:1px solid black;
+    border:1px solid $second-color;
     padding:3px;
     position: initial;
     margin:auto;
-    color:black;
+    color:$second-color;
 }
 
 :host::ng-deep .ui-dropdown .ui-dropdown-trigger{

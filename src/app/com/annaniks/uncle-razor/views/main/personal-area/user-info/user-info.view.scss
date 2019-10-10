@@ -1,17 +1,19 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .user_info_content{
     .user_info_container{
         padding:0.5em;
         .welcome-text{
             text-align: center;
             margin: 10px 0;
-            color: black;
+            color: $second-color;
             font-weight: bold;
             font-size: 17px;
         }
         .gift_certificate{
             .gift_certificate_container{
                 width: 100%;
-                background-color: black;
+                background-color: $main-color;
                 display: flex;
                 align-items: center;
                 padding:0.5em;
@@ -54,7 +56,7 @@
                         align-items: center;
                         p{
                             text-transform: uppercase;
-                            color:white;
+                            color:$second-color;
                             font-size: 18px;
                             padding-left: 10px;
                         }
@@ -71,16 +73,16 @@
                             -moz-border-radius: 0px ;
                             -khtml-border-radius: 0px;
                             -webkit-appearance: none;
-                            background-color: gray;
-                            border:1px solid black;
-                            color: black;
+                            background-color: $second-color;
+                            border:1px solid $second-color;
+                            color: white;
                             font-size: 14px;
                             transition: all 0.5s;
                             cursor: pointer;
 
                             &:hover{
                                 background-color: white;
-                                color:black;
+                                color:$second-color;
                             }
 
                         }

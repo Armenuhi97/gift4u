@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .top-buttons{
     padding: 5px 10px 5px 5px;
     i{
@@ -22,14 +24,14 @@
         height: 35px;
     }
     .clean{
-        color: black;
+        color: $second-color;
         background: white;
-        border: 1px solid black;
+        border: 1px solid $second-color;
     }
     .apply{
         color: white;
-        background: black;
-        border: 1px solid black;
+        background: $second-color;
+        border: 1px solid $second-color;
     }
 }
 .container{
@@ -45,14 +47,14 @@
        }    
     }
     .checkbox{
-        border: 1px solid black;
+        border: 1px solid $second-color;
         height: 12px;
         width: 12px;
         margin-right: 4px;
         background: white;
     }
     .active{
-        background: black 
+        background: $second-color 
     }
 }
 .inputs-container{
@@ -165,8 +167,8 @@ button:disabled{
 }
 :host ::ng-deep{
   .ui-chkbox .ui-chkbox-box.ui-state-active{
-      border-color: black !important;
-      background-color: black !important;
+      border-color: $second-color !important;
+      background-color: $second-color !important;
   }
   .ui-chkbox .ui-chkbox-box{
     border-radius: 0 !important

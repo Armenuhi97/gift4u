@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .account_content{
     width: 90% !important;
     margin: 0 auto !important;
@@ -43,7 +45,7 @@
             -moz-border-radius: 0px ;
             -khtml-border-radius: 0px;
             -webkit-appearance: none;
-            background-color: black;
+            background-color: $second-color;
             color: white;
             margin-right:28px;
             font-size: 12px;
@@ -51,7 +53,7 @@
             cursor: pointer;
             &:hover{
                 background-color: white;
-                border:1px solid black;
+                border:1px solid $second-color;
                 color:black;
             }
         }
@@ -80,7 +82,7 @@
             margin-left:10px;
             user-select: none;
             cursor: pointer;
-            color:black;
+            color:$second-color;
         }
     }
     

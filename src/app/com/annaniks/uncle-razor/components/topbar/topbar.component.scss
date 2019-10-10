@@ -1,3 +1,4 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
 .topbar_content{
     .sm_display_topbar{
         display: none;
@@ -9,7 +10,7 @@
             padding:0 10px;
             height: 60px;
             z-index: 2;
-            background-color: black;
+            background-color: $main-color;
             .icon_small{
                 .basket_count_small{
                     min-width: 18px;
@@ -44,7 +45,7 @@
     }
     .sm_search_input{
         position: unset !important;
-        border-color:black !important;
+        border-color:$second-color !important;
     }
     .sm_autocomplete{
         left:0;
@@ -403,6 +404,11 @@
             margin-left: 3px;
         }
     }
+    .search_content,.sm_d_input,.sm_d_content{
+        .search_input{
+            border: none !important
+        }
+    }
     .work_info{
         margin: 0 5px 0 0 !important
     }
@@ -452,7 +458,7 @@
     font-weight: 800;
     margin-top: -20px;
     border-radius: 50%;
-    background: black;
+    background: $second-color;
     color: white;
     display: flex;
     align-items: center;

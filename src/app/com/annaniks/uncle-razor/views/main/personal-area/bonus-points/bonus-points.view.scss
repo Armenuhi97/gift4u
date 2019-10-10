@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .bonus-table{
     overflow-x: auto;
     table{
@@ -5,12 +7,12 @@
         margin: 20px auto;
         .table-header{
             height: 25px;
-            background: black;
+            background: $second-color;
             border: none !important;
             th{
-            color: white;
-            font-weight: 400;
-            font-size: 15px
+                color: white;
+                font-weight: 400;
+                font-size: 15px
             }
         }
         td{

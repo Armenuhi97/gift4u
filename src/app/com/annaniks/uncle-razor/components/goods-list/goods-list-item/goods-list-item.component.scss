@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .goods_list_item{
     //218px
     //min-width:195px;
@@ -85,7 +87,7 @@
                     -webkit-appearance: none;
                     text-decoration: none;
                     display: inline-block;
-                    background-color: black;
+                    background-color: $second-color;
                     height: 35px;
                     font-size: 12px;
                     font-weight: 300;
@@ -94,9 +96,9 @@
                     cursor: pointer;
                     transition: all 0.5s;
                     &:hover{
-                        border: 1px solid black;
+                        border: 1px solid $second-color;
                         background-color: white;
-                        color:black;
+                        color:$second-color;
                         
                     }
                 }

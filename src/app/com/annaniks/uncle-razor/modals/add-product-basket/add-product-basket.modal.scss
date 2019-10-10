@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .add_product_basket_content{
     width: 100%;
     position: relative;
@@ -99,7 +101,7 @@
                         font-weight: 500;
                     } 
                     &:hover{
-                        background-color:black;
+                        background-color: $second-color;
                         border-color: white;
                         span{
                             color:white;

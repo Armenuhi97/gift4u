@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 div{
     .slider{
         // background-image: url('/assets/images/elipse_2.png')
@@ -69,7 +71,7 @@ div{
         background-position: center;
         background-repeat: no-repeat;
         background-size:cover;
-        background-color: black;
+        background-color: $main-color;
         width: 100%;
         height: 140px;
         display: flex;
@@ -82,14 +84,14 @@ div{
             .labels_wrapper{
                 height: fit-content;
                 .label{
-                    color:white;
+                    color:$second-color;
                     font-weight: 500;
                     font-size:32px;
                     margin-bottom: 5px;
                     margin-top: 0;
                 }
                 .under{
-                    color:white;
+                    color:$second-color;
                     font-weight: 300;
                     font-size: 17px
                 }
@@ -141,7 +143,7 @@ div{
             height: 140px;
             margin-right: 20px;
             // background-image:url('/assets/images/block1.png');
-            background-color: black;
+            background-color: $main-color;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -150,7 +152,7 @@ div{
                 margin:auto;
                 height: fit-content;
                 p{
-                    color:white;
+                    color:$second-color;
                     font-weight: bold;
                     margin-top: 0;
                     text-transform: uppercase;
@@ -159,20 +161,20 @@ div{
                     display: flex;
                     button{
                         margin-left:5px;
-                        background-color: white;
-                        border:1px solid black;
+                        background-color: $second-color;
+                        border:1px solid $second-color;
                         padding:10px 26px;
                         cursor: pointer;
                         span{
                             font-size: 14px;
-                            color:black;
+                            color:white;
                             font-weight: 500;
                         }
                     }
                     input[type=text]{
-                        border:1px solid #dad0cb;
+                        border:1px solid $second-color;
                         background: transparent;
-                        color:white;
+                        color:$second-color;
                         width: 100%;
                         min-width: 200px;
                         padding:10px 0;
@@ -192,7 +194,7 @@ div{
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            background-color: black;
+            background-color: $main-color;
             display: flex;
             .cont{
                 margin:auto;
@@ -200,7 +202,7 @@ div{
                 // justify-content: space-between;
                 .labels_wrapper{
                     .label{
-                        color:white;
+                        color:$second-color;
                         text-transform: uppercase;
                         font-weight: 500;
                         font-size:21px;
@@ -208,7 +210,7 @@ div{
                         margin-top: 0;
                     }
                     .under{
-                        color:white;
+                        color:$second-color;
                         font-weight: 300;
                         margin-bottom: 10px;
                     }
@@ -604,16 +606,16 @@ div{
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
+    color: $second-color;
     opacity: 1; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: white;
+    color: $second-color;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
-    color: white;
+    color: $second-color;
   }
 
 

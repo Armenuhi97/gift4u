@@ -1,9 +1,11 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 table{
     width: 98%;
     margin: 20px auto
 }
 .table-header{
-    background: black;
+    background: $second-color;
     border: none !important;
     height: 25px;
     th{
