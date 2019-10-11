@@ -1,10 +1,12 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .my-orders-content{
     .my-orders-container{
         padding:0.5em;
         .orders-table{
             border-spacing: 0;
             thead{
-                background-color: black;
+                background-color: $second-color;
                 .t-head{
                     font-size: 16px ;
                     color:white;
@@ -87,7 +89,7 @@
     }
 }
  th{
-        background-color: black !important; 
+        background-color: $second-color !important; 
         color: white !important;
         border: none !important
     }

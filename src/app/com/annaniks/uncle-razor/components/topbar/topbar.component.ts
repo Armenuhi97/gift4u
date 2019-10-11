@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { LoginModal, RegistrationModal, BackCallModal, SelectCityModal } from '../../modals';
 import { MainService } from '../../views/main/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService, ApiService } from '../../services';
+import { AppService, ApiService, TranslateService } from '../../services';
 
 @Component({
     selector: 'app-topbar',
@@ -36,13 +36,19 @@ export class TopbarComponent implements OnInit {
         private _appService: AppService,
         private _activatedRoute: ActivatedRoute,
         private _apiService: ApiService,
+        private _translateService: TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
     }
 
     ngOnInit() { }
-
+    public changeLanguage(lang_key: string) {
+        this._translateService.setActiveLng(lang_key)
+    }
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     public onClickMenuButton(): void {
         this._menuItemsService.openMenu();
     }
@@ -78,7 +84,7 @@ export class TopbarComponent implements OnInit {
             width: '371px',
             minHeight: '433px',
             maxHeight: '80vh',
-            data: {isRegistr:isRegistration}
+            data: { isRegistr: isRegistration }
         })
     }
 

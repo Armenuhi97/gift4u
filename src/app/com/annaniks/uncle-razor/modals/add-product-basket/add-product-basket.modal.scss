@@ -53,7 +53,7 @@
                     cursor: pointer;
                     border:none;
                     border:1px solid white;
-                    background-color: black;
+                    background-color: $second-color;
                     margin:0; 
                     border-radius: 0 ;
                     -webkit-border-radius: 0px ;
@@ -70,10 +70,10 @@
                     } 
                     &:hover{
                         background-color: white;
-                        border-color: black;
+                        border-color: $second-color;
                         &:hover{
                             span{
-                                color:black;
+                                color:$second-color;
                             }
                         }
                     }
@@ -84,7 +84,7 @@
                 padding-top:19px;
                 button{
                     cursor: pointer;
-                    border:1px solid black;
+                    border:1px solid $second-color;
                     background-color: white;
                     margin:0; 
                     width: 130px;

@@ -13,7 +13,7 @@
                             <img src="/assets/images/carV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            Быстрая доставка
+                            {{'_fast_delivery' | language_translate}}
                         </div>
                     </div>
                     <div class="item">
@@ -21,7 +21,7 @@
                             <img src="/assets/images/humanV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            Индивидуальный подход
+                            {{'_individual_approach' | language_translate}}
                         </div>
                     </div>
                     <div class="item">
@@ -29,7 +29,7 @@
                             <img src="/assets/images/moneyV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            Удобный способ оплаты
+                            {{'_payment_method' | language_translate }}
                         </div>
                     </div>
                     <div class="item">
@@ -37,13 +37,14 @@
                             <img src="/assets/images/prizeV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            100% оригинальное качество
+                            100% {{'_quality' | language_translate}}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="popular_goods">
-                <app-box [isP]="true" [header]="'Популярные товары'">
+                <app-box [isP]="true"
+                    [header]="getTranslateWord('Popular product','Популярные товары','Հանրաճանաչ Ապրանքներ')">
                     <app-slider [carouselType]="'good'" [carouselItems]="popularProducts" [itemHeight]="'inherit'">
                     </app-slider>
                 </app-box>
@@ -64,7 +65,8 @@
                 </div>
             </div>
             <div class="special_goods">
-                <app-box [isP]="true" [header]="'Спецпредложения'">
+                <app-box [isP]="true"
+                    [header]="getTranslateWord('Special offer','Спецпредложения','Հատուկ առաջարկներ')">
                     <app-goods-list>
                         <app-slider [carouselType]="'good'" [carouselItems]="specialProducts" [itemHeight]="'inherit'">
                         </app-slider>
@@ -74,28 +76,29 @@
             <div display-flex class="blocks">
                 <div class="left">
                     <div class="cont" *ngIf="!isSubscribed">
-                        <p class="label">ПОДПИСКА НА НОВОСТИ, АКЦИИ И СКИДКИ</p>
+                        <p class="label">{{'_subscribe_text' | language_translate}}</p>
                         <div class="form_group">
-                            <input type="text" [formControl]="emailFormControl" placeholder="Введите ваш email" />
+                            <input type="text" [formControl]="emailFormControl"
+                                [placeholder]="getTranslateWord('Enter your email','Введите ваш email','Մուտքագրեք ձեր email') " />
                             <button (click)="onClickSubscribe()" [disabled]="emailFormControl.invalid"
-                                [ngClass]="{'disabled':emailFormControl.invalid}"><span>Подписаться</span></button>
+                                [ngClass]="{'disabled':emailFormControl.invalid}"><span>{{'_subscribe' | language_translate}}</span></button>
                         </div>
                         <span required-field
-                            *ngIf="emailFormControl.hasError('required') && emailFormControl.touched">Это
-                            обязательное поле *</span>
+                            *ngIf="emailFormControl.hasError('required') && emailFormControl.touched">{{'error1' | language_translate}}
+                            *</span>
                         <span required-field
-                            *ngIf="emailFormControl.hasError('email') && emailFormControl.touched">Введите
-                            правильный email *</span>
+                            *ngIf="emailFormControl.hasError('email') && emailFormControl.touched">{{'error2' | language_translate}}
+                            *</span>
                     </div>
                     <div class="cont" *ngIf="isSubscribed">
-                        <p class="label">Спасибо Вы успешно подписаны !</p>
+                        <p class="label">{{'success' | language_translate}}</p>
                     </div>
                 </div>
                 <div class="right">
                     <div class="cont">
                         <div class="labels_wrapper">
-                            <p class="label">Присоединяетесь</p>
-                            <span class="under">К нам в социальных сетях</span>
+                            <p class="label">{{'_join' | language_translate}}</p>
+                            <span class="under">{{'_social_media' | language_translate}}</span>
                         </div>
                         <div class="social_items">
                             <div class="social_item" *ngFor="let item of socialNetworks"
@@ -106,7 +109,8 @@
                 </div>
             </div>
             <div class="new_goods">
-                <app-box [isP]="true" [header]="'НОВИНКИ НА САЙТЕ'">
+                <app-box [isP]="true"
+                    [header]="getTranslateWord('NEW ITEMS ON THE SITE','НОВИНКИ НА САЙТЕ','ՆՈՐՈՒՅԹՆԵՐԸ ԿԱՅՔՈՒՄ')">
                     <app-goods-list>
                         <app-slider [carouselType]="'good'" [carouselItems]="newProducts" [itemHeight]="'inherit'">
                         </app-slider>

@@ -1,10 +1,12 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .set_city{
     padding-top:19px;
     button{
         cursor: pointer;
         border:none;
-        background-color: black;
-        border:1px solid black;
+        background-color: $second-color;
+        border:1px solid $second-color;
         padding:15px 60px;
         margin:0 auto; 
         border-radius: 0 ;
@@ -21,9 +23,9 @@
         } 
         &:hover{
             background-color: white;
-            border-color:black;
+            border-color:$second-color;
             span{
-                color:black;
+                color:$second-color;
             }
         }
     }

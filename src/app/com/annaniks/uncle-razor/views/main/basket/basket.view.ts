@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
 import { Product, ServerResponse, CityCountry, Addresses } from '../../../models/models';
 import { MainService } from '../main.service';
 import { BasketService } from './basket.service';
-import { AppService } from '../../../services';
+import { AppService, TranslateService } from '../../../services';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShippingPrice, CarrierType, PromoCode } from './basket.models';
@@ -66,7 +66,8 @@ export class BasketView implements OnInit {
         private _router: Router,
         private _title: Title,
         private _cookieService: CookieService,
-        @Inject("FILE_URL") private _fileUrl: string
+        @Inject("FILE_URL") private _fileUrl: string,
+        private _translateService: TranslateService
     ) {
         this._checkBasketProducts();
         this._checkQueryParams();
@@ -220,9 +221,12 @@ export class BasketView implements OnInit {
     private _setRouteSteps(): void {
         this._title.setTitle('Корзина');
         this.routeSteps.push(
-            { label: 'Главная', url: '/', queryParams: {}, status: '' },
-            { label: 'Корзина', url: '/basket', queryParams: {}, status: '' }
+            { label: this.getTranslateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
+            { label: this.getTranslateWord('Busket', 'Корзина', 'Զամբյուղ'), url: '/basket', queryParams: {}, status: '' }
         )
+    }
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
 
     private _getCarriers(): void {
@@ -239,11 +243,18 @@ export class BasketView implements OnInit {
                 localStorage.removeItem('basket_products')
                 this.basketProducts = [];
                 this._mainService.checkUserBasketPrice();
-                this.message = `Спасибо Ваш платеж успешно совершен! (Номер заказа - ${data.orderId})`
+                this.message = this.getTranslateWord(
+                    `Thank you Your payment is successfully made! (The order number is ${data.orderId})`,
+                    `Спасибо Ваш платеж успешно совершен! (Номер заказа - ${data.orderId})`,
+                    `Շնորհակալություն ձեր վճարումը հաջողությամբ կատարվել է(Պատվերի համարն է ${data.orderId})`)
                 this.isPaymentChecked = true;
             },
+
             (error) => {
-                this.message = `Ваш платеж НЕ совершен! (${error.error.data.ErrorMessage})`;
+                this.message = this.getTranslateWord(
+                    `Your payment has NOT been made!  (${error.error.data.ErrorMessage})`,
+                    `Ваш платеж НЕ совершен! (${error.error.data.ErrorMessage})`,
+                    `Ձեր վճարումը չի կատարվել (${error.error.data.ErrorMessage})`)
                 this.isPaymentChecked = true;
             })
     }
@@ -254,17 +265,18 @@ export class BasketView implements OnInit {
                 this._localShippingInfo = data.messages;
                 let shippingPrice: ShippingPrice = data.messages;
                 if (shippingPrice.priceForFree && this._totalPrice >= +shippingPrice.priceForFree) {
-                    this.shippingMessage = 'Бесплатная доставка';
+                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում') ;
                     this.shippingPrice = 0;
                     return;
                 }
                 else if (shippingPrice.price == '0.00') {
-                    this.shippingMessage = 'Бесплатная доставка';
+                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում') ;
                     this.shippingPrice = 0;
                     return;
                 }
                 else {
-                    this.shippingMessage = `Доставка +${+shippingPrice.price} ₽`;
+                    this.shippingMessage =this.getTranslateWord(`Shipping +${+shippingPrice.price} ₽`, `Доставка +${+shippingPrice.price} ₽`, `Առաքումը +${+shippingPrice.price} ₽`)
+                     ;
                     this.shippingPrice = +shippingPrice.price;
 
                 }
@@ -570,7 +582,7 @@ export class BasketView implements OnInit {
     }
 
     get payLaterPrice(): number {
-        let paym = this.orderForm.get('payment_method').value;        
+        let paym = this.orderForm.get('payment_method').value;
         if (paym == 0) {
             return 0;
         }

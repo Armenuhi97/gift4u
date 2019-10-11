@@ -112,14 +112,14 @@
       height: 4px;
     }
     .custom-slider .ng5-slider .ng5-slider-selection {
-      background: black;
+      background: $second-color;
     }  
     .custom-slider .ng5-slider .ng5-slider-pointer {
       width: 4px;
       height: 10px;
       top: auto; /* to remove the default positioning */
       bottom: -2.5px;
-      background-color: black;
+      background-color: $second-color;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       border-bottom-left-radius: 2px;

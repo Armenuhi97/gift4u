@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Translate } from '../models/models';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '../services';
 
 @Pipe({
     name: 'splice_text'
@@ -19,6 +20,15 @@ export class SpliceText implements PipeTransform {
             }
         }
         return text;
+    }
+}
+@Pipe({
+    name: 'language_translate'
+})
+export class TranslateLanguagePipe implements PipeTransform {
+    constructor(private _translateService: TranslateService) { }
+    transform(value) {
+        return this._translateService.translate(value)
     }
 }
 @Pipe({
@@ -65,7 +75,7 @@ export class DateFormat implements PipeTransform {
 @Pipe({ name: 'date_locale_format' })
 export class DateLocaleFormat implements PipeTransform {
     transform(value: string) {
-        let date=new Date(value)
+        let date = new Date(value)
         let datePipe = new DatePipe('ru');
         let localeDate = datePipe.transform(date, 'dd MMMM yyyy');
         return localeDate

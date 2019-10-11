@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { httpParams } from './com/annaniks/uncle-razor/params/httpParams';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppService } from './com/annaniks/uncle-razor/services';
+import { AppService, TranslateService } from './com/annaniks/uncle-razor/services';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { LoadingService } from './com/annaniks/uncle-razor/services/loading.service';
@@ -35,6 +35,7 @@ registerLocaleData(localeRu)
     HttpModule,
     CookieService,
     PlatformService,
+    TranslateService,
     {
       provide: 'req',
       useValue: null

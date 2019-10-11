@@ -1,3 +1,5 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
 .inner{
     user-select: none;
 }
@@ -61,7 +63,7 @@
         button{
             cursor: pointer;
             border:none;
-            background-color: black;
+            background-color: $second-color;
             padding:15px 60px;
             margin:0; 
             border-radius: 0 ;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from '../../services';
+import { AppService, TranslateService } from '../../services';
 import { MatDialog } from '@angular/material';
 import { FilterCategoryListModal } from '../../modals';
 
@@ -19,18 +19,19 @@ export class BoxComponent implements OnInit {
     @Input('isP') private _isP: boolean
     public sort: { name: string, value: string };
     private _sortings: { name: string, value: string }[] = [
-        { name: 'По умолчанию ', value: 'none' },
-        { name: 'Цена от мин до макс', value: 'min' },
-        { name: 'Цена от макс до мин', value: 'max' },
-        { name: 'По популярности', value: 'none' },
-        { name: 'По новизне', value: 'none' }
+        { name: this.getTranslateWord('By default','По умолчанию','Ըստ նախնականի'), value: 'none' },
+        { name:this.getTranslateWord('Price min to max','Цена от мин до макс','Գինը մինիմալից մաքսիմում') , value: 'min' },
+        { name: this.getTranslateWord('Price max to min','Цена от макс до мин','Գինը մաքսիմումից մինիմալ'), value: 'max' },
+        // { name: 'По популярности', value: 'none' },
+        // { name: 'По новизне', value: 'none' }
     ]
 
     constructor(
         private _router: Router,
         private _activatedRoute: ActivatedRoute,
         private _appService: AppService,
-        private _matDialog: MatDialog
+        private _matDialog: MatDialog,
+        private _translateService:TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -47,6 +48,9 @@ export class BoxComponent implements OnInit {
                 value: ''
             };
         }
+    }
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
     public onChangeSort(event): void {
         this._router.navigate([], { relativeTo: this._activatedRoute, queryParams: { sort: event.value }, queryParamsHandling: 'merge' })

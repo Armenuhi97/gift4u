@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { LoadingService } from '../../../services/loading.service';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: 'home-view',
@@ -31,7 +32,8 @@ export class HomeView implements OnInit, OnDestroy {
         private _homeService: HomeService,
         @Inject('FILE_URL') public fileUrl: string,
         private _titleService: Title,
-        private _loadingService: LoadingService
+        private _loadingService: LoadingService,
+        private _translateService: TranslateService
     ) { }
 
     ngOnInit() {
@@ -39,7 +41,6 @@ export class HomeView implements OnInit, OnDestroy {
         this._titleService.setTitle('Интернет-магазин «Дядя Бритва» - эксклюзив для мужчин');
         this._getHomeData();
     }
-
 
     private _getHomeData(): void {
         this._loadingService.showLoading();
@@ -59,7 +60,9 @@ export class HomeView implements OnInit, OnDestroy {
                 this._loadingService.hideLoading()
             })
     }
-
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _checkWindowSize(): void {
         if (window.innerWidth <= 445) {
             this.imageKey = 'smallImage';
@@ -133,7 +136,7 @@ export class HomeView implements OnInit, OnDestroy {
         })
     }
 
-    public onClickSocialItems(item): void {        
+    public onClickSocialItems(item): void {
         window.open(item.link);
     }
 

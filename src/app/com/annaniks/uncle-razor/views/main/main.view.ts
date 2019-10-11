@@ -3,6 +3,8 @@ import { MainService } from './main.service';
 import { ServerResponse, Setting, SocialItem } from '../../models/models';
 import { Category } from './catalog/catalog.models';
 import { Meta } from '@angular/platform-browser';
+import { TranslateService } from '../../services';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'main-view',
@@ -15,7 +17,7 @@ export class MainView implements OnInit, OnDestroy {
     private _socialItems: SocialItem[] = [];
     private _categoriesMenu: Category[] = [];
 
-    constructor(private _mainService: MainService, private _meta: Meta) { }
+    constructor(private _mainService: MainService, private _meta: Meta, private _translateService: TranslateService) { }
 
     ngOnInit() {
         this._mainService.checkUserBasketPrice();
@@ -25,6 +27,7 @@ export class MainView implements OnInit, OnDestroy {
         this._getSettings();
         this._getSocialItems();
         this._addMetaTags();
+
     }
 
     private _getCategories(): void {

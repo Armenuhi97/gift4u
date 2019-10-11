@@ -10,6 +10,11 @@
         </div>
 
         <div class="toolbar">
+                <div class="languages" display-flex>
+                        <div cursor-pointer (click)="changeLanguage('ru')">Русский/</div>
+                        <div cursor-pointer (click)="changeLanguage('en')">English/</div>
+                        <div cursor-pointer (click)="changeLanguage('arm')">Հայերեն</div>
+                    </div>
             <div class="menu_items">
                 <nav class="items">
                     <div *ngFor="let item of menuItems">
@@ -18,8 +23,9 @@
                     <!-- <span class="label" [routerLink]="'/news'">Новости</span>
                     <span class="label" [routerLink]="'/discounts'">Скидки</span> -->
                 </nav>
+              
                 <div class="location">
-                    <span class="label">Ваш город</span>
+                    <span class="label">{{'_yourContry'| language_translate}}</span>
                     <img src="/assets/images/location.png" />
                     <span class="city_name" (click)="onClickCity()">{{city}}</span>
                 </div>
@@ -27,8 +33,8 @@
                     <img src="/assets/images/key.png" />
                     <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userEmail}}</span>
                     <span class="label " *ngIf="!isAuthorized"><span class="hover_underline"
-                            (click)="onClickLogin()">Вход</span><span style="margin:0 6px">/</span><span
-                            (click)="onClickRegister()" class="hover_underline">Регистрация</span></span>
+                            (click)="onClickLogin()">{{'_login' | language_translate}}</span><span style="margin:0 6px">/</span><span
+                            (click)="onClickRegister()" class="hover_underline">{{'_registration' | language_translate}}</span></span>
                 </div>
             </div>
             <div class="search_bar">
@@ -36,7 +42,7 @@
                     <div class="search_input">
                         <form (ngSubmit)="onClickSearch()" display-flex full-width>
                             <input type="text" [(ngModel)]="search" (ngModelChange)="onChange($event)"
-                                placeholder="Введите запрос" [ngModelOptions]="{standalone: true}">
+                                [placeholder]="getTranslateWord('Enter request','Введите запрос','Մուտքագրեք հարցումը')" [ngModelOptions]="{standalone: true}">
                             <button bg-transparent border-none type="submit">
                                 <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
                             </button>
@@ -46,13 +52,13 @@
                                     (click)="onClickSimilarProducts(item.productName)">
                                     <img [src]="fileUrl+'products/'+item.productImage">
                                     <div height-fit>
-                                        <p class="label"><b>Имя: </b> {{item.productName | splice_search:25}}</p>
-                                        <p class="label"><b>Артикул: </b>{{item.productArticul}}</p>
+                                        <p class="label"><b>{{'_name' | language_translate}}: </b> {{item.productName | splice_search:25}}</p>
+                                        <p class="label"><b>{{'_article' | language_translate}}: </b>{{item.productArticul}}</p>
                                     </div>
                                 </div>
                                 <div justify-content-center class="complete_items all_item"
                                     (click)="onClickSearch(true)">
-                                    <b> Показать все ({{productsCount}})</b>
+                                    <b> {{'_show_all' | language_translate}} ({{productsCount}})</b>
                                 </div>
                             </div>
                         </form>
@@ -66,8 +72,7 @@
                             <div class="bottom" margin-top-8 display-flex align-items-center>
                                 <img class="phone_icon" src="/assets/images/Векторный смарт-объект.png" />
                                 <p class="label" no-margin text-align-center cursor-pointer (click)="onClickButton()">
-                                    Заказать
-                                    обратный звонок</p>
+                                  {{'_call_back' | language_translate}}</p>
                             </div>
                         </div>
                         <div>
@@ -89,9 +94,9 @@
                                 <span *ngIf="basketCount && basketCount>0" class="basket_count">{{basketCount}}</span>
                             </div>
                         </div>
-                        <div  class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
-                            <span class="label">Корзина</span>
-                            <span class="count">на сумму {{basketInfo?.basketPrice}}₽</span>
+                        <div class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
+                            <span class="label">{{'_busket' | language_translate}}</span>
+                            <span class="count">{{'_for_the_sum' |language_translate}} {{basketInfo?.basketPrice}}₽</span>
                         </div>
                     </div>
                 </div>
@@ -108,7 +113,7 @@
                     <div class="search_input sm_search_input">
                         <form (ngSubmit)="onClickSearch()" display-flex align-items-center>
                             <input id="search" type="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"
-                                (keydown)="onKeyPress($event)" placeholder="Введите запрос"
+                                (keydown)="onKeyPress($event)" [placeholder]="getTranslateWord('Enter request','Введите запрос','Մուտքագրեք հարցումը')"
                                 [ngModelOptions]="{standalone: true}" />
                             <label for="search" (click)="onClickSearch()">
                                 <i class="material-icons search_icon">search</i>
@@ -119,13 +124,13 @@
                                     (click)="onClickSimilarProducts(item.productName)">
                                     <img [src]="fileUrl+'products/'+item.productImage">
                                     <div height-fit>
-                                        <p class="label"><b>Имя: </b> {{item.productName | splice_text:80:30}}</p>
-                                        <p class="label"><b>Артикул: </b>{{item.productArticul }}</p>
+                                        <p class="label"><b>{{'_name' | language_translate}}: </b> {{item.productName | splice_text:80:30}}</p>
+                                        <p class="label"><b>{{'_article' | language_translate}}: </b>{{item.productArticul }}</p>
                                     </div>
                                 </div>
                                 <div justify-content-center class="complete_items all_item"
                                     (click)="onClickSearch(true)">
-                                    <b> Показать все ({{productsCount}})</b>
+                                    <b>  {{'_show_all' | language_translate}} ({{productsCount}})</b>
                                 </div>
                             </div>
                         </form>
@@ -140,7 +145,7 @@
                     </div>
                 </div>
                 <div display-flex justify-content-flex-end class="icon_small">
-                    <div display-flex  routerLink="/basket" (click)="closeMenu()">
+                    <div display-flex routerLink="/basket" (click)="closeMenu()">
                         <img height="35" width="35" src="/assets/images/outline_shopping_cart_white.png" alt="">
                         <span *ngIf="basketCount && basketCount>0" class="basket_count_small">{{basketCount}}</span>
                     </div>
@@ -173,7 +178,7 @@
                 </div>
                 <div display-flex align-items-center class="location">
                     <img class="img-icon" src="/assets/images/Векторный смарт-объект.png" />
-                    <span cursor-pointer class="city_name" (click)="onClickButton()">Заказать обратный звонок</span>
+                    <span cursor-pointer class="city_name" (click)="onClickButton()">{{'_call_back' | language_translate}}</span>
                 </div>
             </div>
         </div>
