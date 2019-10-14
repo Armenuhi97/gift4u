@@ -3,7 +3,7 @@ import { MainService } from '../../views/main/main.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CityCountry, ServerResponse } from '../../models/models';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AppService } from '../../services';
+import { AppService, TranslateService } from '../../services';
 
 @Component({
     selector: 'select-city-modal',
@@ -19,7 +19,8 @@ export class SelectCityModal implements OnInit {
         private _dialogRef: MatDialogRef<SelectCityModal>,
         private _mainService: MainService,
         private _fb: FormBuilder,
-        private _appService: AppService
+        private _appService: AppService,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
@@ -31,6 +32,9 @@ export class SelectCityModal implements OnInit {
         this._selectCityForm = this._fb.group({
             city: [null, Validators.required]
         })
+    }
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
 
     private _getCities(): void {

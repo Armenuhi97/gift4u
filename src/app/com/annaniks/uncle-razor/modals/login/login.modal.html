@@ -3,41 +3,38 @@
         <i class="material-icons">close</i>
     </div>
     <div class="login_container">
-        <p class="label">Вход в кабинет</p>
-        <p *ngIf="data && data.isReview">Отзывы могут оставлять только зарегестрированные пользователи.</p>
+        <p class="label">{{'_enter' | language_translate}}</p>
+        <!-- <p *ngIf="data && data.isReview">Отзывы могут оставлять только зарегестрированные пользователи.</p> -->
         <p error>{{errorMessage}}</p>
         <form [formGroup]="loginForm">
             <div class="form_group">
-                <label for='email'>E-mail:</label>
+                <label for='email'>{{'_email' | language_translate}}:</label>
                 <input type="text" formControlName="email" />
                 <span required-field
-                    *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Это
-                    обязательное поле *</span>
+                    *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">{{'error1' | language_translate}} *</span>
                 <span required-field
-                    *ngIf="loginForm.get('email').hasError('pattern') && loginForm.get('email').touched">Введите
-                    правильный email *</span>
+                    *ngIf="loginForm.get('email').hasError('pattern') && loginForm.get('email').touched">{{'error2' | language_translate}} *</span>
             </div>
             <div class="form_group">
-                <label for='email'>Пароль:</label>
+                <label for='email'>{{'_password' | language_translate}}:</label>
                 <input type="password" formControlName="password" />
                 <span required-field
-                    *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Это
-                    обязательное поле *</span>
+                    *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">{{'error1' | language_translate}} *</span>
             </div>
             <div class="remember_me">
                 <div display-flex align-items-center>
                     <p-checkbox binary="true" formControlName="remember"></p-checkbox>
-                    <span>Запомнить</span>
+                    <span>{{'_remember' | language_translate}}</span>
                 </div>
             </div>
             <div class="buttons">
                 <button class="login" (click)="onClickLogin()" [disabled]="loginForm.invalid"
                     [ngClass]="{'disabled':loginForm.invalid}">
-                    <span>Войти</span>
+                    <span>{{'_enter' | language_translate}}</span>
                 </button>
                 <div>
-                    <p class="restore_password" (click)="onClickRecoverPassowrd()">Восстановить пароль</p>
-                    <p *ngIf="data && data.isRegistr" class="restore_password" (click)="openRegistrationModal()">Регистрация</p>
+                    <p class="restore_password" (click)="onClickRecoverPassowrd()">{{'_recover_password' | language_translate}}</p>
+                    <p *ngIf="data && data.isRegistr" class="restore_password" (click)="openRegistrationModal()">{{'_registration' | language_translate}}</p>
                 </div>
             </div>
 

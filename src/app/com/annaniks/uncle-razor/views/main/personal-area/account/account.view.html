@@ -6,7 +6,7 @@
                 <div class="content" full-width display-flex justify-content-space-beetwen>
                     <div class="first3">
                         <div class="form_group">
-                            <label class="label">ФИО:*</label>
+                            <label class="label">{{'_full_name' | language_translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='text' formControlName="name" placeholder="* ФИО" name="name">
                                 <!-- <i class="material-icons" (click)="onClickEditField('name')">edit</i> -->
@@ -42,7 +42,7 @@
                                 <!-- ,'max-width':'487px' -->
                                 <p-dropdown full-width [options]="cities" [filter]="true" [emptyFilterMessage]="'Результаты не найдены'"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name">
+                                    formControlName="city" placeholder="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name">
                                 </p-dropdown>
                                 <!-- <i class="material-icons" (click)="onClickEditField('city')">edit</i> -->
                             </div>

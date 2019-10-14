@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { LoginService, AppService } from '../../services';
+import { LoginService, AppService, TranslateService } from '../../services';
 import { MainService } from '../../views/main/main.service';
 import { CityCountry, ServerResponse, LoginResponse } from '../../models/models';
 // import { CookieService } from 'angular2-cookie';
@@ -25,14 +25,17 @@ export class RegistrationModal implements OnInit {
         private _loginService: LoginService,
         private _mainService: MainService,
         private _appService: AppService,
-        private _cookieService: CookieService
+        private _cookieService: CookieService,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
         this._formBuilder();
         this._getCities();
     }
-
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _formBuilder(): void {
         this._registrationForm = this._fb.group({
             name: [null, Validators.required],

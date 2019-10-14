@@ -219,7 +219,7 @@ export class BasketView implements OnInit {
     }
 
     private _setRouteSteps(): void {
-        this._title.setTitle('Корзина');
+        this._title.setTitle(this.getTranslateWord('Busket', 'Корзина', 'Զամբյուղ'));
         this.routeSteps.push(
             { label: this.getTranslateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
             { label: this.getTranslateWord('Busket', 'Корзина', 'Զամբյուղ'), url: '/basket', queryParams: {}, status: '' }
@@ -265,18 +265,18 @@ export class BasketView implements OnInit {
                 this._localShippingInfo = data.messages;
                 let shippingPrice: ShippingPrice = data.messages;
                 if (shippingPrice.priceForFree && this._totalPrice >= +shippingPrice.priceForFree) {
-                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում') ;
+                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');
                     this.shippingPrice = 0;
                     return;
                 }
                 else if (shippingPrice.price == '0.00') {
-                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում') ;
+                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');
                     this.shippingPrice = 0;
                     return;
                 }
                 else {
-                    this.shippingMessage =this.getTranslateWord(`Shipping +${+shippingPrice.price} ₽`, `Доставка +${+shippingPrice.price} ₽`, `Առաքումը +${+shippingPrice.price} ₽`)
-                     ;
+                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ₽`, `Доставка +${+shippingPrice.price} ₽`, `Առաքումը +${+shippingPrice.price} ₽`)
+                        ;
                     this.shippingPrice = +shippingPrice.price;
 
                 }
@@ -340,11 +340,15 @@ export class BasketView implements OnInit {
                 if (data.error) {
                     this.error = true;
                     //this.makeOrderError = data.message;
-                    this.makeOrderError = `Введите правильный email`
+                    this.makeOrderError = this.getTranslateWord(` Please enter a valid email address`, `Введите правильный email`, `Մուտքագրեք վավեր էլփոստի հասցե`)
+
                     return;
                 }
                 this.error = false;
-                this.messageService.add({ severity: 'success', summary: 'Сообщение', detail: 'Спасибо! Ваш заказ успешно принят' })
+                this.messageService.add({
+                    severity: 'success', summary: this.getTranslateWord('Message', 'Сообщение', 'Հաղորդագրություն'), detail: this.getTranslateWord('Thank you! Your order is successfully accepted', 'Спасибо! Ваш заказ успешно принят',
+                        'Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է')
+                })
                 if (data && data.orderId) {
                     if (data.isCash == 0 || data.isCash == 4 || data.isCash == 5) {
                         if (data.paymant) {
@@ -357,7 +361,7 @@ export class BasketView implements OnInit {
                                 this._mainService.checkUserBasketPrice();
                                 this.basketProducts = [];
                                 this.orderStep = 1;
-                                this.message = `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`
+                                this.message = this.getTranslateWord(`Thank you! Your order is successfully accepted (Order number - ${data.orderId})`, `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`, `Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է (Պատվերի համարն է ${data.orderId})`)
                             }
                         }
                         else {
@@ -365,7 +369,8 @@ export class BasketView implements OnInit {
                             this._mainService.checkUserBasketPrice();
                             this.basketProducts = [];
                             this.orderStep = 1;
-                            this.message = `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`
+                            this.message = this.getTranslateWord(`Thank you! Your order is successfully accepted (Order number - ${data.orderId})`, `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`, `Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է (Պատվերի համարն է ${data.orderId})`)
+
                         }
                     }
                     else {
@@ -373,7 +378,7 @@ export class BasketView implements OnInit {
                         this._mainService.checkUserBasketPrice();
                         this.basketProducts = [];
                         this.orderStep = 1;
-                        this.message = `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`
+                        this.message = this.getTranslateWord(`Thank you! Your order is successfully accepted (Order number - ${data.orderId})`, `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`, `Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է (Պատվերի համարն է ${data.orderId})`)
                     }
                 }
 
@@ -389,12 +394,12 @@ export class BasketView implements OnInit {
         this._basketService.checkPromoCode(this._promoCodeFormControl.value).subscribe(
             (data: ServerResponse<PromoCode>) => {
                 this._promoCode = data.messages;
-                this.promoCodeMessage = `Успешно активирован промокод`;
+                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);
                 this.promoCodeLoading = false;
                 this.isPromocode = true;
             },
             (error) => {
-                this.promoCodeMessage = 'Неправильный промокод';
+                this.promoCodeMessage = this.getTranslateWord('Wrong promo code', 'Неправильный промокод', 'Մուտքագրված է սխալ պրոմոկոդ');
                 this.promoCodeLoading = false;
             })
     }
@@ -454,7 +459,8 @@ export class BasketView implements OnInit {
 
     public checkUserBalance(type: string, text: string): string {
         if (this._mainService.isAuthorized && this.orderStep == 2) {
-            return (+this._mainService.getUserInfo()[type] < this._fullPrice) ? `Ваш  ${text} не достаточно для оплаты` : null;
+            return (+this._mainService.getUserInfo()[type] < this._fullPrice) ? this.getTranslateWord(`Your ${text}  not enough to pay`, `Ваш  ${text} не достаточно для оплаты`, `Ձեր ${text} բավարար չէ վճարման համար`) : null
+      
         }
     }
 
@@ -492,11 +498,12 @@ export class BasketView implements OnInit {
             this._totalPrice = totalPrice;
             if (this._totalPrice < +this._localShippingInfo.priceForFree) {
                 this.shippingPrice = +this._localShippingInfo.price;
-                this.shippingMessage = `Доставка +${this.shippingPrice} ₽`;
+                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ₽`, `Доставка +${this.shippingPrice} ₽`, `Առաքումը +${this.shippingPrice} ₽`)
+                    ;
             }
             else {
                 this.shippingPrice = 0;
-                this.shippingMessage = `Бесплатная доставка`;
+                this.shippingMessage = this.getTranslateWord(`Free delivery`, `Бесплатная доставка`, `Անվճար առաքում`)
             }
 
         }
@@ -551,7 +558,7 @@ export class BasketView implements OnInit {
         if (this._mainService.isAuthorized()) {
             if (this._mainService.getUserInfo().percent) {
                 bonusPrice = ((this._fullPrice - this.shippingPrice) * +this._mainService.getUserInfo().percent) / 100;
-                message = `Ваш бонус: ${bonusPrice} ₽`;
+                message =this.getTranslateWord(`Your bonus: ${bonusPrice} ₽`, `Ваш бонус: ${bonusPrice} ₽`,`Ձեր բոնուսը ${bonusPrice} ₽ է`)
             }
         }
         return message;

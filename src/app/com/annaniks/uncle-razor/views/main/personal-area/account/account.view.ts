@@ -4,7 +4,7 @@ import { ServerResponse, User, Month, Day, Year } from 'src/app/com/annaniks/unc
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MainService } from '../../main.service';
 import { PersonalAreaService } from '../personal-area.service';
-import { AppService } from '../../../../services';
+import { AppService, TranslateService } from '../../../../services';
 import { MessageService } from 'primeng/api';
 import { LoadingService } from '../../../../services/loading.service';
 import { MatDialog } from '@angular/material';
@@ -55,7 +55,8 @@ export class AccountView implements OnInit {
         private _messageService: MessageService,
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
-        private _title: Title
+        private _title: Title,
+        private _translateService:TranslateService
     ) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }
@@ -65,6 +66,9 @@ export class AccountView implements OnInit {
         this._getUser();
         this._getCities();
         this._setDateVariants(1, 31)
+    }
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
     private _setDay(start: number, end: number): void {
         if (!this.day[0])
