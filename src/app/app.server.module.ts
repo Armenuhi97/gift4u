@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 // import { Request } from 'express';
 // import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { CookieService } from './com/annaniks/uncle-razor/services/cookie.service';
+import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
 // import { CookieService } from 'angular2-cookie';
 
 // @Injectable()

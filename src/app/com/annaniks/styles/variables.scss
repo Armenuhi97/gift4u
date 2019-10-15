@@ -1,5 +1,6 @@
-$main-color: #fbe3e5;
+$main-color: #00001b;
 $second-color: #505768;
+$text-color:white;
 
 *[text-align-center] {
     text-align: center;
@@ -10,6 +11,9 @@ $second-color: #505768;
 }
 *[second-color]{
     color: $second-color
+}
+*[text-color]{
+    color: $text-color !important;
 }
 *[cursor-pointer] {
     cursor: pointer;

@@ -1,0 +1,14 @@
+<div class="brands_content">
+    <div class="brands_container" container>
+        <div class="route_step">
+            <app-route-step [routes]="routeSteps"></app-route-step>
+        </div>
+        <app-box [header]="translateWord('Brands','Бренды','Ապրանքանշաններ')">
+            <div class="brands_list">
+                <div class="item" *ngFor="let item of brands" [routerLink]="item.id">
+                    <div class="img" [ngStyle]="{'background-image':'url('+fileUrl+'brand/'+item.image+')'}"></div>
+                </div>
+            </div>
+        </app-box>
+    </div>
+</div>

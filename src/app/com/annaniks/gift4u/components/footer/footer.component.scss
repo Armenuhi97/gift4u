@@ -1,0 +1,168 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
+.footer_content{
+    width: 100%;
+    // background-color: #43220d;
+    background-color: $main-color;
+    background-size: cover;
+    background-position: center;
+    min-height: 230px;
+    .footer_container{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .center{
+            display: flex;
+            justify-content: space-between;
+            margin:auto;
+            width: 100%;
+            height: fit-content;    
+            padding: 5px;
+            .logo{
+                display: flex;
+                justify-content: center;
+                height: fit-content;
+                //margin:auto 0;
+                img{
+                    min-width: 162px;
+                    margin-top: 5px;
+                }
+                .social{
+                    width: 100%;
+                    max-width: 150px;
+                    margin-left: 20px;
+                    padding:5px 0;
+                    height: fit-content;
+                    margin:auto;
+                    
+                }
+                .social_items{
+                    width: 91px;
+                    display: flex;
+                    justify-content: space-between; 
+                    flex-wrap: wrap;
+                    margin-left:10px;
+                    .item{
+                        width: 26px;
+                        height: 26px;
+                        border-radius: 50%;
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+                .label{
+                    margin:0;
+                    padding:0;
+                    font-size: 13px;
+                    line-height: 18px;
+                    word-wrap: break-word;
+                    font-weight: 400;
+                    color:white;
+                }
+            }
+            
+            
+            .map_item{
+                max-width: 230px;
+                .header{
+                    margin:0;
+                    padding:0;
+                    font-size: 14px;
+                    line-height: 31.2px;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    color:$text-color;
+                }
+                .items{
+                    margin: 0;
+                    padding:0;
+                    font-size: 13px;
+                    line-height: 31.2px;
+                    color:$text-color;
+                    font-weight: 300;
+                    display: flex;
+                    .arrow{
+                        margin-right: 10px;
+                        //color:#654106;
+                    }
+                    .icon{
+                        margin-right:10px;
+                        width: auto;
+                        max-width: 20px;
+                    }
+                    .text{
+                        margin:0;
+                        padding:inherit;
+                        font-size: 16px;
+                        line-height: 18px;
+                        color:inherit;
+                        font-weight: 300;
+                    }
+                    .font_14{
+                        font-size:14px !important;
+                    }
+                    
+                }
+                .it{
+                    margin:7px 0;
+                }
+            
+            }
+        }
+        
+    }
+}
+@media only screen and (max-width: 480px) {
+    .display_none{
+        display: none;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .footer_container{
+        height: 85% !important;
+    }
+    .logo{
+        width: 50% !important;
+        order: 0;
+        justify-content: flex-start !important;
+        flex-direction: column;
+        .social{
+            margin-left:0 !important;
+        }
+       
+    }
+    .map_item{
+        width: 50% !important;
+        &:first-child{
+            order: 2;
+        }
+        &:nth-child(2){
+            order: 1;
+            margin-top: 100px !important
+        }
+        &:nth-child(3){
+            order: 3;
+            margin-top: 100px !important
+        }
+       
+    }
+    .center{
+      flex-wrap: wrap !important;
+      padding: 0 30px !important
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .map_item:nth-child(2),.map_item:nth-child(3){
+        display: none !important;
+    }
+    .center{
+        flex-direction: column !important;
+        align-items: center;
+        .map_item{
+            min-height: 200px;
+        }
+    }
+
+}

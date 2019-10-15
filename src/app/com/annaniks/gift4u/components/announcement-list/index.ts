@@ -1,0 +1,2 @@
+export * from 'src/app/com/annaniks/gift4u/components/announcement-list/announcement-list.component';
+export * from 'src/app/com/annaniks/gift4u/components/announcement-list/announcement-list-item/announcement-list-item.component';

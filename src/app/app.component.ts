@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 })
 export class AppComponent {
-  title = 'uncle-razor';
+  title = 'gift4u';
 
   constructor(private _ref: ApplicationRef, private _router: Router) {
     _router.events.subscribe((value) => {

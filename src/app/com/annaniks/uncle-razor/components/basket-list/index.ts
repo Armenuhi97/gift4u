@@ -1,2 +1,0 @@
-export * from 'src/app/com/annaniks/uncle-razor/components/basket-list/basket-list.component';
-export * from 'src/app/com/annaniks/uncle-razor/components/basket-list/basket-list-item/basket-list-item.component';

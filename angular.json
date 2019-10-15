@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "uncle-razor": {
+    "gift4u": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "uncle-razor:build"
+            "browserTarget": "gift4u:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "uncle-razor:build:production"
+              "browserTarget": "gift4u:build:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/uncle-razor-server",
+            "outputPath": "dist/gift4u-server",
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json"
           },
@@ -99,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "uncle-razor:build"
+            "browserTarget": "gift4u:build"
           }
         },
         "test": {
@@ -141,7 +141,7 @@
         }
       }
     },
-    "uncle-razor-e2e": {
+    "gift4u-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -150,11 +150,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "uncle-razor:serve"
+            "devServerTarget": "gift4u:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "uncle-razor:serve:production"
+              "devServerTarget": "gift4u:serve:production"
             }
           }
         },
@@ -170,5 +170,5 @@
       }
     }
   },
-  "defaultProject": "uncle-razor"
+  "defaultProject": "gift4u"
 }

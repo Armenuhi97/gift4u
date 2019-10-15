@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to uncle-razor!');
+    expect(page.getTitleText()).toEqual('Welcome to gift4u!');
   });
 });

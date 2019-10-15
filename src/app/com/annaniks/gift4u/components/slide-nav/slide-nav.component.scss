@@ -1,0 +1,82 @@
+@import 'src/app/com/annaniks/styles/variables.scss';
+
+.slide_nav{
+    width: 100%;
+    overflow: auto;
+    position: fixed;
+    top:60px;
+    bottom: 0;
+    background-color: white;
+    z-index: 99999;
+    transition: left 0.5s;
+    .slide_nav_container{
+     //   padding:18px;
+       .topbar_items{
+           .item{
+                border-bottom: 1px solid #ebebeb;
+                padding: 14px;
+                cursor: pointer;
+           }
+       }
+       .personal_area{
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        .label{
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 18px;
+            user-select: none;
+            display: block;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+        
+        }
+        .tabs{
+            display: flex;
+            background: $main-color;
+            height: 40px;
+            color: $text-color;
+           // border-top: 2px solid grey;
+            .tab_item{
+                margin-left: 0.5em;
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                p{
+                    margin:0;
+                    padding:2px;
+                }
+                &:first-child{
+                    margin-left:0;
+                }
+            }
+        }
+    }
+}
+
+.open{
+    left:0;
+}
+.close{
+    left:-100%;
+}
+
+:host ::ng-deep{
+    .categories_container{
+        border:none !important;
+        .items{
+            padding:0 !important;
+        }
+    }
+}
+
+.active_tab{
+    // border-color:black !important;
+   // border-bottom: 1px solid #ebebeb;
+   background: white;
+   color: black
+}
