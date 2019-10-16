@@ -107,7 +107,7 @@
       &:hover {
         background-color: white;
         span {
-          color: $text-color;
+          color: $second-color;
         }
       }
     }
@@ -192,7 +192,7 @@
       width: 92px;
     }
     .label_wrapper_left {
-      width: 100px;
+      width: 180px;
     }
     .input_container {
       max-width: 455px;

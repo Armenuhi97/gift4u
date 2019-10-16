@@ -15,19 +15,19 @@
         </div>
         <!-- <div class="country_name">г.Санкт Петербург</div> -->
         <div *ngIf="review.advantages" class="comments border-bottom">
-            <div class="comment_type">Достоинства</div>
+            <div class="comment_type">{{'_advantages' | language_translate}}</div>
             <div class="comment_text">
               {{review?.advantages}}
             </div>
         </div>
         <div *ngIf="review.limitations" class="comments border-bottom">
-            <div class="comment_type">Недостатки</div>
+            <div class="comment_type">{{'_limitations' | language_translate}}</div>
             <div class="comment_text">
                 {{review?.limitations}}
             </div>
         </div>
         <div *ngIf="review.comments" class="comments border-bottom">
-            <div class="comment_type">Комментарии</div>
+            <div class="comment_type">{{'_comments' | language_translate}}</div>
             <div class="comment_text">
                {{review?.comments}}
             </div>
@@ -36,13 +36,13 @@
         <div *ngIf="review.isShow && review.admin_answer" class="answer_comment">
             <div class="reviews_container border-bottom"  display-flex>
                 <div>
-                    <img class="answer_user_img" src="/assets/images/logo.jpg" alt="">
+                    <!-- <img class="answer_user_img" src="/assets/images/logo.jpg" alt=""> -->
                     <!-- <div class="answer_user_img"></div> -->
                 </div>
                 <div class="comments_container" full-width>
                     <div class="comments_info" margin-bottom-7 full-width height-fit justify-content-space-beetwen display-flex
                         align-items-center>
-                        <div class="answer_user_name">Админ</div>
+                        <div class="answer_user_name">{{'_admin' | language_translate}}</div>
                         <div class="comment_date">{{review?.create_date | date_locale_format}}</div>
                     </div>
                     <!-- <div margin-bottom-7 class="country_name">г.Санкт Петербург</div> -->
@@ -61,35 +61,32 @@
         </div>
     </div>
 </div>
-<app-box [isP]="true" [header]="'Комментировать'">
+<app-box [isP]="true" [header]="translateWord('Comment','Комментировать','Մեկնաբանել')">
     <form [formGroup]="commentForm" action="">
         <div class="inputs_group" display-flex>
             <div class="left">
                 <div class="form_group">
                     <div class="label_wrapper_left">
-                        <label>ФИО</label>
+                        <label>{{'_full_name' | language_translate}}</label>
                     </div>
                     <div class="input_container">
                         <input type="text" formControlName="name" />
                         <span required-field
-                            *ngIf="commentForm.get('name').hasError('required') && commentForm.get('name').touched">Это
-                            обязательное поле *</span>
+                            *ngIf="commentForm.get('name').hasError('required') && commentForm.get('name').touched">{{'error1' | language_translate}} *</span>
                     </div>
                 </div>
             </div>
             <div class="right">
                 <div class="form_group">
                     <div class="label_wrapper_left">
-                        <label>Ваша почта</label>
+                        <label>{{'_your_email' | language_translate}}</label>
                     </div>
                     <div class="input_container">
                         <input type="text" formControlName="email" />
                         <span required-field
-                            *ngIf="commentForm.get('email').hasError('required') && commentForm.get('email').touched">Это
-                            обязательное поле *</span>
+                            *ngIf="commentForm.get('email').hasError('required') && commentForm.get('email').touched">{{'error1' | language_translate}} *</span>
                         <span required-field
-                            *ngIf="commentForm.get('email').hasError('pattern') && commentForm.get('email').touched">Введите
-                            правильный email *</span>
+                            *ngIf="commentForm.get('email').hasError('pattern') && commentForm.get('email').touched">{{'error2' | language_translate}} *</span>
                     </div>
                 </div>
             </div>
@@ -98,42 +95,39 @@
             <div class="left">
                 <div class="form_group">
                     <div class="label_wrapper_left">
-                        <label>Достоинства</label>
+                        <label>{{'_advantages' | language_translate}}</label>
                     </div>
                     <div class="input_container">
                         <textarea type="text" formControlName="advantages"></textarea>
                         <span required-field
-                            *ngIf="commentForm.get('advantages').hasError('required') && commentForm.get('advantages').touched">Это
-                            обязательное поле *</span>
+                            *ngIf="commentForm.get('advantages').hasError('required') && commentForm.get('advantages').touched">{{'error1' | language_translate}} *</span>
                     </div>
                 </div>
             </div>
             <div class="right">
                 <div class="form_group">
                     <div class="label_wrapper_left">
-                        <label>Недостатки</label>
+                        <label>{{'_limitations' | language_translate}}</label>
                     </div>
                     <div class="input_container">
                         <textarea formControlName="limitations"></textarea>
                         <span required-field
-                        *ngIf="commentForm.get('limitations').hasError('required') && commentForm.get('limitations').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="commentForm.get('limitations').hasError('required') && commentForm.get('limitations').touched">{{'error1' | language_translate}} *</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="form_group">
             <div class="label_wrapper_left">
-                <label>Комментарии</label>
+                <label>{{'_comments' | language_translate}}</label>
             </div>
             <div full-width class="input_container">
                 <textarea formControlName="comments"></textarea>
                 <span required-field
-                *ngIf="commentForm.get('comments').hasError('required') && commentForm.get('comments').touched">Это
-                обязательное поле *</span>
+                *ngIf="commentForm.get('comments').hasError('required') && commentForm.get('comments').touched">{{'error1' | language_translate}} *</span>
             </div>
         </div>
         <button [ngClass]="{'disabled':commentForm.invalid || isCheck}" (click)="addReview()" [disabled]="commentForm.invalid"
-            class="add_comment_button">Добавить Комментарии</button>
+            class="add_comment_button">{{'_add_comment' | language_translate}}</button>
     </form>
 </app-box>

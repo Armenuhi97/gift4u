@@ -6,8 +6,8 @@
 </td>
 <td>
     <div class="price">
-        <p class="old" *ngIf="basketItem.specificPrice">{{(basketItem?.specificPrice) ? basketItem?.price_with_vat : ''
-            }} ₽</p>
+        <p class="old" *ngIf="basketItem.specificPrice">
+            {{(basketItem?.specificPrice) ? basketItem?.price_with_vat : ''}} ₽</p>
         <p class="new">{{(basketItem?.specificPrice) ? basketItem?.specificPrice : basketItem?.price_with_vat}} ₽</p>
     </div>
 </td>
@@ -19,7 +19,7 @@
                     expand_more
                 </i>
             </button>
-            <input type="text" disabled  [(ngModel)]="basketItem.count" />
+            <input type="text" disabled [(ngModel)]="basketItem.count" />
             <button (click)="onClickIncrement()">
                 <i class="material-icons">
                     keyboard_arrow_up

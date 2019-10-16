@@ -11,6 +11,7 @@ import { Observable, forkJoin, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { Options } from 'ng5-slider';
 import { FormGroup } from "@angular/forms";
+import { TranslateService } from "../../services";
 @Component({
     selector: 'filter-category-list',
     templateUrl: 'filter-category-list.modal.html',
@@ -41,28 +42,28 @@ export class FilterCategoryListModal {
     private _selectedCity: Array<number> = []
     private _selectedCategory = [];
     private _routeSteps: Breadcrumbs[] = [
-        { label: 'Главная', url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
     ];
 
     public categotyListName: Array<{ name: string, isOpen: boolean }> = [
         {
-            name: 'Категории',
+            name:this.translateWord('Categories','Категории','Կատեգորիաներ') ,
             isOpen: false
         },
         {
-            name: 'Бренды',
+            name:this.translateWord('Brands','Бренды','Ապրանքանշաններ') ,
             isOpen: false
         },
         {
-            name: 'Страна',
+            name: this.translateWord('Country','Страна','Երկիրը'),
             isOpen: false
         },
         {
-            name: 'Цена',
+            name:this.translateWord('Price','Цена','Գինը') ,
             isOpen: false
         },
         {
-            name: 'Скидка',
+            name: this.translateWord('Discount','Скидка','Զեղչ') ,
             isOpen: false
         },
     ]
@@ -81,6 +82,7 @@ export class FilterCategoryListModal {
         private _activatedRoute: ActivatedRoute,
         private _titleService: Title,
         private _router: Router,
+        private _translateService:TranslateService,
         private _loadingService: LoadingService, ) {
         this.compbineObservable()
     }
@@ -98,6 +100,9 @@ export class FilterCategoryListModal {
                 this.categotyListName[i].isOpen = false
             }
         }
+    }
+    public translateWord(key1:string,key2:string,key3:string){
+       return this._translateService.translateImportant(key1,key2,key3)
     }
     public apply(): void {
         let cityId = this._selectedCity.join(',');

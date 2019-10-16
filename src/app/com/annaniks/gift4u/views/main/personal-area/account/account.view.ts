@@ -32,18 +32,18 @@ export class AccountView implements OnInit {
     ]
     public day: Day[] = []
     public month: Month[] = [
-        { text: 'Январь', id: 1 },
-        { text: 'Февраль', id: 2 },
-        { text: 'Март', id: 3 },
-        { text: 'Апрель', id: 4 },
-        { text: 'Май', id: 5 },
-        { text: 'Июнь', id: 6 },
-        { text: 'Июль', id: 7 },
-        { text: 'Август', id: 8 },
-        { text: 'Сентябрь', id: 9 },
-        { text: 'Октябрь', id: 10 },
-        { text: 'Ноябрь', id: 11 },
-        { text: 'Декабрь', id: 12 }
+        { text: this.getTranslateWord('January', 'Январь', 'Հունվար'), id: 1 },
+        { text: this.getTranslateWord('February', 'Февраль', 'Փետրվար'), id: 2 },
+        { text: this.getTranslateWord('March', 'Март', 'Մարտ'), id: 3 },
+        { text: this.getTranslateWord('April', 'Апрель', 'Ապրիլ'), id: 4 },
+        { text: this.getTranslateWord('May', 'Май', 'Մայիս'), id: 5 },
+        { text: this.getTranslateWord('June', 'Июнь', 'Հունիս'), id: 6 },
+        { text: this.getTranslateWord('July', 'Июль', 'Հուլիս'), id: 7 },
+        { text: this.getTranslateWord('August', 'Август', 'Օգօստոս'), id: 8 },
+        { text: this.getTranslateWord('September', 'Сентябрь', 'Սեպտեմբեր'), id: 9 },
+        { text: this.getTranslateWord('October', 'Октябрь', 'Հոկտեմբեր'), id: 10 },
+        { text: this.getTranslateWord('November', 'Ноябрь', 'Նոյեմբեր'), id: 11 },
+        { text: this.getTranslateWord('ecember', 'Декабрь', 'Դեկտեմբեր'), id: 12 }
     ]
     public years: Year[] = []
     constructor(
@@ -56,7 +56,7 @@ export class AccountView implements OnInit {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
-        private _translateService:TranslateService
+        private _translateService: TranslateService
     ) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }

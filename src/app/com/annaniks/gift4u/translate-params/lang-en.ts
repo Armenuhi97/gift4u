@@ -5,7 +5,7 @@ export const LANG_EN_TRANS = {
     "_yourContry": "Your Contry",
     '_login': 'Login',
     '_registration': 'Registartion',
-    '_busket': 'Busket',
+    '_busket': 'Basket',
     '_enter_request': 'Enter request',
     '_call_back': 'Request a call back',
     '_for_the_sum': 'for the sum of',
@@ -25,6 +25,7 @@ export const LANG_EN_TRANS = {
     'error2': 'Enter a valid email',
     'success': 'Thank you you have successfully subscribed',
     'brands': 'Brands',
+    'brand':'Brand',
 
     //footer
     '_about_company': 'About Company',
@@ -64,21 +65,75 @@ export const LANG_EN_TRANS = {
     '_insurance': 'INSURANCE PREMIUM',
     '_commission': 'COMMISSION',
     '_total_text': 'TOTAL TO BE PAID ON THE SPOT',
-    '_total_pay_now':'TOTAL PAYMENT DUE NOW',
-    '_empty_busket':'Your busket is empty',
-    '_select' : 'Select',
-    '_your_city':'Your city',
-    '_remember':'Remember',
-    '_enter':'Enter',
-    '_recover_password':'Recover the password',
+    '_total_pay_now': 'TOTAL PAYMENT DUE NOW',
+    '_empty_busket': 'Your basket is empty',
+    '_select': 'Select',
+    '_your_city': 'Your city',
+    '_remember': 'Remember',
+    '_enter': 'Enter',
+    '_recover_password': 'Recover the password',
     //registration
-    '_password':'Password',
-    '_confirm_password':'Confirm password',
-    '_password_error':'Passwords do not match',
-    '_your_name':'Your name',
-    '_phone_number':'Phone number',
+    '_password': 'Password',
+    '_confirm_password': 'Confirm password',
+    '_password_error': 'Passwords do not match',
+    '_your_name': 'Your name',
+    '_phone_number': 'Phone number',
     //settings
     '_your_message': 'Your message',
-    '_send':'Send'    
-    
+    '_send': 'Send',
+    //call back
+    '_call_back_text': 'Call back',
+    '_call_back_subtitle': 'We\'ll call you back in 10 seconds',
+    //recover password
+    '_enter_your_email':'Enter your email',
+    '_continue':'Continue',
+    '_success_text':'Thank you your new password sent to E-Mail',
+    '_ok':'Ok',
+    //busket item
+    '_title':'Title',
+    '_price':'Price',
+    '_count':'Count',
+    '_cost':'Cost',
+    //tab item
+    '_description':'Description',
+    '_characteristics':'Characteristics',
+    '_reviews':'Reviews',
+    '_add_to_basket':'add to basket',
+    '_product_return_price_text':'We return from 3% to 15% to the bonus account.',
+    '_choose_quantity':'Choose quantity',
+    '_more':'More',
+    '_return':'we will return',
+    '_back':'back',
+    //charecteristic
+    '_brand_country':'Brand Country',
+    '_manufacture_country':'producer country',
+    '_weight':'Weight',
+    '_composition':'Composition',
+    //reviews
+    '_your_email':'Your Email',
+    '_advantages':'Advantages',
+    '_limitations':'Limitations',
+    '_comments':'Comments',
+    '_admin':'Admin',
+    '_add_comment':'Add Comments',
+    //good list item
+    '_into_busket':'Into the basket',
+    '_reset_filters':'Reset the filters',
+    '_show_options':'Show options',
+    //filters
+    '_from':'from',
+    '_top':'to',
+    //account
+    '_date_of_birdth':'Date of birth',
+    '_confirm':'Confirm',
+    //bonus points
+    '_order_number':'Order',
+    '_sum':'Amount',
+    '_bonuses':'Bonuses',
+    '_rate_of_return':'THE RATE OF RETURN',
+    '_status':'Status',
+    '_date':'Date',
+    '_enrolled':'Enrolled'
+
+
 };

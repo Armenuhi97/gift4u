@@ -2,12 +2,12 @@
     <div class="bonus-table">
         <table *ngIf="bonusPoint[0]">
             <tr class="table-header">
-                <th>ЗАКАЗ №</th>
-                <th>ДАТА</th>
-                <th>СУММА</th>
-                <th>БОНУСЫ</th>
-                <th>ПРОЦЕНТ ВОЗВРАТА</th>
-                <th>СТАТУС</th>
+                <th uppercase>{{'_order_number' | language_translate}} №</th>
+                <th uppercase>{{'_sum' | language_translate}}</th>
+                <th uppercase>{{'_bonuses' | language_translate}}</th>
+                <th uppercase>{{'_rate_of_return' | language_translate}}</th>
+                <th uppercase>{{'_status' | language_translate}}</th>
+                <th uppercase>{{'_date' | language_translate}}</th>
             </tr>
             <tr *ngFor="let bonus of bonusPoint">
                 <td>{{bonus?.orderId}}</td>

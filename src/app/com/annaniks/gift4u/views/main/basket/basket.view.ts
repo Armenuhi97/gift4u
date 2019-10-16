@@ -340,7 +340,7 @@ export class BasketView implements OnInit {
                 if (data.error) {
                     this.error = true;
                     //this.makeOrderError = data.message;
-                    this.makeOrderError = this.getTranslateWord(` Please enter a valid email address`, `Введите правильный email`, `Մուտքագրեք վավեր էլփոստի հասցե`)
+                    this.makeOrderError = this.getTranslateWord(`Please enter a valid email address`, `Введите правильный email`, `Մուտքագրեք վավեր էլփոստի հասցե`)
 
                     return;
                 }

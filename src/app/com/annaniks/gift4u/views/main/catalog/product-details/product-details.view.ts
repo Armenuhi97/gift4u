@@ -6,7 +6,7 @@ import { CatalogService } from '../catalog.service';
 import { ServerResponse, ProductFull, CombinedProduct, CombinedAttribute, LikeProduct, AttributeProductValue, AttributeSet, Path, Product, ProductScore, Reviews } from '../../../../models/models';
 import { Subscription } from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
-import { AppService } from '../../../../services';
+import { AppService, TranslateService } from '../../../../services';
 import { MainService } from '../../main.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { ProductDetailsService } from './product-details.service';
@@ -49,7 +49,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _productDetailsService: ProductDetailsService,
         private _lightbox: Lightbox,
-        private _lightboxEvent: LightboxEvent
+        private _lightboxEvent: LightboxEvent,
+        private _translateService:TranslateService
     ) {
         this._activatedRoute.params.subscribe(params => {
             if (params && params.id) {
@@ -61,6 +62,9 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     ngOnInit() {
         this._checkProductId();
         this._checkIsFavorite()
+    }
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
     private _checkIsFavorite(): void {
         if (this._mainService.isAuthorized) {

@@ -6,48 +6,42 @@
         <form [formGroup]="addressForm">
             <div class="form_row">
                 <div class="form_group">
-                    <label>Имя</label>
+                    <label>{{'_name' | language_translate}}:</label>
                     <input formControlName="name" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('name').hasError('required') && addressForm.get('name').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('name').hasError('required') && addressForm.get('name').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>ФИО</label>
+                    <label>{{'_full_name' | language_translate}}:</label>
                     <input formControlName="fullName" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('fullName').hasError('required') && addressForm.get('fullName').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('fullName').hasError('required') && addressForm.get('fullName').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>Адрес</label>
+                    <label>{{'_address' | language_translate}}:</label>
                     <input formControlName="address" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('address').hasError('required') && addressForm.get('address').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('address').hasError('required') && addressForm.get('address').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>Индекс</label>
+                    <label>{{'_index' | language_translate}}:</label>
                     <input formControlName="index" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('index').hasError('required') && addressForm.get('index').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('index').hasError('required') && addressForm.get('index').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>Номер телефона</label>
+                    <label>{{'_phone_number' | language_translate}}:</label>
                     <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
                     <span required-field
-                        *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>Ваш город: </label>
+                    <label>{{'_your_city' | language_translate}}: </label>
                     <p-dropdown [options]="cities"
                         [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
                         formControlName="city" placeholder="Нажмите чтобы выбрать" optionLabel="name"></p-dropdown>
                     <span required-field
-                        *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">Это
-                        обязательное поле *</span>
+                        *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">{{'error1' | language_translate}} *</span>
                 </div>
             </div>
         </form>

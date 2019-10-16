@@ -18,6 +18,9 @@ $text-color:white;
 *[cursor-pointer] {
     cursor: pointer;
 }
+*[uppercase]{
+    text-transform:uppercase
+}
 *[object-fit-contain]{
     object-fit:contain
 }

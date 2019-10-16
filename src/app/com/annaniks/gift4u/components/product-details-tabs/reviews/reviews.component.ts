@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { LoginModal } from '../../../modals';
 import { MessageService } from 'primeng/api';
 import { Reviews } from '../../../models/models';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: 'app-reviews',
@@ -30,6 +31,7 @@ export class ReviewsTabComponent implements OnInit {
         private _mainService: MainService,
         private _loadingService: LoadingService,
         private _messageService: MessageService,
+        private _translateService:TranslateService,
         @Inject('FILE_URL') public fileUrl: string) { }
 
     ngOnInit() {
@@ -44,6 +46,9 @@ export class ReviewsTabComponent implements OnInit {
             limitations: ['', Validators.required],
             comments: ['', Validators.required]
         })
+    }
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
     private _setFormValue(): void {
         if (this._mainService.isAuthorized) {

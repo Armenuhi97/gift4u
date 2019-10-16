@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { AttributeFilter, City, CategoryFilter, Reduction } from '../../views/main/catalog/catalog.models';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from '../../services';
+import { AppService, TranslateService } from '../../services';
 import { MainService } from '../../views/main/main.service';
 
 @Component({
@@ -41,14 +41,15 @@ export class FiltersComponent implements OnInit, OnDestroy {
         private _fb: FormBuilder,
         private _router: Router,
         private _activatedRoute: ActivatedRoute,
-        private _appService: AppService
+        private _appService: AppService,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
         this._formBuilder();
         this._getFilters();
     }
-
+    
     private _formBuilder(): void {
         this._filterForm = this._fb.group({
             price: [[0, 100000]],
@@ -74,6 +75,9 @@ export class FiltersComponent implements OnInit, OnDestroy {
             this.min = ev[0];
             this.max = ev[1]
         }
+    }
+    public translateWords(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
     private _getFilters(): void {
         const combined = forkJoin(

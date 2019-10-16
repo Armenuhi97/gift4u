@@ -20,29 +20,30 @@
                             </mat-radio-group>
                         </div>
                         <div class="form_group">
-                            <label class="label">Дата рождения:*</label>
+                            <label class="label">{{'_date_of_birdth' | language_translate}}:*</label>
                             <div class="date" display-flex align-items-center>
                                 <p-dropdown style="width:30%" [options]="day"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    placeholder="День" formControlName="day" optionLabel="day">
+                                    [placeholder]="getTranslateWord('Day','День','Օր')" formControlName="day" optionLabel="day">
                                 </p-dropdown>
                                 <p-dropdown [options]="month" style="width:40%;margin-left: 10px"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    placeholder="Месяц" formControlName="month" optionLabel="text">
+                                    [placeholder]="getTranslateWord('Month','Месяц','Ամիս')"  formControlName="month" optionLabel="text">
                                 </p-dropdown>
                                 <p-dropdown [options]="years" style="width:30%;margin-left: 10px"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    placeholder="Год" formControlName="year" optionLabel="year">
+                                    [placeholder]="getTranslateWord('Year','Год','Տարի')" formControlName="year" optionLabel="year">
                                 </p-dropdown>
                             </div>
                         </div>
                         <div class="form_group">
-                            <label class="label">Город:*</label>
+                            <label class="label">{{'_city'} | language_translate}:*</label>
                             <div class="city" display-flex align-items-center>
                                 <!-- ,'max-width':'487px' -->
-                                <p-dropdown full-width [options]="cities" [filter]="true" [emptyFilterMessage]="'Результаты не найдены'"
+                                <p-dropdown full-width [options]="cities" [filter]="true"
+                                 [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    formControlName="city" placeholder="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name">
+                                    formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name">
                                 </p-dropdown>
                                 <!-- <i class="material-icons" (click)="onClickEditField('city')">edit</i> -->
                             </div>
@@ -51,17 +52,17 @@
                     </div>
                     <div class="second3">
                         <div class="form_group">
-                            <label class="label">Телефон:*</label>
+                            <label class="label">{{'_phone' | language_translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='tel' prefix="+7" mask="(000) 000 00 00" formControlName="phone"
-                                    placeholder="* Телефон" name="tel">
+                                    [placeholder]="getTranslateWord('* Phone','* Телефон','* Հեռախոսահամար')" name="tel">
                                 <!-- <i class="material-icons" (click)="onClickEditField('phone')">edit</i> -->
                             </div>
                         </div>
                         <div class="form_group">
-                            <label class="label">E-Mail:*</label>
+                            <label class="label">{{'_email' | language_translate}}:*</label>
                             <div display-flex align-items-center>
-                                <input type='email' formControlName="email" placeholder="* E-Mail" name="mail">
+                                <input type='email' formControlName="email" խ="getTranslateWord('* E-MAIL','* E-MAIL','* Էլ․հասցե')" name="mail">
                                 <!-- <i class="material-icons" (click)="onClickEditField('email')">edit</i> -->
                             </div>
                         </div>
@@ -77,7 +78,7 @@
             </form>
             <div class="main-right-bottom">
                 <button [disabled]="userForm.invalid" [ngClass]="{'disabled':userForm.invalid}"
-                    (click)="onClickContinue()"><span>Подвердить</span></button>
+                    (click)="onClickContinue()"><span>{{'_confirm' | language_translate}}</span></button>
                 <div class="button-right"><span><span class="star">*</span> поля обязательны для заполнения</span>
                 </div>
             </div>

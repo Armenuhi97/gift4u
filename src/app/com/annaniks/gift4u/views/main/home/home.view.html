@@ -49,7 +49,7 @@
                     </app-slider>
                 </app-box>
             </div>
-            <div class="disc_block">
+            <!-- <div class="disc_block">
                 <div class="cont">
                     <div class="labels_wrapper">
                         <p class="label">5 любых восков со скидкой</p>
@@ -63,7 +63,7 @@
                         <div class="img_item" style="background-image:url(/assets/images/Layer_6532.png)"></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="special_goods">
                 <app-box [isP]="true"
                     [header]="getTranslateWord('Special offer','Спецпредложения','Հատուկ առաջարկներ')">
@@ -79,7 +79,7 @@
                         <p class="label">{{'_subscribe_text' | language_translate}}</p>
                         <div class="form_group">
                             <input type="text" [formControl]="emailFormControl"
-                                [placeholder]="getTranslateWord('Enter your email','Введите ваш email','Մուտքագրեք ձեր email') " />
+                                [placeholder]="getTranslateWord('Enter your email','Введите ваш email','Մուտքագրեք ձեր էլ․հասցեն') " />
                             <button (click)="onClickSubscribe()" [disabled]="emailFormControl.invalid"
                                 [ngClass]="{'disabled':emailFormControl.invalid}"><span>{{'_subscribe' | language_translate}}</span></button>
                         </div>
@@ -110,21 +110,24 @@
             </div>
             <div class="new_goods">
                 <app-box [isP]="true"
-                    [header]="getTranslateWord('NEW ITEMS ON THE SITE','НОВИНКИ НА САЙТЕ','ՆՈՐՈՒՅԹՆԵՐԸ ԿԱՅՔՈՒՄ')">
+                    [header]="getTranslateWord('NEW ITEMS ON THE SITE','НОВИНКИ НА САЙТЕ','ԿԱՅՔԻ ՆՈՐՈՒՅԹՆԵՐԸ')">
                     <app-goods-list>
                         <app-slider [carouselType]="'good'" [carouselItems]="newProducts" [itemHeight]="'inherit'">
                         </app-slider>
                     </app-goods-list>
                 </app-box>
             </div>
-            <div class="market_parfum">
+            <!--  -->
+            <!-- <div class="market_parfum">
                 <app-box [header]="magazinInfo?.title">
                     <div class="content">
                         <p class="text" none-select [innerHTML]="magazinInfo?.description">
                         </p>
                     </div>
                 </app-box>
-            </div>
+            </div> -->
+
+
             <!-- <div class="video">
                 <app-box [header]="'Видео о продукции'">
                     <div class="video_content">

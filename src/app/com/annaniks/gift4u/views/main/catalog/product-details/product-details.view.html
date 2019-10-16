@@ -13,7 +13,7 @@
                     <div class="sm_product_data">
                         <h1 class="product_name">{{product.name}}</h1>
                         <div align-items-center display-flex justify-conten-space-between>
-                            <span class="product_id">Артикул: <b>{{product.sku}}</b></span>
+                            <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
                             <!-- <span class="pr_d">{{product.title}}</span> -->
                             <div class="product_rating" margin-left-2 display-flex>
                                 <app-rating [size]="16" margin-right-auto margin-left-auto
@@ -38,7 +38,7 @@
                     </div>
                     <div class="product_data">
                         <h1 class="product_name">{{product.name}}</h1>
-                        <span class="product_id">Артикул: <b>{{product.sku}}</b></span>
+                        <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
 
                         <!-- <span class="pr_d">{{product.title}}</span> -->
                         <div class="product_rating" display-flex>
@@ -56,7 +56,8 @@
                                     </app-product-attribute>
                                 </div>
                                 <div class="product_count">
-                                    <p no-margin class="label" text-align-center>Выберите количество</p>
+                                    <p no-margin class="label" text-align-center>
+                                        {{'_choose_quantity' | language_translate}}</p>
                                     <div class="count" display-flex>
                                         <div width-fit margin-auto display-flex align-items-center
                                             justify-content-space-beetwen>
@@ -84,11 +85,13 @@
                             <p class="current_price">
                                 {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ₽</p>
                             <span class="disc_text long_text">
-                                Мы возвращаем от 3% до 15% на бонусный счёт.
+                                {{'_product_return_price_text' | language_translate}}
                             </span>
-                            <span class="disc_text" *ngIf="isAuthorized" font-weight-bold>вернём {{bonusPrice}} руб.
-                                обратно</span>
-                            <a class="disc_text" href="/settings/club" font-weight-bold>Подробнее</a>
+                            <span class="disc_text" *ngIf="isAuthorized" font-weight-bold>{{'_return' | language_translate}} {{bonusPrice}}
+                                руб.
+                                {{'_back' | language_translate}}</span>
+                            <a class="disc_text" href="/settings/club"
+                                font-weight-bold>{{'_more' | language_translate}}</a>
                         </div>
                         <div class="buttons">
                             <!-- <div class="oneclick_button">
@@ -96,7 +99,7 @@
                                 </div> -->
 
                             <div class="basket_button sm_buscet_button" (click)="onClickAddBasket()">
-                                <button>Добавить в корзину</button>
+                                <button>{{'_add_to_basket' | language_translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -107,15 +110,15 @@
             <div class="tab_bar">
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='description'}"
                     (click)="onClickTabItem('description')">
-                    <span class="label">Описание</span>
+                    <span class="label">{{'_description' | language_translate}}</span>
                 </div>
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='characteristic'}"
                     (click)="onClickTabItem('characteristic')">
-                    <span class="label">Характеристики</span>
+                    <span class="label">{{'_characteristics' | language_translate}}</span>
                 </div>
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='reviews'}"
                     (click)="onClickTabItem('reviews')">
-                    <span class="label">Отзывы</span>
+                    <span class="label">{{'_reviews' | language_translate}}</span>
                 </div>
             </div>
             <div class="tabs_content" [class.no-padding]="activeTabItem == 'reviews'" [ngSwitch]="activeTabItem">
@@ -128,7 +131,8 @@
                         [itemHeight]="inherit"></app-slider>
                 </app-box> -->
             <div class="products">
-                <app-box [isP]="true" [header]="'ПОХОЖИЕ ТОВАРЫ'">
+                <app-box [isP]="true"
+                    [header]="translateWord('SIMILAR PRODUCTS','ПОХОЖИЕ ТОВАРЫ','ՆՄԱՆԱՏԻՊ ԱՊՐԱՆՔՆԵՐ')">
                     <app-slider [carouselType]="'good'" [carouselItems]="product?.similarProducts"
                         [itemHeight]="'inherit'"></app-slider>
                 </app-box>
