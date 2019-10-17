@@ -3,11 +3,11 @@
         <table *ngIf="bonusPoint[0]">
             <tr class="table-header">
                 <th uppercase>{{'_order_number' | language_translate}} №</th>
+                <th uppercase>{{'_date' | language_translate}}</th>
                 <th uppercase>{{'_sum' | language_translate}}</th>
                 <th uppercase>{{'_bonuses' | language_translate}}</th>
                 <th uppercase>{{'_rate_of_return' | language_translate}}</th>
                 <th uppercase>{{'_status' | language_translate}}</th>
-                <th uppercase>{{'_date' | language_translate}}</th>
             </tr>
             <tr *ngFor="let bonus of bonusPoint">
                 <td>{{bonus?.orderId}}</td>
@@ -15,9 +15,9 @@
                 <td>{{bonus?.total}}</td>
                 <td>{{bonus?.bonus}}</td>
                 <td>{{bonus?.percent}}%</td>
-                <td uppercase>{{(bonus?.status) == '1'? 'Зачислен':'Возврат'}}</td>
+                <td uppercase>{{(bonus?.status) == '1'? translateWord('Enrolled','Зачислен','Հաշվառված'):translateWord('Refund','Возврат','Վերադարձ')}}</td>
             </tr>
         </table>
     </div>
-    <div *ngIf="!bonusPoint[0]" class="default-text"> Пусто </div>
+    <div *ngIf="!bonusPoint[0]" class="default-text"> {{'_empty' | language_translate}} </div>
 </div>

@@ -4,6 +4,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
 import { BonusPoint, ServerResponse } from "../../../../models/models";
+import { TranslateService } from "../../../../services";
 
 @Component({
     selector: 'bonus-points-view',
@@ -17,6 +18,7 @@ export class BonusPointsView implements OnInit {
         private _title: Title,
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
+        private _translateService:TranslateService
     ) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }
@@ -33,5 +35,8 @@ export class BonusPointsView implements OnInit {
             () => {
                 this._loadingService.hideLoading()
             })
+    }
+     public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
 }

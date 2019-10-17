@@ -6,7 +6,7 @@ import { MainService } from '../main.service';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { CookieService } from '../../../services/cookie.service';
-import { window } from 'rxjs/operators';
+import { TranslateService } from '../../../services';
 
 
 @Component({
@@ -17,14 +17,14 @@ import { window } from 'rxjs/operators';
 export class PersonalAreaView implements OnInit {
     private _activeTab: number = 0;
     private _personalAreaItems = [
-        { label: 'Личный кабинет', link: 'user' },
-        { label: 'Учетная запись', link: 'account' },
-        { label: 'Адреса доставки', link: 'shipping-addresses' },
-        { label: 'Мои закладки', link: 'my-bookmarks' },
-        { label: 'История заказов', link: 'my-orders' },
-        { label: 'Бонусные баллы', link: 'bonus-points' },
-        { label: 'История платежей', link: 'payment-history' },
-        { label: 'Подписка на новости', link: 'newsletter-subscription' },
+        { label: this.translateWord('Personal account','Личный кабинет','Անձնական գրասենյակ'), link: 'user' },
+        { label: this.translateWord('User account','Учетная запись','Հաշիվ'), link: 'account' },
+        { label: this.translateWord('Delivery address','Адреса доставки','Առաքման հասցեները'), link: 'shipping-addresses' },
+        { label:  this.translateWord('My bookmarks','Мои закладки','Իմ էջանիշները'), link: 'my-bookmarks' },
+        { label: this.translateWord('Order history','История заказов','Պատվերների պատմություն'), link: 'my-orders' },
+        { label: this.translateWord('Bonus point','Бонусные баллы','Բոնուսային միավորներ'), link: 'bonus-points' },
+        { label: this.translateWord('Payment history','История платежей','Վճարումների պատմություն'), link: 'payment-history' },
+        { label:  this.translateWord('News subscription','Подписка на новости','Նորությունների բաժանորդագրություն'), link: 'newsletter-subscription' },
     ]
 
     constructor(
@@ -34,14 +34,17 @@ export class PersonalAreaView implements OnInit {
         private _cookieService: CookieService,
         private _mainService: MainService,
         private _title: Title,
-        private _matDialog: MatDialog
+        private _matDialog: MatDialog,
+        private _translateService:TranslateService
     ) {
         this._getUser();
     }
 
     ngOnInit() {
     }
-
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
+    }
     public onClickLogOut(): void {
         this._cookieService.remove('accessToken');
         this._mainService.changeIsAuthorized(false);

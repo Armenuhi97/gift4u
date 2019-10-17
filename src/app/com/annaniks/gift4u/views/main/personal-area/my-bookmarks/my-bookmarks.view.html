@@ -7,5 +7,5 @@
         <app-paginator [count]="bookmarkCount" [pageLength]="pageLength" [currentPage]="page"
             (paginate)="onPageChange($event)"></app-paginator>
     </div>
-    <div *ngIf="!bookmarks[0]" class="default-text">Пусто</div>
+    <div *ngIf="!bookmarks[0]" class="default-text">{{'_empty' | language_translate}}</div>
 </div>

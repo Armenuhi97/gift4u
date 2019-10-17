@@ -3,16 +3,16 @@
         <i class="material-icons">close</i>
     </div>
     <div class="add_product_basket_container">
-        <h1 text-align-center no-margin>ТОВАР ДОБАВЛЕН</h1>
-        <p text-align-center> Товар успешно добавлен в корзину:</p>
+        <h1 text-align-center no-margin>{{'_product_added' | language_translate}}</h1>
+        <p text-align-center> {{'_added_product_success_message' | language_translate}}:</p>
         <div class="container">
             <div class="product_info">
                 <img [src]="fileUrl+'products/'+product?.image">
                 <div class="text_wr">
                     <p no-margin>{{product?.name}}</p>
                     <div class="description">
-                        <span font-weight-bold>Количество: {{product?.count}}тов. <br>
-                            <span display-flex align-items-center> Цена։
+                        <span font-weight-bold>{{'_count' | language_translate}}: {{product?.count}}тов. <br>
+                            <span display-flex align-items-center> {{'_price' | language_translate}}։
                                 <div margin-left-7>
                                     <div [class.specificprice]="specificPrice">{{price}} ₽</div>
                                     <div *ngIf="specificPrice">{{specificPrice}} ₽</div>
@@ -26,12 +26,12 @@
         <div display-flex justify-content-space-beetwen class="buttons">
             <div class="continue">
                 <button (click)="onClickCountinue()">
-                    <span>Продолжить</span>
+                    <span>{{'_continue' | language_translate}}</span>
                 </button>
             </div>
             <div class="go_basket">
                 <button (click)="onClickGoBasket()">
-                    <span>Перейти в корзину </span>
+                    <span>{{'_go_to_basket' | language_translate}} </span>
                 </button>
             </div>
 

@@ -51,7 +51,7 @@ export class FilterCategoryListModal {
             isOpen: false
         },
         {
-            name:this.translateWord('Brands','Бренды','Ապրանքանշաններ') ,
+            name:this.translateWord('Brands','Бренды','Ապրանքանիշներ') ,
             isOpen: false
         },
         {
@@ -359,7 +359,7 @@ export class FilterCategoryListModal {
 
     private _resetProperties(): void {
         this._routeSteps = [
-            { label: 'Главная', url: '/', queryParams: {}, status: '' }
+            { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
         ];
     }
     public allGet(): boolean {

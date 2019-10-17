@@ -27,8 +27,8 @@ export class AccountView implements OnInit {
     private _error: string = null;
     public selected: number = -1
     public genderArray = [
-        { id: 0, title: 'Мужской' },
-        { id: 1, title: 'Женский' }
+        { id: 0, title: this.getTranslateWord('Male', 'Мужской', 'Արական') },
+        { id: 1, title: this.getTranslateWord('Female', 'Женский', 'Իգական') }
     ]
     public day: Day[] = []
     public month: Month[] = [

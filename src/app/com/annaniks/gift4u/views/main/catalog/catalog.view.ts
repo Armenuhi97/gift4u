@@ -5,6 +5,7 @@ import { ServerResponse, Product, Breadcrumbs, Path } from '../../../models/mode
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../services/loading.service';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: 'catalog-view',
@@ -28,7 +29,7 @@ export class CatalogView implements OnInit {
     public isChangeCategory: boolean = false
     private _previousParentId: number
     private _routeSteps: Breadcrumbs[] = [
-        { label: 'Главная', url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
     ];
 
     constructor(
@@ -37,6 +38,7 @@ export class CatalogView implements OnInit {
         private _titleService: Title,
         private _router: Router,
         private _loadingService: LoadingService,
+        private _translateService:TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -46,7 +48,9 @@ export class CatalogView implements OnInit {
             this._isShowFilters = false;
         }
     }
-
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
+     }
     private _checkQueryParams(): void {
         this._activatedRoute.queryParams.subscribe((params) => {
             if (params && params.parentcategoryid && params.parentcategoryname) {
@@ -186,7 +190,7 @@ export class CatalogView implements OnInit {
 
     private _resetProperties(): void {
         this._routeSteps = [
-            { label: 'Главная', url: '/', queryParams: {}, status: '' }
+            { label:this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
         ];
         this._label = this._routeSteps[this._routeSteps.length - 1].label
         this._titleService.setTitle(this._label);

@@ -1,6 +1,6 @@
 <div class="news_content">
     <div class="news_container" container>
-        <app-box [header]="'НОВОСТИ'">
+        <app-box [header]="getTranslateWord('NEWS','НОВОСТИ','նՈՐՈՒԹՅՈՒՆՆԵՐ')">
             <announcement-list>
                 <announcement-list-item *ngFor="let item of news" [value]="item">
                 </announcement-list-item>

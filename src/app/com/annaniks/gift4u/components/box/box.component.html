@@ -10,7 +10,7 @@
         <div class="search_bar" *ngIf="searchVisible">
             <div align-items-center display-flex justify-content-space-beetwen class="search_input">
                 <p-dropdown [options]="sortings" [(ngModel)]="sort" (ngModelChange)="onChangeSort($event)"
-                    optionLabel="name" [placeholder]="getTranslateWord('Sort of like','Сортировать как','Դասավորել ինչպես')" [style]="{'min-width':'200px'}"></p-dropdown>
+                    optionLabel="name" [placeholder]="getTranslateWord('Sort of like','Сортировать как','Դասավորել')" [style]="{'min-width':'200px'}"></p-dropdown>
                 <div *ngIf="isFilter" (click)="openFilterCategoryList()" display-flex class="filter-list">
                     <i class="material-icons">
                         filter_list

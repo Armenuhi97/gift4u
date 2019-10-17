@@ -8,7 +8,7 @@
                         <div class="form_group">
                             <label class="label">{{'_full_name' | language_translate}}:*</label>
                             <div display-flex align-items-center>
-                                <input type='text' formControlName="name" placeholder="* ФИО" name="name">
+                                <input type='text' formControlName="name" [placeholder]="getTranslateWord('* Full Name','* ФИО','* ԱԱՀ')"  name="name">
                                 <!-- <i class="material-icons" (click)="onClickEditField('name')">edit</i> -->
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="form_group">
-                            <label class="label">{{'_city'} | language_translate}:*</label>
+                            <label class="label">{{'_city' | language_translate}}:*</label>
                             <div class="city" display-flex align-items-center>
                                 <!-- ,'max-width':'487px' -->
                                 <p-dropdown full-width [options]="cities" [filter]="true"
@@ -62,7 +62,7 @@
                         <div class="form_group">
                             <label class="label">{{'_email' | language_translate}}:*</label>
                             <div display-flex align-items-center>
-                                <input type='email' formControlName="email" խ="getTranslateWord('* E-MAIL','* E-MAIL','* Էլ․հասցե')" name="mail">
+                                <input type='email' formControlName="email" [placeholder]="getTranslateWord('* E-MAIL','* E-MAIL','* Էլ․հասցե')" name="mail">
                                 <!-- <i class="material-icons" (click)="onClickEditField('email')">edit</i> -->
                             </div>
                         </div>
@@ -79,7 +79,7 @@
             <div class="main-right-bottom">
                 <button [disabled]="userForm.invalid" [ngClass]="{'disabled':userForm.invalid}"
                     (click)="onClickContinue()"><span>{{'_confirm' | language_translate}}</span></button>
-                <div class="button-right"><span><span class="star">*</span> поля обязательны для заполнения</span>
+                <div class="button-right"><span><span class="star">*</span> {{'error3' | language_translate}}</span>
                 </div>
             </div>
             <div class="change_password_wrapper">

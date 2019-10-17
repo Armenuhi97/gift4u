@@ -3,6 +3,7 @@ import { NewsService } from '../news.service';
 import { ActivatedRoute } from '@angular/router';
 import { Announcement } from '../../../../models/models';
 import { Title, Meta } from '@angular/platform-browser';
+import { TranslateService } from '../../../../services';
 
 @Component({
     selector: 'news-details-view',
@@ -17,13 +18,16 @@ export class NewsDetailsView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         @Inject('FILE_URL') private _fileUrl: string,
         private _title: Title,
-        private _meta: Meta
+        private _meta: Meta,
+        private _translateService: TranslateService
     ) { }
 
     ngOnInit() {
         this._checkNewsId();
     }
-
+    public translateWords(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _checkNewsId(): void {
         let announcementId: number = this._activatedRoute.snapshot.params.id
         this._getNewsById(announcementId);
@@ -55,6 +59,6 @@ export class NewsDetailsView implements OnInit {
     }
 
     get showText(): string {
-        return (this._showMore) ? 'свернуть' : 'развернуть'
+        return (this._showMore) ? this.translateWords('', 'свернуть', '') : this.translateWords('', 'развернуть', '')
     }
 }

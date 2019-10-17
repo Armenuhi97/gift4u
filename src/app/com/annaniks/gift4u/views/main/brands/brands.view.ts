@@ -41,10 +41,10 @@ export class BrandsView implements OnInit, OnDestroy {
     }
 
     private _setRouteSteps(): void {
-        this._title.setTitle(this.translateWord('Brands','Бренды','Ապրանքանշաններ'));
+        this._title.setTitle(this.translateWord('Brands','Бренды','Ապրանքանիշներ'));
         this._routeSteps.push(
             { label:this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' },
-            { label: this.translateWord('Brands','Бренды','Ապրանքանշաններ'), url: '/brands', queryParams: {}, status: '' }
+            { label: this.translateWord('Brands','Бренды','Ապրանքանիշներ'), url: '/brands', queryParams: {}, status: '' }
         )
     }
 

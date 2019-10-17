@@ -19,7 +19,7 @@
             <app-categories [isMain]="true" [categories]="slideNavItems" [isParent]="true" [isSlideNav]="true"
                 [isCloseMenu]="true" *ngSwitchCase="'catalog'"></app-categories>
             <div class="topbar_items">
-                <div class="item" *ngSwitchCase="'catalog'" (click)="onClickSettings({routerLink:'/brands'})">
+                <div uppercase class="item" *ngSwitchCase="'catalog'" (click)="onClickSettings({routerLink:'/brands'})">
                     {{'brands' | language_translate}}
                 </div>
                 <div  *ngSwitchCase="'information'">

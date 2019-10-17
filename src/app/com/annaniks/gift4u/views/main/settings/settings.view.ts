@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../main.service';
 import { Setting } from '../../../models/models';
-import { AppService } from '../../../services';
+import { AppService, TranslateService } from '../../../services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { MessageService } from 'primeng/api';
@@ -32,7 +32,8 @@ export class SettingsView implements OnInit {
         private _fb: FormBuilder,
         private _settingService: SettingsService,
         private _messageService: MessageService,
-        private _title: Title
+        private _title: Title,
+        private _translateService:TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -53,6 +54,9 @@ export class SettingsView implements OnInit {
                 this._router.navigate(['/']);
             }
         })
+    }
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
 
     private _formBuilder(): void {

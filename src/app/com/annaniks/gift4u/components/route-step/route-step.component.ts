@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Inject } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Breadcrumbs } from '../../models/models';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: "app-route-step",
@@ -12,7 +13,7 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     tempState = [];
     public arrow_icon: string
     @Input('routes') breadcrumbs: Array<Breadcrumbs> = [];
-    constructor(private router: Router, private route: ActivatedRoute, private _titleService: Title) {
+    constructor(private router: Router, private route: ActivatedRoute, private _titleService: Title,private _translateService:TranslateService) {
         // this.router.routeReuseStrategy.shouldReuseRoute = function(){
         //     return false;
         // }
@@ -58,6 +59,8 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() { }
-
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
+    }
     ngOnDestroy() { }
 }

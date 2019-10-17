@@ -13,5 +13,5 @@
             <span [class.active]="item.isSelect" class="checkbox"></span>
         </span>
     </div>
-    <div *ngIf="isBrand && (!array || !array.length)">Результаты не найдены</div>
+    <div *ngIf="isBrand && (!array || !array.length)">{{'_not_found_result' | language_translate}}</div>
 </div>

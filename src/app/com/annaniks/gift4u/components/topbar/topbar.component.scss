@@ -374,11 +374,13 @@
         transition: all .5s;
         -webkit-appearance: none;
     }
-
+    input[type="search"]::placeholder{
+        font-size: 10px;
+    }
     input[type="search"]:focus {
         display: block;
         background: #FFF;
-        width: 115px;
+        width: 120px;
         height: 30px;
         border: 1px solid #CCCCCC;
         -webkit-border-radius: 0px;

@@ -1,6 +1,7 @@
 <div [ngClass]="{'has-border':!isBorder,'no-border':isBorder}" class="filters_content">
     <div class="filters_container">
-        <p class="header">{{'_price' | language_translate}} (руб.)</p>
+        <!-- (руб.) -->
+        <p class="header">{{'_price' | language_translate}} </p>
 
         <div class="inputs-container" display-flex justify-content-space-beetwen>
             <label>
@@ -29,7 +30,7 @@
                         <p-dropdown [options]="item.attributValue" [formControlName]="'att'+item.name" [placeholder]="item.name" optionLabel="value"></p-dropdown>
                     </div> -->
                 <div *ngIf="brands && brands.length>0" class="dropdown_item">
-                    <p-multiSelect [emptyFilterMessage]="'Результаты не найдены'" [options]="brands"
+                    <p-multiSelect [emptyFilterMessage]="translateWords('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')" [options]="brands"
                         formControlName="brand" optionLabel="name"
                         [selectedItemsLabel]="translateWords('Selected {0} options','Выбраны {0} варианта','Ընտրված են {0} տարբերակներ')"
                         [defaultLabel]="translateWords('Brand','Бренд','Ապրանքանիշ')"></p-multiSelect>

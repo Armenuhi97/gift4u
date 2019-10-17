@@ -6,6 +6,7 @@ import { PersonalAreaService } from '../personal-area.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '../../../../services';
 
 @Component({
     selector: 'user-info-view',
@@ -31,6 +32,7 @@ export class UserInfoView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
+        private _translateService: TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
@@ -40,7 +42,9 @@ export class UserInfoView implements OnInit, OnDestroy {
         this._getUser(false);
         this._giftFullFormBuilder()
     }
-
+    public translateWords(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _getUser(isFirst: boolean): void {
         this._loadingService.showLoading();
         this._mainService.getUser().subscribe((data: User) => {
@@ -59,10 +63,10 @@ export class UserInfoView implements OnInit, OnDestroy {
     }
     public getGender(): string {
         if (this._userInfo.gender == 0) {
-            return 'Мужской'
+            return this.translateWords('Male','Мужской','Արական')
         } else {
             if (this._userInfo.gender == 1) {
-                return 'Женский'
+                return this.translateWords('Female','Женский','Իգական')
             }
         }
     }

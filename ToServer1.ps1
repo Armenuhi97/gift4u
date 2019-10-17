@@ -8,7 +8,7 @@
 $env:Path += ";C:\Program Files\nodejs\"
 # npm run build:ssr
 # pause
-# ng build --prod
+ng build --prod
 pause
 winscp.exe annaniks /keepuptodate "C:\Users\Annaniks\Desktop\gift4u\dist" /var/www/giftweb /defaults 
 pause 

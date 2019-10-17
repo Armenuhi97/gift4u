@@ -3,7 +3,7 @@
         <h1 text-align-center class="label">{{'_your_city' | language_translate}}</h1>
         <form [formGroup]="selectCityForm">
             <div class="form_group">
-                <p-dropdown [emptyFilterMessage]="'Результаты не найдены'" [options]="cities" [filter]="true" [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
+                <p-dropdown [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')" [options]="cities" [filter]="true" [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                     formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name"></p-dropdown>
             </div>
             <div class="set_city">

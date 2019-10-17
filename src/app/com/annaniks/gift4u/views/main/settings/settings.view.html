@@ -8,7 +8,7 @@
                     <div #iframe style="width: 100%" [innerHTML]="setting?.map?.description"></div>
                 </div>
                 <div *ngIf="visibleContent" class="form_content">
-                    <app-box [header]="'Обратная связь '">
+                    <app-box [header]="translateWord('Feedback','Обратная связь','Հետադարձ կապ')">
                         <p error *ngIf="error">{{error}}</p>
                         <form [formGroup]="feedBackForm">
                             <div class="form_content">

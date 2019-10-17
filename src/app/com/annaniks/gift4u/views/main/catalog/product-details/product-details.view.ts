@@ -27,7 +27,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _paramsSubscription: Subscription = new Subscription();
     private _mainImage: string = '';
     private _routeSteps = [
-        { label: 'Главная', url: '/', queryParams: {}, status: '' },
+        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
     ];
     private _combinedProducts: CombinedProduct[] = [];
     private _selectedAttributse: { id: string; value: string }[] = []
@@ -50,7 +50,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _productDetailsService: ProductDetailsService,
         private _lightbox: Lightbox,
         private _lightboxEvent: LightboxEvent,
-        private _translateService:TranslateService
+        private _translateService: TranslateService
     ) {
         this._activatedRoute.params.subscribe(params => {
             if (params && params.id) {
@@ -63,8 +63,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._checkProductId();
         this._checkIsFavorite()
     }
-    public translateWord(key1:string,key2:string,key3:string){
-        return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
     private _checkIsFavorite(): void {
         if (this._mainService.isAuthorized) {
@@ -102,7 +102,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _getProductReviews(productId: number) {
         this._loadingService.showLoading();
         this._mainService.getReview(productId).subscribe((data: ServerResponse<Reviews[]>) => {
-            this.reviews = data.messages;            
+            this.reviews = data.messages;
             this._loadingService.hideLoading();
         },
             () => {
@@ -112,7 +112,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _getProduct(id: number): void {
         this._subscription.unsubscribe();
         this._loadingService.showLoading();
-        this._routeSteps = [{ label: 'Главная', url: '/', queryParams: {}, status: '' }];
+        this._routeSteps = [{ label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }];
         this._combinedAttributes = [];
         this._subscription = this._catalogService.getProductById(id).subscribe((data: ServerResponse<ProductFull>) => {
             this._product = data.messages;

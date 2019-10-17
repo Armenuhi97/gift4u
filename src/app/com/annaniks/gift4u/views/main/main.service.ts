@@ -98,7 +98,7 @@ export class MainService {
         })
     }
 
-    public getUserInfo(): User {
+    public getUserInfo(): User {        
         return this._user;
     }
 
