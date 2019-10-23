@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Product } from '../../../models/models';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: '[basketListItem]',
@@ -12,7 +13,7 @@ export class BasketListItemComponent implements OnInit {
     @Output('deleteEvent') private _deleteEvent: EventEmitter<void> = new EventEmitter<void>();
     private _count: number = 1;
 
-    constructor(@Inject('FILE_URL') private _fileUrl: string) { }
+    constructor(@Inject('FILE_URL') private _fileUrl: string, private _translateService:TranslateService) { }
 
     ngOnInit() { }
 
@@ -27,6 +28,9 @@ export class BasketListItemComponent implements OnInit {
         this._basketItem.count--;
     }
 
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
+    }
     public onClickDelete(): void {
         this._deleteEvent.emit();
     }

@@ -403,8 +403,6 @@ export class BasketView implements OnInit {
             })
     }
 
-
-
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
             if (city.region === 3) {

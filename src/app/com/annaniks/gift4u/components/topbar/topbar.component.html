@@ -153,13 +153,12 @@
                 <div margin-right-10>
                     <p-dropdown [options]="languages" >
                         <ng-template let-item pTemplate="selectedItem">
-                            <img [src]="activeLng?.image"
-                                style="width:16px;vertical-align:middle" />
+                            <img [src]="activeLng?.image" class="active_lng_image"/>
                         </ng-template>
                         <ng-template   let-lng pTemplate="languages">
-                            <div (click)="changeLanguage(lng.label)" class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                            <div (click)="changeLanguage(lng.label)" class="ui-helper-clearfix" class="lng_img_container">
                                 <img [src]="lng?.image"
-                                    style="width:24px;position:absolute;top:1px;left:5px" />
+                                    class="all_lng_image" />
                             </div>
                         </ng-template>
                     </p-dropdown>
