@@ -2,13 +2,13 @@
     <div *ngIf="paymentHistory[0]" style="overflow-x:auto">
         <table>
             <tr class="table-header">
-                <th>ЗАКАЗ №</th>
-                <th>ДАТА</th>
-                <th>СУММА</th>
-                <th>ОПЛАТА ДЕНЬГАМИ</th>
-                <th>ОПЛАТА БОНУСАМИ</th>
-                <th>СПОСОБ ОПЛАТЫ</th>
-                <th>СТАТУС</th>
+                <th>{{'_order_number' | language_translate}} №</th>
+                <th>{{'_date' | language_translate}}</th>
+                <th>{{'_sum' | language_translate}}</th>
+                <th>{{'_payment_by_money' | language_translate}}</th>
+                <th>{{'_payment_by_bonuses' |language_translate}}</th>
+                <th>{{'payment_method' | language_translate}}</th>
+                <th>{{'_status' | language_translate}}</th>
             </tr>
             <tr *ngFor="let history of paymentHistory">
                 <td>{{history?.orderId}}</td>

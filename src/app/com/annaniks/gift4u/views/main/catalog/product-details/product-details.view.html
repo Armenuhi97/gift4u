@@ -11,7 +11,7 @@
                 </div>
                 <div class="product_description">
                     <div class="sm_product_data">
-                        <h1 class="product_name">{{product.name}}</h1>
+                        <h1 class="product_name">{{product[getAttributeName('name')]}}</h1>
                         <div align-items-center display-flex justify-conten-space-between>
                             <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
                             <!-- <span class="pr_d">{{product.title}}</span> -->
@@ -37,7 +37,7 @@
                             (mainImageEvent)="handleMainImageEvent($event)"></app-vertical-slider>
                     </div>
                     <div class="product_data">
-                        <h1 class="product_name">{{product.name}}</h1>
+                        <h1 class="product_name">{{product[getAttributeName('name')]}}</h1>
                         <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
 
                         <!-- <span class="pr_d">{{product.title}}</span> -->
@@ -80,10 +80,10 @@
                         <div class="product_price">
 
                             <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? product?.price_with_vat : ''
-                                }} ₽</p>
+                                }} ֏</p>
 
                             <p class="current_price">
-                                {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ₽</p>
+                                {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ֏</p>
                             <span class="disc_text long_text">
                                 {{'_product_return_price_text' | language_translate}}
                             </span>

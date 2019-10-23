@@ -9,7 +9,7 @@ export const LANG_ARM_TRANS = {
     '_busket': 'Զամբյուղ',
     '_enter_request': 'Մուտքագրեք հարցումը',
     '_call_back': 'Պատվիրել հետադարձ զանգ',
-    '_for_the_sum': 'գումարով',
+    '_for_the_sum': 'գումարը կազմում է',
     '_name': 'Անուն',
     '_article': 'Արտիկուլ',
     '_show_all': 'Ցույց տալ բոլորը',
@@ -160,5 +160,16 @@ export const LANG_ARM_TRANS = {
     '_buy_one_click':'Գնել մեկ սեղմումով',
     '_enter_phone_for_call':'Մուտքագրեք համարը եւ մենք ձեզ զանգահարում ենք',
     '_not_found_result':'Ոչ մի արդյունք չի գտնվել',
-    '_choose':'Ընտրել'
+    '_choose':'Ընտրել',
+    '_goods':'Ապրանք',
+    '_discount_price':'Զեղչված գինը',
+    '_quantity':'Քանակը',
+    '_in_cash':'Կանխիկ եղանակով',
+    '_online_on_site':'ԱՌՑԱՆՑ ԿԱՅՔՈՒՄ',
+    '_payment_by_money':'ՎՃԱՐՈՒՄ ԳՈՒՄԱՐՈՎ',
+    '_payment_by_bonuses':'ՎՃԱՐՈՒՄ ԲՈՆՈՒՍՆԵՐՈՎ',
+    '_search_error':'Ձեր հարցումով ոչինչ չի գտնվել',
+    '_message':'Հաղորդագրություն',
+    '_error':'Սխալ',
+    '_send_message_success_message':'Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է'
 };

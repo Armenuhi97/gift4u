@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { Setting, SocialItem } from '../../models/models';
-import { AppService, MenuItemsService } from '../../services';
+import { AppService, MenuItemsService, TranslateService } from '../../services';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -35,11 +35,14 @@ export class FooterComponent implements OnInit {
         @Inject('FILE_URL') private _fileUrl: string,
         private _appService: AppService,
         private _menuItemsService: MenuItemsService,
-        private _router: Router
+        private _router: Router,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() { }
-
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
+    }
     private _filterSettingValues(key: string): Setting {
         let setting: Setting = this._appService.checkPropertyValue(this._settings.filter((element) => element.key === key), 0);
         return setting;

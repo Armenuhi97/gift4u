@@ -93,7 +93,7 @@ export const LANG_EN_TRANS = {
     //busket item
     '_title': 'Title',
     '_price': 'Price',
-    '_count': 'Count',
+    '_count': 'Quantity',
     '_cost': 'Cost',
     //tab item
     '_description': 'Description',
@@ -180,7 +180,21 @@ export const LANG_EN_TRANS = {
     '_enter_phone_for_call':'Enter the number and we will call you back',
     ///
     '_not_found_result':'No Results Found',
-    '_choose':'Choose'
+    '_choose':'Choose',
+    //my orders table
+    '_goods':'Goods',
+    '_discount_price':'DISCOUNT PRICE',
+    '_quantity':'QUANTITY',
+    '_in_cash':'In cash',
+    '_online_on_site':'ONLINE ON THE SITE',
+    //payment history
+    '_payment_by_money':'PAYMENT BY MONEY',
+    '_payment_by_bonuses':'PAYMENT BY BONUSES',
+    '_search_error':'Nothing found on your request',
+    //
+    '_message':'Message',
+    '_error':'Error',
+    '_send_message_success_message':'Your message has been sent successfully'
 
 
 };

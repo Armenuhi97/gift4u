@@ -29,7 +29,7 @@ export class CatalogView implements OnInit {
     public isChangeCategory: boolean = false
     private _previousParentId: number
     private _routeSteps: Breadcrumbs[] = [
-        { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
     ];
 
     constructor(
@@ -38,7 +38,7 @@ export class CatalogView implements OnInit {
         private _titleService: Title,
         private _router: Router,
         private _loadingService: LoadingService,
-        private _translateService:TranslateService
+        private _translateService: TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -48,9 +48,9 @@ export class CatalogView implements OnInit {
             this._isShowFilters = false;
         }
     }
-    public translateWord(key1:string,key2:string,key3:string){
-        return this._translateService.translateImportant(key1,key2,key3)
-     }
+    public translateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _checkQueryParams(): void {
         this._activatedRoute.queryParams.subscribe((params) => {
             if (params && params.parentcategoryid && params.parentcategoryname) {
@@ -67,8 +67,18 @@ export class CatalogView implements OnInit {
                 this._label = (params.categoryname) ? params.categoryname : params.parentcategoryname;
                 this._titleService.setTitle(this._label);
                 this._parentId = params.parentcategoryid;
+                if (params && params.parentcategoryid) {
+                    if (params.categoryid) {
+                        this._categoryId = params.categoryid
+                    } else {
+                        if (params.categoryId) {
+                            this._categoryId = params.categoryId
+                        } else {
+                            this._categoryId = params.parentcategoryid
+                        }
+                    }
+                }
 
-                this._categoryId = (params.parentcategoryid && params.categoryid) ? params.categoryid : params.parentcategoryid;
                 if (params.filter) {
                     this._filters = JSON.parse(params.filter);
                 } else {
@@ -83,21 +93,9 @@ export class CatalogView implements OnInit {
                 this._filters["page"] = this._page - 1
                 this._filters["count"] = this._pageLength
                 this._filters["parentId"] = params.parentcategoryid;
+                this._filters["categoryId"] = (this._categoryId && this._categoryId !== params.parentcategoryid) ? this._categoryId : null
                 this._filterProducts();
                 this._previousParentId = params.parentcategoryid
-                // else {
-                //     this._loadingService.showLoading();
-                //     this._filterProducts();
-                //     // if (this._categoryId !== categoryId) {
-                //     //     this._getProducts(categoryId, categoryId === params.parentcategoryid);
-                //     // } else if (categoryId) {
-                //     //     this._filterProducts();
-                //     //     this._sortProducts(this._sort);
-                //     //     this._setPage(this._page);
-                //     // }
-                //     // this._categoryId = categoryId;
-                // }
-                // this._previusParentId = params.parentcategoryid
             }
             else {
                 this._router.navigate(['/']);
@@ -152,10 +150,10 @@ export class CatalogView implements OnInit {
             let paths: Path[] = data['path'].reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
                 }
             })
             this.isChangeCategory = false
@@ -164,6 +162,9 @@ export class CatalogView implements OnInit {
             () => {
                 this._loadingService.hideLoading()
             })
+    }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
     }
 
     private _filterProducts(): void {
@@ -190,7 +191,7 @@ export class CatalogView implements OnInit {
 
     private _resetProperties(): void {
         this._routeSteps = [
-            { label:this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
+            { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
         ];
         this._label = this._routeSteps[this._routeSteps.length - 1].label
         this._titleService.setTitle(this._label);

@@ -14,19 +14,19 @@
             <a class="item" *ngFor="let item of catalogItems" [class.active_item]="isLinkActive(item)">
                 <div [routerLink]="(activeTab=='catalog') ? '/catalog' : item.routerLink"
                     [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}' class="label">
-                    {{item.name || item.label}}
+                    {{item[getAttributeName('name')] || item.getAttributeName('label')}}
                 </div>
                 <div class="item___overlay">
                     <div *ngFor="let subItem of item.subCategory;let ind = index"
                         [ngStyle]="{width:(100/item.subCategory.length)+'%'}">
                         <p class="sub_label sub_header" [routerLink]="'/catalog'"
                             [queryParams]="getQuerySendObject(item.name,item.id,subItem.name,subItem.id)">
-                            <i display-none class="arrow">&gt;</i>{{subItem?.name}}</p>
+                            <i display-none class="arrow">&gt;</i>{{subItem[getAttributeName('name')]}}</p>
                         <a no-margin class="sub_label" [routerLink]="'/catalog'"
                             [queryParams]="getQuerySendObject(item.name,item.id,subCategoryItem.name,subCategoryItem.id)"
                             [queryParamsHandling]="merge"
                             *ngFor="let subCategoryItem of subItem.subCategory;let ind = index"><span
-                                margin-left-20>{{subCategoryItem?.name}}</span></a>
+                                margin-left-20>{{subCategoryItem[getAttributeName('name')] }}</span></a>
                         <!-- <i class="arrow">&gt;</i> -->
                     </div>
                 </div>

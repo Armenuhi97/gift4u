@@ -31,7 +31,7 @@
                 </div>
                 <div class="form_group">
                     <label>{{'_phone_number' | language_translate}}:</label>
-                    <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
+                    <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                     <span required-field
                         *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">{{'error1' | language_translate}} *</span>
                 </div>

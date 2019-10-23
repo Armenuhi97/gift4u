@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../../views/main/catalog/catalog.models';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MenuItemsService } from '../../../services';
+import { MenuItemsService, TranslateService } from '../../../services';
 
 @Component({
     selector: 'app-category',
@@ -28,7 +28,8 @@ export class CategoryComponent implements OnInit {
     @Output('getSelectsArray') private _selectArr = new EventEmitter;
     private _activeCategory: boolean = false;
 
-    constructor(private _router: Router, private _activatedRoute: ActivatedRoute, private _menuItemsService: MenuItemsService) { }
+    constructor(private _router: Router, private _activatedRoute: ActivatedRoute,
+        private _translateService:TranslateService, private _menuItemsService: MenuItemsService) { }
 
     ngOnInit() {
         if (this._category.subCategory.length) {
@@ -68,8 +69,8 @@ export class CategoryComponent implements OnInit {
                             if (element.id === +params.categoryid) {
                                 flag = true;
                                 element.isActive = true;
-                                
-                            }else{
+
+                            } else {
                                 element.isActive = false
                             }
                             if (element.subCategory) {
@@ -90,6 +91,9 @@ export class CategoryComponent implements OnInit {
 
     public onClickButton(): void {
         this._activeCategory = !this._activeCategory;
+    }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
     }
     private _checkMultyQueryParams() {
         let queryParams = this._activatedRoute.snapshot.queryParams;

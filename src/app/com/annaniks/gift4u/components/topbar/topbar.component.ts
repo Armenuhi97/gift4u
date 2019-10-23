@@ -17,6 +17,22 @@ export class TopbarComponent implements OnInit {
     private _phone_2: string = '';
     private _smallText: string
     private _settings: Setting[] = [];
+    private _activeLng;
+    public languages = [
+        {
+            label: 'en',   
+            image: 'assets/images/en_flag.png'
+        },
+        {
+            label: 'ru',
+            image: 'assets/images/ru_flag.png'
+        },
+        {
+            label: 'arm',            
+            image: 'assets/images/arm_flag.png'
+        },
+
+    ]
     @Input('settings')
     set settings($event) {
         this._settings = $event;
@@ -39,12 +55,20 @@ export class TopbarComponent implements OnInit {
         private _translateService: TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
+        this.getAvtiveLanguage()
         this._checkQueryParams();
     }
 
     ngOnInit() { }
+
     public changeLanguage(lang_key: string) {
         this._translateService.setActiveLng(lang_key)
+    }
+    public getAvtiveLanguage() {
+        let activeLng = this._translateService.getActiveLanguage();
+        this._activeLng = this.languages.filter((data) => {
+            return data.label == activeLng
+        })[0];
     }
     public getTranslateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
@@ -65,6 +89,9 @@ export class TopbarComponent implements OnInit {
             styles['height'] = (window.innerHeight - 50) + 'px'
         }
         return styles
+    }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
     }
     public onClickLogin(): void {
         this._openLoginModal(false);
@@ -197,8 +224,7 @@ export class TopbarComponent implements OnInit {
     get isShowSimilarProducts(): boolean {
         return this._isShowSimilarProducts;
     }
-
-    get menuItems(): MenuItem[] {
+    get menuItems(): MenuItem[] {        
         return this._menuItemsService.getMenuItems();
     }
 
@@ -213,13 +239,15 @@ export class TopbarComponent implements OnInit {
     get isAuthorized(): boolean {
         return this._mainService.isAuthorized();
     }
-    get activeLanguage(){
+    get activeLanguage() {
         return this._translateService.getActiveLanguage()
     }
     get openMenu(): boolean {
         return this._menuItemsService.getOpenMenu();
     }
-
+    get activeLng() {
+        return this._activeLng
+    }
     get city(): string {
         return this._mainService.getUserInfo().cityCountriesName
     }

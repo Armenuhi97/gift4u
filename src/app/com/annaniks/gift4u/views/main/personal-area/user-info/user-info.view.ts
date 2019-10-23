@@ -50,7 +50,7 @@ export class UserInfoView implements OnInit, OnDestroy {
         this._mainService.getUser().subscribe((data: User) => {
             this._loadingService.hideLoading();
             this._userInfo = data;
-            this.defaultImage = this._userInfo.profile_image ? this._fileUrl + this._userInfo.profile_image : '/assets/images/logo.jpg'
+            this.defaultImage = this._userInfo.profile_image ? this._fileUrl + this._userInfo.profile_image : null
             this.uploadIcon = this._userInfo.profile_image ? 'edit' : 'add'
             if (!isFirst) {
                 this._giftFormBuilder();
@@ -72,10 +72,10 @@ export class UserInfoView implements OnInit, OnDestroy {
     }
     public getPhoneNumber(param: string): string {
         if (param) {
-            if (param.startsWith('+7')) {
+            if (param.startsWith('+374')) {
                 return param
             } else {
-                return '+7' + param
+                return '+374' + param
             }
         }
     }

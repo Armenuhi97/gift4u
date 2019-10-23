@@ -4,19 +4,19 @@
             №
         </th>
         <th class="product-header t-head">
-            ТОВАР
+            {{'_goods' | language_translate}}
         </th>
         <th class="t-head">
-            КОЛ-ВО
+            {{'_quantity' | language_translate}}
         </th>
         <th class="t-head">
-            ЦЕНА
+            {{'_price' | language_translate}}
         </th>
         <th>
-            ЦЕНА СО СКИДКОЙ
+           {{'_discount_price' | language_translate}}
         </th>
         <th class="t-head">
-            СУММА
+            {{'_sum' | language_translate}}
         </th>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@
                             {{item?.name}}
                         </p>
                         <p>
-                            <b>АРТИКУЛ: {{item?.sku}}</b>
+                            <b>{{'_article' | language_translate}}: {{item?.sku}}</b>
                         </p>
                     </div>
                 </div>

@@ -53,7 +53,7 @@ export class RegistrationModal implements OnInit {
         this._loginService.registerUser({
             name: this._registrationForm.get('name').value,
             email: this._registrationForm.get('email').value,
-            phone: '+7' + this._registrationForm.get('phone').value,
+            phone: '+374' + this._registrationForm.get('phone').value,
             cityCountryId: this._appService.checkPropertyValue(this._registrationForm.get('city').value, 'id'),
             password: this._registrationForm.get('password').value
         }).subscribe((data: LoginResponse) => {

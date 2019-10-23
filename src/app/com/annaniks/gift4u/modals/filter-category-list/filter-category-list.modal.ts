@@ -94,6 +94,9 @@ export class FilterCategoryListModal {
         styles['min-height'] = (window.innerHeight - 45) + 'px';
         return styles
     }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
+    }
     public closeOtherCategory(ind: number) {
         for (let i = 0; i < this.categotyListName.length; i++) {
             if (i !== ind) {
@@ -342,10 +345,10 @@ export class FilterCategoryListModal {
             let paths: Path[] = data.messages['path'].reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
                 }
             })
             this._loadingService.hideLoading();

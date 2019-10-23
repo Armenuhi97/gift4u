@@ -1,3 +1,5 @@
+import { Banner, Partner, Video } from "../views/main/home/home.models";
+import { Category } from "../views/main/catalog/catalog.models";
 
 export interface RequestParams {
     headers?;
@@ -19,7 +21,19 @@ export interface ServerResponseWithCount<T> {
     messages: T;
     count: number
 }
-
+export interface AllSettings {
+    banner: Banner[];
+    category: Category[]
+    menu: Category[]
+    new: Product[]
+    partners: Partner[]
+    perfumes: ParfumeInfo
+    popular: Product[]
+    productvideos: Video[];
+    settings: Setting[]
+    socialNetworks: SocialItem[]
+    special: Product[]
+}
 export interface LoginResponse {
     access_token: string;
     expires_in: number;
@@ -55,7 +69,8 @@ export class Product {
     productScore: ProductScore[];
     countProduct: string;
     alt: string;
-
+    promoDiscount?:number;
+    discountType?:string
     constructor() {
         this.active = 0;
         this.attribute_set_id = 0;
@@ -83,6 +98,8 @@ export class Product {
         this.productScore = [];
         this.countProduct = '';
         this.alt = '';
+        this.promoDiscount=0;
+        this.discountType=''
     }
 }
 export interface CombinedAttribute {
@@ -313,7 +330,7 @@ export class User {
         this.address = '';
         this.balance = '';
         this.birthday = '';
-        this.cityCountriesName = 'Москва, Россия';
+        this.cityCountriesName = 'Գյումրի';
         this.cityCountryId = 1;
         this.created_at = '';
         this.email = '';

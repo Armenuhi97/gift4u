@@ -20,9 +20,8 @@ export class BasketService {
     public checkVerifyPayment(orderId: string): Observable<any> {
         return this._apiSerivce.get(`/order/${orderId}`)
     }
-
-    public checkPromoCode(promocode: string): Observable<ServerResponse<PromoCode>> {
-        return this._apiSerivce.get(`/cartrule/${promocode}`)
+    public checkPromoCode(promocode: string,idsArray:Array<number>): Observable<ServerResponse<PromoCode>> {
+        return this._apiSerivce.get(`/cartrule/${promocode}?ids=${idsArray}`)
     }
 
     public checkShippingPrice(cityId: number, currerId: number): Observable<ServerResponse<ShippingPrice>> {

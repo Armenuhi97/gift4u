@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { HomeService } from './home.service';
-import { ServerResponse, ParfumeInfo, Product, SocialItem } from '../../../models/models';
+import { ServerResponse, ParfumeInfo, Product, SocialItem, AllSettings } from '../../../models/models';
 import { Banner, Partner, Video } from './home.models';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { LoadingService } from '../../../services/loading.service';
 import { TranslateService } from '../../../services';
+import { MainService } from '../main.service';
 
 @Component({
     selector: 'home-view',
@@ -33,7 +34,8 @@ export class HomeView implements OnInit, OnDestroy {
         @Inject('FILE_URL') public fileUrl: string,
         private _titleService: Title,
         private _loadingService: LoadingService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _mainService:MainService
     ) { }
 
     ngOnInit() {
@@ -44,21 +46,26 @@ export class HomeView implements OnInit, OnDestroy {
     }
 
     private _getHomeData(): void {
+        this._getAllSettings()
+    }
+    private _getAllSettings():void {
         this._loadingService.showLoading();
-        this._subscription = forkJoin(
-            this._getBanners(),
-            this._getProductVideos(),
-            this._getPartners(),
-            this._getMagazineInfo(),
-            this._getProducts('ПОПУЛЯРНЫЕ', 'popular'),
-            this._getProducts('СПЕЦПРЕДЛОЖЕНИЯ', 'special'),
-            this._getProducts('НОВИНКИ', 'new'),
-            this._getSocialItems()
-        ).subscribe(() => {
+        this._mainService.getSettingsAll().subscribe((data:ServerResponse<AllSettings>) => {
+            this.banners = data.messages.banner;
+            this.socialNetworks = data.messages.socialNetworks;
+            this.specialProducts = data.messages.special;
+            this.popularProducts = data.messages.popular;
+            this.newProducts = data.messages.new;
+            this.partners = data.messages.partners;
+            this._videos = data.messages.productvideos;
+            this._videos.forEach((element: Video, index: number) => {
+                element.link = JSON.parse(element.link);
+            })
+            this.magazinInfo = data.messages.perfumes[0];
             this._loadingService.hideLoading();
         },
             () => {
-                this._loadingService.hideLoading()
+                this._loadingService.hideLoading();
             })
     }
     public getTranslateWord(key1: string, key2: string, key3: string) {

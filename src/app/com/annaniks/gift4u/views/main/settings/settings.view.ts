@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { MessageService } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
+import { translate } from '../../../translate-params/translate';
 
 
 @Component({
@@ -81,6 +82,8 @@ export class SettingsView implements OnInit {
             this._setting = setting;
             this._title.setTitle(setting.name);
             if (this._setting.key.toLowerCase() === 'contacts') {
+                console.log(this._settings);
+                
                 let mapSetting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', 'maps'), 0);
                 this._setting.map = mapSetting;
                 this._visibleContent = true;
@@ -99,17 +102,17 @@ export class SettingsView implements OnInit {
 
     private _sendFeedback(): void {
         this._settingService.sendFeedback({
-            phone: '+7' + this._feedbackForm.get('phone').value,
+            phone: '+374' + this._feedbackForm.get('phone').value,
             email: this._feedbackForm.get('email').value,
             name: this._feedbackForm.get('name').value,
             message: this._feedbackForm.get('message').value
         })
             .subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary: 'Сообщение', detail: 'Ваше сообщение успешно отправлено ' })
+                this._messageService.add({ severity: 'success', summary: translate('_message'), detail:translate('_send_message_success_message')})
                 this._loading = false;
             },
                 (error) => {
-                    this._error = 'Ошибка';
+                    this._error = translate('_error');
                 })
     }
 

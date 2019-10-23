@@ -1,6 +1,6 @@
 <div class="discount_content">
     <div class="discount_container" container>
-        <app-box [header]="'СКИДКИ'">
+        <app-box [header]="translateWord('DISCOUNTS','СКИДКИ','ԶԵՂՉԵՐ')">
             <announcement-list>
                 <announcement-list-item *ngFor="let item of discountInfo" [value]="item">
                 </announcement-list-item>

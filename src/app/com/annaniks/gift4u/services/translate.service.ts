@@ -30,9 +30,9 @@ export class TranslateService {
         return this._activeLanguage
     }
     public setActiveLng(lng: string) {
+        window.location.reload();
         this._activeLanguage = lng;
         localStorage.setItem('language_key', JSON.stringify(lng));
-        window.location.reload();
     }
     public translate(key) {
         return DICTIONARY[this._activeLanguage][key]
@@ -50,5 +50,14 @@ export class TranslateService {
             }
 
         }
+    }
+    public getRequestTranslateAttributeName(name: string) {
+        let activeLanguage = this._activeLanguage;
+        if (activeLanguage == 'arm') {
+            return name
+        } else {
+            return name + '_' + activeLanguage
+        }
+
     }
 }

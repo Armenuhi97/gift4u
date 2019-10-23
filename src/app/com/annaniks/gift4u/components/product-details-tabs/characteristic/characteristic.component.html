@@ -4,19 +4,19 @@
     </p>
     <div class="description">
         <div>
-            <span class="description_item bold">{{'brand' | language_translate}}: <span class="">{{characteristicData.brandName}}</span></span>
+            <span class="description_item bold">{{'brand' | language_translate}}: <span >{{characteristicData.brandName}}</span></span>
             <span class="description_item bold"> {{'_brand_country' | language_translate}}: <span
-                class="">{{characteristicData.brandCountryName}}</span></span>
+              >{{characteristicData.brandCountryName}}</span></span>
             <span class="description_item bold"> {{'_manufacture_country' | language_translate}}: <span
-                    class="">{{characteristicData.cityName}}</span></span>
+                    >{{characteristicData.cityName}}</span></span>
             
             <span class="description_item bold" *ngIf="characteristicData.composition"> {{'_composition' | language_translate}}: <span
-                    class="">{{characteristicData?.composition}}</span></span>
+                    >{{characteristicData[getAttributeName('composition')]}}</span></span>
             <span class="description_item bold" *ngIf="characteristicData.weight"> {{'_weight' | language_translate}}: <span
-                    class="">{{characteristicData?.weight}}</span></span>
+                    >{{characteristicData?.weight}}</span></span>
             <span class="description_item" *ngFor="let item of characteristicData.attributeSet"><span
                     *ngIf="item.AttributeProductValue.length>0" class="bold">{{item.name}}:</span>
-                <span class="">{{item.AttributeProductValue[0]?.value}}</span> </span>
+                <span >{{item.AttributeProductValue[0]?.value}}</span> </span>
         </div>
         <img class="brand_image" [src]="fileUrl+'brand/'+characteristicData?.brandImage">
     </div>

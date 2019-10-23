@@ -7,6 +7,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { LoadingService } from '../../../../services/loading.service';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '../../../../services';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class MyOrdersView implements OnInit, OnDestroy {
         private _personalAreaService: PersonalAreaService,
         private _loadingService: LoadingService,
         private _title: Title,
-        private _activatedRoute: ActivatedRoute
+        private _activatedRoute: ActivatedRoute,
+        private _translateService:TranslateService
     ) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }
@@ -45,7 +47,9 @@ export class MyOrdersView implements OnInit, OnDestroy {
     ngOnInit() {
         this._getOrders();
     }
-
+    public translateWord(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
+    }
     private _getOrders(): void {
         this._loadingService.showLoading();
         this._subscription = this._personalAreaService.getUserOrders().subscribe((data: ServerResponse<OrderHistory>) => {

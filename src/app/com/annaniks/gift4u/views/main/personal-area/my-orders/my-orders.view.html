@@ -22,7 +22,9 @@
                     <td class="t-body">{{rowData?.id}}</td>
                     <td class="t-body">{{rowData?.created_at}}</td>
                     <td class="t-body">{{rowData?.total}}</td>
-                    <td class="t-body">{{(rowData?.isCash==1) ? 'НАЛИЧНЫМИ' : 'ОНЛАЙН НА САЙТЕ'}}</td>
+                    <td class="t-body">
+                        {{(rowData?.isCash==1) ?translateWord('In cash','НАЛИЧНЫМИ','Կանխիկ եղանակով'):translateWord('ONLINE ON THE SITE','ОНЛАЙН НА САЙТЕ','ԱՌՑԱՆՑ ԿԱՅՔՈՒՄ')}}
+                    </td>
                     <td class="t-body">{{rowData?.carriersName}}</td>
                     <td class="t-body">{{rowData?.statusName}}</td>
                 </tr>

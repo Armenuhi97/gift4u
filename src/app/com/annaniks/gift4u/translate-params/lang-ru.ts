@@ -17,7 +17,7 @@ export const LANG_RU_TRANS = {
     '_article': 'Артикул',
     '_show_all': 'Показать все',
     '_fast_delivery': 'БЫСТРАЯ ДОСТАВКА',
-    '_individual_approach': ' Индивидуальный подход',
+    '_individual_approach': 'Индивидуальный подход',
     '_payment_method': 'Удобный способ оплаты',
     '_quality': 'оригинальное качество',
     'error1': 'Это обязательное поле',
@@ -100,10 +100,10 @@ export const LANG_RU_TRANS = {
     '_your_email': 'Ваша почта',
     '_advantages': 'Достоинства',
     '_limitations': 'Недостатки',
-    '_comments': 'Մեկնաբանություն',
+    '_comments': 'Комментарии',
     '_admin': 'Админ',
     '_add_comment': 'Добавить Комментарии',
-    '_into_busket': 'Into the basket',
+    '_into_busket': 'В корзину',
     '_reset_filters': 'Сбросить фильтры',
     '_show_options': 'Показать варианты',
     '_from': 'От',
@@ -154,7 +154,20 @@ export const LANG_RU_TRANS = {
     '_buy_one_click':'Купить в один клик',
     '_enter_phone_for_call':'Введите номер и мы вам перезвоним',
     '_not_found_result':'Результаты не найдены',
-    '_choose':'Выберите'
+    '_choose':'Выберите',
+    '_goods':'ТОВАР',
+    '_discount_price':' ЦЕНА СО СКИДКОЙ',
+    '_quantity':'КОЛ-ВО',
+    '_in_cash':'НАЛИЧНЫМИ',
+    '_online_on_site':'ОНЛАЙН НА САЙТЕ',
+    '_payment_by_money':'ОПЛАТА ДЕНЬГАМИ',
+    '_payment_by_bonuses':'ОПЛАТА БОНУСАМИ',
+    '_search_error':'По вашему запросу ничего не найдено',
+    '_message':'Сообщение',
+    '_error':'Ошибка',
+    '_send_message_success_message':'Ваше сообщение успешно отправлено',
+    '_add_to_basket': 'ДОБАВИТЬ В КОРЗИНУ',
+
 
 
 

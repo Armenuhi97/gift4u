@@ -66,6 +66,9 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
     }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
+    }
     private _checkIsFavorite(): void {
         if (this._mainService.isAuthorized) {
             this._productDetailsService.getFavoriteBookmark(this._id).subscribe((data: ServerResponse<boolean>) => {
@@ -134,14 +137,14 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             let paths: Path[] = this._product.path.reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryid: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryid: element.categoryId }, status: '' });
                 }
             })
-            this._setRouteSteps({ label: this._product.name, url: `/catalog/${this._product.id}`, queryParams: {}, status: '' });
-            this._titleService.setTitle(this._product.title);
+            this._setRouteSteps({ label: this._product[this.getAttributeName('name')], url: `/catalog/${this._product.id}`, queryParams: {}, status: '' });
+            this._titleService.setTitle(this._product[this.getAttributeName('title')]);
 
             this._product.combineAttribute.forEach((item: AttributeSet) => {
                 this._combinedAttributes.push({ attribute_id: item.attribute_id, values: [], name: item.name })
@@ -424,7 +427,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         let bonusPrice = 0;
         if (this._mainService.isAuthorized) {
             bonusPrice = (+this._product.price_with_vat * +this._mainService.getUserInfo().percent) / 100;
-        }
+        }        
         return bonusPrice;
 
     }

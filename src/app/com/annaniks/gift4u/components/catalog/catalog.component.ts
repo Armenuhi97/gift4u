@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MenuItemsService } from '../../services';
+import { MenuItemsService, TranslateService } from '../../services';
 import { MenuItem } from '../../models/models';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { MainService } from '../../views/main/main.service';
@@ -22,9 +22,11 @@ export class CatalogComponent implements OnInit {
     private _scroll: boolean = false
     constructor(private _mainService: MainService,
         private _activatedRoute: ActivatedRoute,
-        private _menuItemsService: MenuItemsService, private _router: Router) { }
+        private _menuItemsService: MenuItemsService, private _router: Router,
+        private _translateService: TranslateService
+    ) { }
 
-    ngOnInit() {
+    ngOnInit() {        
         this._checkwindowSize();
         window.addEventListener('scroll', () => {
             let y = window.pageYOffset;
@@ -37,9 +39,11 @@ export class CatalogComponent implements OnInit {
             }
         })
     }
-
+    public getAttributeName(name:string){                
+     return   this._translateService.getRequestTranslateAttributeName(name)
+    }
     private _checkwindowSize(): void {
-        if (window.innerWidth <= 920) {
+        if (window.innerWidth <= 1000) {
             this._isSmallDisplay = true;
             this._menuItemsService.openMenu();
         }
@@ -78,7 +82,7 @@ export class CatalogComponent implements OnInit {
         }
 
     }
-
+   
     get activeTab(): string {
         return this._activeTab;
     }

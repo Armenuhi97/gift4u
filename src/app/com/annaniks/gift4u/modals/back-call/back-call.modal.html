@@ -14,7 +14,7 @@
             </div>
             <div class="form_group">
                 <label>{{'_phone' | language_translate}}</label>
-                <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00"/>
+                <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00"/>
                 <span required-field *ngIf="backCallForm.get('phone').hasError('required') && backCallForm.get('phone').touched">{{'error1'| language_translate}} *</span>
             </div>
             <div class="buttons">

@@ -28,7 +28,7 @@ export class BackCallModal implements OnInit {
         this._loading = true;
         this._mainService.backCall({
             name: this._backCallForm.get('name').value,
-            phone: '+7' + this._backCallForm.get('phone').value
+            phone: '+374' + this._backCallForm.get('phone').value
         }).subscribe((data) => {
             this._loading = false;
             this._errorMessage = undefined;

@@ -18,7 +18,7 @@
                 <p class="header">{{'_about_company' | language_translate}}</p>
                 <p class="items " *ngFor="let item of menuItems" (click)="onClickMenuItem(item)" cursor-pointer>
                     <!-- <span class="arrow">></span> -->
-                    <span class="hover_underline">{{item.label}}</span>
+                    <span class="hover_underline">{{item[getAttributeName('label')]}}</span>
                 </p>
             </div>
             <div class="map_item">
@@ -27,7 +27,7 @@
                     [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}'>
                     <!-- <span class="arrow">></span> -->
                     <span class="hover_underline">
-                        {{item.name}}
+                        {{item[getAttributeName('name')]}}
                     </span>
                 </p>
             </div>

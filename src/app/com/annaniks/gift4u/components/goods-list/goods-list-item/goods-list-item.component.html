@@ -17,7 +17,7 @@
             </div>
             <div class="description" cursor-pointer>
                 <a [routerLink]="'/catalog/'+product?.id" >
-                    <span>{{product?.name | splice_text:80:30}}</span>
+                    <span>{{product[getAttributeName('name')] | splice_text:80:30}}</span>
                 </a>
             </div>
         </div>
@@ -25,10 +25,10 @@
             *ngIf="product?.countProduct!=''">{{(+product.countProduct > 0) ? 'Есть в наличии' : 'Нет в наличии'}}</span> -->
         <div class="info">
             <div class="price">
-                <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat}} ₽</p>
+                <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat}} ֏</p>
                 <p class="current_price">
                     {{(product.specificPrice) ? product?.specificPrice : product?.price_with_vat}}
-                    ₽</p>
+                    ֏</p>
             </div>
             <div class="basket_button">
                 <button (click)="onClickAddBasket()">{{'_into_busket' | language_translate}}</button>

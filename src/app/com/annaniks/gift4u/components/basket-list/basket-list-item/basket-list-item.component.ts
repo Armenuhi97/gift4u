@@ -14,7 +14,7 @@ export class BasketListItemComponent implements OnInit {
 
     constructor(@Inject('FILE_URL') private _fileUrl: string) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     public onClickIncrement(): void {
         this._basketItem.count++;
@@ -43,7 +43,22 @@ export class BasketListItemComponent implements OnInit {
         return this._fileUrl;
     }
 
-    get currentPrice():number{
+    get currentPrice(): number {
         return this._basketItem.count * ((this._basketItem && this._basketItem.specificPrice) ? this._basketItem.specificPrice : +this._basketItem.price_with_vat);
+    }
+    get promocodeDiscountPrice(): number {
+        let currentPrice = this._basketItem.count * ((this._basketItem && this._basketItem.specificPrice) ? this._basketItem.specificPrice : +this._basketItem.price_with_vat)
+        let discountPrice=this._basketItem.discountType == 'Percent - order' ? +currentPrice - +currentPrice * this._basketItem.promoDiscount : +currentPrice - this._basketItem.promoDiscount
+        // return (+currentPrice - +currentPrice * this._basketItem.promoDiscount);
+        return discountPrice
+
+    }
+    get promoPrice() {
+        if (this._basketItem.promoDiscount) {
+            let price = this._basketItem.specificPrice ? this._basketItem.specificPrice : this._basketItem.price_with_vat;
+            let discountPrice = this._basketItem.discountType == 'Percent - order' ? +price - +price * this._basketItem.promoDiscount : +price - this._basketItem.promoDiscount
+            // return +price - +price * this._basketItem.promoDiscount
+            return discountPrice
+        }
     }
 }

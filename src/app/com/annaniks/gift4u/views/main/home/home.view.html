@@ -78,7 +78,7 @@
                     <div class="cont" *ngIf="!isSubscribed">
                         <p class="label">{{'_subscribe_text' | language_translate}}</p>
                         <div class="form_group">
-                            <input type="text" [formControl]="emailFormControl"
+                            <input class="email_input" type="text" [formControl]="emailFormControl"
                                 [placeholder]="getTranslateWord('Enter your email','Введите ваш email','Մուտքագրեք ձեր էլ․հասցեն') " />
                             <button (click)="onClickSubscribe()" [disabled]="emailFormControl.invalid"
                                 [ngClass]="{'disabled':emailFormControl.invalid}"><span>{{'_subscribe' | language_translate}}</span></button>

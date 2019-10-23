@@ -8,14 +8,14 @@
         <form [formGroup]="registrationForm">
             <div display-flex align-items-center class="form_row">
                 <div class="form_group">
-                    <label>{{'_your_name' | language_translate}}</label>
+                    <label>{{'_your_name' | language_translate}}:</label>
                     <input formControlName="name" type="text" />
                     <span required-field
                         *ngIf="registrationForm.get('name').hasError('required') && registrationForm.get('name').touched">{{'error1' | language_translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_phone_number' | language_translate}}</label>
-                    <input type="text" formControlName="phone" prefix="+7" mask="(000) 000 00 00" />
+                    <label>{{'_phone_number' | language_translate}}:</label>
+                    <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                     <span required-field
                         *ngIf="registrationForm.get('phone').hasError('required') && registrationForm.get('phone').touched">{{'error1' | language_translate}} *</span>
                 </div>

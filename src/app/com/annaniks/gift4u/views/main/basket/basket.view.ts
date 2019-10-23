@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShippingPrice, CarrierType, PromoCode } from './basket.models';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from '../../../services/cookie.service';
+import { translate } from '../../../translate-params/translate';
 
 @Component({
     selector: 'basket-view',
@@ -27,7 +28,7 @@ export class BasketView implements OnInit {
     public loading: boolean = false;
     public promoCodeLoading: boolean = false;
     private _promoCodeFormControl = new FormControl(null, Validators.required);
-    private _promoCode: PromoCode;
+    private _promoCode;
     public promoCodeMessage: string;
     public isPromocode: boolean = false;
     private _totalPrice: number;
@@ -43,10 +44,12 @@ export class BasketView implements OnInit {
     public _localShippingInfo: ShippingPrice = {} as ShippingPrice
     public isFreeShipping: boolean = false;
     public codPrice: number = 0;
-    public makeOrderError: string = 'Ошибка';
+    public makeOrderError: string = translate('_error');
     public allAddresses: Addresses[];
+    public isDiscount: boolean = false
     public isRegistration: boolean;
-    private _isHasMainAddress: boolean = false
+    private _isHasMainAddress: boolean = false;
+    private _productIdArray: Array<number> = []
     public paymentMethods = [
         { id: 0, header: 'Оплатить сейчас', under: 'Банковскими картами', percent: 0 },
         { id: 1, header: 'При получении', under: 'Наличными или картой курьеру', percent: 0 },
@@ -66,8 +69,8 @@ export class BasketView implements OnInit {
         private _router: Router,
         private _title: Title,
         private _cookieService: CookieService,
-        @Inject("FILE_URL") private _fileUrl: string,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        @Inject("FILE_URL") private _fileUrl: string
     ) {
         this._checkBasketProducts();
         this._checkQueryParams();
@@ -219,14 +222,11 @@ export class BasketView implements OnInit {
     }
 
     private _setRouteSteps(): void {
-        this._title.setTitle(this.getTranslateWord('Busket', 'Корзина', 'Զամբյուղ'));
+        this._title.setTitle(translate('_busket'));
         this.routeSteps.push(
             { label: this.getTranslateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
-            { label: this.getTranslateWord('Busket', 'Корзина', 'Զամբյուղ'), url: '/basket', queryParams: {}, status: '' }
+            { label: translate('_busket'), url: '/basket', queryParams: {}, status: '' }
         )
-    }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
     }
 
     private _getCarriers(): void {
@@ -235,7 +235,9 @@ export class BasketView implements OnInit {
             this._setVisibleCarriers(this.orderForm.get('city').value);
         })
     }
-
+    public getTranslateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
     private _checkPaymentVerification(orderId: string): void {
         this.isPaymentChecked = false;
         this._basketService.checkVerifyPayment(orderId).subscribe(
@@ -249,12 +251,11 @@ export class BasketView implements OnInit {
                     `Շնորհակալություն ձեր վճարումը հաջողությամբ կատարվել է(Պատվերի համարն է ${data.orderId})`)
                 this.isPaymentChecked = true;
             },
-
             (error) => {
                 this.message = this.getTranslateWord(
                     `Your payment has NOT been made!  (${error.error.data.ErrorMessage})`,
                     `Ваш платеж НЕ совершен! (${error.error.data.ErrorMessage})`,
-                    `Ձեր վճարումը չի կատարվել (${error.error.data.ErrorMessage})`)
+                    `Ձեր վճարումը չի կատարվել (${error.error.data.ErrorMessage})`);
                 this.isPaymentChecked = true;
             })
     }
@@ -265,18 +266,17 @@ export class BasketView implements OnInit {
                 this._localShippingInfo = data.messages;
                 let shippingPrice: ShippingPrice = data.messages;
                 if (shippingPrice.priceForFree && this._totalPrice >= +shippingPrice.priceForFree) {
-                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');
+                    this.shippingMessage = this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');;
                     this.shippingPrice = 0;
                     return;
                 }
                 else if (shippingPrice.price == '0.00') {
-                    this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');
+                    this.shippingMessage = this.getTranslateWord('Free shipping', 'Бесплатная доставка', 'Անվճար առաքում');;
                     this.shippingPrice = 0;
                     return;
                 }
                 else {
-                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ₽`, `Доставка +${+shippingPrice.price} ₽`, `Առաքումը +${+shippingPrice.price} ₽`)
-                        ;
+                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ֏`, `Доставка +${+shippingPrice.price} ֏`, `Առաքումը +${+shippingPrice.price} ֏`)
                     this.shippingPrice = +shippingPrice.price;
 
                 }
@@ -285,8 +285,16 @@ export class BasketView implements OnInit {
     }
 
     public handleDeleteEvent(index: number): void {
+        let deletedProductId = this.basketProducts[index]['id'];
+        if (this._promoCode) {
+            delete this._promoCode[deletedProductId];
+        }
         this.basketProducts.splice(index, 1);
         localStorage.setItem('basket_products', JSON.stringify(this.basketProducts));
+        if (this.isPromocode) {
+            this._calculatePromocodeDiscountPrice()
+
+        }
         this._mainService.checkUserBasketPrice();
     }
 
@@ -317,10 +325,17 @@ export class BasketView implements OnInit {
 
     private _makeOrder(): void {
         this.loading = true;
+        let cartRuleId = '0';
+        for (let id of this._productIdArray) {
+            cartRuleId = this._promoCode[id] ? this._promoCode[id]['id'] : '0';
+            if (cartRuleId !== '0') {
+                break
+            }
+        }
         this._basketService.makeOrder({
             fullName: this._orderForm.get('name').value,
             email: this._orderForm.get('email').value,
-            phone: this._orderForm.get('phone').value.startsWith('+7') ? this._orderForm.get('phone').value : '+7' + this._orderForm.get('phone').value,
+            phone: this._orderForm.get('phone').value.startsWith('+374') ? this._orderForm.get('phone').value : '+374' + this._orderForm.get('phone').value,
             cityCountryId: this._appService.checkPropertyValue(this._orderForm.get('city').value, 'id'),
             address: this._orderForm.get('address').value,
             index: this._orderForm.get('index').value,
@@ -330,7 +345,7 @@ export class BasketView implements OnInit {
             products: this.basketProducts,
             comment: this._orderForm.get('comment').value,
             packeting: (this.isPack) ? '1' : '0',
-            cartRuleId: this._appService.checkPropertyValue(this._promoCode, 'id', "0"),
+            cartRuleId: cartRuleId,
             user_id: (this._mainService.isAuthorized) ? this._mainService.getUserInfo().id : null,
             isBonus: (this._orderForm.get('isBonuce').value) ? this._orderForm.get('isBonuce').value : false,
             isBalance: (this._orderForm.get('isBalance').value) ? this._orderForm.get('isBalance').value : false
@@ -340,13 +355,13 @@ export class BasketView implements OnInit {
                 if (data.error) {
                     this.error = true;
                     //this.makeOrderError = data.message;
-                    this.makeOrderError = this.getTranslateWord(`Please enter a valid email address`, `Введите правильный email`, `Մուտքագրեք վավեր էլփոստի հասցե`)
-
+                    this.makeOrderError = translate('error2')
                     return;
                 }
                 this.error = false;
                 this.messageService.add({
-                    severity: 'success', summary: this.getTranslateWord('Message', 'Сообщение', 'Հաղորդագրություն'), detail: this.getTranslateWord('Thank you! Your order is successfully accepted', 'Спасибо! Ваш заказ успешно принят',
+                    severity: 'success', summary: this.getTranslateWord('Message', 'Сообщение', 'Հաղորդագրություն'),
+                    detail: this.getTranslateWord('Thank you! Your order is successfully accepted', 'Спасибо! Ваш заказ успешно принят',
                         'Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է')
                 })
                 if (data && data.orderId) {
@@ -370,7 +385,6 @@ export class BasketView implements OnInit {
                             this.basketProducts = [];
                             this.orderStep = 1;
                             this.message = this.getTranslateWord(`Thank you! Your order is successfully accepted (Order number - ${data.orderId})`, `Спасибо! Ваш заказ успешно принят (Номер заказа - ${data.orderId})`, `Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է (Պատվերի համարն է ${data.orderId})`)
-
                         }
                     }
                     else {
@@ -389,20 +403,7 @@ export class BasketView implements OnInit {
             })
     }
 
-    private _checkPromoCode(): void {
-        this.promoCodeLoading = true;
-        this._basketService.checkPromoCode(this._promoCodeFormControl.value).subscribe(
-            (data: ServerResponse<PromoCode>) => {
-                this._promoCode = data.messages;
-                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);
-                this.promoCodeLoading = false;
-                this.isPromocode = true;
-            },
-            (error) => {
-                this.promoCodeMessage = this.getTranslateWord('Wrong promo code', 'Неправильный промокод', 'Մուտքագրված է սխալ պրոմոկոդ');
-                this.promoCodeLoading = false;
-            })
-    }
+
 
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
@@ -450,7 +451,15 @@ export class BasketView implements OnInit {
         })
         return price;
     }
-
+    private _checkDiscountPrice(): number {
+        let price: number = 0;
+        let discountPrice = 0
+        this.basketProducts.forEach((element) => {
+            price = element.count * ((element && element.specificPrice) ? +element.specificPrice : +element.price_with_vat)
+            discountPrice += element.promoDiscount ? element.discountType == 'Percent - order' ? +price - +price * +element.promoDiscount : +price - +element.promoDiscount : price
+        })
+        return discountPrice
+    }
     public onClickGetDiscount(): void {
         if (this._promoCodeFormControl.valid && !this.promoCodeLoading && !this.isPromocode) {
             this._checkPromoCode();
@@ -460,7 +469,6 @@ export class BasketView implements OnInit {
     public checkUserBalance(type: string, text: string): string {
         if (this._mainService.isAuthorized && this.orderStep == 2) {
             return (+this._mainService.getUserInfo()[type] < this._fullPrice) ? this.getTranslateWord(`Your ${text}  not enough to pay`, `Ваш  ${text} не достаточно для оплаты`, `Ձեր ${text} բավարար չէ վճարման համար`) : null
-      
         }
     }
 
@@ -484,37 +492,74 @@ export class BasketView implements OnInit {
         // }
         return ''
     }
+    private _checkPromoCode(): void {
+        this._productIdArray = []
+        this.promoCodeLoading = true;
+        let products = localStorage.getItem('basket_products');
 
-    get orderForm(): FormGroup {
-        return this._orderForm;
-    }
-
-    get totalPrice(): number {
-        let totalPrice: number = this._checkBasketPrice();
-        if (this.isPack && !this.isPromocode) {
-            totalPrice = totalPrice + 150;
-        }
-        if (!this.isPromocode) {
-            this._totalPrice = totalPrice;
-            if (this._totalPrice < +this._localShippingInfo.priceForFree) {
-                this.shippingPrice = +this._localShippingInfo.price;
-                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ₽`, `Доставка +${this.shippingPrice} ₽`, `Առաքումը +${this.shippingPrice} ₽`)
-                    ;
+        if (products) {
+            this.basketProducts = JSON.parse(products);
+            for (let product of this.basketProducts) {
+                this._productIdArray.push(product['id'])
             }
-            else {
-                this.shippingPrice = 0;
-                this.shippingMessage = this.getTranslateWord(`Free delivery`, `Бесплатная доставка`, `Անվճար առաքում`)
-            }
-
         }
+        //1111487?ids=316,277,522      
 
-        return totalPrice;
+        this._basketService.checkPromoCode(this._promoCodeFormControl.value, this._productIdArray).subscribe(
+            (data: ServerResponse<PromoCode>) => {
+                this._promoCode = data.messages;
+                this.isPromocode = true;
+                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);
+                this.promoCodeLoading = false;
+                this.isDiscount = true
+
+                this._calculatePromocodeDiscountPrice()
+            },
+            (error) => {
+                this.promoCodeMessage = this.getTranslateWord('Wrong promo code', 'Неправильный промокод', 'Մուտքագրված է սխալ պրոմոկոդ');
+                this.promoCodeLoading = false;
+            })
     }
-
+    private _calculatePromocodeDiscountPrice() {
+        this._checkBasketProducts()
+        let promoCodeLength: number = this.basketProducts.length;
+        let count: number = 0;
+        for (let id of this._productIdArray) {
+            if (this._promoCode[id] == 0) {
+                count++
+            }
+        }
+        if (count == promoCodeLength) {
+            this.isDiscount = false
+        } else {
+            this.isDiscount = true
+            for (let id of this._productIdArray) {
+                let salePrice;
+                let discountType: string;
+                if (this._promoCode[id] !== 0) {
+                    if (this._promoCode[id]['discount_type'] == "Percent - order") {
+                        salePrice = +this._promoCode[id]['reduction_amount'] / 100;
+                        discountType = "Percent - order"
+                    } else {
+                        salePrice = +this._promoCode[id]['reduction_amount'];
+                        discountType = "Amount - order"
+                    }
+                }
+                if (salePrice)
+                    this.basketProducts.forEach((data) => {
+                        if (data['id'] == id) {
+                            data['promoDiscount'] = +salePrice;
+                            data['discountType'] = discountType
+                        }
+                    })
+            }
+        }
+    }
     get discountPrice(): number {
         let totalPrice: number = this._checkBasketPrice();
         if (this.isPromocode) {
-            totalPrice = totalPrice - ((totalPrice * this._appService.checkPropertyValue(this._promoCode, 'reduction_amount')) / 100);
+            totalPrice = this._checkDiscountPrice()
+            // totalPrice = totalPrice - ((totalPrice * this._appService.checkPropertyValue(this._promoCode, 'reduction_amount')) / 100);
         }
         if (this.isPack) {
             totalPrice += 150;
@@ -522,6 +567,31 @@ export class BasketView implements OnInit {
         this._totalPrice = totalPrice;
         return totalPrice;
     }
+    get orderForm(): FormGroup {
+        return this._orderForm;
+    }
+
+    get totalPrice(): number {
+        let totalPrice: number = this._checkBasketPrice();
+        if ((this.isPack && !this.isPromocode) || (this.isPack && !this.isDiscount && this.isPromocode)) {
+            totalPrice = totalPrice + 150;
+        }
+        if (!this.isPromocode || (!this.isDiscount && this.isPromocode)) {
+            this._totalPrice = totalPrice;
+            if (this._totalPrice < +this._localShippingInfo.priceForFree) {
+                this.shippingPrice = +this._localShippingInfo.price;
+                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ֏`, `Доставка +${this.shippingPrice} ֏`, `Առաքումը +${this.shippingPrice} ֏ է`)
+            }
+            else {
+                this.shippingPrice = 0;
+                this.shippingMessage = this.getTranslateWord(`Free delivery`, `Бесплатная доставка`, `Անվճար առաքում`);
+            }
+
+        }
+        return totalPrice;
+    }
+
+
 
     get promoCodeFormControl(): FormControl {
         return this._promoCodeFormControl;
@@ -536,18 +606,18 @@ export class BasketView implements OnInit {
     }
 
     get fullPrice(): string {
-        let price = `${this._totalPrice} ₽`;
+        let price = `${this._totalPrice} ֏`;
         let total = this._totalPrice + this.shippingPrice + this.codPrice;
         if ((this._orderForm.get('payment_method').value == 4 || this._orderForm.get('payment_method').value === 5) && (this._orderForm.get('shipping_method').value == 4 || this._orderForm.get('shipping_method').value == 5) && this._currierInfo) {
             this.codPrice = this._checkBasketPrice() * this._currierInfo.percent / 100;
         }
         if (this.codPrice != 0) {
-            price += ` + ${this.codPrice} ₽`
+            price += ` + ${this.codPrice} ֏`
         }
         if (this.shippingPrice != 0) {
-            price += ` + ${this.shippingPrice} ₽`;
+            price += ` + ${this.shippingPrice} ֏`;
         }
-        price += ` = ${total} ₽`
+        price += ` = ${total} ֏`
         this._fullPrice = this._totalPrice + this.shippingPrice + this.codPrice;
         return price;
     }
@@ -558,7 +628,7 @@ export class BasketView implements OnInit {
         if (this._mainService.isAuthorized()) {
             if (this._mainService.getUserInfo().percent) {
                 bonusPrice = ((this._fullPrice - this.shippingPrice) * +this._mainService.getUserInfo().percent) / 100;
-                message =this.getTranslateWord(`Your bonus: ${bonusPrice} ₽`, `Ваш бонус: ${bonusPrice} ₽`,`Ձեր բոնուսը ${bonusPrice} ₽ է`)
+                message =this.getTranslateWord(`Your bonuse  ${bonusPrice} ֏`,`Your bonus: ${bonusPrice} ֏`,`Ձեր բոնուսը՝ ${bonusPrice} ֏ է`) ;
             }
         }
         return message;
@@ -575,7 +645,7 @@ export class BasketView implements OnInit {
     get payNowPrice(): number {
         let paym = this.orderForm.get('payment_method').value;
         if (paym == 0) {
-            return (this.totalPrice + this.shippingPrice + this.codPrice);
+            return (this.isPromocode ? this.discountPrice + this.shippingPrice + this.codPrice : this.totalPrice + this.shippingPrice + this.codPrice);
         }
         else {
             if (paym == 4 || paym == 5) {
@@ -594,20 +664,21 @@ export class BasketView implements OnInit {
             return 0;
         }
         if (paym == 1) {
-            return this.totalPrice + this.shippingPrice;
+            return this.isPromocode ? this.discountPrice + this.shippingPrice : this.totalPrice + this.shippingPrice;
         }
         else {
             if (paym == 4 || paym == 5) {
                 if (this.shippingPrice == 0) {
-                    return this.totalPrice - 300;
+                    return this.isPromocode ? this.discountPrice - 300 : this.totalPrice - 300;
                 }
-                return this.totalPrice;
+                return this.isPromocode ? this.discountPrice : this.totalPrice;
             }
         }
         return 0;
     }
     get discountPayLaterPrice(): number {
         let laterPrice: number = this.payLaterPrice;
+
         if (this.isPromocode) {
             laterPrice = laterPrice - ((laterPrice * this._appService.checkPropertyValue(this._promoCode, 'reduction_amount')) / 100);
         }

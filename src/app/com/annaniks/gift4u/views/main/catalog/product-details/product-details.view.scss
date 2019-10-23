@@ -105,6 +105,7 @@ app-goods-list-item{
                             }
                             .count{
                                 height: calc(100% - 20px);
+                                margin-top: 5px;
                                 button{
                                     padding:0;
                                     display: flex;
@@ -452,6 +453,7 @@ app-slider{
     .tab_item{
         .label{
             padding: 0 8px !important;
+            font-size: 12px !important;
         }
     }
     .no-padding{

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { DiscountService } from './discount.service';
-import { AppService } from '../../../services';
+import { AppService, TranslateService } from '../../../services';
 import { Announcement, ServerResponse } from '../../../models/models';
 import { Title } from '@angular/platform-browser';
 
@@ -16,15 +16,18 @@ export class DiscountView implements OnInit, OnDestroy {
         @Inject('FILE_URL') private _fileUrl: string,
         private _discountService: DiscountService,
         private _appService: AppService,
-        private _title: Title
+        private _title: Title,
+        private _translateservice:TranslateService
     ) { }
 
 
     ngOnInit() {
-        this._title.setTitle('Скидки');
+        this._title.setTitle(this.translateWord('Discounts','Скидки','Զեղչեր'));
         this._getAnnouncmentType();
     }
-
+    public  translateWord(key1:string,key2:string,key3:string){
+        return this._translateservice.translateImportant(key1,key2,key3)
+    }
     private _getAnnouncmentType(): void {
         this._discountService.getAnnouncmentType().subscribe((data) => {
             let id = this._appService.checkPropertyValue(this._appService.checkPropertyValue(this._appService.filterArray(data.messages, 'name', 'Скидки'), 0), 'id');

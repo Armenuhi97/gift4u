@@ -3,6 +3,7 @@ import { Product, ProductScore } from '../../../models/models';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MainService } from '../../../views/main/main.service';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: 'app-goods-list-item',
@@ -17,13 +18,16 @@ export class GoodsListItemComponent implements OnInit {
         @Inject('FILE_URL') private _fileUrl: string,
         private _router: Router,
         private _titleService: Title,
-        private _mainService: MainService
+        private _mainService: MainService,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
         this._calcProductRating(this._product.productScore)
     }
-
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttributeName(name)
+    }
     private setProductToBasket(product): void {
         product['count'] = 1;
         this._mainService.addProductBasket(product)
