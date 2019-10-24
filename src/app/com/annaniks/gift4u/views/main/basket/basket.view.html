@@ -126,7 +126,7 @@
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="city"
                                             [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
-                                            optionLabel="name"></p-dropdown>
+                                            [optionLabel]="getAttributeName('name')"></p-dropdown>
                                         <span required-field
                                             *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | language_translate}}
                                             *</span>

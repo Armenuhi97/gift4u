@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { MenuItemsService } from '../../services';
+import { MenuItemsService, TranslateService } from '../../services';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { MenuItem } from '../../models/models';
 import { Router } from '@angular/router';
@@ -32,12 +32,15 @@ export class SlideNavComponent implements OnInit {
         private _menuItemsService: MenuItemsService,
         private _router: Router,
         private _mainService: MainService,
-        private _matDialog: MatDialog) { }
+        private _matDialog: MatDialog,
+        private _translateService:TranslateService) { }
 
     ngOnInit() {
         this._checkWindowSize();
     }
-
+    public getAttributeName(obj,name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj,name)
+    }
     public onClickSettings(item: MenuItem) {
         this._router.navigate([item.routerLink]);
         this._menuItemsService.openMenu();

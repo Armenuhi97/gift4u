@@ -79,6 +79,9 @@ export class FiltersComponent implements OnInit, OnDestroy {
     public translateWords(key1:string,key2:string,key3:string){
         return this._translateService.translateImportant(key1,key2,key3)
     }
+    public getAttributeName(name:string){
+        return this._translateService.getRequestTranslateAttribute(name)
+    }
     private _getFilters(): void {
         const combined = forkJoin(
             this._getCities(),

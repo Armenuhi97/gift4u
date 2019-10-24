@@ -24,7 +24,7 @@
                 </div>
                 <div  *ngSwitchCase="'information'">
                     <div class="item" *ngFor="let item of menuItems" (click)="onClickSettings(item)">
-                        {{item.label}}
+                        {{getAttributeName(item,'label')}}
                     </div>
                 </div>
             </div>

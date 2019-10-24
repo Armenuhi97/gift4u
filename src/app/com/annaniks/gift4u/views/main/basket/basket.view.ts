@@ -99,7 +99,7 @@ export class BasketView implements OnInit {
         this._orderForm = this._fb.group({
             allAddress: [''],
             name: ['', Validators.required],
-            phone: ['', [Validators.required, Validators.minLength(10)]],
+            phone: ['', [Validators.required, Validators.minLength(8)]],
             email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
             comment: [''],
             city: [null, Validators.required],
@@ -423,7 +423,9 @@ export class BasketView implements OnInit {
             this._orderForm.get('shipping_method').reset();
         }
     }
-
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttribute(name)
+    }
     private _setVisiblePayMethods(city: CityCountry): void {
         if (city) {
             if (city.region === 3 || city.region === 4) {
@@ -626,7 +628,7 @@ export class BasketView implements OnInit {
         if (this._mainService.isAuthorized()) {
             if (this._mainService.getUserInfo().percent) {
                 bonusPrice = ((this._fullPrice - this.shippingPrice) * +this._mainService.getUserInfo().percent) / 100;
-                message =this.getTranslateWord(`Your bonuse  ${bonusPrice} ֏`,`Your bonus: ${bonusPrice} ֏`,`Ձեր բոնուսը՝ ${bonusPrice} ֏ է`) ;
+                message = this.getTranslateWord(`Your bonuse  ${bonusPrice} ֏`, `Your bonus: ${bonusPrice} ֏`, `Ձեր բոնուսը՝ ${bonusPrice} ֏ է`);
             }
         }
         return message;

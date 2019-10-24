@@ -172,13 +172,13 @@ export class AccountView implements OnInit {
             this._setDay(1, 31)
             let dateArr = this._userInfo.birthday.split('-')
             let selectMonth = this.month.filter((m: Month) => {
-                return m.id == parseInt(dateArr[1])
+                return m.id == +dateArr[1]
             })[0]
             let selectYear = this.years.filter((y: Year) => {
-                return y.year == parseInt(dateArr[2])
+                return y.year == +dateArr[2]
             })[0]
             let selectDay = this.day.filter((d: Day) => {
-                return d.day == parseInt(dateArr[0])
+                return d.day == +dateArr[0]
             })[0]
             this._userForm.patchValue({
                 day: selectDay,
@@ -201,7 +201,9 @@ export class AccountView implements OnInit {
             }
         })
     }
-
+    public getAttributeName(name:string){
+        return this._translateService.getRequestTranslateAttribute(name)
+    }
     private _activateCertificate(): void {
         this._personalAreaService.activateGiftCertificate(
             this._giftForm.value.part1 + this._giftForm.value.part2 + this._giftForm.value.part3 + this._giftForm.value.part4

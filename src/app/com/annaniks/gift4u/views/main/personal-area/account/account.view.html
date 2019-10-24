@@ -43,7 +43,7 @@
                                 <p-dropdown full-width [options]="cities" [filter]="true"
                                  [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name">
+                                    formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" [optionLabel]="getAttributeName('name')">
                                 </p-dropdown>
                                 <!-- <i class="material-icons" (click)="onClickEditField('city')">edit</i> -->
                             </div>

@@ -39,7 +39,7 @@
                     <label>{{'_your_city' | language_translate}}: </label>
                     <p-dropdown [options]="cities"
                         [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
-                        formControlName="city" [placeholder]="translateWords('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" optionLabel="name"></p-dropdown>
+                        formControlName="city" [placeholder]="translateWords('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" [optionLabel]="getAttributeName('name')"></p-dropdown>
                     <span required-field
                         *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">{{'error1' | language_translate}} *</span>
                 </div>

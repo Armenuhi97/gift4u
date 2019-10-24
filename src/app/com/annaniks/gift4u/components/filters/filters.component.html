@@ -5,11 +5,11 @@
 
         <div class="inputs-container" display-flex justify-content-space-beetwen>
             <label>
-                <span>{{'_from' | language_translate}}</span>
+                <span capitalize>{{'_from' | language_translate}}</span>
                 <input type="number" (ngModelChange)="changeMinValue($event)" [(ngModel)]="min">
             </label>
             <label>
-                <span>{{'_to' | language_translate}}</span>
+                <span capitalize>{{'_to' | language_translate}}</span>
                 <input type="number" (ngModelChange)="changeMaxValue($event)" [(ngModel)]="max">
             </label>
         </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="dropdown">
                 <div class="dropdown_item">
-                    <p-multiSelect [showHeader]="false" [options]="cities" formControlName="city" optionLabel="name"
+                    <p-multiSelect [showHeader]="false" [options]="cities" formControlName="city" [optionLabel]="getAttributeName('name')"
                         [selectedItemsLabel]="translateWords('Selected {0} options','Выбраны {0} варианта','Ընտրված են {0} տարբերակներ')" 
                         [defaultLabel]="translateWords('Country','Страна','Երկիր')"></p-multiSelect>
                     <!-- <p-dropdown [options]="cities" formControlName="city" optionLabel="name" placeholder="Страна">
@@ -31,7 +31,7 @@
                     </div> -->
                 <div *ngIf="brands && brands.length>0" class="dropdown_item">
                     <p-multiSelect [emptyFilterMessage]="translateWords('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')" [options]="brands"
-                        formControlName="brand" optionLabel="name"
+                        formControlName="brand" [optionLabel]="getAttributeName('name')"
                         [selectedItemsLabel]="translateWords('Selected {0} options','Выбраны {0} варианта','Ընտրված են {0} տարբերակներ')"
                         [defaultLabel]="translateWords('Brand','Бренд','Ապրանքանիշ')"></p-multiSelect>
                     <!-- <p-dropdown [options]="brands" formControlName="brand" placeholder="Производитель"

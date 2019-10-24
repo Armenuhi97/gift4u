@@ -64,8 +64,10 @@ export class CatalogView implements OnInit {
                     this._sort = params.sort;
                 }
                 this._getCategories(params.parentcategoryid, params.parentcategoryname);
-                this._label = (params.categoryname) ? params.categoryname : params.parentcategoryname;
-                this._titleService.setTitle(this._label);
+                // this._label = (params.categoryname) ? params.categoryname : params.parentcategoryname;
+                // console.log(this.label);
+                
+                // this._titleService.setTitle(this._label);
                 this._parentId = params.parentcategoryid;
                 if (params && params.parentcategoryid) {
                     if (params.categoryid) {
@@ -150,10 +152,10 @@ export class CatalogView implements OnInit {
             let paths: Path[] = data['path'].reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: element[this.getAttributeName('name')], url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
                 }
             })
             this.isChangeCategory = false
@@ -163,8 +165,8 @@ export class CatalogView implements OnInit {
                 this._loadingService.hideLoading()
             })
     }
-    public getAttributeName(name: string) {
-        return this._translateService.getRequestTranslateAttributeName(name)
+    public getAttributeName(obj,name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj,name)
     }
 
     private _filterProducts(): void {

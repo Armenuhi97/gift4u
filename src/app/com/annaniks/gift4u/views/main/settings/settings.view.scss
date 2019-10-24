@@ -111,6 +111,11 @@
         }
     }
 }
+@media only screen and (max-width:550px){
+    .settings_content{
+        margin-bottom: 5px;
+    }
+}
 
 :host ::ng-deep{
     .gmap{

@@ -26,7 +26,7 @@ export class RegistrationModal implements OnInit {
         private _mainService: MainService,
         private _appService: AppService,
         private _cookieService: CookieService,
-        private _translateService:TranslateService
+        private _translateService: TranslateService
     ) { }
 
     ngOnInit() {
@@ -40,13 +40,13 @@ export class RegistrationModal implements OnInit {
         this._registrationForm = this._fb.group({
             name: [null, Validators.required],
             email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$/)]],
-            phone: [null, [Validators.required, Validators.minLength(10)]],
+            phone: [null, [Validators.required, Validators.minLength(8)]],
             city: [null, Validators.required],
             password: ['', Validators.required],
             confirmPassword: ['', Validators.required]
         }, {
-                validator: PasswordValidation.MatchPassword
-            })
+            validator: PasswordValidation.MatchPassword
+        })
     }
 
     private _registerUser(): void {
@@ -71,7 +71,9 @@ export class RegistrationModal implements OnInit {
         )
     }
 
-
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttribute(name)
+    }
     private _getCities(): void {
         this._mainService.getCities().subscribe((data: ServerResponse<CityCountry[]>) => {
             this._cities = data.messages;

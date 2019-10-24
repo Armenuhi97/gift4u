@@ -11,7 +11,7 @@
                 </div>
                 <div class="product_description">
                     <div class="sm_product_data">
-                        <h1 class="product_name">{{product[getAttributeName('name')]}}</h1>
+                        <h1 class="product_name">{{getAttributeName(product,'name')}}</h1>
                         <div align-items-center display-flex justify-conten-space-between>
                             <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
                             <!-- <span class="pr_d">{{product.title}}</span> -->
@@ -37,7 +37,7 @@
                             (mainImageEvent)="handleMainImageEvent($event)"></app-vertical-slider>
                     </div>
                     <div class="product_data">
-                        <h1 class="product_name">{{product[getAttributeName('name')]}}</h1>
+                        <h1 class="product_name">{{getAttributeName(product,'name')}}</h1>
                         <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
 
                         <!-- <span class="pr_d">{{product.title}}</span> -->
@@ -87,8 +87,8 @@
                             <span class="disc_text long_text">
                                 {{'_product_return_price_text' | language_translate}}
                             </span>
-                            <span class="disc_text" *ngIf="isAuthorized" font-weight-bold>{{'_return' | language_translate}} {{bonusPrice}}
-                                руб.
+                            <span class="disc_text" *ngIf="isAuthorized"
+                                font-weight-bold>{{'_return' | language_translate}} {{bonusPrice}} ֏
                                 {{'_back' | language_translate}}</span>
                             <a class="disc_text" href="/settings/club"
                                 font-weight-bold>{{'_more' | language_translate}}</a>

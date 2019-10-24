@@ -11,7 +11,7 @@
                     >{{characteristicData.cityName}}</span></span>
             
             <span class="description_item bold" *ngIf="characteristicData.composition"> {{'_composition' | language_translate}}: <span
-                    >{{characteristicData[getAttributeName('composition')]}}</span></span>
+                    >{{getAttributeName(characteristicData,'composition')}}</span></span>
             <span class="description_item bold" *ngIf="characteristicData.weight"> {{'_weight' | language_translate}}: <span
                     >{{characteristicData?.weight}}</span></span>
             <span class="description_item" *ngFor="let item of characteristicData.attributeSet"><span

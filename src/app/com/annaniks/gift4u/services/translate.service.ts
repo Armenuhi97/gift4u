@@ -1,31 +1,15 @@
 import { Injectable } from "@angular/core";
 import { TransferHttpService } from "@gorniv/ngx-transfer-http";
 import { DICTIONARY } from '../translate-params/dictionary'
+import { AppService } from "./app.service";
 @Injectable()
 export class TranslateService {
     private _activeLanguage: string = JSON.parse(localStorage.getItem('language_key')) ? JSON.parse(localStorage.getItem('language_key')) : 'arm';
-    // public englishWords;
-    // public russianWords;
-    constructor(private _httpClient: TransferHttpService) { }
+
+    constructor(private _httpClient: TransferHttpService,private _appService:AppService) { }
     ngOnInit() {
     }
-    // public getEglish() {
-    //     return this._httpClient.get('assets/files/lang-en.json').pipe(
-    //         map((data) => {
-    //             localStorage.setItem('english', JSON.stringify(data))
-    //             return data
-    //         })
-    //     )
-
-    // }
-    // public getRussian() {
-    //     return this._httpClient.get('assets/files/lang-ru.json').pipe(
-    //         map((data) => {
-    //             localStorage.setItem('russian', JSON.stringify(data))
-    //             return data
-    //         })
-    //     )
-    // }
+   
     public getActiveLanguage() {
         return this._activeLanguage
     }
@@ -51,11 +35,23 @@ export class TranslateService {
 
         }
     }
-    public getRequestTranslateAttributeName(name: string) {
+    public getRequestTranslateAttributeName(object,name: string) {
         let activeLanguage = this._activeLanguage;
+        let attributeName;
         if (activeLanguage == 'arm') {
-            return name
+            attributeName= name;
+            return this._appService.checkPropertyValue(object,attributeName)
         } else {
+            attributeName= name + '_' + activeLanguage
+            return this._appService.checkPropertyValue(object,attributeName)
+        }
+
+    }
+    public getRequestTranslateAttribute(name: string) {
+        let activeLanguage = this._activeLanguage;
+        if (activeLanguage == 'arm') {       
+            return name
+        } else {            
             return name + '_' + activeLanguage
         }
 

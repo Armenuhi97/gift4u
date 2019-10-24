@@ -36,6 +36,9 @@ export class SelectCityModal implements OnInit {
     public getTranslateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
     }
+    getAttributeName(name){
+        return this._translateService.getRequestTranslateAttribute(name)
+    }
 
     private _getCities(): void {
         this._mainService.getCities().subscribe((data: ServerResponse<CityCountry[]>) => {

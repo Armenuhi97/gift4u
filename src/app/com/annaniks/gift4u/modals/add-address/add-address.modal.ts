@@ -23,10 +23,10 @@ export class AddAddressModal {
         private _addressService: ShippingAddressesServices,
         private _fb: FormBuilder,
         private _loadingService: LoadingService,
-        private _translateService:TranslateService
+        private _translateService: TranslateService
     ) { }
     ngOnInit() {
-        this.buttonText = this._data ? this.translateWords('Save','Сохранить','Պահպանել') :  this.translateWords('Add','Добавить','Ավելացնել')
+        this.buttonText = this._data ? this.translateWords('Save', 'Сохранить', 'Պահպանել') : this.translateWords('Add', 'Добавить', 'Ավելացնել')
         this._formBuilder();
         this._getCities();
     }
@@ -37,11 +37,14 @@ export class AddAddressModal {
         this.addressForm = this._fb.group({
             name: [null, Validators.required],
             fullName: [null, Validators.required],
-            phone: [null, [Validators.required, Validators.minLength(10)]],
+            phone: [null, [Validators.required, Validators.minLength(8)]],
             city: [null, Validators.required],
             index: [null, Validators.required],
             address: [null, Validators.required]
         })
+    }
+    public getAttributeName(name: string) {
+        return this._translateService.getRequestTranslateAttribute(name)
     }
     public translateWords(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)

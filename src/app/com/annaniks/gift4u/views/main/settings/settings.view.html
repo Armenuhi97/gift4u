@@ -1,8 +1,8 @@
-<div class="settings_content">
+<div  [class.settings_content]="setting?.key?.toLowerCase()==='contacts'">
     <div class="settings_container" container>
-        <app-box [header]="setting?.name">
+        <app-box [header]="getAttributeName(setting,'name')">
             <div class="container" display-flex>
-                <div class="inner" [innerHTML]="setting?.description" [ngStyle]="{'width':(setting?.key?.toLowerCase()==='contacts')? '50%' : '100%'}">
+                <div class="inner" [innerHTML]="getAttributeName(setting,'description')" [ngStyle]="{'width':(setting?.key?.toLowerCase()==='contacts')? '50%' : '100%'}">
                 </div>
                 <div class="gmap">
                     <div #iframe style="width: 100%" [innerHTML]="setting?.map?.description"></div>

@@ -3,7 +3,7 @@
     <div [ngClass]="{'header_menu':!multiSelect && isMain,'active_category':(activeCategory && !multiSelect &&  isMain)}"
         class="header">
         <span class="label" [ngClass]="{'active_header':(activeCategory && !isMain) }"
-            (click)="onClickCategory(category,isParent)">{{category[getAttributeName('name')]}}</span>
+            (click)="onClickCategory(category,isParent)">{{getAttributeName(category,'name')}}</span>
         <div class="button" [ngClass]="{'active_button':activeCategory,'not-arrow-button':(multiSelect || !isMain)}"
             *ngIf="category.subCategory.length>0" (click)="onClickButton()">
             <span *ngIf="isMain">
@@ -24,7 +24,7 @@
                 <div full-width display-flex align-items-center (click)="onClickCategory(item)" class="subcategory_item"
                     [ngClass]="{'multy_subcategory':multiSelect,'subcategory_item_2':!multiSelect && isMain,
                 'line-height-30':!item.subCategory}">
-                    <span [class.text-underline]="!multiSelect && !isMain">{{item[getAttributeName('name')]}}</span>
+                    <span [class.text-underline]="!multiSelect && !isMain">{{getAttributeName(item,'name')}}</span>
                     <span *ngIf="multiSelect" [class.active]="item.isSelect" class="checkbox"></span>
                 </div>
 
@@ -34,7 +34,7 @@
             </div>
             <div class="third_deep_subcategory" *ngIf="item.isActive">
                 <span class="label category_subcategory" *ngFor="let subcategory of item.subCategory"
-                    (click)="onClickCategory(subcategory)">{{subcategory[getAttributeName('name')]}}</span>
+                    (click)="onClickCategory(subcategory)">{{getAttributeName(subcategory,'name')}}</span>
             </div>
 
         </div>

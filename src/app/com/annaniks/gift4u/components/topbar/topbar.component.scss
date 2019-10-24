@@ -9,7 +9,7 @@
             width: 100%;
             padding:0 10px;
             height: 60px;
-            z-index: 2;
+            z-index: 4;
             background-color: $main-color;
             .icon_small{
                 .basket_count_small{
@@ -381,7 +381,6 @@
     input[type="search"]:focus {
         display: block;
         background: #FFF;
-        width: 88px;
         height: 30px;
         border: 1px solid #CCCCCC;
         -webkit-border-radius: 0px;
@@ -472,10 +471,6 @@
     }
 }
 .basket_count{
-    // font-size: 17px;
-    // font-weight: 800;
-    // margin-top: -9px
-
     min-width: 18px;
     font-size: 11px;
     height: 18px;
@@ -491,13 +486,22 @@
     justify-content: center;
     margin-left: -13px;
 }
-:host::ng-deep{
- 
+:host::ng-deep{ 
     .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item, body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group{
         padding: 0.429em !important;
     }
+     .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight,  .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight{
+        background-color: white;
+    }
+    .ui-dropdown label.ui-dropdown-label{
+        background: black;
+    }
     .ui-dropdown .ui-dropdown-trigger{
-        color: black;
+        color: white;
+        background: black;
+    }
+    .ui-dropdown .ui-dropdown-panel{
+        z-index: 10 !important;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -535,7 +539,7 @@
         font-size: 10px !important
     }
     .work_info{
-        margin-right: 3px !important;
+        margin-right: 5px !important;
     }
   
 }
@@ -586,8 +590,8 @@
         }
     }
     .sm_logo{
-        width: 85px !important;
-        height: 85px !important;
+        width:70px !important;
+        height: 70px !important;
     }
 }
 @media only screen and (max-width: 350px) {
@@ -665,7 +669,7 @@
     margin-bottom: 5px
 }
 *[padding-5]{
-    padding: 5px 5px 5px 10px;
+    padding: 5px;
 }
 *[ margin-bottom-8]{
     margin-bottom: 8px

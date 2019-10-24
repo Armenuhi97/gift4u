@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MenuItemsService } from '../../services/menuItems.service';
 import { MenuItem, Setting, ServerResponse, User, Product, ServerResponseWithCount } from '../../models/models';
 import { MatDialog } from '@angular/material';
@@ -13,14 +13,17 @@ import { AppService, ApiService, TranslateService } from '../../services';
     styleUrls: ['topbar.component.scss']
 })
 export class TopbarComponent implements OnInit {
+    @ViewChild("searchInput", { static: false }) searchEl: ElementRef;
     private _productsCount: number;
     private _phone_2: string = '';
     private _smallText: string
     private _settings: Setting[] = [];
     private _activeLng;
+    public active_lng;
+    private _windowWidth: number;
     public languages = [
         {
-            label: 'en',   
+            label: 'en',
             image: 'assets/images/en_flag.png'
         },
         {
@@ -28,7 +31,7 @@ export class TopbarComponent implements OnInit {
             image: 'assets/images/ru_flag.png'
         },
         {
-            label: 'arm',            
+            label: 'arm',
             image: 'assets/images/arm_flag.png'
         },
 
@@ -38,6 +41,7 @@ export class TopbarComponent implements OnInit {
         this._settings = $event;
         this._setValues();
     }
+
     private _phone: string = '';
     private _workingTime: string = '';
     public search: string;
@@ -59,16 +63,31 @@ export class TopbarComponent implements OnInit {
         this._checkQueryParams();
     }
 
-    ngOnInit() { }
+    ngOnInit() {
 
+    }
+    public focusSearch(event) {
+        if (event) {
+            this._windowWidth = window.innerWidth
+            if (this.searchEl && this.searchEl.nativeElement) {
+                this.searchEl.nativeElement.style.width = (+this._windowWidth - 250) + 'px'
+            }
+        }
+
+    }
+    public blurSearch(event) {
+        if (event) {
+            if (this.searchEl && this.searchEl.nativeElement) {
+                this.searchEl.nativeElement.style.width = 0
+            }
+        }
+    }
     public changeLanguage(lang_key: string) {
         this._translateService.setActiveLng(lang_key)
     }
     public getAvtiveLanguage() {
         let activeLng = this._translateService.getActiveLanguage();
-        this._activeLng = this.languages.filter((data) => {
-            return data.label == activeLng
-        })[0];
+        this._activeLng = this._appService.filterArray(this.languages, 'label', activeLng)[0];
     }
     public getTranslateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
@@ -90,8 +109,8 @@ export class TopbarComponent implements OnInit {
         }
         return styles
     }
-    public getAttributeName(name: string) {
-        return this._translateService.getRequestTranslateAttributeName(name)
+    public getAttributeName(obj, name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
     public onClickLogin(): void {
         this._openLoginModal(false);
@@ -224,7 +243,7 @@ export class TopbarComponent implements OnInit {
     get isShowSimilarProducts(): boolean {
         return this._isShowSimilarProducts;
     }
-    get menuItems(): MenuItem[] {        
+    get menuItems(): MenuItem[] {
         return this._menuItemsService.getMenuItems();
     }
 
@@ -277,5 +296,6 @@ export class TopbarComponent implements OnInit {
     get phone_2(): string {
         return this._phone_2
     }
+
 
 }

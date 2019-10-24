@@ -373,6 +373,13 @@ div{
             }        
         }
     }
+    *[required-field]{
+        font-size: 9px !important;
+    }
+    .email_input::placeholder{
+        font-size: 8px !important;
+    }
+
 }
 @media only screen and (max-width:800px) and (min-width:600px){
     .left{

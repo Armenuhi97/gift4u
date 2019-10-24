@@ -39,8 +39,8 @@ export class CatalogComponent implements OnInit {
             }
         })
     }
-    public getAttributeName(name:string){                
-     return   this._translateService.getRequestTranslateAttributeName(name)
+    public getAttributeName(obj,name:string){                
+     return   this._translateService.getRequestTranslateAttributeName(obj,name)
     }
     private _checkwindowSize(): void {
         if (window.innerWidth <= 1000) {

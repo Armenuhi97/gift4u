@@ -28,8 +28,8 @@ export class BasketListItemComponent implements OnInit {
         this._basketItem.count--;
     }
 
-    public getAttributeName(name: string) {
-        return this._translateService.getRequestTranslateAttributeName(name)
+    public getAttributeName(object,name: string) {
+        return this._translateService.getRequestTranslateAttributeName(object,name)
     }
     public onClickDelete(): void {
         this._deleteEvent.emit();

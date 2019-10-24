@@ -20,7 +20,7 @@ export class BackCallModal implements OnInit {
     private _formBuilder(): void {
         this._backCallForm = this._fb.group({
             name: [null, Validators.required],
-            phone: [null, [Validators.required, Validators.minLength(10)]]
+            phone: [null, [Validators.required, Validators.minLength(8)]]
         })
     }
 

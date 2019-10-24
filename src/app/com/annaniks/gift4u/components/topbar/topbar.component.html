@@ -22,7 +22,7 @@
             <div class="menu_items">
                 <nav class="items">
                     <div *ngFor="let item of menuItems">
-                        <a class="label" [routerLink]="item.routerLink">{{item[getAttributeName('label')]}}</a>
+                        <a class="label" [routerLink]="item.routerLink">{{getAttributeName(item,'label')}}</a>
                     </div>
                     <!-- <span class="label" [routerLink]="'/news'">Новости</span>
                     <span class="label" [routerLink]="'/discounts'">Скидки</span> -->
@@ -72,7 +72,7 @@
                         </form>
                     </div>
                     <div align-items-center display-flex class="work_info">
-                        <div margin-right-10>
+                        <!-- <div margin-right-10>
                             <div class="bottom">
                                 <img src="/assets/images/clock.png" />
                                 <span class="label">{{workingTime}}</span>
@@ -82,7 +82,7 @@
                                 <p class="label" no-margin text-align-center cursor-pointer (click)="onClickButton()">
                                     {{'_call_back' | language_translate}}</p>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <div margin-bottom-8 class="top">
                                 <img src="/assets/images/phone.png" />
@@ -120,7 +120,8 @@
                 <div class="icon_small sm_search search_content">
                     <div class="search_input sm_search_input">
                         <form (ngSubmit)="onClickSearch()" display-flex align-items-center>
-                            <input id="search" type="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"
+                            <input (focus)="focusSearch($event)" (blur)="blurSearch($event)" #searchInput id="search"
+                                type="search" [(ngModel)]="search" (ngModelChange)="onChange($event)"
                                 (keydown)="onKeyPress($event)"
                                 [placeholder]="getTranslateWord('Enter request','Введите запрос','Մուտքագրեք հարցումը')"
                                 [ngModelOptions]="{standalone: true}" />
@@ -151,18 +152,17 @@
 
             <div class="right" display-flex align-items-center>
                 <div margin-right-10>
-                    <p-dropdown [options]="languages" >
+                    <p-dropdown [options]="languages">
                         <ng-template let-item pTemplate="selectedItem">
-                            <img [src]="activeLng?.image" class="active_lng_image"/>
+                            <img [src]="activeLng?.image" class="active_lng_image" />
                         </ng-template>
-                        <ng-template   let-lng pTemplate="languages">
-                            <div (click)="changeLanguage(lng.label)" class="ui-helper-clearfix" class="lng_img_container">
-                                <img [src]="lng?.image"
-                                    class="all_lng_image" />
+                        <ng-template let-lng pTemplate="languages">
+                            <div (click)="changeLanguage(lng.label)" class="ui-helper-clearfix"
+                                class="lng_img_container">
+                                <img [src]="lng?.image" class="all_lng_image" />
                             </div>
                         </ng-template>
                     </p-dropdown>
-
                 </div>
                 <div display-flex align-center margin-right-10 class="icon_small">
                     <div cursor-pointer (click)="onClickPersonalArea()">
@@ -201,73 +201,17 @@
                         <img src="/assets/images/location.png" />
                         <span cursor-pointer class="city_name" (click)="onClickCity()">{{city}}</span>
                     </div>
-                    <div display-flex align-items-center class="location">
+                    <!-- <div display-flex align-items-center class="location">
                         <img class="img-icon" src="/assets/images/Векторный смарт-объект.png" />
                         <span cursor-pointer class="city_name"
                             (click)="onClickButton()">{{'_call_back' | language_translate}}</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <div display-flex align-items-center justify-content-center class="bottom">
+            <!-- <div display-flex align-items-center justify-content-center class="bottom">
                 <span class="woks_time">{{workingTime}}</span>
-            </div>
+            </div> -->
         </div>
 
     </div>
-    <!-- <div class="sm_d_input" container>
-        <div class="search_input">
-            <form full-width display-flex (ngSubmit)="onClickSearch()">
-                <input type="text" [(ngModel)]="search" (keydown)="onKeyPress($event)" placeholder="Введите запрос"
-                    [ngModelOptions]="{standalone: true}">
-                <button bg-transparent border-none>
-                    <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
-                </button>
-            </form>
-        </div>
-    </div>
-    <div class="sm_d_content" container>
-        <div class="menu_button_sm" (click)="onClickMenuButton()">
-            <i class="material-icons">
-                {{(openMenu) ? 'close' : 'menu'}}
-            </i>
-        </div>
-        <div class="work_info">
-            <div class="top">
-                <img src="/assets/images/phone.png" />
-                <a href="tel:{{phone}}" class="label">{{phone}}</a>
-            </div><a href="tel:{{phone}}" class="label">{{phone}}</a>
-            </div>
-            <div class="bottom">
-                <img src="/assets/images/clock.png" />
-                <span class="label">{{workingTime}}</span>
-            </div>
-            <p no-margin font-size-13 text-align-center cursor-pointer (click)="onClickButton()">Заказать
-                обратный звонок</p>
-        </div>
-        <div class="basket" routerLink="/basket" cursor-pointer>
-            <div class="icon">
-                <img src="/assets/images/cart.png" />
-            </div>
-        </div>
-        <div class="search_input">
-            <form (ngSubmit)="onClickSearch()" full-width display-flex>
-                <input type="text" [(ngModel)]="search" placeholder="Введите запрос"
-                    [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
-                <button bg-transparent border-none type="submit">
-                    <img src="/assets/images/search.png" alt="" (click)="onClickSearch()" cursor-pointer>
-                </button>
-                <div class="autocomplete" *ngIf="similarProducts.length>0"
-                    (clickOutside)="onClickedOutside($event)">
-                    <div class="complete_items" *ngFor="let item of similarProducts"
-                        (click)="onClickSimilarProducts(item.productName)">
-                        <img [src]="fileUrl+'products/'+item.productImage">
-                        <div height-fit>
-                            <p class="label"><b>Имя: </b> {{item.productName}}</p>
-                            <p class="label"><b>Артикул: </b>{{item.productArticul}}</p>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
 </header>

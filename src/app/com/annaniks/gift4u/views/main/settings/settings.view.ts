@@ -63,7 +63,7 @@ export class SettingsView implements OnInit {
     private _formBuilder(): void {
         this._feedbackForm = this._fb.group({
             name: [null, Validators.required],
-            phone: [null, [Validators.required, Validators.minLength(10)]],
+            phone: [null, [Validators.required, Validators.minLength(8)]],
             email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
             message: [null, Validators.required]
         })
@@ -80,15 +80,13 @@ export class SettingsView implements OnInit {
         let setting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', this._settingName), 0);
         if (setting) {
             this._setting = setting;
-            this._title.setTitle(setting.name);
-            if (this._setting.key.toLowerCase() === 'contacts') {
-                console.log(this._settings);
-                
+            this._title.setTitle(this.getAttributeName(setting,'name'));
+            if (this._setting.key.toLowerCase() === 'contacts') {          
                 let mapSetting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', 'maps'), 0);
                 this._setting.map = mapSetting;
                 this._visibleContent = true;
                 setTimeout(() => {
-                    this._iframeContent.nativeElement.innerHTML = mapSetting.description;
+                    this._iframeContent.nativeElement.innerHTML =this.getAttributeName(mapSetting,'description');
                 }, 10)
             }
             else {
@@ -99,7 +97,9 @@ export class SettingsView implements OnInit {
             this._router.navigate(['/not-found']);
         }
     }
-
+    public getAttributeName(object,name: string) {
+        return this._translateService.getRequestTranslateAttributeName(object,name)
+    }
     private _sendFeedback(): void {
         this._settingService.sendFeedback({
             phone: '+374' + this._feedbackForm.get('phone').value,

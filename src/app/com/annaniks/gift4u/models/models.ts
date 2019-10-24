@@ -1,5 +1,6 @@
 import { Banner, Partner, Video } from "../views/main/home/home.models";
 import { Category } from "../views/main/catalog/catalog.models";
+import { TranslateService } from "../services";
 
 export interface RequestParams {
     headers?;
@@ -69,8 +70,8 @@ export class Product {
     productScore: ProductScore[];
     countProduct: string;
     alt: string;
-    promoDiscount?:number;
-    discountType?:string
+    promoDiscount?: number;
+    discountType?: string
     constructor() {
         this.active = 0;
         this.attribute_set_id = 0;
@@ -98,8 +99,8 @@ export class Product {
         this.productScore = [];
         this.countProduct = '';
         this.alt = '';
-        this.promoDiscount=0;
-        this.discountType=''
+        this.promoDiscount = 0;
+        this.discountType = ''
     }
 }
 export interface CombinedAttribute {
@@ -323,14 +324,18 @@ export class User {
     updated_at: string;
     basketPrice: number;
     orderSum: number;
-    profile_image:string
+    profile_image: string
 
     constructor() {
         this.active = 0;
         this.address = '';
         this.balance = '';
         this.birthday = '';
-        this.cityCountriesName = 'Գյումրի';
+        if (localStorage.getItem('language_key')) {
+            this.cityCountriesName = JSON.parse(localStorage.getItem('language_key')) == 'arm' ? 'Գյումրի' : JSON.parse(localStorage.getItem('language_key')) == 'ru' ? 'Гюмри' : 'Gyumri';
+        } else {
+            this.cityCountriesName = 'Գյումրի'
+        }
         this.cityCountryId = 1;
         this.created_at = '';
         this.email = '';
@@ -345,7 +350,7 @@ export class User {
         this.updated_at = '';
         this.basketPrice = 0;
         this.orderSum = 0;
-        this.profile_image=''
+        this.profile_image = ''
     }
 }
 export interface Addresses {
@@ -468,8 +473,8 @@ export interface Reviews {
     productId: number
     updated_at: string
     user_id: number
-    isShow?:boolean
-    buttonText:string
-    users:{profile_image:string}
-    
+    isShow?: boolean
+    buttonText: string
+    users: { profile_image: string }
+
 }

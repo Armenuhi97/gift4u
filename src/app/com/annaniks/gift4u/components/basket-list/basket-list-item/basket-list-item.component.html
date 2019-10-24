@@ -1,7 +1,7 @@
 <td>
     <div display-flex align-items-center cursor-pointer [routerLink]="'/catalog/'+basketItem.id">
         <img [src]="fileUrl+'products/'+basketItem?.image" width="auto" height="68px" style="margin-right: 50px" />
-        <p class="name">{{basketItem[getAttributeName('name')]}}</p>
+        <p class="name">{{getAttributeName(basketItem,'name')}}</p>
     </div>
 </td>
 <td>

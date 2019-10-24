@@ -1,7 +1,7 @@
 <div class="description_tab_content">
     <div class="description_tab_container">
         <div class="desc">
-            <div class="article_body" [innerHTML]="descriptionData[getAttributeName('fullDescription')]" none-select>
+            <div class="article_body" [innerHTML]="getAttributeName(descriptionData,'fullDescription')" none-select>
                 <!-- {{descriptionData.description}} -->
             </div>
         </div>
