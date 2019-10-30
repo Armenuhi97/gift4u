@@ -49,6 +49,7 @@ export class BasketView implements OnInit {
     public isDiscount: boolean = false
     public isRegistration: boolean;
     private _isHasMainAddress: boolean = false;
+    private _type:number;
     private _productIdArray: Array<number> = []
     public paymentMethods = [
         { id: 0, header: 'Оплатить сейчас', under: 'Банковскими картами', percent: 0 },
@@ -177,11 +178,31 @@ export class BasketView implements OnInit {
         }
     }
 
-    private _checkBasketProducts(): void {
-        let products = localStorage.getItem('basket_products');
-        if (products) {
-            this.basketProducts = JSON.parse(products);
+    private _checkBasketProducts(): void {        
+        if ( JSON.parse(localStorage.getItem('basket_products'))) {
+            
+            let basket = JSON.parse(localStorage.getItem('basket_products'))
+            if ((this.basketProducts.length !== basket.length)) {
+                if (this.basketProducts.length > basket.length) {
+                    this.basketProducts.forEach((data, i) => {
+                        let index = basket.indexOf(data);
+                        if (index == -1) {
+                            this.basketProducts.splice(i, 1)
+                        }
+                    })
+                }else{
+                    basket.forEach((data)=>{
+                        let index = this.basketProducts.indexOf(data);
+                        if (index == -1) {
+                            this.basketProducts.push(data)
+                        } 
+                    })
+                }
+            }
         }
+        // if (products) {
+        //     this.basketProducts = JSON.parse(products);
+        // }
     }
 
     private _getCities() {
@@ -327,7 +348,7 @@ export class BasketView implements OnInit {
         this.loading = true;
         let cartRuleId = '0';
         for (let id of this._productIdArray) {
-            cartRuleId = this._promoCode[id] ? this._promoCode[id]['id'] : '0';
+            cartRuleId = this._type == 1 ? (this._promoCode['id'] ? this._promoCode['id'] : '0') : (this._promoCode[id] ? this._promoCode[id]['id'] : '0');
             if (cartRuleId !== '0') {
                 break
             }
@@ -444,21 +465,48 @@ export class BasketView implements OnInit {
         }
     }
 
+
     private _checkBasketPrice(): number {
         let price: number = 0;
         this.basketProducts.forEach((element) => {
-            price += element.count * ((element.specificPrice) ? element.specificPrice : +element.price_with_vat);
+            if (!this.isPromocode) {
+                price += element.count * ((element.specificPrice) ? element.specificPrice : +element.price_with_vat);
+            } else {
+                price += element.count * +element.price_with_vat;
+            }
+
         })
         return price;
     }
     private _checkDiscountPrice(): number {
         let price: number = 0;
-        let discountPrice = 0
+        let discountPrice = 0;
+        let promoPrice: number = 0;
         this.basketProducts.forEach((element) => {
-            price = element.count * ((element && element.specificPrice) ? +element.specificPrice : +element.price_with_vat)
-            discountPrice += element.promoDiscount ? element.discountType == 'Percent - order' ? +price - +price * +element.promoDiscount : +price - +element.promoDiscount : price
+            price = element.count * ((element && element.specificPrice) ? +element.specificPrice : 0);
+            promoPrice = element.count * (element.promoDiscount ? element.discountType == 'Percent - order' ?
+                (+element.price_with_vat - +element.price_with_vat * +element.promoDiscount) :
+                +element.price_with_vat - +element.promoDiscount : +element.price_with_vat)
+            if (price) {
+                if ((element.both == 0 || element.both == null) && element.isHaveBoth) {                    
+                    discountPrice += price < promoPrice ? price : promoPrice
+                } else {
+                    if (element.both == 1 ) {
+
+                        discountPrice += element.count * (element.promoDiscount ? element.discountType == 'Percent - order' ?
+                            (+element.specificPrice - +element.specificPrice * +element.promoDiscount) :
+                            +element.specificPrice - +element.promoDiscount : +element.specificPrice);
+                            
+                    } else {
+                        discountPrice += price
+                    }
+                }
+            } else {
+                discountPrice += promoPrice
+            }
+            
         })
-        return discountPrice
+        return +discountPrice.toFixed(2)
     }
     public onClickGetDiscount(): void {
         if (this._promoCodeFormControl.valid && !this.promoCodeLoading && !this.isPromocode) {
@@ -495,21 +543,30 @@ export class BasketView implements OnInit {
     private _checkPromoCode(): void {
         this._productIdArray = []
         this.promoCodeLoading = true;
-        let products = localStorage.getItem('basket_products');
-
-        if (products) {
-            this.basketProducts = JSON.parse(products);
+        if (localStorage.getItem('basket_products')) {
+            let basket = JSON.parse(localStorage.getItem('basket_products'))
+            if (this.basketProducts.length !== basket.length) {
+                if (this.basketProducts.length > basket.length) {
+                    this.basketProducts.forEach((data, i) => {
+                        let index = basket.indexOf(data);
+                        if (index == -1) {
+                            this.basketProducts.splice(i, 1)
+                        }
+                    })
+                }
+            }
+        }
+        if (this.basketProducts) {
             for (let product of this.basketProducts) {
                 this._productIdArray.push(product['id'])
             }
         }
-        //1111487?ids=316,277,522      
-
         this._basketService.checkPromoCode(this._promoCodeFormControl.value, this._productIdArray).subscribe(
             (data: ServerResponse<PromoCode>) => {
                 this._promoCode = data.messages;
+                this._type = data.type
                 this.isPromocode = true;
-                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);
+                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);;
                 this.promoCodeLoading = false;
                 this.isDiscount = true
 
@@ -520,28 +577,21 @@ export class BasketView implements OnInit {
                 this.promoCodeLoading = false;
             })
     }
+
     private _calculatePromocodeDiscountPrice() {
         this._checkBasketProducts()
         let promoCodeLength: number = this.basketProducts.length;
         let count: number = 0;
-        for (let id of this._productIdArray) {
-            if (this._promoCode[id] == 0) {
-                count++
-            }
-        }
-        if (count == promoCodeLength) {
-            this.isDiscount = false
-        } else {
-            this.isDiscount = true
+        let salePrice;
+        let discountType: string;
+        if (this._type == 1) {
             for (let id of this._productIdArray) {
-                let salePrice;
-                let discountType: string;
-                if (this._promoCode[id] !== 0) {
-                    if (this._promoCode[id]['discount_type'] == "Percent - order") {
-                        salePrice = +this._promoCode[id]['reduction_amount'] / 100;
+                if (this._promoCode['reduction_amount'] !== 0) {
+                    if (this._promoCode['discount_type'] == "Percent - order") {
+                        salePrice = +this._promoCode['reduction_amount'] / 100;
                         discountType = "Percent - order"
                     } else {
-                        salePrice = +this._promoCode[id]['reduction_amount'];
+                        salePrice = +this._promoCode['reduction_amount'];
                         discountType = "Amount - order"
                     }
                 }
@@ -549,9 +599,45 @@ export class BasketView implements OnInit {
                     this.basketProducts.forEach((data) => {
                         if (data['id'] == id) {
                             data['promoDiscount'] = +salePrice;
-                            data['discountType'] = discountType
+                            data['discountType'] = discountType;
+                            data['both'] = this._promoCode['both'];
+                            data['isHaveBoth'] = true
                         }
                     })
+            }
+        } else {
+            for (let id of this._productIdArray) {
+                if (this._promoCode[id] == 0) {
+                    count++
+                }
+            }
+            if (count == promoCodeLength) {
+                this.isDiscount = false
+            } else {
+                this.isDiscount = true
+                for (let id of this._productIdArray) {
+                    let salePrice;
+                    let discountType: string;
+                    if (this._promoCode[id] !== 0) {
+                        if (this._promoCode[id]['discount_type'] == "Percent - order") {
+                            salePrice = +this._promoCode[id]['reduction_amount'] / 100;
+                            discountType = "Percent - order"
+                        } else {
+                            salePrice = +this._promoCode[id]['reduction_amount'];
+                            discountType = "Amount - order"
+                        }
+                    }
+
+                    if (salePrice)
+                        this.basketProducts.forEach((data) => {
+                            if (data['id'] == id) {
+                                data['promoDiscount'] = +salePrice;
+                                data['discountType'] = discountType;
+                                data['both'] = this._promoCode[id]['both'];
+                                data['isHaveBoth'] = true
+                            }
+                        })
+                }
             }
         }
     }

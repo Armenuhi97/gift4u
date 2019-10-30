@@ -2,8 +2,8 @@
     <div class="route_step">
         <app-route-step [routes]="routeSteps"></app-route-step>
     </div>
-    <div content *ngIf="isPaymentChecked">
-        <h1 text-align-center>{{message}}</h1>
+    <div content class="message" *ngIf="isPaymentChecked">
+        <h1>{{message}}</h1>
     </div>
     <div content *ngIf="basketProducts && basketProducts.length>0 && isPaymentChecked" class="basket_container">
 
@@ -17,7 +17,9 @@
             <div class="basket_info">
                 <div>
                     <div class="discount">
-                        <input type="text" [placeholder]="getTranslateWord('Enter the discount promo code','Введите промокод скидки','Մուտքագրեք զեղչի պրոմոկոդը')" [formControl]="promoCodeFormControl" />
+                        <input type="text"
+                            [placeholder]="getTranslateWord('Enter the discount promo code','Введите промокод скидки','Մուտքագրեք զեղչի պրոմոկոդը')"
+                            [formControl]="promoCodeFormControl" />
                         <button class="get_discount"
                             [disabled]="promoCodeFormControl.invalid || promoCodeLoading || isPromocode"
                             [ngClass]="{'disabled':promoCodeFormControl.invalid || promoCodeLoading || isPromocode}"
@@ -107,7 +109,8 @@
                                         <label>{{'_main_addresses' | language_translate}}</label>
                                     </div>
                                     <div class="input_container">
-                                        <p-dropdown [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
+                                        <p-dropdown
+                                            [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
                                             [options]="allAddresses" [filter]="true"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="allAddress"
@@ -237,7 +240,7 @@
                                                 {{checkUserBalance('balance','баланс')}}
                                             </p> -->
                                             <p class="under" error *ngIf="userBalance<=0">
-                                               {{'_payment_error' | language_translate}}
+                                                {{'_payment_error' | language_translate}}
                                             </p>
                                         </div>
                                     </div>
@@ -251,7 +254,7 @@
                                         <div class="text_wrapper">
                                             <p class="header">{{'_with_bonus' | language_translate}}</p>
                                             <p class="under">
-                                               {{'_your_bonus' | language_translate}} {{userBonuce}}
+                                                {{'_your_bonus' | language_translate}} {{userBonuce}}
                                             </p>
                                             <p class="under" error *ngIf="userBonuce<=0">
                                                 {{'_bonus_error' |language_translate}}
@@ -304,7 +307,8 @@
     </div>
     <div class="empty_basket"
         *ngIf="((basketProducts && basketProducts.length==0) || !basketProducts) && isPaymentChecked">
-        <h1>{{'_empty_busket' | language_translate}}</h1>
+        <h1>Ваша корзина пуста</h1>
     </div>
+
 
 </div>

@@ -144,6 +144,7 @@ export class FilterCategoryListModal {
         }
         this._router.navigate(['/catalog'], { queryParams: { filter: sendFilter, page: null, }, relativeTo: this._activatedRoute, queryParamsHandling: "merge" })
     }
+
     private compbineObservable(): void {
         const combine = forkJoin(
             this._getBrands(),

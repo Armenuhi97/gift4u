@@ -7,6 +7,7 @@ app-goods-list-item{
 }
 
 .container{
+    
     .wrapper{
         margin-top:25px;
         .product_info{
@@ -62,6 +63,7 @@ app-goods-list-item{
                             margin-bottom: 0;
                             line-height: 24px;
                             text-align: right;
+                            margin: 0.83em 0;
                         }
                         .pr_d{
                             font-size: 15px;
@@ -98,14 +100,15 @@ app-goods-list-item{
                             color:gray;
                             text-align: right;
                         }
+                      
                         .product_count{
                             .label{
                                 font-size: 16px;
                                 font-weight: 500;
                             }
+                           
                             .count{
                                 height: calc(100% - 20px);
-                                margin-top: 5px;
                                 button{
                                     padding:0;
                                     display: flex;
@@ -342,7 +345,9 @@ app-slider{
         flex-direction: column;
         padding: 0 !important;
     }
-    
+    .count{
+        height: calc(100% - 37px) !important;
+    }
     .sm_product_data{
         display: block !important;
         width: 100%;
@@ -352,9 +357,10 @@ app-slider{
            // text-align: center !important;
         }
         .product_name{
-            font-size: 17px;
+            font-size: 17px !important;
             text-align: center;
-            font-weight: bold
+            font-weight: bold;
+            margin: 0.83em 0;        
         }
     }
     .container{

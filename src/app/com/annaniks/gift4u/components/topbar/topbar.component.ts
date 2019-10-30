@@ -63,9 +63,7 @@ export class TopbarComponent implements OnInit {
         this._checkQueryParams();
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
     public focusSearch(event) {
         if (event) {
             this._windowWidth = window.innerWidth

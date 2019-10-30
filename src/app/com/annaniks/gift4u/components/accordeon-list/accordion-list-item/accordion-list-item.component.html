@@ -9,7 +9,7 @@
 <div class="container scroll">
     <div *ngFor="let item of array" (click)="select(item)">
         <span class="item">
-            <span>{{item.name}}</span>
+            <span>{{getAttributeName(item,'name')}}</span>
             <span [class.active]="item.isSelect" class="checkbox"></span>
         </span>
     </div>

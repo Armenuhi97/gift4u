@@ -40,7 +40,7 @@ export const LANG_ARM_TRANS = {
     '_pack_text': 'Փաթեթավորել նվերի փաթեթավորմամբ',
     '_total': 'ԸՆԴԱՄԵՆԸ',
     '_order': 'Պատվիրել',
-    '_pack_sum': 'ռուբլի պատվերին',
+    '_pack_sum': '֏ պատվերին',
     '_contact_entity': 'Կոնտակտային տվյալներ',
     '_full_name': 'ԱԱՀ',
     '_phone': 'Հեռախոսահամար',

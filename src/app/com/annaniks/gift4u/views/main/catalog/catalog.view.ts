@@ -174,23 +174,6 @@ export class CatalogView implements OnInit {
         this._getFiltersProduct(fil)
     }
 
-    private _sortProducts(sort: string): void {
-        switch (sort) {
-            case 'max': {
-                this._fullProducts.sort((a, b) => { return +a.price_with_vat - +b.price_with_vat });
-                break;
-            }
-            case 'min': {
-                this._fullProducts.sort((a, b) => { return +b.price_with_vat - +a.price_with_vat });
-                break;
-            }
-            case 'none': {
-                this._fullProducts.sort((a, b) => { return a.product_id - b.product_id });
-            }
-        }
-
-    }
-
     private _resetProperties(): void {
         this._routeSteps = [
             { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }

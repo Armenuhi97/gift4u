@@ -26,12 +26,12 @@
         </accordion-list>
         <accordion-list (click)="closeOtherCategory(3)" [category]="categotyListName[3]">
             <div class="inputs-container" display-flex align-items-center justify-content-space-beetwen>
-                <label for="">
-                    <span>{{'_from' | language_translate}}</span>
+                <label>
+                    <span capitalize>{{'_from' | language_translate}}</span>
                     <input [(ngModel)]="value" type="number">
                 </label>
-                <label for="">
-                    <span>{{'_to' | language_translate}}</span>
+                <label>
+                    <span capitalize>{{'_to' | language_translate}}</span>
                     <input [(ngModel)]="highValue" type="number">
                 </label>
             </div>

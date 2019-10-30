@@ -35,7 +35,7 @@ export const LANG_RU_TRANS = {
     '_pack_text': 'Упаковать в подарочную упаковку',
     '_total': 'ИТОГО',
     '_order': 'Оформить заказ',
-    '_pack_sum': 'руб к заказу',
+    '_pack_sum': '֏ к заказу',
     '_contact_entity': 'Контактные данные',
     '_full_name': 'ФИО',
     '_phone': 'Телефон',

@@ -15,7 +15,8 @@ export interface MenuItem {
 
 export interface ServerResponse<T> {
     status: number;
-    messages: T
+    messages: T;
+    type?: number;
 }
 export interface ServerResponseWithCount<T> {
     status: number;
@@ -40,7 +41,14 @@ export interface LoginResponse {
     expires_in: number;
     token_type: string;
 }
-
+export interface ProductStatus {
+    created_at: null
+    id: number
+    name: string
+    productId: number
+    statusId: number
+    updated_at: null
+}
 export class Product {
     active: number;
     attribute_set_id: number;
@@ -71,7 +79,10 @@ export class Product {
     countProduct: string;
     alt: string;
     promoDiscount?: number;
-    discountType?: string
+    discountType?: string;
+    both?: number;
+    status: ProductStatus[];
+    isHaveBoth: boolean
     constructor() {
         this.active = 0;
         this.attribute_set_id = 0;
@@ -100,7 +111,10 @@ export class Product {
         this.countProduct = '';
         this.alt = '';
         this.promoDiscount = 0;
-        this.discountType = ''
+        this.discountType = '';
+        this.both = -1;
+        this.status = [];
+        this.isHaveBoth = false
     }
 }
 export interface CombinedAttribute {

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from "../../../services";
 
 @Component({
     selector: 'accordion-list-item',
@@ -19,7 +20,7 @@ export class AccordionListItemComponent {
     @Output('getSelectedParams') private _sendSelectedParams = new EventEmitter;
     @Input('category') private _category: string;
     private _selectArr = []
-    constructor(private _activatedRoute: ActivatedRoute) { }
+    constructor(private _activatedRoute: ActivatedRoute,private _translateService:TranslateService) { }
     ngOnInit(){
         this._checkQueryParams()
     }
@@ -34,6 +35,9 @@ export class AccordionListItemComponent {
                 })
             }
         }
+    }
+    public getAttributeName(obj,name:string){
+        return this._translateService.getRequestTranslateAttributeName(obj,name)
     }
     public select(item) {        
         item.isSelect = !item.isSelect;

@@ -3,9 +3,10 @@
         <p *ngIf="isP" class="label"
             [ngStyle]="{'margin':(headerPosition=='center') ? 'auto':'0 auto 0 0','font-size':(headerLabel && headerLabel.length>33)?'18px':'26px'}">
             {{headerLabel}}</p>
-        <h1 *ngIf="!isP" class="label"
+            <div *ngIf="!isP" class="label"
             [ngStyle]="{'margin':(headerPosition=='center') ? 'auto':'0 auto 0 0','font-size':(headerLabel && headerLabel.length>33)?'18px':'26px'}">
-            {{headerLabel}}</h1>
+            <h1> {{headerLabel}}</h1>
+        </div>
         <div class="line"></div>
         <div class="search_bar" *ngIf="searchVisible">
             <div align-items-center display-flex justify-content-space-beetwen class="search_input">

@@ -2,6 +2,10 @@ app-goods-list-item{
     width: 25% !important;
     padding:0.5em;
 }
+.brand_name{
+    font-weight: bold;
+    font-size: 1.5em;
+}
 @media only screen and(max-width:920px){
     .brand_details_content{
         border-top: 1px solid #d2d2d2;

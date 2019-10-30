@@ -17,6 +17,8 @@ let mainRoutes: Routes = [
             { path: 'news', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/news/news.module').then(m => m.NewsModule) },
             { path: 'discounts', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/discount/discount.module').then(m => m.DiscountModule) },
             { path: 'settings/:settingname', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/settings/settings.module').then(m => m.SettingsModule) },
+            { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+            { path: 'not-found', loadChildren: () => import('src/app/com/annaniks/gift4u/views/not-found/not-found.module').then(m => m.NotFoundModule) },
         ]
     },
 ]

@@ -152,7 +152,7 @@
 
             <div class="right" display-flex align-items-center>
                 <div margin-right-10>
-                    <p-dropdown [options]="languages">
+                    <p-dropdown [options]="languages" [(ngModel)]="active_lng">
                         <ng-template let-item pTemplate="selectedItem">
                             <img [src]="activeLng?.image" class="active_lng_image" />
                         </ng-template>

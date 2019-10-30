@@ -4,7 +4,10 @@
             <app-route-step [routes]="routeSteps"></app-route-step>
         </div>
         <div class="brand_info" *ngIf="brandInfo">
-            <h1 text-align-center>{{brandInfo?.name}}</h1>
+            <div class="brand_name" text-align-center>
+                <h1>{{brandInfo?.name}}</h1>
+            </div>
+
             <div class="info_content">
                 <img class="img" [src]="fileUrl+'brand/'+brandInfo?.image">
                 <span class="title" [innerHTML]="brandInfo?.title" [ngClass]="{'show':showMore}" none-select></span>

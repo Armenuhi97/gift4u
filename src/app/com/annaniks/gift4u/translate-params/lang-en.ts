@@ -40,7 +40,7 @@ export const LANG_EN_TRANS = {
     '_pack_text': 'Pack in gift box',
     '_total': 'TOTAL',
     '_order': 'To do order',
-    '_pack_sum': 'RUB to order',
+    '_pack_sum': '֏ to order',
     '_contact_entity': 'Contact details',
     '_full_name': 'Full Name',
     '_phone': 'Phone',

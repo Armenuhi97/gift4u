@@ -11,7 +11,10 @@
                 </div>
                 <div class="product_description">
                     <div class="sm_product_data">
-                        <h1 class="product_name">{{getAttributeName(product,'name')}}</h1>
+                        <div class="product_name">
+                            <h1>{{getAttributeName(product,'name')}}h1>
+                        </div>
+
                         <div align-items-center display-flex justify-conten-space-between>
                             <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
                             <!-- <span class="pr_d">{{product.title}}</span> -->
@@ -37,7 +40,9 @@
                             (mainImageEvent)="handleMainImageEvent($event)"></app-vertical-slider>
                     </div>
                     <div class="product_data">
-                        <h1 class="product_name">{{getAttributeName(product,'name')}}</h1>
+                        <div class="product_name">
+                            <h1>{{getAttributeName(product,'name')}}h1>
+                        </div>
                         <span class="product_id">{{'_article' | language_translate}}: <b>{{product.sku}}</b></span>
 
                         <!-- <span class="pr_d">{{product.title}}</span> -->

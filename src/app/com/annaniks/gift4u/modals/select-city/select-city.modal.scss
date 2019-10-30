@@ -1,5 +1,10 @@
 @import 'src/app/com/annaniks/styles/variables.scss';
-
+.label{
+    font-weight: bold;
+    text-align: center;
+    font-size: 2em;
+    margin: 0.83em 0;
+}
 .set_city{
     padding-top:19px;
     button{
