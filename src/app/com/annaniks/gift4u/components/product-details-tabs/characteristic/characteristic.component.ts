@@ -22,4 +22,7 @@ export class CharacteristicTabComponent implements OnInit {
     get characteristicData() {
         return this._characteristicData;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

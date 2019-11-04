@@ -1,15 +1,15 @@
 <div class="announcement_content">
-    <div class="announcement_container" container>
-        <div class="annoucement_info">
-            <div class="title" text-align-center>
-                <h1>{{announcementInfo?.title}}</h1>
-            </div>
-            <div class="info_content">
-                <img class="img" [src]="fileUrl+'hhh/'+announcementInfo?.image">
-                <span class="title" [innerHTML]="announcementInfo?.fullDescription" [ngClass]="{'show':showMore}"
-                    none-select></span>
-                <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
+        <div class="announcement_container" container>
+            <div class="annoucement_info">
+                <div class="title main_title">
+                    <h1>{{announcementInfo?.title}}</h1>
+                </div>
+                <div class="info_content">
+                    <img class="img" alt="" [src]="fileUrl+'hhh/'+announcementInfo?.image">
+                    <span class="title" [innerHTML]="announcementInfo?.fullDescription" [ngClass]="{'show':showMore}"
+                        none-select></span>
+                    <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
+                </div>
             </div>
         </div>
     </div>
-</div>

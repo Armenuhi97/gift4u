@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CombinedAttribute } from '../../models/models';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: "app-product-attribute",
@@ -21,7 +22,7 @@ export class ProductAttributeComponent implements OnInit {
     }
     @Output('selectAttribute') private _selectAttribute = new EventEmitter();
 
-    constructor() { }
+    constructor(private _translateService:TranslateService) { }
 
     ngOnInit() { }
 
@@ -53,5 +54,8 @@ export class ProductAttributeComponent implements OnInit {
 
     get attrCondition():boolean{
         return (this._attribute.name.toLowerCase() != 'цвет')
+    }
+    get language(){
+        return this._translateService.getActiveLanguage()
     }
 }

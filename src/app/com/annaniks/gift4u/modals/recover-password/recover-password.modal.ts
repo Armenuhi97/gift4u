@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MainService } from '../../views/main/main.service';
 import { MatDialogRef } from '@angular/material';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: 'recover-password-modal',
@@ -12,7 +13,8 @@ export class RecoverPasswordModal implements OnInit {
     private _recoverPassForm: FormGroup;
     private _isSended: boolean = false;
 
-    constructor(private _dialogRef: MatDialogRef<RecoverPasswordModal>, private _fb: FormBuilder, private _mainService: MainService) { }
+    constructor(private _dialogRef: MatDialogRef<RecoverPasswordModal>, private _fb: FormBuilder, private _mainService: MainService,
+        private _translateService:TranslateService) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -44,7 +46,9 @@ export class RecoverPasswordModal implements OnInit {
     get recoverPassForm(): FormGroup {
         return this._recoverPassForm;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get isSended(): boolean {
         return this._isSended;
     }

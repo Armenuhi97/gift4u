@@ -69,7 +69,9 @@ export class MyOrdersView implements OnInit, OnDestroy {
     get fileUrl(): string {
         return this._fileUrl;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     ngOnDestroy() {
         this._subscription.unsubscribe();
     }

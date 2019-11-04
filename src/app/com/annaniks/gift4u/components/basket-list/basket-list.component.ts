@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: 'app-basket-list',
@@ -7,8 +8,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 })
 export class BastketListComponent implements OnInit {
-    
-    constructor(){}
 
-    ngOnInit(){}
+    constructor(private _translateService: TranslateService) { }
+    get language() {
+        return this._translateService.getActiveLanguage()
+    }
+    ngOnInit() { }
 }

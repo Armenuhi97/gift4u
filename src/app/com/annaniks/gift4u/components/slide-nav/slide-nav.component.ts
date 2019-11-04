@@ -101,7 +101,9 @@ export class SlideNavComponent implements OnInit {
     get slideNavItems(): Category[] {
         return this._slideNavItems;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get visiblity(): boolean {
         return this._visiblity;
     }

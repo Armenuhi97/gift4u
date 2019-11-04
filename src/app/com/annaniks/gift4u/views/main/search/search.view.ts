@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from './search.service';
 import { Product, ServerResponse } from '../../../models/models';
 import { LoadingService } from '../../../services/loading.service';
+import { TranslateService } from '../../../services';
 
 @Component({
     selector: 'search-view',
@@ -21,7 +22,8 @@ export class SearchView implements OnInit, OnDestroy {
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _searchService: SearchService,
-        private _loadingService: LoadingService
+        private _loadingService: LoadingService,
+        private _translateService:TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -71,6 +73,8 @@ export class SearchView implements OnInit, OnDestroy {
         if ($event.isArrow)
             this._router.navigate([], { relativeTo: this._activatedRoute, queryParams: { page: $event.pageNumber }, queryParamsHandling: 'merge' })
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     ngOnDestroy() { }
 }

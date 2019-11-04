@@ -76,4 +76,7 @@ export class GoodsListItemComponent implements OnInit {
     get productRating(): number {
         return this._productRating
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

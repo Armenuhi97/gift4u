@@ -221,6 +221,9 @@ export class FiltersComponent implements OnInit, OnDestroy {
     get isBorder(): boolean {
         return this._isBorder;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     ngOnDestroy() {
         this._subscription.unsubscribe();
     }

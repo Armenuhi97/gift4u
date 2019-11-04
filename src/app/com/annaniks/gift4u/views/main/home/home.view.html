@@ -13,7 +13,7 @@
                             <img src="/assets/images/carV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            {{'_fast_delivery' | language_translate}}
+                            {{'_fast_delivery' | language_translate:language}}
                         </div>
                     </div>
                     <div class="item">
@@ -21,7 +21,7 @@
                             <img src="/assets/images/humanV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            {{'_individual_approach' | language_translate}}
+                            {{'_individual_approach' | language_translate:language}}
                         </div>
                     </div>
                     <div class="item">
@@ -29,7 +29,7 @@
                             <img src="/assets/images/moneyV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            {{'_payment_method' | language_translate }}
+                            {{'_payment_method' | language_translate:language }}
                         </div>
                     </div>
                     <div class="item">
@@ -37,7 +37,7 @@
                             <img src="/assets/images/prizeV.png" width="64px" height="64px">
                         </div>
                         <div class="label">
-                            100% {{'_quality' | language_translate}}
+                            100% {{'_quality' | language_translate:language}}
                         </div>
                     </div>
                 </div>
@@ -76,29 +76,29 @@
             <div display-flex class="blocks">
                 <div class="left">
                     <div class="cont" *ngIf="!isSubscribed">
-                        <p class="label">{{'_subscribe_text' | language_translate}}</p>
+                        <p class="label">{{'_subscribe_text' | language_translate:language}}</p>
                         <div class="form_group">
                             <input class="email_input" type="text" [formControl]="emailFormControl"
                                 [placeholder]="getTranslateWord('Enter your email','Введите ваш email','Մուտքագրեք ձեր էլ․հասցեն') " />
                             <button (click)="onClickSubscribe()" [disabled]="emailFormControl.invalid"
-                                [ngClass]="{'disabled':emailFormControl.invalid}"><span>{{'_subscribe' | language_translate}}</span></button>
+                                [ngClass]="{'disabled':emailFormControl.invalid}"><span>{{'_subscribe' | language_translate:language}}</span></button>
                         </div>
                         <span required-field
-                            *ngIf="emailFormControl.hasError('required') && emailFormControl.touched">{{'error1' | language_translate}}
+                            *ngIf="emailFormControl.hasError('required') && emailFormControl.touched">{{'error1' | language_translate:language}}
                             *</span>
                         <span required-field
-                            *ngIf="emailFormControl.hasError('email') && emailFormControl.touched">{{'error2' | language_translate}}
+                            *ngIf="emailFormControl.hasError('email') && emailFormControl.touched">{{'error2' | language_translate:language}}
                             *</span>
                     </div>
                     <div class="cont" *ngIf="isSubscribed">
-                        <p class="label">{{'success' | language_translate}}</p>
+                        <p class="label">{{'success' | language_translate:language}}</p>
                     </div>
                 </div>
                 <div class="right">
                     <div class="cont">
                         <div class="labels_wrapper">
-                            <p class="label">{{'_join' | language_translate}}</p>
-                            <span class="under">{{'_social_media' | language_translate}}</span>
+                            <p class="label">{{'_join' | language_translate:language}}</p>
+                            <span class="under">{{'_social_media' | language_translate:language}}</span>
                         </div>
                         <div class="social_items">
                             <div class="social_item" *ngFor="let item of socialNetworks"

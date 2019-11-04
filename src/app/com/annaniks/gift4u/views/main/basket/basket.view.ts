@@ -770,4 +770,7 @@ export class BasketView implements OnInit {
         }
         return laterPrice;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

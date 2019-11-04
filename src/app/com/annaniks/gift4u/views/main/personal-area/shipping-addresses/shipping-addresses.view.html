@@ -21,12 +21,12 @@
         </caption>
         <thead>
             <tr *ngIf="address.showOrHide">
-                <th uppercase>{{'_address_name' | language_translate}}</th>
-                <th uppercase>{{'_full_name' | language_translate}}</th>
-                <th uppercase>{{'_phone' | language_translate}}</th>
-                <th uppercase>{{'_index' | language_translate}}</th>
-                <th uppercase>{{'_city' | language_translate}}</th>
-                <th uppercase>{{'_address' | language_translate}}</th>
+                <th uppercase>{{'_address_name' | language_translate:language}}</th>
+                <th uppercase>{{'_full_name' | language_translate:language}}</th>
+                <th uppercase>{{'_phone' | language_translate:language}}</th>
+                <th uppercase>{{'_index' | language_translate:language}}</th>
+                <th uppercase>{{'_city' | language_translate:language}}</th>
+                <th uppercase>{{'_address' | language_translate:language}}</th>
             </tr>
         </thead>
         <tbody>
@@ -52,8 +52,8 @@
             </tr>
         </tbody>
     </table>
-    <button (click)="selectMainAddress(address)" [disabled]="address.status == true" class="button select">{{'_select_main_address' | language_translate}}</button>
+    <button (click)="selectMainAddress(address)" [disabled]="address.status == true" class="button select">{{'_select_main_address' | language_translate:language}}</button>
 </div>
 <div class="add">
-    <button cursor-pointer (click)="addAddress()" class="button">{{'_add_new_shipping_address' | language_translate}}</button>
+    <button cursor-pointer (click)="addAddress()" class="button">{{'_add_new_shipping_address' | language_translate:language}}</button>
 </div>

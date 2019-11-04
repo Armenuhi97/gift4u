@@ -153,6 +153,9 @@ export class HomeView implements OnInit, OnDestroy {
             this._subscribeEmail(this.emailFormControl.value);
         }
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 
     ngOnDestroy() {
         this._subscription.unsubscribe();

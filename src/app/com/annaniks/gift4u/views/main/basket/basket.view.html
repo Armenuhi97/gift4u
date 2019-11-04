@@ -24,12 +24,12 @@
                             [disabled]="promoCodeFormControl.invalid || promoCodeLoading || isPromocode"
                             [ngClass]="{'disabled':promoCodeFormControl.invalid || promoCodeLoading || isPromocode}"
                             (click)="onClickGetDiscount()">
-                            {{'_get_sale' | language_translate}}</button>
+                            {{'_get_sale' | language_translate:language}}</button>
                     </div>
                     <span display-block full-width
                         [ngStyle]="{'color':(isPromocode) ? 'green' : 'red','font-size':'13px'}">{{promoCodeMessage}}</span>
                     <span display-block required-field
-                        *ngIf="promoCodeFormControl.hasError('required') && promoCodeFormControl.touched">{{'error1' | language_translate}}
+                        *ngIf="promoCodeFormControl.hasError('required') && promoCodeFormControl.touched">{{'error1' | language_translate:language}}
                         *</span>
                 </div>
                 <div class="isPackContainer">
@@ -40,18 +40,18 @@
                         </label>
                     </div>
                     <div class="center" (click)="onClickisPack()">
-                        <div class="top">{{'_pack_text' | language_translate}}</div>
-                        <div class="bottom">(+150 {{'_pack_sum' | language_translate}})</div>
+                        <div class="top">{{'_pack_text' | language_translate:language}}</div>
+                        <div class="bottom">(+150 {{'_pack_sum' | language_translate:language}})</div>
                     </div>
                 </div>
-                <p>{{'_total' | language_translate}}: <span [ngClass]="{'discount_price':isPromocode}">{{totalPrice}}
+                <p>{{'_total' | language_translate:language}}: <span [ngClass]="{'discount_price':isPromocode}">{{totalPrice}}
                         ֏</span>
                     <span *ngIf="isPromocode"> - {{discountPrice}} ֏</span>
                 </p>
             </div>
             <div class="make_order" *ngIf="orderStep!=2">
                 <button (click)="onClickMakeOrder()">
-                    <span>{{'_order' | language_translate}}</span>
+                    <span>{{'_order' | language_translate:language}}</span>
                 </button>
             </div>
         </app-box>
@@ -59,45 +59,45 @@
             <p error text-align-center *ngIf="error">{{makeOrderError}}</p>
             <div class="order_container">
                 <form [formGroup]="orderForm">
-                    <p class="label">{{'_contact_entity' | language_translate}}</p>
+                    <p class="label">{{'_contact_entity' | language_translate:language}}</p>
                     <div>
                         <div class="make_order_form" align-items-center display-flex>
                             <div class="left">
                                 <div class="form_group">
                                     <div class="label_wrapper_left">
-                                        <label>{{'_full_name' | language_translate}}</label>
-                                        <p class="req_message">{{'_necessarily' | language_translate}}</p>
+                                        <label>{{'_full_name' | language_translate:language}}</label>
+                                        <p class="req_message">{{'_necessarily' | language_translate:language}}</p>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="name" />
                                         <span required-field
-                                            *ngIf="orderForm.get('name').hasError('required') && orderForm.get('name').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('name').hasError('required') && orderForm.get('name').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_left ">
-                                        <label>{{'_phone' | language_translate}}</label>
-                                        <p class="req_message">{{'_necessarily' | language_translate}}</p>
+                                        <label>{{'_phone' | language_translate:language}}</label>
+                                        <p class="req_message">{{'_necessarily' | language_translate:language}}</p>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                                         <span required-field
-                                            *ngIf="orderForm.get('phone').hasError('required') && orderForm.get('phone').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('phone').hasError('required') && orderForm.get('phone').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_left">
-                                        <label>{{'_email' | language_translate}}</label>
+                                        <label>{{'_email' | language_translate:language}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="email" />
                                         <span required-field
-                                            *ngIf="orderForm.get('email').hasError('required') && orderForm.get('email').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('email').hasError('required') && orderForm.get('email').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                         <span required-field
-                                            *ngIf="orderForm.get('email').hasError('pattern') && orderForm.get('email').touched">{{'error2' | language_translate}}
+                                            *ngIf="orderForm.get('email').hasError('pattern') && orderForm.get('email').touched">{{'error2' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
 
                                 <div *ngIf="isAuthorized" class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_main_addresses' | language_translate}}</label>
+                                        <label>{{'_main_addresses' | language_translate:language}}</label>
                                     </div>
                                     <div class="input_container">
                                         <p-dropdown
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_city' | language_translate}}</label>
+                                        <label>{{'_city' | language_translate:language}}</label>
                                     </div>
                                     <div class="input_container">
                                         <p-dropdown [options]="cities" [filter]="true"
@@ -131,29 +131,29 @@
                                             [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
                                             [optionLabel]="getAttributeName('name')"></p-dropdown>
                                         <span required-field
-                                            *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_address' | language_translate}}</label>
+                                        <label>{{'_address' | language_translate:language}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="address" />
                                         <span required-field
-                                            *ngIf="orderForm.get('address').hasError('required') && orderForm.get('address').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('address').hasError('required') && orderForm.get('address').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_index' | language_translate}}</label>
+                                        <label>{{'_index' | language_translate:language}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" OnlyNumber="true" formControlName="index" />
                                         <span required-field
-                                            *ngIf="orderForm.get('index').hasError('required') && orderForm.get('index').touched">{{'error1' | language_translate}}
+                                            *ngIf="orderForm.get('index').hasError('required') && orderForm.get('index').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
@@ -161,9 +161,9 @@
                         </div>
                         <div class="form_group">
                             <div class="label_wrapper">
-                                <label>{{'_comment' | language_translate}}</label>
-                                <p class="req_message">{{'_not' | language_translate}}
-                                    {{'_necessarily' | language_translate}}</p>
+                                <label>{{'_comment' | language_translate:language}}</label>
+                                <p class="req_message">{{'_not' | language_translate:language}}
+                                    {{'_necessarily' | language_translate:language}}</p>
                             </div>
                             <div class="input_container textarea">
                                 <textarea formControlName="comment"></textarea>
@@ -175,9 +175,9 @@
                         </div>
                         <div class="payment_method" display-flex>
                             <div class="left-container">
-                                <p class="label">{{'_delivery_method' | language_translate}}</p>
+                                <p class="label">{{'_delivery_method' | language_translate:language}}</p>
                                 <span required-field
-                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate}}
+                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}
                                     *</span>
                                 <div class="items">
                                     <div class="item" *ngFor="let item of visibleCarrierTypes;let ind=index;">
@@ -195,9 +195,9 @@
 
                             </div>
                             <div class="center-container">
-                                <p class="label">{{'payment_method' | language_translate}}</p>
+                                <p class="label">{{'payment_method' | language_translate:language}}</p>
                                 <span required-field
-                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate}}
+                                    *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}
                                     *</span>
                                 <div class="items">
                                     <div display-flex align-items-center class="item right_item"
@@ -219,9 +219,9 @@
                                 </div>
                             </div>
                             <div class="right-container">
-                                <p class="label" *ngIf="isAuthorized">{{'_inner_balance' | language_translate}}</p>
+                                <p class="label" *ngIf="isAuthorized">{{'_inner_balance' | language_translate:language}}</p>
                                 <span required-field
-                                    *ngIf="orderForm.get('payment_method').hasError('required') && orderForm.get('payment_method').touched">{{'error1' | language_translate}}
+                                    *ngIf="orderForm.get('payment_method').hasError('required') && orderForm.get('payment_method').touched">{{'error1' | language_translate:language}}
                                     *</span>
                                 <div class="items">
                                     <div display-flex align-items-center [ngClass]="{'disabled-balance':userBalance<=0}"
@@ -232,15 +232,15 @@
                                             <span class="checkmark checkbox" top-0></span>
                                         </label>
                                         <div class="text_wrapper text_bonus">
-                                            <p class="header">{{'_from_balance' | language_translate}}</p>
+                                            <p class="header">{{'_from_balance' | language_translate:language}}</p>
                                             <p class="under">
-                                                {{'_your_balance' | language_translate}} {{userBalance}}
+                                                {{'_your_balance' | language_translate:language}} {{userBalance}}
                                             </p>
                                             <!-- <p class="under" error>
                                                 {{checkUserBalance('balance','баланс')}}
                                             </p> -->
                                             <p class="under" error *ngIf="userBalance<=0">
-                                                {{'_payment_error' | language_translate}}
+                                                {{'_payment_error' | language_translate:language}}
                                             </p>
                                         </div>
                                     </div>
@@ -252,12 +252,12 @@
                                             <span class="checkmark checkbox" top-0></span>
                                         </label>
                                         <div class="text_wrapper">
-                                            <p class="header">{{'_with_bonus' | language_translate}}</p>
+                                            <p class="header">{{'_with_bonus' | language_translate:language}}</p>
                                             <p class="under">
-                                                {{'_your_bonus' | language_translate}} {{userBonuce}}
+                                                {{'_your_bonus' | language_translate:language}} {{userBonuce}}
                                             </p>
                                             <p class="under" error *ngIf="userBonuce<=0">
-                                                {{'_bonus_error' |language_translate}}
+                                                {{'_bonus_error' |language_translate:language}}
                                             </p>
                                         </div>
                                     </div>
@@ -267,21 +267,21 @@
                         </div>
                         <div class="price_container">
                             <div class="sh_price">
-                                <span class="key">{{'_order_sum' | language_translate}}</span>
+                                <span class="key">{{'_order_sum' | language_translate:language}}</span>
                                 <span class="value">{{totalPrice}}
                                     ֏</span>
                             </div>
                             <div class="sh_price">
-                                <span class="key">{{'_delivery' | language_translate}}</span>
+                                <span class="key">{{'_delivery' | language_translate:language}}</span>
                                 <span class="value">{{shippingPrice}} ֏ <span class="abs_cont"
                                         *ngIf="shippingPrice==0 && (orderForm.get('payment_method').value==4 || orderForm.get('payment_method').value==5)">(300
-                                        ֏ {{'_insurance' | language_translate}})</span></span>
+                                        ֏ {{'_insurance' | language_translate:language}})</span></span>
                             </div>
                             <div class="sh_price">
-                                <span class="key">{{'_commission' | language_translate}}</span>
+                                <span class="key">{{'_commission' | language_translate:language}}</span>
                                 <span class="value">{{codPrice}} ֏</span></div>
                             <div class="sh_price">
-                                <span class="key">{{'_total_text' | language_translate}}</span>
+                                <span class="key">{{'_total_text' | language_translate:language}}</span>
                                 <div [ngClass]="{'paylater':isPromocode && payLaterPrice}">
                                     <span [ngClass]="{'discount_price':isPromocode && payLaterPrice}"
                                         class="value">{{payLaterPrice}} ֏
@@ -290,14 +290,14 @@
                                 </div>
                             </div>
                             <div class="sh_price">
-                                <span class="key">{{'_total_pay_now' | language_translate}}</span>
+                                <span class="key">{{'_total_pay_now' | language_translate:language}}</span>
                                 <span class="value">{{payNowPrice}} ֏</span>
                             </div>
                         </div>
                         <div class="make_order">
                             <button (click)="onClickMakeOrder()" [disabled]="orderForm.invalid || loading"
                                 [ngClass]="{'disabled':orderForm.invalid || loading}">
-                                <span>{{'_order' | language_translate}}</span>
+                                <span>{{'_order' | language_translate:language}}</span>
                             </button>
                         </div>
                     </div>

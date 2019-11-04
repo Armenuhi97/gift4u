@@ -18,21 +18,23 @@ export class TopbarComponent implements OnInit {
     private _phone_2: string = '';
     private _smallText: string
     private _settings: Setting[] = [];
-    private _activeLng;
     public active_lng;
     private _windowWidth: number;
     public languages = [
         {
             label: 'en',
-            image: 'assets/images/en_flag.png'
+            image: 'assets/images/en_flag.png',
+            value: 'en'
         },
         {
             label: 'ru',
-            image: 'assets/images/ru_flag.png'
+            image: 'assets/images/ru_flag.png',
+            value: 'ru'
         },
         {
             label: 'arm',
-            image: 'assets/images/arm_flag.png'
+            image: 'assets/images/arm_flag.png',
+            value: 'arm'
         },
 
     ]
@@ -59,8 +61,8 @@ export class TopbarComponent implements OnInit {
         private _translateService: TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
-        this.getAvtiveLanguage()
         this._checkQueryParams();
+        this.active_lng = JSON.parse(localStorage.getItem('language_key'))
     }
 
     ngOnInit() { }
@@ -81,11 +83,7 @@ export class TopbarComponent implements OnInit {
         }
     }
     public changeLanguage(lang_key: string) {
-        this._translateService.setActiveLng(lang_key)
-    }
-    public getAvtiveLanguage() {
-        let activeLng = this._translateService.getActiveLanguage();
-        this._activeLng = this._appService.filterArray(this.languages, 'label', activeLng)[0];
+        this._translateService.setActiveLng(lang_key);
     }
     public getTranslateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
@@ -252,7 +250,6 @@ export class TopbarComponent implements OnInit {
         if (localStorage.getItem('basket_products'))
             return JSON.parse(localStorage.getItem('basket_products')).length
     }
-
     get isAuthorized(): boolean {
         return this._mainService.isAuthorized();
     }
@@ -261,9 +258,6 @@ export class TopbarComponent implements OnInit {
     }
     get openMenu(): boolean {
         return this._menuItemsService.getOpenMenu();
-    }
-    get activeLng() {
-        return this._activeLng
     }
     get city(): string {
         return this._mainService.getUserInfo().cityCountriesName
@@ -276,7 +270,9 @@ export class TopbarComponent implements OnInit {
     get workingTime(): string {
         return this._workingTime;
     }
-
+    get language() {
+        return this._translateService.getActiveLanguage()
+    }
     get similarProducts(): string[] {
         return this._similarProducts;
     }

@@ -228,5 +228,7 @@ export class CatalogView implements OnInit {
     get showFilters(): boolean {
         return this._isShowFilters;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

@@ -4,6 +4,7 @@ import { Bookmark } from "../../../../models/models";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
+import { TranslateService } from "../../../../services";
 
 @Component({
     selector: 'my-bookmarks-view',
@@ -21,7 +22,8 @@ export class MyBookmarksView implements OnInit {
         private _title: Title,
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
-        private _router: Router) {
+        private _router: Router,
+        private _translateService:TranslateService) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
         this._checkQueryParams();
     }
@@ -84,5 +86,8 @@ export class MyBookmarksView implements OnInit {
     }
     get bookmarks() {
         return this._bookmarks
+    }
+    get language(){
+        return this._translateService.getActiveLanguage()
     }
 }

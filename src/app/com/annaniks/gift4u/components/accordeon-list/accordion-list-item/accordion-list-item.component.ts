@@ -61,5 +61,8 @@ export class AccordionListItemComponent {
             this.array=this.searchArray
         }
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 
 }

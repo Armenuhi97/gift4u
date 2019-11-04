@@ -27,7 +27,7 @@ export class SpliceText implements PipeTransform {
 })
 export class TranslateLanguagePipe implements PipeTransform {
     constructor(private _translateService: TranslateService) { }
-    transform(value) {
+    transform(value, lng) {
         return this._translateService.translate(value)
     }
 }

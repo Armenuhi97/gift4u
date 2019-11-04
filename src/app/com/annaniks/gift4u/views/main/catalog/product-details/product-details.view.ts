@@ -399,7 +399,9 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     get fileUrl(): string {
         return this._fileUrl;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get mainImage(): string {
         return this._mainImage;
     }

@@ -296,9 +296,7 @@ app-slider{
         }
     }
 }
-.long_text{
-    display: block !important
-}
+
 @media only screen and (max-width:1045px) and (min-width:425px){
     .main_image{
         max-width: 300px !important;
@@ -332,9 +330,6 @@ app-slider{
     //     top: 6px !important;
     //     right: 45px !important;
     // }
-    .long_text{
-        display: none !important
-    }
     .products{
         min-height: 410px !important;
     }

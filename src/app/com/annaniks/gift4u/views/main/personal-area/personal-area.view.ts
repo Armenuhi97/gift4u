@@ -83,4 +83,7 @@ export class PersonalAreaView implements OnInit {
     get activateTab(): number {
         return this._activeTab;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

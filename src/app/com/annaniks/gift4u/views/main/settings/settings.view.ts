@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../main.service';
-import { Setting } from '../../../models/models';
+import { Setting, Announcement, ServerResponse, AnnouncementType } from '../../../models/models';
 import { AppService, TranslateService } from '../../../services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from './settings.service';
@@ -16,6 +16,7 @@ import { translate } from '../../../translate-params/translate';
     styleUrls: ['settings.view.scss']
 })
 export class SettingsView implements OnInit {
+    private _news: Announcement[] = [];
     private _settingName: string = '';
     private _settings: Setting[] = [];
     private _setting: Setting = {} as Setting;
@@ -34,7 +35,8 @@ export class SettingsView implements OnInit {
         private _settingService: SettingsService,
         private _messageService: MessageService,
         private _title: Title,
-        private _translateService:TranslateService
+        private _translateService:TranslateService,
+        @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
     }
@@ -43,7 +45,18 @@ export class SettingsView implements OnInit {
         this._formBuilder();
         this._getSettings();
     }
+    private _getAnnouncmentType(): void {
+        this._settingService.getAnnouncmentType().subscribe((data: ServerResponse<AnnouncementType[]>) => {
+            let id: number = this._appService.checkPropertyValue(this._appService.checkPropertyValue(this._appService.filterArray(data.messages, 'name', 'Новости'), 0), 'id');
+            this._getNews(id);
+        })
+    }
 
+    private _getNews(id: number): void {
+        this._settingService.getNews(id).subscribe((data: ServerResponse<Announcement[]>) => {            
+            this._news = data.messages;
+        })
+    }
     private _checkQueryParams(): void {
         this._activatedRoute.params.subscribe((params) => {
             if (params && params.settingname) {
@@ -84,12 +97,16 @@ export class SettingsView implements OnInit {
             if (this._setting.key.toLowerCase() === 'contacts') {          
                 let mapSetting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', 'maps'), 0);
                 this._setting.map = mapSetting;
+                
                 this._visibleContent = true;
                 setTimeout(() => {
                     this._iframeContent.nativeElement.innerHTML =this.getAttributeName(mapSetting,'description');
                 }, 10)
             }
             else {
+                if (this._setting.key.toLowerCase() === 'news') {
+                    this._getAnnouncmentType();
+                }
                 this._visibleContent = false;
             }
         }
@@ -139,9 +156,17 @@ export class SettingsView implements OnInit {
     get loading(): boolean {
         return this._loading;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get error(): string {
         return this._error;
     }
+    get fileUrl(): string {
+        return this._fileUrl;
+    }
 
+    get news() {
+        return this._news;
+    }
 }

@@ -94,5 +94,8 @@ export class FooterComponent implements OnInit {
     get phone_2(){
         return this._phone_2
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 
 }

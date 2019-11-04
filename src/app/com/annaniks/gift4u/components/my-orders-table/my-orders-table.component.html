@@ -4,19 +4,19 @@
             №
         </th>
         <th class="product-header t-head">
-            {{'_goods' | language_translate}}
+            {{'_goods' | language_translate:language}}
         </th>
         <th class="t-head">
-            {{'_quantity' | language_translate}}
+            {{'_quantity' | language_translate:language}}
         </th>
         <th class="t-head">
-            {{'_price' | language_translate}}
+            {{'_price' | language_translate:language}}
         </th>
         <th>
-           {{'_discount_price' | language_translate}}
+           {{'_discount_price' | language_translate:language}}
         </th>
         <th class="t-head">
-            {{'_sum' | language_translate}}
+            {{'_sum' | language_translate:language}}
         </th>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@
                             {{item?.name}}
                         </p>
                         <p>
-                            <b>{{'_article' | language_translate}}: {{item?.sku}}</b>
+                            <b>{{'_article' | language_translate:language}}: {{item?.sku}}</b>
                         </p>
                     </div>
                 </div>

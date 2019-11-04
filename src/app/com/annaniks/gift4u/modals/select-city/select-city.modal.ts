@@ -71,4 +71,7 @@ export class SelectCityModal implements OnInit {
     get loading(): boolean {
         return this._loading;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

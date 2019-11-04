@@ -14,7 +14,7 @@ let mainRoutes: Routes = [
             { path: 'basket', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/basket/basket.module').then(m => m.BasketModule), data: { title: 'Корзина' } },
             { path: 'brands', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/brands/brands.module').then(m => m.BrandsModule), data: { title: 'Бренды' } },
             { path: 'search', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/search/search.module').then(m => m.SearchModule), data: { title: 'Поиск' } },
-            { path: 'news', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/news/news.module').then(m => m.NewsModule) },
+            // { path: 'news', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/news/news.module').then(m => m.NewsModule) },
             { path: 'discounts', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/discount/discount.module').then(m => m.DiscountModule) },
             { path: 'settings/:settingname', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/settings/settings.module').then(m => m.SettingsModule) },
             { path: '**', redirectTo: 'not-found', pathMatch: 'full' },

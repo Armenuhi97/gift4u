@@ -3,18 +3,18 @@
         <i class="material-icons">close</i>
     </div>
     <div class="add_product_basket_container">
-            <div class="title">
-                    <h1>{{'_product_added' | language_translate}}</h1>
-                </div>
-        <p text-align-center> {{'_added_product_success_message' | language_translate}}:</p>
+        <div class="title">
+            <h1>{{'_product_added' | language_translate:language}}</h1>
+        </div>
+        <p text-align-center> {{'_added_product_success_message' | language_translate:language}}:</p>
         <div class="container">
             <div class="product_info">
                 <img [src]="fileUrl+'products/'+product?.image">
                 <div class="text_wr">
                     <p no-margin>{{product?.name}}</p>
                     <div class="description">
-                        <span font-weight-bold>{{'_count' | language_translate}}: {{product?.count}}тов. <br>
-                            <span display-flex align-items-center> {{'_price' | language_translate}}։
+                        <span font-weight-bold>{{'_count' | language_translate:language}}: {{product?.count}}тов. <br>
+                            <span display-flex align-items-center> {{'_price' | language_translate:language}}։
                                 <div margin-left-7>
                                     <div [class.specificprice]="specificPrice">{{price}} ֏</div>
                                     <div *ngIf="specificPrice">{{specificPrice}} ֏</div>
@@ -28,12 +28,12 @@
         <div display-flex justify-content-space-beetwen class="buttons">
             <div class="continue">
                 <button (click)="onClickCountinue()">
-                    <span>{{'_continue' | language_translate}}</span>
+                    <span>{{'_continue' | language_translate:language}}</span>
                 </button>
             </div>
             <div class="go_basket">
                 <button (click)="onClickGoBasket()">
-                    <span>{{'_go_to_basket' | language_translate}} </span>
+                    <span>{{'_go_to_basket' | language_translate:language}} </span>
                 </button>
             </div>
 

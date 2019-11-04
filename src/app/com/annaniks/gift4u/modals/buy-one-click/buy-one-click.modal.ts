@@ -34,4 +34,7 @@ export class BuyOneClickModal implements OnInit {
     get buyOneClickForm(): FormGroup {
         return this._buyOneClickForm;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

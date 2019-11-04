@@ -102,4 +102,7 @@ export class ReviewsTabComponent implements OnInit {
         return review.users && review.users.profile_image ?
             this.fileUrl + review.users.profile_image : 'assets/images/logo.jpg';
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

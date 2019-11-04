@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProductFull, Product } from '../../models/models';
 import { Router } from '@angular/router';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: 'add-product-basket-modal',
@@ -15,7 +16,8 @@ export class AddProductBasketModal implements OnInit {
         @Inject(MAT_DIALOG_DATA) private _data: any,
         @Inject("FILE_URL") private _fileUrl: string,
         private _dialogRef: MatDialogRef<AddProductBasketModal>,
-        private _router: Router
+        private _router: Router,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
@@ -42,7 +44,9 @@ export class AddProductBasketModal implements OnInit {
     get fileUrl(): string {
         return this._fileUrl;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get price(): number {
         return this._product.count * +this._product.price_with_vat
     }

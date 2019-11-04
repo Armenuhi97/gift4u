@@ -3,23 +3,23 @@
         <i class="material-icons">close</i>
     </div>
     <div class="back_call_container">
-        <p class="label">{{'_call_back_text' | language_translate}}</p>
-        <span class="message">{{'_call_back_subtitle' | language_translate}}</span>
+        <p class="label">{{'_call_back_text' | language_translate:language}}</p>
+        <span class="message">{{'_call_back_subtitle' | language_translate:language}}</span>
         <p error text-align-center>{{errorMessage}}</p>
         <form [formGroup]="backCallForm">
             <div class="form_group">
-                <label>{{'_your_name' | language_translate}}</label>
+                <label>{{'_your_name' | language_translate:language}}</label>
                 <input type="text" formControlName="name" />
-                <span required-field *ngIf="backCallForm.get('name').hasError('required') && backCallForm.get('name').touched">{{'error1'| language_translate}} *</span>
+                <span required-field *ngIf="backCallForm.get('name').hasError('required') && backCallForm.get('name').touched">{{'error1'| language_translate:language}} *</span>
             </div>
             <div class="form_group">
-                <label>{{'_phone' | language_translate}}</label>
+                <label>{{'_phone' | language_translate:language}}</label>
                 <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00"/>
-                <span required-field *ngIf="backCallForm.get('phone').hasError('required') && backCallForm.get('phone').touched">{{'error1'| language_translate}} *</span>
+                <span required-field *ngIf="backCallForm.get('phone').hasError('required') && backCallForm.get('phone').touched">{{'error1'| language_translate:language}} *</span>
             </div>
             <div class="buttons">
                 <button class="send" [disabled]="backCallForm.invalid || loading" [ngClass]="{'disabled':backCallForm.invalid || loading}" (click)="onClickSend()">
-                    <span>{{'_send' | language_translate}}</span>
+                    <span>{{'_send' | language_translate:language}}</span>
                 </button>
             </div>
         </form>

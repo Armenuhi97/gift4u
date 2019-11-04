@@ -4,6 +4,7 @@ import { SettingsView } from './settings.view';
 
 let settingsRoutes: Routes = [
     { path: '', component: SettingsView },
+    { path: ':id', loadChildren: () => import('src/app/com/annaniks/gift4u/views/main/news/news-details/news-details.module').then(m => m.NewsDetailsModule) }
 ]
 
 @NgModule({

@@ -398,7 +398,9 @@ export class FilterCategoryListModal {
     get routeSteps(): Breadcrumbs[] {
         return this._routeSteps;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get page(): number {
         return this._page;
     }

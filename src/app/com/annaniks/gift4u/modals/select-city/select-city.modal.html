@@ -1,7 +1,7 @@
 <div class="select_city_content">
     <div class="select_city_container">
         <div class="label">
-            <h1>{{'_your_city' | language_translate}}</h1>
+            <h1>{{'_your_city' | language_translate:language}}</h1>
         </div>
         <form [formGroup]="selectCityForm">
             <div class="form_group">
@@ -16,7 +16,7 @@
             <div class="set_city">
                 <button (click)="onClickSetSity()" [disabled]="selectCityForm.invalid || loading"
                     [ngClass]="{'disabled':selectCityForm.invalid || loading}">
-                    <span>{{'_select' | language_translate}}</span>
+                    <span>{{'_select' | language_translate:language}}</span>
                 </button>
             </div>
         </form>

@@ -98,5 +98,8 @@ export class CatalogComponent implements OnInit {
     get scroll(): boolean {
         return this._scroll;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 
 }

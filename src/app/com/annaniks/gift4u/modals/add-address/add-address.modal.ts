@@ -91,4 +91,7 @@ export class AddAddressModal {
                     })
         }
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

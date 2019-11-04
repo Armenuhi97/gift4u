@@ -1,7 +1,7 @@
 <div class="user_info_content">
     <div class="user_info_container">
         <div>
-            <div class="welcome-text"> {{'_welcome' | language_translate}},{{userInfo?.name}}!</div>
+            <div class="welcome-text"> {{'_welcome' | language_translate:language}},{{userInfo?.name}}!</div>
             <div class="user_info">
                 <div margin-horizontal-auto text-align-center>
                     <div [ngClass]="{'hidden':!isGet,'show':isGet}" class="image_container" position-relative>
@@ -20,14 +20,14 @@
                 <div class="user">
                     <div class="left">
                         <div class="info_group">
-                            <p><span><b>{{'_gender' | language_translate}}: </b></span>{{getGender()}}<span></span></p>
+                            <p><span><b>{{'_gender' | language_translate:language}}: </b></span>{{getGender()}}<span></span></p>
                         </div>
                         <div class="info_group">
-                            <p><span><b>{{'_date_of_birdth' | language_translate}}:
+                            <p><span><b>{{'_date_of_birdth' | language_translate:language}}:
                                     </b></span><span>{{userInfo.birthday | date_format}}</span></p>
                         </div>
                         <div class="info_group">
-                            <p><span><b>{{'_city' | language_translate}}:
+                            <p><span><b>{{'_city' | language_translate:language}}:
                                     </b></span><span>{{userInfo?.cityCountriesName}}</span></p>
                         </div>
 
@@ -35,11 +35,11 @@
                     <div class="right">
                         <div class="info_group">
                             <p class="right-content"><span>
-                                    <b>{{'_phone' | language_translate}}:</b></span>
+                                    <b>{{'_phone' | language_translate:language}}:</b></span>
                                 <span>{{getPhoneNumber(userInfo?.phone)}}</span></p>
                         </div>
                         <div class="info_group">
-                            <p><span><b>{{'_email' | language_translate}}: </b></span><span
+                            <p><span><b>{{'_email' | language_translate:language}}: </b></span><span
                                     break-word>{{userInfo?.email}}</span></p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="cards-entity">
-            <div class="welcome-text"> {{'_privilege_card' | language_translate}}</div>
+            <div class="welcome-text"> {{'_privilege_card' | language_translate:language}}</div>
             <div class="card-container">
                 <div text-align-center>
                     <div style="height: 120px; width: 120px;"></div>
@@ -59,19 +59,19 @@
                     <div class="entity-list">
                         <div class="left">
                             <div class="info_group">
-                                <p><span><b>{{'_number_card' | language_translate}}: </b></span><span>-</span></p>
+                                <p><span><b>{{'_number_card' | language_translate:language}}: </b></span><span>-</span></p>
                             </div>
                             <div class="info_group">
-                                <p><span><b>{{'_card_status' | language_translate}}: </b></span>{{getStatus()}}<span></span></p>
+                                <p><span><b>{{'_card_status' | language_translate:language}}: </b></span>{{getStatus()}}<span></span></p>
                             </div>
                         </div>
                         <div class="right">
                             <div class="info_group">
-                                <p class="right-content"><span><b>{{'_return_rate' | language_translate}}:
+                                <p class="right-content"><span><b>{{'_return_rate' | language_translate:language}}:
                                         </b></span><span>{{userInfo?.percent || 0}}%</span></p>
                             </div>
                             <div class="info_group">
-                                <p><span><b>{{'_saving_amount' | language_translate}}: </b></span><span>{{userInfo?.orderSum || 0}}</span></p>
+                                <p><span><b>{{'_saving_amount' | language_translate:language}}: </b></span><span>{{userInfo?.orderSum || 0}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="content" *ngIf="!isActiveGift">
                     <p *ngIf="giftError" uppercase error no-margin full-width>
-                        {{'_wrong_code' | language_translate}}
+                        {{'_wrong_code' | language_translate:language}}
                     </p>
                     <div class="code_c">
 
@@ -134,7 +134,7 @@
 
                     </div>
                     <div class="button">
-                        <p>{{'_enter_gift_certificate' | language_translate}}</p>
+                        <p>{{'_enter_gift_certificate' | language_translate:language}}</p>
                         <div class="gift-with-one-part" display-flex align-items-center>
                             <div [formGroup]="giftFullForm" class="one-parts">
                                 <input class="gift_input" formControlName="parts" text-align-center
@@ -143,14 +143,14 @@
                             <button [disabled]="giftForm?.invalid && giftFullForm?.invalid"
                                 [ngClass]="{'disabled':(giftForm?.invalid && giftFullForm?.invalid)}"
                                 (click)="onClickActivate()">
-                                {{'_active' | language_translate}}
+                                {{'_active' | language_translate:language}}
                             </button>
                         </div>
                     </div>
 
                 </div>
                 <p color-white text-align-center full-width *ngIf="isActiveGift">
-                  {{'_success_gift_code_message' | language_translate}}
+                  {{'_success_gift_code_message' | language_translate:language}}
                 </p>
 
             </div>

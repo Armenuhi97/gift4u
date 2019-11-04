@@ -3,8 +3,8 @@
         <i class="material-icons">close</i>
     </div>
     <div class="buy_one_click_container">
-        <p class="label">{{'_buy_one_click' | language_translate}}</p>
-        <span class="message">{{'_enter_phone_for_call' | language_translate}}</span>
+        <p class="label">{{'_buy_one_click' | language_translate:language}}</p>
+        <span class="message">{{'_enter_phone_for_call' | language_translate:language}}</span>
         <form [formGroup]="buyOneClickForm">
             <div class="form_group">
                 <input type="text" formControlName="name" [placeholder]="translateWord('Full name','ФИО','ԱԱՀ')"/>
@@ -12,7 +12,7 @@
             <div class="form_group" display-flex align-items-center>
                 <input type="text" formControlName="phone" placeholder="+8 ( ____ )  ____ - ___ - ___"/>
                 <button class="send">
-                    <span>{{'_send' | language_translate}}</span>
+                    <span>{{'_send' | language_translate:language}}</span>
                 </button>
             </div>
         </form>

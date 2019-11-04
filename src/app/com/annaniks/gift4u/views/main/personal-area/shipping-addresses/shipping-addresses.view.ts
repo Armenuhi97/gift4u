@@ -4,7 +4,7 @@ import { Addresses, ServerResponse } from "../../../../models/models";
 import { MatDialog } from "@angular/material";
 import { AddAddressModal } from "../../../../modals/add-address/add-address.modal";
 import { LoadingService } from "../../../../services/loading.service";
-import { AppService } from "../../../../services";
+import { AppService, TranslateService } from "../../../../services";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
@@ -20,7 +20,8 @@ export class ShippingAddressesView implements OnInit {
         private _matDialog: MatDialog,
         private _appService: AppService,
         private _loadingService: LoadingService,
-        private _title: Title) {
+        private _title: Title,
+        private _translateService:TranslateService) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }
     ngOnInit() {
@@ -91,5 +92,8 @@ export class ShippingAddressesView implements OnInit {
     public showHide(address: Addresses): void {
         address.showOrHide = !address.showOrHide;
         address.icon = address.showOrHide ? 'remove' : 'add'
+    }
+    get language(){
+        return this._translateService.getActiveLanguage()
     }
 }

@@ -9,10 +9,10 @@
         </div> -->
         <div class="tabs">
             <div class="tab_item" [ngClass]="{'active_tab':activeTab=='catalog'}"(click)="onClickTabItem('catalog')">
-                <p>{{'_catalog' | language_translate}}</p>
+                <p>{{'_catalog' | language_translate:language}}</p>
             </div>
             <div class="tab_item" [ngClass]="{'active_tab':activeTab=='information'}" (click)="onClickTabItem('information')">
-                <p>{{'_info' | language_translate}}</p>
+                <p>{{'_info' | language_translate:language}}</p>
             </div>
         </div>
         <div [ngSwitch]="activeTab">
@@ -20,7 +20,7 @@
                 [isCloseMenu]="true" *ngSwitchCase="'catalog'"></app-categories>
             <div class="topbar_items">
                 <div uppercase class="item" *ngSwitchCase="'catalog'" (click)="onClickSettings({routerLink:'/brands'})">
-                    {{'brands' | language_translate}}
+                    {{'brands' | language_translate:language}}
                 </div>
                 <div  *ngSwitchCase="'information'">
                     <div class="item" *ngFor="let item of menuItems" (click)="onClickSettings(item)">

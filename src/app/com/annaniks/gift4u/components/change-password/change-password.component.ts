@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from '../../controls/controls';
 import { MainService } from '../../views/main/main.service';
+import { TranslateService } from '../../services';
 
 @Component({
     selector: 'app-change-password',
@@ -16,6 +17,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     constructor(
         private _fb: FormBuilder,
         private _mainService: MainService,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
@@ -69,6 +71,9 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
     get loading(): boolean {
         return this._loading;
+    }
+    get language(){
+        return this._translateService.getActiveLanguage()
     }
     ngOnDestroy() { }
 }

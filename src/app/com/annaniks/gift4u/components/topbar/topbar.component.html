@@ -29,7 +29,7 @@
                 </nav>
 
                 <div class="location">
-                    <span class="label">{{'_yourContry'| language_translate}}</span>
+                    <span class="label">{{'_yourContry'| language_translate:language}}</span>
                     <img src="/assets/images/location.png" />
                     <span class="city_name" (click)="onClickCity()">{{city}}</span>
                 </div>
@@ -37,9 +37,9 @@
                     <img src="/assets/images/key.png" />
                     <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userEmail}}</span>
                     <span class="label " *ngIf="!isAuthorized"><span class="hover_underline"
-                            (click)="onClickLogin()">{{'_login' | language_translate}}</span><span
+                            (click)="onClickLogin()">{{'_login' | language_translate:language}}</span><span
                             style="margin:0 6px">/</span><span (click)="onClickRegister()"
-                            class="hover_underline">{{'_registration' | language_translate}}</span></span>
+                            class="hover_underline">{{'_registration' | language_translate:language}}</span></span>
                 </div>
             </div>
             <div class="search_bar">
@@ -58,15 +58,15 @@
                                     (click)="onClickSimilarProducts(item.productName)">
                                     <img [src]="fileUrl+'products/'+item.productImage">
                                     <div height-fit>
-                                        <p class="label"><b>{{'_name' | language_translate}}: </b>
+                                        <p class="label"><b>{{'_name' | language_translate:language}}: </b>
                                             {{item.productName | splice_search:25}}</p>
-                                        <p class="label"><b>{{'_article' | language_translate}}:
+                                        <p class="label"><b>{{'_article' | language_translate:language}}:
                                             </b>{{item.productArticul}}</p>
                                     </div>
                                 </div>
                                 <div justify-content-center class="complete_items all_item"
                                     (click)="onClickSearch(true)">
-                                    <b> {{'_show_all' | language_translate}} ({{productsCount}})</b>
+                                    <b> {{'_show_all' | language_translate:language}} ({{productsCount}})</b>
                                 </div>
                             </div>
                         </form>
@@ -80,7 +80,7 @@
                             <div class="bottom" margin-top-8 display-flex align-items-center>
                                 <img class="phone_icon" src="/assets/images/Векторный смарт-объект.png" />
                                 <p class="label" no-margin text-align-center cursor-pointer (click)="onClickButton()">
-                                    {{'_call_back' | language_translate}}</p>
+                                    {{'_call_back' | language_translate:language}}</p>
                             </div>
                         </div> -->
                         <div>
@@ -102,8 +102,8 @@
                             </div>
                         </div>
                         <div class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
-                            <span class="label">{{'_busket' | language_translate}}</span>
-                            <span class="count">{{'_for_the_sum' |language_translate}}
+                            <span class="label">{{'_busket' | language_translate:language}}</span>
+                            <span class="count">{{'_for_the_sum' |language_translate:language}}
                                 {{basketInfo?.basketPrice}}֏</span>
                         </div>
                     </div>
@@ -134,15 +134,15 @@
                                     (click)="onClickSimilarProducts(item.productName)">
                                     <img [src]="fileUrl+'products/'+item.productImage">
                                     <div height-fit>
-                                        <p class="label"><b>{{'_name' | language_translate}}: </b>
+                                        <p class="label"><b>{{'_name' | language_translate:language}}: </b>
                                             {{item.productName | splice_text:80:30}}</p>
-                                        <p class="label"><b>{{'_article' | language_translate}}:
+                                        <p class="label"><b>{{'_article' | language_translate:language}}:
                                             </b>{{item.productArticul }}</p>
                                     </div>
                                 </div>
                                 <div justify-content-center class="complete_items all_item"
                                     (click)="onClickSearch(true)">
-                                    <b> {{'_show_all' | language_translate}} ({{productsCount}})</b>
+                                    <b> {{'_show_all' | language_translate:language}} ({{productsCount}})</b>
                                 </div>
                             </div>
                         </form>
@@ -154,7 +154,7 @@
                 <div margin-right-10>
                     <p-dropdown [options]="languages" [(ngModel)]="active_lng">
                         <ng-template let-item pTemplate="selectedItem">
-                            <img [src]="activeLng?.image" class="active_lng_image" />
+                            <img [src]="item?.image" class="active_lng_image" />
                         </ng-template>
                         <ng-template let-lng pTemplate="languages">
                             <div (click)="changeLanguage(lng.label)" class="ui-helper-clearfix"
@@ -204,7 +204,7 @@
                     <!-- <div display-flex align-items-center class="location">
                         <img class="img-icon" src="/assets/images/Векторный смарт-объект.png" />
                         <span cursor-pointer class="city_name"
-                            (click)="onClickButton()">{{'_call_back' | language_translate}}</span>
+                            (click)="onClickButton()">{{'_call_back' | language_translate:language}}</span>
                     </div> -->
                 </div>
             </div>

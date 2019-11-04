@@ -1,8 +1,8 @@
-.title{
-    font-size: 2em;
+.main_title{
+    font-size: 1.5em;
     text-align: center;
-    font-weight: bold;
     margin: 0.83em 0;
+    font-weight: bold;
 }
 .info_content{
     width: 100%;
@@ -25,8 +25,7 @@
         line-height: 16px;
         height: 209px;
         overflow: hidden;
-        box-shadow: 0px -35px 26px #fff inset;
-      
+        box-shadow: 0px -35px 26px #fff inset;      
     }
     .show {
         overflow: visible !important;
@@ -43,15 +42,14 @@
         &:hover{
             text-decoration: none;
         }
-    }
-
-  
+    }  
 }
 
 :host ::ng-deep{
     .title{
         p:first-child{
             margin:0;
+            line-height: 23px;
         }
     }
 }

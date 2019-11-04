@@ -265,7 +265,9 @@ export class AccountView implements OnInit {
     get userInfo(): User {
         return this._userInfo;
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get cities(): City[] {
         return this._cities;
     }

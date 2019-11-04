@@ -90,6 +90,13 @@
     }
 }
 
+announcement-list-item{
+    width: 25%;
+    padding:0 .5em .5em .5em;
+    min-width: initial;
+    cursor: pointer;
+}
+
 
 @media only screen and (max-width:770px){
     .container{
@@ -111,11 +118,26 @@
         }
     }
 }
-@media only screen and (max-width:550px){
-    .settings_content{
-        margin-bottom: 5px;
+
+@media only screen and (max-width: 1162px) and (min-width:882px) {
+    announcement-list-item{
+        width: 33.3333% !important;
     }
 }
+
+
+@media only screen and (max-width: 882px) and (min-width:600px) {
+    announcement-list-item{
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    announcement-list-item{
+        width: 100% !important;
+    }
+}
+
 
 :host ::ng-deep{
     .gmap{

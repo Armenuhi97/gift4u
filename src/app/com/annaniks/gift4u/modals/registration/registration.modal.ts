@@ -101,4 +101,7 @@ export class RegistrationModal implements OnInit {
     get error(): string {
         return this._error;
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

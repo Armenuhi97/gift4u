@@ -4,12 +4,12 @@
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th style="width: 3em"></th>
-                    <th class="t-head">{{'_order_number' | language_translate}} №</th>
-                    <th class="t-head">{{'_date' | language_translate}}</th>
-                    <th class="t-head">{{'_sum' | language_translate}}</th>
-                    <th class="t-head">{{'payment_method' | language_translate}}</th>
-                    <th class="t-head">{{'_delivery_method' | language_translate}}</th>
-                    <th class="t-head">{{'_status' | language_translate}}</th>
+                    <th class="t-head">{{'_order_number' | language_translate:language}} №</th>
+                    <th class="t-head">{{'_date' | language_translate:language}}</th>
+                    <th class="t-head">{{'_sum' | language_translate:language}}</th>
+                    <th class="t-head">{{'payment_method' | language_translate:language}}</th>
+                    <th class="t-head">{{'_delivery_method' | language_translate:language}}</th>
+                    <th class="t-head">{{'_status' | language_translate:language}}</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
@@ -40,7 +40,7 @@
                 </tr>
             </ng-template>
         </p-table>
-        <div *ngIf="!orderHistory[0]" class="default-text"> {{'_empty' | language_translate}} </div>
+        <div *ngIf="!orderHistory[0]" class="default-text"> {{'_empty' | language_translate:language}} </div>
         <!-- <table class="orders-table" full-width>
             <thead>
                 <th class="t-head">ЗАКАЗ №</th>

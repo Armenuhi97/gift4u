@@ -177,7 +177,9 @@ export class UserInfoView implements OnInit, OnDestroy {
     get isActiveGift(): boolean {
         return this._isActiveGift
     }
-
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
     get giftError(): boolean {
         return this._giftError
     }

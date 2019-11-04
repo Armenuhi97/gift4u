@@ -4,6 +4,7 @@ import { PaymentHistory, ServerResponse } from "../../../../models/models";
 import { LoadingService } from "../../../../services/loading.service";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from "../../../../services";
 
 @Component({
     selector: 'payment-history-view',
@@ -16,7 +17,8 @@ export class PaymentHistoryView implements OnInit {
     constructor(private _paymentHistoryService: PaymentHistoryService,
         private _loadingService: LoadingService,
         private _title: Title,
-        private _activatedRoute: ActivatedRoute) {
+        private _activatedRoute: ActivatedRoute,
+        private _translateService:TranslateService) {
         this._title.setTitle(this._activatedRoute.data['_value'].title);
     }
     ngOnInit() {
@@ -65,5 +67,8 @@ export class PaymentHistoryView implements OnInit {
                 }
             }
         }
+    }
+    get language(){
+        return this._translateService.getActiveLanguage()
     }
 }

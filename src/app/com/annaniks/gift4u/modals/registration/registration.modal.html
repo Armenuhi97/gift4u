@@ -3,61 +3,61 @@
         <i class="material-icons">close</i>
     </div>
     <div class="registration_container">
-        <p class="label">{{'_registration' | language_translate}}</p>
+        <p class="label">{{'_registration' | language_translate:language}}</p>
         <p error *ngIf="error" text-align-center>{{error}}</p>
         <form [formGroup]="registrationForm">
             <div display-flex align-items-center class="form_row">
                 <div class="form_group">
-                    <label>{{'_your_name' | language_translate}}:</label>
+                    <label>{{'_your_name' | language_translate:language}}:</label>
                     <input formControlName="name" type="text" />
                     <span required-field
-                        *ngIf="registrationForm.get('name').hasError('required') && registrationForm.get('name').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('name').hasError('required') && registrationForm.get('name').touched">{{'error1' | language_translate:language}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_phone_number' | language_translate}}:</label>
+                    <label>{{'_phone_number' | language_translate:language}}:</label>
                     <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                     <span required-field
-                        *ngIf="registrationForm.get('phone').hasError('required') && registrationForm.get('phone').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('phone').hasError('required') && registrationForm.get('phone').touched">{{'error1' | language_translate:language}} *</span>
                 </div>
             </div>
             <div display-flex align-items-center class="form_row">
                 <div class="form_group">
-                    <label>{{'_email' | language_translate}}: </label>
+                    <label>{{'_email' | language_translate:language}}: </label>
                     <input type="text" formControlName="email" />
                     <span required-field
-                        *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">{{'error1' | language_translate:language}} *</span>
                     <span required-field
-                        *ngIf="registrationForm.get('email').hasError('pattern') && registrationForm.get('email').touched">{{'error2' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('email').hasError('pattern') && registrationForm.get('email').touched">{{'error2' | language_translate:language}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_your_city' | language_translate}}: </label>
+                    <label>{{'_your_city' | language_translate:language}}: </label>
                     <p-dropdown [options]="cities"
                         [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
                         formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" [optionLabel]="getAttributeName('name')"></p-dropdown>
                     <span required-field
-                        *ngIf="registrationForm.get('city').hasError('required') && registrationForm.get('city').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('city').hasError('required') && registrationForm.get('city').touched">{{'error1' | language_translate:language}} *</span>
                 </div>
             </div>
             <div display-flex align-items-center class="form_row">
                 <div class="form_group">
-                    <label>{{'_password' | language_translate}}: </label>
+                    <label>{{'_password' | language_translate:language}}: </label>
                     <input type="password" formControlName="password" autocomplete="none" />
                     <span required-field
-                        *ngIf="registrationForm.get('password').hasError('required') && registrationForm.get('password').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('password').hasError('required') && registrationForm.get('password').touched">{{'error1' | language_translate:language}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_confirm_password' | language_translate}}: </label>
+                    <label>{{'_confirm_password' | language_translate:language}}: </label>
                     <input type="password" formControlName="confirmPassword" autocomplete="none" />
                     <span required-field
-                        *ngIf="registrationForm.get('confirmPassword').hasError('MatchPassword') && registrationForm.get('confirmPassword').touched">{{'_password_error' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('confirmPassword').hasError('MatchPassword') && registrationForm.get('confirmPassword').touched">{{'_password_error' | language_translate:language}} *</span>
                     <span required-field
-                        *ngIf="registrationForm.get('confirmPassword').hasError('required') && registrationForm.get('confirmPassword').touched">{{'error1' | language_translate}} *</span>
+                        *ngIf="registrationForm.get('confirmPassword').hasError('required') && registrationForm.get('confirmPassword').touched">{{'error1' | language_translate:language}} *</span>
                 </div>
             </div>
             <div class="buttons">
                     <button class="registration" [disabled]="registrationForm.invalid"
                         [ngClass]="{'disabled':registrationForm.invalid}" (click)="onClickRegister()">
-                        <span>{{'_registration' | language_translate}}</span>
+                        <span>{{'_registration' | language_translate:language}}</span>
                     </button>
                 </div>
         </form>
