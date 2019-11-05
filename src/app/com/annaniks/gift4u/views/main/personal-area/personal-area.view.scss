@@ -104,6 +104,17 @@ app-box{
 .collapsible{
     display: none
 }
+:host::ng-deep collapsible-list{
+    collapsible-header{
+        display: flex;       
+        line-height: 25px;       
+        align-items: center;
+        padding: 0.5rem 1rem;
+    }
+    collapsible-body{
+        padding: 1rem 0.2rem;
+    }
+}
 @media only screen and (max-width:920px){
     .main-left{
         width: 100% !important;

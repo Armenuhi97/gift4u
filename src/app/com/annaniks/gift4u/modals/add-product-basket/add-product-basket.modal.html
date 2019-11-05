@@ -11,9 +11,10 @@
             <div class="product_info">
                 <img [src]="fileUrl+'products/'+product?.image">
                 <div class="text_wr">
-                    <p no-margin>{{product?.name}}</p>
+                    <p no-margin>{{getAttributeName(product,'name')}}</p>
                     <div class="description">
-                        <span font-weight-bold>{{'_count' | language_translate:language}}: {{product?.count}}тов. <br>
+                        <span font-weight-bold>{{'_count' | language_translate:language}}:
+                            {{product?.count}}{{'_product' | language_translate:language}} <br>
                             <span display-flex align-items-center> {{'_price' | language_translate:language}}։
                                 <div margin-left-7>
                                     <div [class.specificprice]="specificPrice">{{price}} ֏</div>

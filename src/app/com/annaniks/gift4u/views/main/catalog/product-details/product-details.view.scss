@@ -102,13 +102,15 @@ app-goods-list-item{
                         }
                       
                         .product_count{
+                            display: flex;
+                            align-items: center;
+                            flex-direction: column;
                             .label{
                                 font-size: 16px;
                                 font-weight: 500;
-                            }
-                           
+                            }                           
                             .count{
-                                height: calc(100% - 20px);
+                                height: calc(100% - 20px);                               
                                 button{
                                     padding:0;
                                     display: flex;
@@ -340,9 +342,9 @@ app-slider{
         flex-direction: column;
         padding: 0 !important;
     }
-    .count{
-        height: calc(100% - 37px) !important;
-    }
+    // .count{
+    //     height: calc(100% - 37px) !important;
+    // }
     .sm_product_data{
         display: block !important;
         width: 100%;

@@ -174,6 +174,7 @@ export const LANG_EN_TRANS = {
     //add product basket modal
     '_go_to_basket': 'Go to basket',
     '_product_added': 'PRODUCT ADDED',
+    '_product':'product',
     '_added_product_success_message': 'Product successfully added to basket ',
     //buy one click
     '_buy_one_click':'Buy in one click',

@@ -156,6 +156,7 @@ export const LANG_ARM_TRANS = {
     '_exit':'Դուրս գալ',
     '_go_to_basket':'Գնալ զամբյուղ',
     '_product_added':'ԱՊՐԱՆՔԸ ԱՎԵԼԱՑՎԱԾ Է',
+    '_product':'հատ',
     '_added_product_success_message':'Ապրանքը հաջողությամբ ավելացված է զամբյուղի մեջ',
     '_buy_one_click':'Գնել մեկ սեղմումով',
     '_enter_phone_for_call':'Մուտքագրեք համարը եւ մենք ձեզ զանգահարում ենք',

@@ -307,7 +307,7 @@
     </div>
     <div class="empty_basket"
         *ngIf="((basketProducts && basketProducts.length==0) || !basketProducts) && isPaymentChecked">
-        <h1>Ваша корзина пуста</h1>
+        <h1>{{'_empty_busket' | language_translate:language}}</h1>
     </div>
 
 

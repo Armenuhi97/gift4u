@@ -12,7 +12,8 @@
                         class="label">{{item.label}}</span>
                 </div>
                 <div class="main-left-item" (click)="onClickLogOut()"><i class="fa fa-angle-right"
-                        aria-hidden="true"></i><span class="label">{{'_exit' | language_translate:language}}</span></div>
+                        aria-hidden="true"></i><span class="label">{{'_exit' | language_translate:language}}</span>
+                </div>
             </div>
             <div class="main-right">
                 <router-outlet></router-outlet>
@@ -30,7 +31,7 @@
                         <span>{{'_personal_account' |language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body1 [expanded]="true">
+                <collapsible-body #body1 [expanded]="true">
                     <user-info-view></user-info-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -44,7 +45,7 @@
                         <span> {{'_user_account' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body2 [expanded]="false">
+                <collapsible-body #body2 [expanded]="false">
                     <account-view></account-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -59,7 +60,7 @@
                         <span> {{'_delivery_address' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body3 [expanded]="false">
+                <collapsible-body #body3 [expanded]="false">
                     <shipping-address-view></shipping-address-view>
                 </collapsible-body>
 
@@ -74,7 +75,7 @@
                         <span>{{'_my_bookmarks' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body4 [expanded]="false">
+                <collapsible-body #body4 [expanded]="false">
                     <my-bookmarks-view></my-bookmarks-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -88,7 +89,7 @@
                         <span>{{'_order_history' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body5 [expanded]="false">
+                <collapsible-body #body5 [expanded]="false">
                     <my-orders-view></my-orders-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -102,7 +103,7 @@
                         <span>{{'_bonus_point' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body6 [expanded]="false">
+                <collapsible-body #body6 [expanded]="false">
                     <bonus-points-view></bonus-points-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -116,7 +117,7 @@
                         <span>{{'_payment_history' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body7 [expanded]="false">
+                <collapsible-body #body7 [expanded]="false">
                     <payment-history-view></payment-history-view>
                 </collapsible-body>
             </collapsible-list-item>
@@ -130,7 +131,7 @@
                         <span>{{'_news_subscription' | language_translate:language}}</span>
                     </div>
                 </collapsible-header>
-                <collapsible-body style="padding: 0" #body8 [expanded]="false">
+                <collapsible-body #body8 [expanded]="false">
                     <newsletter-subscription-view></newsletter-subscription-view>
                 </collapsible-body>
             </collapsible-list-item>

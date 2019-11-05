@@ -150,6 +150,7 @@ export const LANG_RU_TRANS = {
     '_exit':'Выйти',
     '_go_to_basket':'Перейти в корзину',
     '_product_added':'ТОВАР ДОБАВЛЕН',
+    '_product':'тов.',
     '_added_product_success_message':'Товар успешно добавлен в корзину',
     '_buy_one_click':'Купить в один клик',
     '_enter_phone_for_call':'Введите номер и мы вам перезвоним',

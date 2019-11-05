@@ -36,7 +36,9 @@ export class AddProductBasketModal implements OnInit {
         this._router.navigate(['/basket']);
         this._dialogRef.close();
     }
-
+    public getAttributeName(obj,name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj,name)
+    }
     get product(): Product {
         return this._product;
     }
