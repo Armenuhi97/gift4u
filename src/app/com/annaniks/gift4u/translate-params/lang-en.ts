@@ -40,6 +40,7 @@ export const LANG_EN_TRANS = {
     '_pack_text': 'Pack in gift box',
     '_total': 'TOTAL',
     '_order': 'To do order',
+    '_duration_of_preparation': 'duration of the training (day)',
     '_pack_sum': '֏ to order',
     '_contact_entity': 'Contact details',
     '_full_name': 'Full Name',
@@ -52,6 +53,12 @@ export const LANG_EN_TRANS = {
     '_index': 'Index',
     '_comment': 'Commnets',
     '_not': 'not',
+    '_pay_now':'Pay now',
+    '_bank_card':'with Bank cards',
+    '_upon_receipt':'Upon receipt',
+    '_cash_courier':'Cash or card to the courier',
+    '_delivery_day':'Day of delivery',
+    '_postcard':'Postcard',
     '_delivery_method': 'Delivery method',
     'payment_method': 'Payment method',
     '_inner_balance': 'Inner balance',
@@ -174,28 +181,28 @@ export const LANG_EN_TRANS = {
     //add product basket modal
     '_go_to_basket': 'Go to basket',
     '_product_added': 'PRODUCT ADDED',
-    '_product':'product',
+    '_product': 'product',
     '_added_product_success_message': 'Product successfully added to basket ',
     //buy one click
-    '_buy_one_click':'Buy in one click',
-    '_enter_phone_for_call':'Enter the number and we will call you back',
+    '_buy_one_click': 'Buy in one click',
+    '_enter_phone_for_call': 'Enter the number and we will call you back',
     ///
-    '_not_found_result':'No Results Found',
-    '_choose':'Choose',
+    '_not_found_result': 'No Results Found',
+    '_choose': 'Choose',
     //my orders table
-    '_goods':'Goods',
-    '_discount_price':'DISCOUNT PRICE',
-    '_quantity':'QUANTITY',
-    '_in_cash':'In cash',
-    '_online_on_site':'ONLINE ON THE SITE',
+    '_goods': 'Goods',
+    '_discount_price': 'DISCOUNT PRICE',
+    '_quantity': 'QUANTITY',
+    '_in_cash': 'In cash',
+    '_online_on_site': 'ONLINE ON THE SITE',
     //payment history
-    '_payment_by_money':'PAYMENT BY MONEY',
-    '_payment_by_bonuses':'PAYMENT BY BONUSES',
-    '_search_error':'Nothing found on your request',
+    '_payment_by_money': 'PAYMENT BY MONEY',
+    '_payment_by_bonuses': 'PAYMENT BY BONUSES',
+    '_search_error': 'Nothing found on your request',
     //
-    '_message':'Message',
-    '_error':'Error',
-    '_send_message_success_message':'Your message has been sent successfully'
+    '_message': 'Message',
+    '_error': 'Error',
+    '_send_message_success_message': 'Your message has been sent successfully'
 
 
 };

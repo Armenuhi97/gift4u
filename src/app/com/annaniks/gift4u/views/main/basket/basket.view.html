@@ -33,7 +33,24 @@
                         *</span>
                 </div>
                 <div class="isPackContainer">
-                    <div class="checkbox">
+                    <div full-width>
+                        <div class="checkbox">
+                            <label class="container">
+                                <input type="checkbox" [(ngModel)]="isPostCard">
+                                <span class="checkmark"></span>
+                                <div class="center">
+                                    <label>{{'_postcard' | language_translate:language}}</label>
+                                </div>
+                            </label>
+                        </div>
+                        <div *ngIf="isPostCard">
+                            <textarea [(ngModel)]="postcard"></textarea>
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <textarea [(ngModel)]="postcard"></textarea>
+                    </div> -->
+                    <!-- <div class="checkbox">
                         <label class="container">
                             <input type="checkbox" [(ngModel)]="isPack">
                             <span class="checkmark"></span>
@@ -42,11 +59,11 @@
                     <div class="center" (click)="onClickisPack()">
                         <div class="top">{{'_pack_text' | language_translate:language}}</div>
                         <div class="bottom">(+150 {{'_pack_sum' | language_translate:language}})</div>
-                    </div>
+                    </div> -->
                 </div>
-                <p>{{'_total' | language_translate:language}}: <span [ngClass]="{'discount_price':isPromocode}">{{totalPrice}}
-                        ֏</span>
-                    <span *ngIf="isPromocode"> - {{discountPrice}} ֏</span>
+                <p>{{'_total' | language_translate:language}}: <span
+                        [ngClass]="{'discount_price':isPromocode}">{{totalPrice}}֏</span>
+                    <span *ngIf="isPromocode"> - {{discountPrice}}֏</span>
                 </p>
             </div>
             <div class="make_order" *ngIf="orderStep!=2">
@@ -135,6 +152,20 @@
                                             *</span>
                                     </div>
                                 </div>
+
+                                <div class="form_group">
+                                    <div class="label_wrapper_right">
+                                        <label>{{'_delivery_day' | language_translate:language}}</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <p-calendar dateFormat="dd.mm.yy" [locale]="locale"  [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" formControlName="delivery_day" [showIcon]="true"
+                                            [minDate]="minDate"></p-calendar>
+                                        <span required-field
+                                            *ngIf="orderForm.get('delivery_day').hasError('required') && orderForm.get('delivery_day').touched">{{'error1' | language_translate:language}}
+                                            *</span>
+                                    </div>
+                                </div>
+
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
                                         <label>{{'_address' | language_translate:language}}</label>
@@ -173,7 +204,7 @@
                             <!-- <p><span font-weight-bold>ИТОГО:</span>{{fullPrice}}</p>
                             <p><span font-weight-bold>{{bonusPrice}}</span></p> -->
                         </div>
-                        <div class="payment_method" display-flex>
+                        <div *ngIf="orderForm.get('city').value" class="payment_method" display-flex>
                             <div class="left-container">
                                 <p class="label">{{'_delivery_method' | language_translate:language}}</p>
                                 <span required-field
@@ -219,7 +250,8 @@
                                 </div>
                             </div>
                             <div class="right-container">
-                                <p class="label" *ngIf="isAuthorized">{{'_inner_balance' | language_translate:language}}</p>
+                                <p class="label" *ngIf="isAuthorized">{{'_inner_balance' | language_translate:language}}
+                                </p>
                                 <span required-field
                                     *ngIf="orderForm.get('payment_method').hasError('required') && orderForm.get('payment_method').touched">{{'error1' | language_translate:language}}
                                     *</span>
@@ -268,30 +300,27 @@
                         <div class="price_container">
                             <div class="sh_price">
                                 <span class="key">{{'_order_sum' | language_translate:language}}</span>
-                                <span class="value">{{totalPrice}}
-                                    ֏</span>
+                                <span class="value">{{totalPrice}}֏</span>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_delivery' | language_translate:language}}</span>
-                                <span class="value">{{shippingPrice}} ֏ <span class="abs_cont"
+                                <span class="value">{{shippingPrice}}֏ <span class="abs_cont"
                                         *ngIf="shippingPrice==0 && (orderForm.get('payment_method').value==4 || orderForm.get('payment_method').value==5)">(300
                                         ֏ {{'_insurance' | language_translate:language}})</span></span>
                             </div>
-                            <div class="sh_price">
-                                <span class="key">{{'_commission' | language_translate:language}}</span>
-                                <span class="value">{{codPrice}} ֏</span></div>
+                        
                             <div class="sh_price">
                                 <span class="key">{{'_total_text' | language_translate:language}}</span>
                                 <div [ngClass]="{'paylater':isPromocode && payLaterPrice}">
                                     <span [ngClass]="{'discount_price':isPromocode && payLaterPrice}"
-                                        class="value">{{payLaterPrice}} ֏
+                                        class="value">{{payLaterPrice}}֏
                                     </span>
-                                    <span *ngIf="isPromocode && payLaterPrice"> - {{discountPayLaterPrice}} ֏</span>
+                                    <span *ngIf="isPromocode && payLaterPrice"> - {{discountPayLaterPrice}}֏</span>
                                 </div>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_total_pay_now' | language_translate:language}}</span>
-                                <span class="value">{{payNowPrice}} ֏</span>
+                                <span class="value">{{payNowPrice}}֏</span>
                             </div>
                         </div>
                         <div class="make_order">

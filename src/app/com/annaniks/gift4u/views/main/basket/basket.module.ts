@@ -6,6 +6,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { BastketListComponent, BasketListItemComponent } from '../../../components';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/primeng';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { DropdownModule } from 'primeng/primeng';
         ReactiveFormsModule,
         FormsModule,
         DropdownModule,
+        CalendarModule
     ],
     providers: [BasketService]
 })

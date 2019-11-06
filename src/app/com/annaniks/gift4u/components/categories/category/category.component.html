@@ -32,7 +32,7 @@
                     *ngIf="item.subCategory && item.subCategory.length>0" (click)="onClickSubcategoryButton(item)">
                     <span grey> {{(item.isActive) ? '-':'+'}} </span></div>
             </div>
-            <div class="third_deep_subcategory" *ngIf="item.isActive">
+            <div *ngIf="item.isActive">
                 <span class="label category_subcategory" *ngFor="let subcategory of item.subCategory"
                     (click)="onClickCategory(subcategory)">{{getAttributeName(subcategory,'name')}}</span>
             </div>

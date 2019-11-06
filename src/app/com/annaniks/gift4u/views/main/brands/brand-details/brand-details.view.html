@@ -14,6 +14,11 @@
                 <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
             </div>
         </div>
+        <div class="slider">
+            <div container>
+                <app-slider [carouselItems]="banners" [carouselType]="'main'" [imageKey]="imageKey"></app-slider>
+            </div>
+        </div>
         <app-box *ngIf="productsCount && productsCount>0" [searchVisible]="true">
             <div>
                 <app-goods-list>

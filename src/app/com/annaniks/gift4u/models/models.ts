@@ -69,6 +69,7 @@ export class Product {
     price_with_vat: string;
     cityId: number;
     brandId: number;
+    duration_of_preparation:number;
     attributeSet: AttributeSet[];
     specificPrice: number;
     count?: number;
@@ -114,7 +115,8 @@ export class Product {
         this.discountType = '';
         this.both = -1;
         this.status = [];
-        this.isHaveBoth = false
+        this.isHaveBoth = false;
+        this.duration_of_preparation=0
     }
 }
 export interface CombinedAttribute {

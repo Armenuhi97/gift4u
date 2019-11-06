@@ -24,7 +24,9 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     private _routeSteps: any[];
     private _showMore: boolean = false;
     private _sort: string;
+    public imageKey: string = 'image';
     private _id: number;
+    private _banners=[]
     constructor(
         @Inject('FILE_URL') private _fileUrl: string,
         private _brandService: BrandsService,
@@ -37,7 +39,9 @@ export class BrandDetailsView implements OnInit, OnDestroy {
         this._checkBrandId();
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this._checkWindowSize()
+    }
 
     private _checkBrandId(): void {
         this._routeSubscription = this._activatedRoute.params.subscribe((params) => {
@@ -108,6 +112,11 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     public onClickShowMore(): void {
         this._showMore = !this._showMore;
     }
+    private _checkWindowSize(): void {
+        if (window.innerWidth <= 445) {
+            this.imageKey = 'smallImage';
+        }
+    }
 
     get loading(): boolean {
         return this._loading;
@@ -127,6 +136,9 @@ export class BrandDetailsView implements OnInit, OnDestroy {
 
     get pageLength(): number {
         return this._pageLength;
+    }
+    get banners(){
+        return this._banners
     }
 
     get brandInfo() {

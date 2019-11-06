@@ -5,6 +5,9 @@
         <p class="name">{{getAttributeName(basketItem,'name')}}</p>
     </div>
 </td>
+<td text-align-center>
+    <p>{{basketItem?.duration_of_preparation}} </p>
+</td>
 <td>
     <div class="price">
         <p [ngClass]="{'old':promoPrice,'new':!promoPrice}">

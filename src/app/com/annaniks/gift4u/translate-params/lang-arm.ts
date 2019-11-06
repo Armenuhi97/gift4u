@@ -31,7 +31,12 @@ export const LANG_ARM_TRANS = {
     'contacts': 'Կոնտակտներ',
     'brands': 'Ապրանքանիշներ',
     'brand': 'Ապրանքանիշ',
-
+    '_postcard':'Բացիկ',
+    '_pay_now':'Վճարել հիմա',
+    '_bank_card':'Բանկային քարտերով',
+    '_upon_receipt':'Ստանալիս',
+    '_cash_courier':'Կանխիկ կամ առաքման քարտով',
+    '_delivery_day':'Առաքման օրը',
     //slide-nav
     '_info': 'Տեղեկատվություն',
     '_catalog': 'ԿԱՏԱԼՈԳ',
@@ -41,6 +46,7 @@ export const LANG_ARM_TRANS = {
     '_total': 'ԸՆԴԱՄԵՆԸ',
     '_order': 'Պատվիրել',
     '_pack_sum': '֏ պատվերին',
+    '_duration_of_preparation':'պատրաստման տևողությունը (օր)',
     '_contact_entity': 'Կոնտակտային տվյալներ',
     '_full_name': 'ԱԱՀ',
     '_phone': 'Հեռախոսահամար',
