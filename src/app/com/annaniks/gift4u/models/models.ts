@@ -83,7 +83,8 @@ export class Product {
     discountType?: string;
     both?: number;
     status: ProductStatus[];
-    isHaveBoth: boolean
+    isHaveBoth: boolean;
+    is_post:any
     constructor() {
         this.active = 0;
         this.attribute_set_id = 0;
@@ -116,7 +117,8 @@ export class Product {
         this.both = -1;
         this.status = [];
         this.isHaveBoth = false;
-        this.duration_of_preparation=0
+        this.duration_of_preparation=0;
+        this.is_post=null
     }
 }
 export interface CombinedAttribute {

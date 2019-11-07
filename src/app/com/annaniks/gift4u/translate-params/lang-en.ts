@@ -35,7 +35,7 @@ export const LANG_EN_TRANS = {
     //slide-nav
     '_info': 'Information',
     '_catalog': 'Catalog',
-    //busket
+    //basket
     '_get_sale': 'Get sale',
     '_pack_text': 'Pack in gift box',
     '_total': 'TOTAL',
@@ -80,6 +80,7 @@ export const LANG_EN_TRANS = {
     '_remember': 'Remember',
     '_enter': 'Enter',
     '_recover_password': 'Recover the password',
+    '_post_error': 'These products do not have the ability to send by post',
     //registration
     '_password': 'Password',
     '_confirm_password': 'Confirm password',

@@ -315,8 +315,14 @@
       }
     }
   }
+  .post_error{
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
   .payment_method {
-    margin-top: 64px;
+    margin-top: 33px;
 
     .left,
     .right,

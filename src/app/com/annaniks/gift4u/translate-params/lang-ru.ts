@@ -175,8 +175,5 @@ export const LANG_RU_TRANS = {
     '_error':'Ошибка',
     '_send_message_success_message':'Ваше сообщение успешно отправлено',
     '_add_to_basket': 'ДОБАВИТЬ В КОРЗИНУ',
-
-
-
-
+    '_post_error': 'Эти продукты не имеют возможности отправлять по почте',
 };

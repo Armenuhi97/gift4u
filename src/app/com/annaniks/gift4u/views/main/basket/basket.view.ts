@@ -30,6 +30,7 @@ export class BasketView implements OnInit {
     public promoCodeLoading: boolean = false;
     private _promoCodeFormControl = new FormControl(null, Validators.required);
     private _promoCode;
+    private _isPost: boolean = false
     public promoCodeMessage: string;
     public isPromocode: boolean = false;
     private _totalPrice: number;
@@ -122,7 +123,8 @@ export class BasketView implements OnInit {
         this._getAllAddresses();
         this._getCities();
         this._getCarriers();
-        this._setMinDate()
+        this._setMinDate();
+        this._isPostProduct()
     }
     private _checkQueryParams(): void {
         let params = this._activatedRoute.snapshot.queryParams;
@@ -184,6 +186,7 @@ export class BasketView implements OnInit {
             if (this._orderForm.get('shipping_method').value) {
                 this._checkShippingPrice(this._appService.checkPropertyValue(data, 'id'), this._orderForm.get('shipping_method').value);
             }
+            this._isPostProduct()
             this._setVisibleCarriers(data);
             this._setVisiblePayMethods(data);
         })
@@ -305,7 +308,6 @@ export class BasketView implements OnInit {
     private _getCarriers(): void {
         this._basketService.getCarriers().subscribe((data) => {
             this.carrierTypes = data.messages;
-            console.log(this.carrierTypes);
             this._setVisibleCarriers(this.orderForm.get('city').value);
         })
     }
@@ -352,7 +354,6 @@ export class BasketView implements OnInit {
                 else {
                     this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ֏`, `Доставка +${+shippingPrice.price} ֏`, `Առաքումը +${+shippingPrice.price} ֏`)
                     this.shippingPrice = +shippingPrice.price;
-
                 }
                 return;
             })
@@ -365,11 +366,10 @@ export class BasketView implements OnInit {
         }
         this.basketProducts.splice(index, 1);
         localStorage.setItem('basket_products', JSON.stringify(this.basketProducts));
-        this._setMinDate()
+        this._setMinDate();
+        this._isPostProduct()
         if (this.isPromocode) {
             this._calculatePromocodeDiscountPrice()
-
-
         }
         this._mainService.checkUserBasketPrice();
     }
@@ -478,25 +478,34 @@ export class BasketView implements OnInit {
                 this.loading = false;
             })
     }
-
+    private _isPostProduct() {
+        let count: number = 0
+        this.basketProducts.forEach((product) => {
+            if (product.is_post) {
+                count++
+            }
+        })        
+        if (this.orderForm.get('city').value && this.orderForm.get('city').value.region !== 1){
+            this._isPost = (count == this.basketProducts.length) ? false : true
+        }else{
+            this._isPost=false
+        }
+           
+    }
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
-            console.log(this.cities);
-            //"Երևան"
             if (city.region === 3) {
-                this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 4 || element.id === 5);
+                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 2);
             }
-            //"Վանաձոր"
             if (city.region === 2) {
-                this.visibleCarrierTypes = this.carrierTypes;
+                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 2);
             }
-            //"Գյումրի"
             if (city.region === 1) {
                 this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 3);
             }
-            //"ՀՀ մյուս բնակավայրեր"
+            
             if (city.region === 4) {
-                this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 4 || element.id === 5)
+                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 4) : []
             }
         }
         let filteredArr = this.visibleCarrierTypes.filter((element) => element.id == this._orderForm.get('shipping_method').value)
@@ -507,14 +516,11 @@ export class BasketView implements OnInit {
 
     private _setVisiblePayMethods(city: CityCountry): void {
         if (city) {
-            if (city.region === 3 || city.region === 4) {
-                this.visiblePaymentMethods = this.paymentMethods.filter((element) => element.id === 0 || element.id === 4 || element.id === 5);
-            }
-            if (city.region === 2) {
+            if (city.region === 1 || city.region === 2 || city.region === 3) {
                 this.visiblePaymentMethods = this.paymentMethods;
             }
-            if (city.region === 1) {
-                this.visiblePaymentMethods = this.paymentMethods.filter((element) => element.id === 0 || element.id === 1);
+            if (city.region === 4) {
+                this.visiblePaymentMethods = this.paymentMethods.filter((element) => element.id === 0);
             }
         }
         let filteredArr = this.visiblePaymentMethods.filter((element) => element.id == this._orderForm.get('payment_method').value)
@@ -736,7 +742,9 @@ export class BasketView implements OnInit {
         return totalPrice;
     }
 
-
+    get post(): boolean {
+        return this._isPost
+    }
 
     get promoCodeFormControl(): FormControl {
         return this._promoCodeFormControl;
