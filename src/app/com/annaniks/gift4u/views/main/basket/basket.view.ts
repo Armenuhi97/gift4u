@@ -221,6 +221,9 @@ export class BasketView implements OnInit {
             index: value.index
         })
     }
+    public onClickisPostcard(): void {
+        this.isPostCard = !this.isPostCard
+    }
     private _setFormValues(): void {
         if (this._mainService.isAuthorized) {
             this._mainService.getUser().subscribe((data) => {
@@ -484,13 +487,13 @@ export class BasketView implements OnInit {
             if (product.is_post) {
                 count++
             }
-        })        
-        if (this.orderForm.get('city').value && this.orderForm.get('city').value.region !== 1){
+        })
+        if (this.orderForm.get('city').value && this.orderForm.get('city').value.region !== 1) {
             this._isPost = (count == this.basketProducts.length) ? false : true
-        }else{
-            this._isPost=false
+        } else {
+            this._isPost = false
         }
-           
+
     }
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
@@ -503,7 +506,7 @@ export class BasketView implements OnInit {
             if (city.region === 1) {
                 this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 3);
             }
-            
+
             if (city.region === 4) {
                 this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 4) : []
             }

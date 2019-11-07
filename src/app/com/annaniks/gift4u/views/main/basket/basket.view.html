@@ -34,14 +34,18 @@
                 </div>
                 <div class="isPackContainer">
                     <div full-width>
-                        <div class="checkbox">
-                            <label class="container">
-                                <input type="checkbox" [(ngModel)]="isPostCard">
-                                <span class="checkmark"></span>
-                                <div class="center">
-                                    <label>{{'_postcard' | language_translate:language}}</label>
-                                </div>
-                            </label>
+                        <div>
+                            <div class="checkbox">
+                                <label class="container">
+                                    <input type="checkbox" [(ngModel)]="isPostCard">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                            <div class="center">
+                                <label
+                                    (click)="onClickisPostcard()">{{'_postcard' | language_translate:language}}</label>
+                            </div>
                         </div>
                         <div *ngIf="isPostCard">
                             <textarea [(ngModel)]="postcard"></textarea>
@@ -118,6 +122,20 @@
                                             *</span>
                                     </div>
                                 </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_left">
+                                        <label>{{'_delivery_day' | language_translate:language}}</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <p-calendar dateFormat="dd.mm.yy" [locale]="locale"
+                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            formControlName="delivery_day" [showIcon]="true" [minDate]="minDate">
+                                        </p-calendar>
+                                        <span required-field
+                                            *ngIf="orderForm.get('delivery_day').hasError('required') && orderForm.get('delivery_day').touched">{{'error1' | language_translate:language}}
+                                            *</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="right">
 
@@ -149,21 +167,6 @@
                                             [optionLabel]="getAttributeName('name')"></p-dropdown>
                                         <span required-field
                                             *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | language_translate:language}}
-                                            *</span>
-                                    </div>
-                                </div>
-
-                                <div class="form_group">
-                                    <div class="label_wrapper_right">
-                                        <label>{{'_delivery_day' | language_translate:language}}</label>
-                                    </div>
-                                    <div class="input_container">
-                                        <p-calendar dateFormat="dd.mm.yy" [locale]="locale"
-                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
-                                            formControlName="delivery_day" [showIcon]="true" [minDate]="minDate">
-                                        </p-calendar>
-                                        <span required-field
-                                            *ngIf="orderForm.get('delivery_day').hasError('required') && orderForm.get('delivery_day').touched">{{'error1' | language_translate:language}}
                                             *</span>
                                     </div>
                                 </div>
@@ -207,9 +210,9 @@
                             <p><span font-weight-bold>{{bonusPrice}}</span></p> -->
                         </div>
                         <div *ngIf="post" class="post_error">{{'_post_error' | language_translate:language}}</div>
-                        <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length" class="payment_method"
+                        <div class="payment_method"
                             display-flex>
-                            <div class="left-container">
+                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length"  class="left-container">
                                 <p class="label">{{'_delivery_method' | language_translate:language}}</p>
                                 <span required-field
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}
@@ -229,7 +232,7 @@
                                 </div>
 
                             </div>
-                            <div class="center-container">
+                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length"  class="center-container">
                                 <p class="label">{{'payment_method' | language_translate:language}}</p>
                                 <span required-field
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}

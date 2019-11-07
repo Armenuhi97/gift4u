@@ -25,7 +25,7 @@
                     expand_more
                 </i>
             </button>
-            <input type="text" disabled [(ngModel)]="basketItem.count" />
+            <input type="text" OnlyNumber [(ngModel)]="basketItem.count" />
             <button (click)="onClickIncrement()">
                 <i class="material-icons">
                     keyboard_arrow_up

@@ -64,10 +64,6 @@ export class CatalogView implements OnInit {
                     this._sort = params.sort;
                 }
                 this._getCategories(params.parentcategoryid, params.parentcategoryname);
-                // this._label = (params.categoryname) ? params.categoryname : params.parentcategoryname;
-                // console.log(this.label);
-                
-                // this._titleService.setTitle(this._label);
                 this._parentId = params.parentcategoryid;
                 if (params && params.parentcategoryid) {
                     if (params.categoryid) {
@@ -109,38 +105,6 @@ export class CatalogView implements OnInit {
             this._categories = data.messages;
         })
     }
-
-    // private _getProducts(categoryId: number, isParent: boolean = false): void {
-    //     this._loadingService.showLoading();
-    //     this._catalogService.getProducts(categoryId, isParent, '').subscribe((data) => {
-    //         this._fixedProducts = data.messages['data'];
-    //         this._fullProducts = data.messages['data'];
-    //         this._products = data.messages['data'];
-    //         this._productsCount = data.messages['data'].length;
-    //         this._resetProperties();
-    //         let paths: Path[] = data.messages['path'].reverse();
-    //         paths.forEach((element, index) => {
-    //             if (index == 0) {
-    //                 this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
-    //             }
-    //             else {
-    //                 this._setRouteSteps({ label: element.name, url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
-    //             }
-    //         })
-    //         this._filterProducts();
-    //         this._sortProducts(this._sort);
-    //         this._setPage(this._page);
-    //         this._loadingService.hideLoading();
-
-    //     },
-    //         () => {
-    //             this._loadingService.hideLoading()
-    //         })
-    // }
-
-    // private _setPage(pageNumber: number): void {
-    //     this._products = this._fullProducts.slice((pageNumber - 1) * this._pageLength, pageNumber * this._pageLength)
-    // }
     private _getFiltersProduct(fil) {
         this._loadingService.showLoading()
         this._catalogService.filterCategory(fil).subscribe((data) => {
@@ -152,10 +116,10 @@ export class CatalogView implements OnInit {
             let paths: Path[] = data['path'].reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element, 'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element, 'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryId: element.categoryId }, status: '' });
                 }
             })
             this.isChangeCategory = false
@@ -165,8 +129,8 @@ export class CatalogView implements OnInit {
                 this._loadingService.hideLoading()
             })
     }
-    public getAttributeName(obj,name: string) {
-        return this._translateService.getRequestTranslateAttributeName(obj,name)
+    public getAttributeName(obj, name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
 
     private _filterProducts(): void {
@@ -228,7 +192,7 @@ export class CatalogView implements OnInit {
     get showFilters(): boolean {
         return this._isShowFilters;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 }

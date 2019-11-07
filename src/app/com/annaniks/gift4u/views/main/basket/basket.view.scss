@@ -69,7 +69,6 @@
     text-align: center;
     display: flex;
     margin-top: 10px;
-    cursor: pointer;
     label{
       color: white;
     }
@@ -82,8 +81,12 @@
     }
     .center {
       margin: auto;
-      margin-left: 15px;
+      margin-bottom: 14px;
       font-size: 25px;
+      label{
+        margin-left: 20px;
+        cursor: pointer;
+      }
       // .top {
       //   font-size: 13px;
       //   color: $text-color;
@@ -162,7 +165,7 @@
     width: 34px;
     background-color: white;
     border-radius: 50%;
-    border: 2px solid $second-color;
+    border: 2px solid $main-color;
   }
 
   /* When the radio button is checked, add a blue background */
@@ -320,6 +323,7 @@
     font-size: 16px;
     margin-top: 20px;
     margin-bottom: 15px;
+    text-align: center;
   }
   .payment_method {
     margin-top: 33px;
