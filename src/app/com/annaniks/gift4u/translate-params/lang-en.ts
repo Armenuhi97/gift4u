@@ -37,7 +37,6 @@ export const LANG_EN_TRANS = {
     '_catalog': 'Catalog',
     //basket
     '_get_sale': 'Get sale',
-    '_pack_text': 'Pack in gift box',
     '_total': 'TOTAL',
     '_order': 'To do order',
     '_duration_of_preparation': 'duration of the training (day)',
@@ -80,7 +79,7 @@ export const LANG_EN_TRANS = {
     '_remember': 'Remember',
     '_enter': 'Enter',
     '_recover_password': 'Recover the password',
-    '_post_error': 'These products do not have the ability to send by post',
+    '_post_error': 'This product is not possible to send by post',
     //registration
     '_password': 'Password',
     '_confirm_password': 'Confirm password',

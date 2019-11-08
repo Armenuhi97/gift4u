@@ -209,7 +209,6 @@
                             <!-- <p><span font-weight-bold>ИТОГО:</span>{{fullPrice}}</p>
                             <p><span font-weight-bold>{{bonusPrice}}</span></p> -->
                         </div>
-                        <div *ngIf="post" class="post_error">{{'_post_error' | language_translate:language}}</div>
                         <div class="payment_method"
                             display-flex>
                             <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length"  class="left-container">
@@ -278,9 +277,9 @@
                                             <!-- <p class="under" error>
                                                 {{checkUserBalance('balance','баланс')}}
                                             </p> -->
-                                            <p class="under" error *ngIf="userBalance<=0">
+                                            <!-- <p class="under" error *ngIf="userBalance<=0">
                                                 {{'_payment_error' | language_translate:language}}
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                     <div display-flex align-items-center [ngClass]="{'disabled-bonuce':userBonuce<=0}"

@@ -98,4 +98,7 @@ export class BasketListItemComponent implements OnInit {
             return +price
         }
     }
+    get language(){
+        return this._translateService.getActiveLanguage()
+    }
 }

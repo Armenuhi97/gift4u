@@ -488,7 +488,7 @@ export class BasketView implements OnInit {
                 count++
             }
         })
-        if (this.orderForm.get('city').value && this.orderForm.get('city').value.region !== 1) {
+        if (this.orderForm.get('city').value) {
             this._isPost = (count == this.basketProducts.length) ? false : true
         } else {
             this._isPost = false
@@ -497,18 +497,19 @@ export class BasketView implements OnInit {
     }
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
-            if (city.region === 3) {
-                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 2);
+            if (city.region === 3 || city.region === 2 || city.region === 1) {
+                
+                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
             }
-            if (city.region === 2) {
-                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 2);
-            }
-            if (city.region === 1) {
-                this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 3);
-            }
+            // if (city.region === 2) {
+            //     this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
+            // }
+            // if (city.region === 1) {
+            //     this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 3);
+            // }
 
             if (city.region === 4) {
-                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 4) : []
+                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 4 || element.id === 3) : this.carrierTypes.filter((element) => element.id === 3)
             }
         }
         let filteredArr = this.visibleCarrierTypes.filter((element) => element.id == this._orderForm.get('shipping_method').value)
