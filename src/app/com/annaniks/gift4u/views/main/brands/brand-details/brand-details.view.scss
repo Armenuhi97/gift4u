@@ -2,19 +2,25 @@ app-goods-list-item{
     width: 25% !important;
     padding:0.5em;
 }
-.slider{
-    min-height: 402px;
-}
 app-slider{   
     width: 100%;
 }
+
 .brand_name{
     font-weight: bold;
     font-size: 1.5em;
 }
 :host ::ng-deep{
+    // .slider{
+    //     .slick-prev{
+    //         left: 220px !important;
+    //     }
+    // }
     .box_container{
-        margin-top: 110px !important;
+        margin-top: 135px !important;
+    }
+    .slick-slider .slick-track, .slick-slider .slick-list{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 1024px) {
@@ -25,8 +31,9 @@ app-slider{
         .slider{
             app-slider{
                 .slide{
-                    height: 300px !important;
+                    height: 340px !important;
                 }
+               
             }
         }
     }
@@ -51,7 +58,28 @@ app-slider{
     :host ::ng-deep .box_container{
             margin-top: 20px !important;
     }    
+    
+    :host ::ng-deep{
+        .slider{
+            .slick-prev{
+                left: 0 !important;
+            }
+        }
+    } 
 }
+@media only screen and (max-width:660px){
+    :host ::ng-deep{
+        .slider{
+            app-slider{
+                .slide{
+                    height: 300px !important;
+                }
+            }
+        }
+    }
+
+}
+
 @media only screen and (max-width:445px){
     :host ::ng-deep{
         .slider{
@@ -121,7 +149,7 @@ app-slider{
     .title{
         display: block;
         // line-height: 16px;
-        height: 97px;
+        height: 79px;
         overflow: hidden;
         box-shadow: 0px -35px 26px #fff inset;
       

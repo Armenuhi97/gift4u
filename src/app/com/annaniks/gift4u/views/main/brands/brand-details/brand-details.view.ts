@@ -65,7 +65,10 @@ export class BrandDetailsView implements OnInit, OnDestroy {
             this._getBrandById(this._id, this._page - 1, this._pageLength, this._sort)
         })
     }
-
+    public getAttributeName(obj, name: string) {
+        if (obj && obj.name)
+            return this._translateService.getRequestTranslateAttributeName(obj, name)
+    }
     private _getBrandById(id: number, page: number, pageLength: number, sort): void {
         this._loading = true;
         this._loadingService.showLoading();
@@ -76,6 +79,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
             this._fullProducts = data.messages.product;
             this._productsCount = data.count;
             this._brandInfo = data.messages.brand[0];
+            this._banners = this._brandInfo.images
             this._title.setTitle(this._brandInfo.name);
             this._meta.updateTag({ name: 'description', content: this._brandInfo.description })
             this._meta.updateTag({ name: 'keywords', content: this._brandInfo.keywords })
@@ -87,23 +91,6 @@ export class BrandDetailsView implements OnInit, OnDestroy {
 
     private _resetProperties(): void {
         this._page = 1;
-    }
-
-    private _sortProducts(sort: string): void {
-        switch (sort) {
-            case 'max': {
-                this._fullProducts.sort((a, b) => { return +a.price_with_vat - +b.price_with_vat });
-                break;
-            }
-            case 'min': {
-                this._fullProducts.sort((a, b) => { return +b.price_with_vat - +a.price_with_vat });
-                break;
-            }
-            case 'none': {
-                this._fullProducts.sort((a, b) => { return a.product_id - b.product_id });
-            }
-        }
-
     }
 
     public onPageChange($event) {
@@ -160,7 +147,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     }
 
     get showText(): string {
-        return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թակցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
+        return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թաքցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
     }
 
     ngOnDestroy() {

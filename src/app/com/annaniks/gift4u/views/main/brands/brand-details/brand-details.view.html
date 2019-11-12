@@ -10,13 +10,16 @@
 
             <div class="info_content">
                 <img class="img" [src]="fileUrl+'brand/'+brandInfo?.image">
-                <span class="title" [innerHTML]="brandInfo?.title" [ngClass]="{'show':showMore}" none-select></span>
+                <span class="title" [innerHTML]="getAttributeName(brandInfo,'title')" [ngClass]="{'show':showMore}"
+                    none-select></span>
                 <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
             </div>
+
         </div>
         <div *ngIf="banners && banners.length>0" class="slider">
             <div container>
-                <app-slider [carouselItems]="banners" [carouselType]="'main'" [imageKey]="imageKey"></app-slider>
+                <app-slider [itemHeight]="'435'" [carouselItems]="banners" [prefix]="'brands/'" [carouselType]="'main'"
+                    [imageKey]="'name'"></app-slider>
             </div>
         </div>
         <app-box *ngIf="productsCount && productsCount>0" [searchVisible]="true">

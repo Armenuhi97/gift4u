@@ -13,8 +13,8 @@ export class SliderComponent implements OnInit {
     @Input('prefix') private _prefix: string = 'banner/';
     @Input('startSlideIndex') private _startSlideIndex = undefined;
     @Input('imageKey') private _imageKey: string = 'image';
-    @ViewChild('slickModal',{static:false}) carousel;
-    public isInit:boolean=false
+    @ViewChild('slickModal', { static: false }) carousel;
+    public isInit: boolean = false
     private _currentIndex: number = 1;
     private _slideConfig = {
         "slidesToShow": 1,
@@ -22,7 +22,7 @@ export class SliderComponent implements OnInit {
         "speed": 300,
         "prevArrow": "<img class='a-left control-c prev slick-prev' src='assets/images/baseline_keyboard_arrow_left_white.png'>",
         "nextArrow": "<img class='a-right control-c next slick-next' src='assets/images/baseline_keyboard_arrow_right_white.png'>",
-  };
+    };
 
     constructor(@Inject('FILE_URL') private _fileUrl: string, private _ngZone: NgZone) { }
 
@@ -35,15 +35,16 @@ export class SliderComponent implements OnInit {
             this.carousel.moveTo(this._startSlideIndex);
         }
     }
-    slickInit($event){
-        if($event){
-            setTimeout(()=>{
-                this.isInit=true
-            },10)            
+    slickInit($event) {
+        if ($event) {
+            setTimeout(() => {
+                this.isInit = true
+            }, 10)
         }
     }
     public onClickMoreInfo(item): void {
-        window.open(item.link);
+        if (item.link)
+            window.open(item.link);
     }
 
     public onClickCarouselItem(item: Partner): void {
@@ -51,14 +52,14 @@ export class SliderComponent implements OnInit {
     }
 
     private _checkCarouselType(): void {
-        if (this._carouselType=='main'){
-            this._slideConfig['autoplay']=true;
-            this._slideConfig['autoplayspeed']="3000",
-            this._slideConfig['dots']=true;
+        if (this._carouselType == 'main') {
+            this._slideConfig['autoplay'] = true;
+            this._slideConfig['autoplayspeed'] = "3000",
+                this._slideConfig['dots'] = true;
         }
         if (this._carouselType == 'small') {
             this._slideConfig['slidesToShow'] = 6;
-          
+
             this._slideConfig['responsive'] = [
                 {
                     breakpoint: 0,
@@ -94,40 +95,40 @@ export class SliderComponent implements OnInit {
         }
         if (this._carouselType == 'good') {
             this._slideConfig['slidesToShow'] = 5;
-            this._slideConfig['autoplay']=true;
-            this._slideConfig['autoplayspeed']="900",
-            this._slideConfig['responsive'] = [
-                {
-                    breakpoint: 0,
-                    settings: {
-                        slidesToShow: 5,
+            this._slideConfig['autoplay'] = true;
+            this._slideConfig['autoplayspeed'] = "900",
+                this._slideConfig['responsive'] = [
+                    {
+                        breakpoint: 0,
+                        settings: {
+                            slidesToShow: 5,
+                        }
+                    },
+                    {
+                        breakpoint: 1144,
+                        settings: {
+                            slidesToShow: 4,
+                        }
+                    },
+                    {
+                        breakpoint: 968,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    },
+                    {
+                        breakpoint: 720,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 540,
+                        settings: {
+                            slidesToShow: 2,
+                        }
                     }
-                },
-                {
-                    breakpoint: 1144,
-                    settings: {
-                        slidesToShow: 4,
-                    }
-                },
-                {
-                    breakpoint: 968,
-                    settings: {
-                        slidesToShow: 3,
-                    }
-                },
-                {
-                    breakpoint: 720,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 540,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                }
-            ]
+                ]
         }
         if (window.innerWidth <= 470) {
             this._slideConfig['slidesToShow'] = 1;

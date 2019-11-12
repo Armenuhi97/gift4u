@@ -77,67 +77,6 @@ export class HomeView implements OnInit, OnDestroy {
         }
     }
 
-    private _getBanners(): Observable<void> {
-        return this._homeService.getBanners().pipe(
-            map((data: ServerResponse<Banner[]>) => {
-                this.banners = data.messages;
-            })
-        )
-    }
-
-    private _getProductVideos(): Observable<void> {
-        return this._homeService.getProductVideos().pipe(
-            map((data: ServerResponse<Video[]>) => {
-                this._videos = data.messages;
-                this._videos.forEach((element: Video, index: number) => {
-                    element.link = JSON.parse(element.link);
-                })
-            })
-        )
-    }
-
-    private _getSocialItems(): Observable<void> {
-        return this._homeService.getSocialItems().pipe((
-            map((data: ServerResponse<SocialItem[]>) => {
-                this.socialNetworks = data.messages;
-            })
-        ))
-    }
-
-    private _getPartners(): Observable<void> {
-        return this._homeService.getPartners().pipe((
-            map((data: ServerResponse<Partner[]>) => {
-                this.partners = data.messages;
-            })
-        ))
-    }
-
-    private _getMagazineInfo(): Observable<void> {
-        return this._homeService.getMagazineInfo().pipe(
-            map((data: ServerResponse<ParfumeInfo[]>) => {
-                this.magazinInfo = data.messages[0];
-            })
-        )
-    }
-
-    private _getProducts(status: string, type: string): Observable<void> {
-        return this._homeService.getProductsByStatus(status).pipe((
-            map((data: ServerResponse<Product[]>) => {
-                switch (type) {
-                    case 'popular':
-                        this.popularProducts = data.messages;
-                        break;
-                    case 'new':
-                        this.newProducts = data.messages;
-                        break;
-                    case 'special':
-                        this.specialProducts = data.messages;
-                        break;
-                }
-            })
-        ))
-    }
-
     private _subscribeEmail(email: string): void {
         this._homeService.subscribeEmail({ email: email }).subscribe((data) => {
             this.isSubscribed = true;
