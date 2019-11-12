@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Announcement } from '../../../../models/models';
 import { Title, Meta } from '@angular/platform-browser';
 import { SettingsService } from '../../settings/settings.service';
+import { TranslateService } from '../../../../services';
 
 @Component({
     selector: 'news-details-view',
@@ -17,7 +18,8 @@ export class NewsDetailsView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         @Inject('FILE_URL') private _fileUrl: string,
         private _title: Title,
-        private _meta: Meta
+        private _meta: Meta,
+        private _translateService:TranslateService
     ) { }
 
     ngOnInit() {
@@ -55,6 +57,6 @@ export class NewsDetailsView implements OnInit {
     }
 
     get showText(): string {
-        return (this._showMore) ? 'свернуть' : 'развернуть'
+        return (this._showMore) ? this._translateService.translateImportant('more','свернуть','ավելին') :this._translateService.translateImportant('hide', 'развернуть','թակցնել')
     }
 }

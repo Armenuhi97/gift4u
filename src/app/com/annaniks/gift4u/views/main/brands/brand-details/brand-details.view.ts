@@ -6,6 +6,7 @@ import { Product } from '../../../../models/models';
 import { Brand } from '../brands.models';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../../services/loading.service';
+import { TranslateService } from '../../../../services';
 
 @Component({
     selector: 'brand-details-view',
@@ -26,7 +27,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     private _sort: string;
     public imageKey: string = 'image';
     private _id: number;
-    private _banners=[]
+    private _banners = []
     constructor(
         @Inject('FILE_URL') private _fileUrl: string,
         private _brandService: BrandsService,
@@ -34,7 +35,8 @@ export class BrandDetailsView implements OnInit, OnDestroy {
         private _router: Router,
         private _title: Title,
         private _meta: Meta,
-        private _loadingService: LoadingService
+        private _loadingService: LoadingService,
+        private _translateService: TranslateService
     ) {
         this._checkBrandId();
     }
@@ -137,7 +139,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     get pageLength(): number {
         return this._pageLength;
     }
-    get banners(){
+    get banners() {
         return this._banners
     }
 
@@ -158,7 +160,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     }
 
     get showText(): string {
-        return (this._showMore) ? 'свернуть' : 'развернуть'
+        return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թակցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
     }
 
     ngOnDestroy() {

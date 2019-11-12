@@ -12,6 +12,11 @@ app-slider{
     font-weight: bold;
     font-size: 1.5em;
 }
+:host ::ng-deep{
+    .box_container{
+        margin-top: 83px !important;
+    }
+}
 @media only screen and (max-width: 1024px) {
     .slider{
         min-height: inherit !important;
@@ -37,6 +42,16 @@ app-slider{
         width: 33.3333% !important;
     }
 }
+@media only screen and (max-width:550px){
+    .info_content{
+        .title{
+            height: 209px !important;
+        }
+    }
+    :host ::ng-deep .box_container{
+            margin-top: 20px !important;
+    }    
+}
 @media only screen and (max-width:445px){
     :host ::ng-deep{
         .slider{
@@ -59,6 +74,7 @@ app-slider{
             }
         }
     }
+  
 }
 
 @media only screen and (max-width:445px) and (min-width:726px){
@@ -105,7 +121,7 @@ app-slider{
     .title{
         display: block;
         // line-height: 16px;
-        height: 209px;
+        height: 97px;
         overflow: hidden;
         box-shadow: 0px -35px 26px #fff inset;
       
@@ -116,8 +132,7 @@ app-slider{
         p{
             color:red;
         }
-    }
-    
+    }    
     .show_bttn{
         margin-top: 10px;
         color:black;
@@ -125,9 +140,7 @@ app-slider{
         &:hover{
             text-decoration: none;
         }
-    }
-
-  
+    }  
 }
 
 :host ::ng-deep{
