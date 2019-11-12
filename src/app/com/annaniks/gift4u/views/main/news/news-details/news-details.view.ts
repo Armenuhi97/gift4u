@@ -57,6 +57,6 @@ export class NewsDetailsView implements OnInit {
     }
 
     get showText(): string {
-        return (this._showMore) ? this._translateService.translateImportant('more','свернуть','ավելին') :this._translateService.translateImportant('hide', 'развернуть','թակցնել')
+        return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թակցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
     }
 }

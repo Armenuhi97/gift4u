@@ -175,6 +175,7 @@ export class ProductFull {
     fullDescription: string;
     group_id: number;
     id: number;
+    duration_of_preparation:number;
     keywords: string;
     name: string;
     price: string;
@@ -226,7 +227,8 @@ export class ProductFull {
         this.price_with_vat = '';
         this.path = [];
         this.smallImage = '';
-        this.countProduct = ''
+        this.duration_of_preparation=0;
+        this.countProduct = '';
         this.specificPrice = '';
     }
 }

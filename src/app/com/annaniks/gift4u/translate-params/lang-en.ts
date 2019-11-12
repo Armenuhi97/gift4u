@@ -203,6 +203,6 @@ export const LANG_EN_TRANS = {
     '_message': 'Message',
     '_error': 'Error',
     '_send_message_success_message': 'Your message has been sent successfully',
-    '_maked_day':'The time of manufacture of the product is',
+    '_maked_day':'The duration of manufacture of the product is',
     '_days':'d.',
 };
