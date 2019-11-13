@@ -128,8 +128,8 @@ export class BasketView implements OnInit {
     }
     private _checkQueryParams(): void {
         let params = this._activatedRoute.snapshot.queryParams;
-        if (params && params.orderId && params.lang) {
-            this._checkPaymentVerification(params.orderId)
+        if (params && params.orderID) {
+            this._checkPaymentVerification(params.paymentID)
         }
         else {
             this.isPaymentChecked = true;
@@ -332,9 +332,9 @@ export class BasketView implements OnInit {
             },
             (error) => {
                 this.message = this.getTranslateWord(
-                    `Your payment has NOT been made!  (${error.error.data.ErrorMessage})`,
-                    `Ваш платеж НЕ совершен! (${error.error.data.ErrorMessage})`,
-                    `Ձեր վճարումը չի կատարվել (${error.error.data.ErrorMessage})`);
+                    `Your payment has NOT been made!  (${error.error.data.Description})`,
+                    `Ваш платеж НЕ совершен! (${error.error.data.Description})`,
+                    `Ձեր վճարումը չի կատարվել (${error.error.data.Description})`);
                 this.isPaymentChecked = true;
             })
     }
@@ -446,9 +446,10 @@ export class BasketView implements OnInit {
                 if (data && data.orderId) {
                     if (data.isCash == 0 || data.isCash == 4 || data.isCash == 5) {
                         if (data.paymant) {
-                            let responseData = JSON.parse(data.paymant);
-                            if (responseData.orderId && data.pay) {
-                                window.location.href = responseData.formUrl;
+                            let payment = data.paymant
+                            // let responseData = JSON.parse(data.paymant);
+                            if (payment.PaymentID && data.pay) {
+                                window.location.href = `https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=${payment.PaymentID}&lang=am`;
                             }
                             else {
                                 localStorage.removeItem('basket_products');
@@ -498,7 +499,7 @@ export class BasketView implements OnInit {
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
             if (city.region === 3 || city.region === 2 || city.region === 1) {
-                
+
                 this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
             }
             // if (city.region === 2) {
