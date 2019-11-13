@@ -93,8 +93,13 @@ export class BasketView implements OnInit {
     public paymentMethods = [
         { id: 0, header: translate('_pay_now'), under: translate('_bank_card'), percent: 0 },
         { id: 1, header: translate('_upon_receipt'), under: translate('_cash_courier'), percent: 0 },
-
     ]
+    private _allTimes = [
+        { name: '10:00 - 13:00' },
+        { name: '13:00 - 16:00' },
+        { name: '16:00 - 19:00' }
+    ]
+    private _newAllTimes = []
 
     public visiblePaymentMethods = [];
 
@@ -117,6 +122,7 @@ export class BasketView implements OnInit {
     }
 
     ngOnInit() {
+        this._newAllTimes = this._allTimes
         this._formBuilder();
         this._setRouteSteps();
         this._setFormValues();
@@ -126,6 +132,7 @@ export class BasketView implements OnInit {
         this._setMinDate();
         this._isPostProduct()
     }
+
     private _checkQueryParams(): void {
         let params = this._activatedRoute.snapshot.queryParams;
         if (params && params.orderID) {
@@ -135,7 +142,7 @@ export class BasketView implements OnInit {
             this.isPaymentChecked = true;
         }
     }
-    private _setMinDate() {
+    private _setMinDate(): void {
         let today = new Date();
         let minDate = new Date();
         let durationsArray = []
@@ -143,12 +150,25 @@ export class BasketView implements OnInit {
             durationsArray.push(data.duration_of_preparation)
         })
         let maxduration = Math.max.apply(null, durationsArray)
-        minDate.setDate(today.getDate() + maxduration)
-        minDate.setMonth(today.getMonth())
-        minDate.setFullYear(today.getFullYear())
+        if (maxduration == 0) {
+            let currentDate = new Date();
+            let currentTime = currentDate.getHours();
+            if (currentTime >= 16) {
+                minDate.setDate(today.getDate() + 1)
+                minDate.setMonth(today.getMonth())
+                minDate.setFullYear(today.getFullYear());
+            } else {
+                minDate.setDate(today.getDate() + maxduration)
+                minDate.setMonth(today.getMonth())
+                minDate.setFullYear(today.getFullYear());
+            }
+        } else {
+            minDate.setDate(today.getDate() + maxduration)
+            minDate.setMonth(today.getMonth())
+            minDate.setFullYear(today.getFullYear());
+        }
         this._minDate = minDate
     }
-
     private _formBuilder(): void {
         this._orderForm = this._fb.group({
             allAddress: [''],
@@ -163,10 +183,34 @@ export class BasketView implements OnInit {
             payment_method: [null, Validators.required],
             isBonuce: [null],
             isBalance: [null],
-            delivery_day: [null, Validators.required]
+            delivery_day: [null, Validators.required],
+            delivery_time: [null, Validators.required]
         })
         this._orderForm.get('allAddress').valueChanges.subscribe((value: Addresses) => {
             this._setValueAfterSelectAddress(value)
+
+        })
+        this._orderForm.get('delivery_day').valueChanges.subscribe((value) => {
+            let currentDate = new Date();
+            let today = currentDate.getDate();
+            let currentTime = currentDate.getHours();
+            if (value.getDate() == today) {
+                if (currentTime >= 13 && currentTime <= 16) {
+                    this._newAllTimes = this._newAllTimes.slice(2);
+                    if (this._orderForm.get('delivery_time').value == this._allTimes[0] || this._orderForm.get('delivery_time').value == this._allTimes[1]) {
+                        this._orderForm.get('delivery_time').reset();
+                    }
+                } else {
+                    if (currentTime >= 10 && currentTime <= 13) {
+                        this._newAllTimes = this._newAllTimes.splice(1);
+                        if (this._orderForm.get('delivery_time').value == this._allTimes[0]) {
+                            this._orderForm.get('delivery_time').reset()
+                        }
+                    }
+                }
+            } else {
+                this._newAllTimes = this._allTimes
+            }
 
         })
         this._orderForm.controls.shipping_method.valueChanges.subscribe((data) => {
@@ -852,4 +896,8 @@ export class BasketView implements OnInit {
     get minDate(): Date {
         return this._minDate
     }
+    get allTimes() {
+        return this._newAllTimes
+    }
+
 }

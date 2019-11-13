@@ -147,11 +147,6 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     get showMore(): boolean {
         return this._showMore
     }
-
-    get showText(): string {
-        return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թաքցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
-    }
-
     ngOnDestroy() {
         this._routeSubscription.unsubscribe();
     }

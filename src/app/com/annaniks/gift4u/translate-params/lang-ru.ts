@@ -117,6 +117,7 @@ export const LANG_RU_TRANS = {
     '_upon_receipt':'При получении',
     '_cash_courier':'Наличными или картой курьеру',
     '_delivery_day':'День доставки',
+    '_delivery_time':'Время доставки',
     '_bank_card':'Банковскими картами',
     '_bonuses': 'Бонусы',
     '_rate_of_return': 'ПРОЦЕНТ ВОЗВРАТА',

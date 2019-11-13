@@ -9,6 +9,8 @@ app-slider{
 .brand_name{
     font-weight: bold;
     font-size: 1.5em;
+    width: 90%;
+    margin: 0 auto;
 }
 :host ::ng-deep{
     .slider{
@@ -16,17 +18,27 @@ app-slider{
         margin: 0 auto;
     }
     .box_container{
-        margin-top: 135px !important;
+        margin-top: 30px !important;
     }
     .slick-slider .slick-track, .slick-slider .slick-list{
         width: 100%;
     }
 }
+@media only screen and (max-width: 1000px) {
+    .info_content{
+        .show{
+            width: 100% !important;
+        }
+    }
+    .brand_name{
+        width: 100% !important;
+    }
+ 
+}
 @media only screen and (max-width: 1024px) {
     .slider{
         min-height: inherit !important;
-    }
- 
+    } 
 }
 @media only screen and (max-width: 900px){
     :host ::ng-deep{
@@ -52,11 +64,6 @@ app-slider{
     }
 }
 @media only screen and (max-width:550px){
-    .info_content{
-        .title{
-            height: 209px !important;
-        }
-    }
     :host ::ng-deep .box_container{
             margin-top: 20px !important;
     }    
@@ -155,15 +162,16 @@ app-slider{
     }
     .title{
         display: block;
-        // line-height: 16px;
-        height: 79px;
-        overflow: hidden;
+        line-height: 30px;
+        min-height: 200px;
+        // overflow: hidden;
+        width: 90%;
         box-shadow: 0px -35px 26px #fff inset;
       
     }
     .show {
         overflow: visible !important;
-        height: auto !important;
+        // height: auto !important;
         p{
             color:red;
         }

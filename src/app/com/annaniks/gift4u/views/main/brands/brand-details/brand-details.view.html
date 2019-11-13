@@ -10,9 +10,9 @@
 
             <div class="info_content">
                 <img class="img" [src]="fileUrl+'brand/'+brandInfo?.image">
-                <span class="title" [innerHTML]="getAttributeName(brandInfo,'title')" [ngClass]="{'show':showMore}"
+                <span class="title show" [innerHTML]="getAttributeName(brandInfo,'title')"
                     none-select></span>
-                <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a>
+                <!-- <a class="show_bttn" cursor-pointer (click)="onClickShowMore()">{{showText}}</a> -->
             </div>
 
         </div>

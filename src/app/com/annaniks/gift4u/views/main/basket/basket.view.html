@@ -136,6 +136,23 @@
                                             *</span>
                                     </div>
                                 </div>
+                                <div class="form_group">
+                                    <div class="label_wrapper_left">
+                                        <label>{{'_delivery_time' | language_translate:language}}</label>
+                                    </div>
+                                    <div class="input_container">
+                                        <p-dropdown
+                                            [options]="allTimes"
+                                            [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
+                                            formControlName="delivery_time"
+                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            optionLabel="name">
+                                        </p-dropdown>
+                                        <span required-field
+                                            *ngIf="orderForm.get('delivery_day').hasError('required') && orderForm.get('delivery_day').touched">{{'error1' | language_translate:language}}
+                                            *</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="right">
 
@@ -209,9 +226,8 @@
                             <!-- <p><span font-weight-bold>ИТОГО:</span>{{fullPrice}}</p>
                             <p><span font-weight-bold>{{bonusPrice}}</span></p> -->
                         </div>
-                        <div class="payment_method"
-                            display-flex>
-                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length"  class="left-container">
+                        <div class="payment_method" display-flex>
+                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length" class="left-container">
                                 <p class="label">{{'_delivery_method' | language_translate:language}}</p>
                                 <span required-field
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}
@@ -231,7 +247,7 @@
                                 </div>
 
                             </div>
-                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length"  class="center-container">
+                            <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length" class="center-container">
                                 <p class="label">{{'payment_method' | language_translate:language}}</p>
                                 <span required-field
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | language_translate:language}}

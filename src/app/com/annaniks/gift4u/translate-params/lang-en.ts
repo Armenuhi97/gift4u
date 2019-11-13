@@ -57,6 +57,7 @@ export const LANG_EN_TRANS = {
     '_upon_receipt':'Upon receipt',
     '_cash_courier':'Cash or card to the courier',
     '_delivery_day':'Day of delivery',
+    '_delivery_time':'Time of delivery',
     '_postcard':'Postcard',
     '_delivery_method': 'Delivery method',
     'payment_method': 'Payment method',
@@ -205,4 +206,6 @@ export const LANG_EN_TRANS = {
     '_send_message_success_message': 'Your message has been sent successfully',
     '_maked_day':'The duration of manufacture of the product is',
     '_days':'d.',
+  
+
 };
