@@ -66,8 +66,10 @@ export class BrandDetailsView implements OnInit, OnDestroy {
         })
     }
     public getAttributeName(obj, name: string) {
-        if (obj && obj.name)
-            return this._translateService.getRequestTranslateAttributeName(obj, name)
+        if (obj && obj[name]) {
+            let attribute = this._translateService.getRequestTranslateAttributeName(obj, name);
+            return attribute ? attribute : obj[name]
+        }
     }
     private _getBrandById(id: number, page: number, pageLength: number, sort): void {
         this._loading = true;

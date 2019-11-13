@@ -11,11 +11,10 @@ app-slider{
     font-size: 1.5em;
 }
 :host ::ng-deep{
-    // .slider{
-    //     .slick-prev{
-    //         left: 220px !important;
-    //     }
-    // }
+    .slider{
+        width: 75%;
+        margin: 0 auto;
+    }
     .box_container{
         margin-top: 135px !important;
     }
@@ -27,11 +26,14 @@ app-slider{
     .slider{
         min-height: inherit !important;
     }
+ 
+}
+@media only screen and (max-width: 900px){
     :host ::ng-deep{
         .slider{
             app-slider{
                 .slide{
-                    height: 340px !important;
+                    height: 255px !important;
                 }
                
             }
@@ -72,7 +74,7 @@ app-slider{
         .slider{
             app-slider{
                 .slide{
-                    height: 300px !important;
+                    height: 225px !important;
                 }
             }
         }
@@ -85,7 +87,11 @@ app-slider{
         .slider{
             app-slider{
                 .slide{
-                    height: 200px !important;
+                    height: 140px !important;
+                }
+                .slick-prev, .slick-next{
+                    height: 30px;
+                    width: 30px;
                 }
                 .carousel_item {
                     padding:0 !important;
@@ -133,6 +139,7 @@ app-slider{
 .info_content{
     width: 100%;
     margin:20px auto;
+    min-height: 200px;
     .img{
         max-width: 200px;
         max-height: 200px;
