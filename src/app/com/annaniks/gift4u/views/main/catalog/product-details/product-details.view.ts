@@ -30,7 +30,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
     ];
     private _combinedProducts: CombinedProduct[] = [];
-    private _selectedAttributse: { id: string; value: string }[] = []
+    private _selectedAttributse: { id: string; fullName:string, value: string }[] = []
     private _combinedAttributes: CombinedAttribute[] = [];
     private _productRating: number = 0;
     public activeIcon: string;
@@ -153,7 +153,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._product.attributeSet.forEach(((item: AttributeSet, index: number) => {
                 item.AttributeProductValue.forEach((attributePvalue: AttributeProductValue) => {
                     this._combinedAttribute(attributePvalue)
-                    this._selectedAttributse.push({ id: attributePvalue.attribute_id, value: attributePvalue.value })
+                    this._selectedAttributse.push({ id: attributePvalue.attribute_id, fullName:attributePvalue.value, value: attributePvalue.value })
                     mian.values.push({ id: attributePvalue.attribute_id, value: attributePvalue.value })
                 })
             }))
@@ -194,14 +194,15 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._setProductRating($event);
     }
 
-    public handleSelectedAttribute(attributeValue, attribute: CombinedAttribute) {
-        this.changeSelectAttribute(attribute.attribute_id, attributeValue.value);
+    public handleSelectedAttribute(attributeValue, attribute: CombinedAttribute) {        
+        this.changeSelectAttribute(attribute.attribute_id, attributeValue.value,attributeValue.fullName);
     }
 
-    public changeSelectAttribute(id, value) {
+    public changeSelectAttribute(id, value,fullName) {
         for (let k = 0; k < this._selectedAttributse.length; k++) {
             if (this._selectedAttributse[k].id == id) {
                 this._selectedAttributse[k].value = value;
+                this._selectedAttributse[k].fullName=fullName
                 this._findLikeProduct();
             }
         }
@@ -215,7 +216,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
                 for (let k = 0; k < this._selectedAttributse.length; k++) {
                     const selected = this._selectedAttributse[k];
                     if (selected.id == value.id) {
-                        if (selected.value != value.value) {
+                        if (selected.fullName !== value.value) {
                             like = false;
                             break;
                         }
@@ -262,11 +263,12 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         return -1;
     }
 
-    private _combinedAttribute(pAttribute: AttributeProductValue) {
+    private _combinedAttribute(pAttribute: AttributeProductValue) {        
         for (let index = 0; index < this._combinedAttributes.length; index++) {
+            this._combinedAttributes[index]['fullName']=pAttribute.value
             if (this._combinedAttributes[index].attribute_id == pAttribute.attribute_id) {
                 if (this._indexOf(this._combinedAttributes[index].values, pAttribute.value) == -1) {
-                    this._combinedAttributes[index].values.push({ value: pAttribute.value, available: true });
+                    this._combinedAttributes[index].values.push({ value: pAttribute.value, fullName:pAttribute.value, available: true });
                 }
                 break;
             }

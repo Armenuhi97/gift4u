@@ -123,7 +123,7 @@ export class Product {
 }
 export interface CombinedAttribute {
     attribute_id: string;
-    values: { value: string, available: boolean }[];
+    values: { value: string,fullName:any, available: boolean }[];
     name: string
 }
 export interface CombinedProduct {
