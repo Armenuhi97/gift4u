@@ -30,7 +30,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
     ];
     private _combinedProducts: CombinedProduct[] = [];
-    private _selectedAttributse: { id: string; fullName:string, value: string }[] = []
+    private _selectedAttributse: { id: string; fullName: string, value: string }[] = []
     private _combinedAttributes: CombinedAttribute[] = [];
     private _productRating: number = 0;
     public activeIcon: string;
@@ -66,8 +66,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
     }
-    public getAttributeName(obj,name: string) {
-        return this._translateService.getRequestTranslateAttributeName(obj,name)
+    public getAttributeName(obj, name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
     private _checkIsFavorite(): void {
         if (this._mainService.isAuthorized) {
@@ -126,25 +126,18 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._metaService.addTag({ name: 'keywords', content: this._product.keywords })
             this._mainImage = window.innerWidth > 920 ?
                 this._appService.checkPropertyValue(data.messages, 'smallImage') : this._appService.checkPropertyValue(data.messages, 'image');
-            // this._product.productImages.push(
-            //     {
-            //         id: 0,
-            //         name: this._appService.checkPropertyValue(data.messages, 'image'),
-            //         order: "0",
-            //         product_id: this._product.id
-            //     }
-            // );
+           
             let paths: Path[] = this._product.path.reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
-                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element, 'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId }, status: '' });
                 }
                 else {
-                    this._setRouteSteps({ label: this.getAttributeName(element,'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryid: element.categoryId }, status: '' });
+                    this._setRouteSteps({ label: this.getAttributeName(element, 'name'), url: `/catalog`, queryParams: { parentcategoryname: paths[0].name, parentcategoryid: paths[0].categoryId, categoryname: element.name, categoryid: element.categoryId }, status: '' });
                 }
             })
-            this._setRouteSteps({ label: this.getAttributeName(this._product,'name'), url: `/catalog/${this._product.id}`, queryParams: {}, status: '' });
-            this._titleService.setTitle(this.getAttributeName(this._product,'title'));
+            this._setRouteSteps({ label: this.getAttributeName(this._product, 'name'), url: `/catalog/${this._product.id}`, queryParams: {}, status: '' });
+            this._titleService.setTitle(this.getAttributeName(this._product, 'title'));
 
             this._product.combineAttribute.forEach((item: AttributeSet) => {
                 this._combinedAttributes.push({ attribute_id: item.attribute_id, values: [], name: item.name })
@@ -153,7 +146,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._product.attributeSet.forEach(((item: AttributeSet, index: number) => {
                 item.AttributeProductValue.forEach((attributePvalue: AttributeProductValue) => {
                     this._combinedAttribute(attributePvalue)
-                    this._selectedAttributse.push({ id: attributePvalue.attribute_id, fullName:attributePvalue.value, value: attributePvalue.value })
+                    this._selectedAttributse.push({ id: attributePvalue.attribute_id, fullName: attributePvalue.value, value: attributePvalue.value })
                     mian.values.push({ id: attributePvalue.attribute_id, value: attributePvalue.value })
                 })
             }))
@@ -194,15 +187,15 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._setProductRating($event);
     }
 
-    public handleSelectedAttribute(attributeValue, attribute: CombinedAttribute) {        
-        this.changeSelectAttribute(attribute.attribute_id, attributeValue.value,attributeValue.fullName);
+    public handleSelectedAttribute(attributeValue, attribute: CombinedAttribute) {
+        this.changeSelectAttribute(attribute.attribute_id, attributeValue.value, attributeValue.fullName);
     }
 
-    public changeSelectAttribute(id, value,fullName) {
+    public changeSelectAttribute(id, value, fullName: string) {
         for (let k = 0; k < this._selectedAttributse.length; k++) {
             if (this._selectedAttributse[k].id == id) {
                 this._selectedAttributse[k].value = value;
-                this._selectedAttributse[k].fullName=fullName
+                this._selectedAttributse[k].fullName = fullName
                 this._findLikeProduct();
             }
         }
@@ -263,12 +256,12 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         return -1;
     }
 
-    private _combinedAttribute(pAttribute: AttributeProductValue) {        
+    private _combinedAttribute(pAttribute: AttributeProductValue) {
         for (let index = 0; index < this._combinedAttributes.length; index++) {
-            this._combinedAttributes[index]['fullName']=pAttribute.value
+            this._combinedAttributes[index]['fullName'] = pAttribute.value
             if (this._combinedAttributes[index].attribute_id == pAttribute.attribute_id) {
                 if (this._indexOf(this._combinedAttributes[index].values, pAttribute.value) == -1) {
-                    this._combinedAttributes[index].values.push({ value: pAttribute.value, fullName:pAttribute.value, available: true });
+                    this._combinedAttributes[index].values.push({ value: pAttribute.value, fullName: pAttribute.value, available: true });
                 }
                 break;
             }
@@ -401,7 +394,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     get fileUrl(): string {
         return this._fileUrl;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
     get mainImage(): string {
@@ -431,7 +424,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         let bonusPrice = 0;
         if (this._mainService.isAuthorized) {
             bonusPrice = (+this._product.price_with_vat * +this._mainService.getUserInfo().percent) / 100;
-        }        
+        }
         return bonusPrice;
 
     }

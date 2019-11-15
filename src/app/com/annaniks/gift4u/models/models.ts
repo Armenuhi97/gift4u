@@ -69,7 +69,7 @@ export class Product {
     price_with_vat: string;
     cityId: number;
     brandId: number;
-    duration_of_preparation:number;
+    duration_of_preparation: number;
     attributeSet: AttributeSet[];
     specificPrice: number;
     count?: number;
@@ -84,7 +84,7 @@ export class Product {
     both?: number;
     status: ProductStatus[];
     isHaveBoth: boolean;
-    is_post:any
+    is_post: any
     constructor() {
         this.active = 0;
         this.attribute_set_id = 0;
@@ -117,13 +117,13 @@ export class Product {
         this.both = -1;
         this.status = [];
         this.isHaveBoth = false;
-        this.duration_of_preparation=0;
-        this.is_post=null
+        this.duration_of_preparation = 0;
+        this.is_post = null
     }
 }
 export interface CombinedAttribute {
     attribute_id: string;
-    values: { value: string,fullName:any, available: boolean }[];
+    values: { value: string, fullName: string, available: boolean }[];
     name: string
 }
 export interface CombinedProduct {
@@ -175,7 +175,7 @@ export class ProductFull {
     fullDescription: string;
     group_id: number;
     id: number;
-    duration_of_preparation:number;
+    duration_of_preparation: number;
     keywords: string;
     name: string;
     price: string;
@@ -227,7 +227,7 @@ export class ProductFull {
         this.price_with_vat = '';
         this.path = [];
         this.smallImage = '';
-        this.duration_of_preparation=0;
+        this.duration_of_preparation = 0;
         this.countProduct = '';
         this.specificPrice = '';
     }
