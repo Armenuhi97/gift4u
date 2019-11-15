@@ -13,7 +13,7 @@
         .gift_certificate{
             .gift_certificate_container{
                 width: 100%;
-                background-color: $main-color;
+                background-color: var(--main-color);
                 display: flex;
                 align-items: center;
                 padding:0.5em;

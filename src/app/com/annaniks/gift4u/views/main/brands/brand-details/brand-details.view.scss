@@ -14,11 +14,11 @@ app-slider{
 }
 :host ::ng-deep{
     .slider{
-        width: 75%;
+        width: 70%;
         margin: 0 auto;
     }
     .box_container{
-        margin-top: 30px !important;
+        margin-top: 45px !important;
     }
     .slick-slider .slick-track, .slick-slider .slick-list{
         width: 100%;
@@ -63,11 +63,7 @@ app-slider{
         width: 33.3333% !important;
     }
 }
-@media only screen and (max-width:550px){
-    :host ::ng-deep .box_container{
-            margin-top: 20px !important;
-    }    
-    
+@media only screen and (max-width:550px){  
     :host ::ng-deep{
         .slider{
             .slick-prev{

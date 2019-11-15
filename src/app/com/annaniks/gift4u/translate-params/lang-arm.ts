@@ -181,5 +181,6 @@ export const LANG_ARM_TRANS = {
     '_post_error': 'Տվյալ ապրանքը չունի փոստով առաքվելու հնարավորություն',
     '_maked_day':'Ապրանքի պատրաստման տևողությունը',
     '_days':'օր է',
-    '_delivery_time':'Առաքման ժամը'
+    '_delivery_time':'Առաքման ժամը',
+    '_choose_color_site':'Ընտրեք կայքի գույնը'
 };

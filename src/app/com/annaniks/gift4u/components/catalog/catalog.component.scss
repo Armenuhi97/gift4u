@@ -2,7 +2,7 @@
 
 .catalog_content{
     // background-color: #502a12;
-    background-color: $main-color;
+    background-color: var(--main-color);
     .catalog_container{
         position: relative;
         .header{

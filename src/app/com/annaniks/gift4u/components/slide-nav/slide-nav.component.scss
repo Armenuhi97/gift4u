@@ -35,7 +35,7 @@
         }
         .tabs{
             display: flex;
-            background: $main-color;
+            background: var(--main-color);
             height: 40px;
             color: $text-color;
            // border-top: 2px solid grey;

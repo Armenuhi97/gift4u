@@ -11,13 +11,25 @@
         </div>
 
         <div class="toolbar">
-            <div class="languages" display-flex>
-                <div cursor-pointer [class.active_language]="activeLanguage == 'ru'" (click)="changeLanguage('ru')">
-                    Русский/</div>
-                <div cursor-pointer [class.active_language]="activeLanguage == 'en'" (click)="changeLanguage('en')">
-                    English/</div>
-                <div cursor-pointer [class.active_language]="activeLanguage == 'arm'" (click)="changeLanguage('arm')">
-                    Հայերեն</div>
+            <div display-flex align-items-center justify-content-space-beetwen>
+                <div class="languages" display-flex>
+                    <div cursor-pointer [class.active_language]="activeLanguage == 'ru'" (click)="changeLanguage('ru')">
+                        Русский/</div>
+                    <div cursor-pointer [class.active_language]="activeLanguage == 'en'" (click)="changeLanguage('en')">
+                        English/</div>
+                    <div cursor-pointer [class.active_language]="activeLanguage == 'arm'"
+                        (click)="changeLanguage('arm')">
+                        Հայերեն</div>
+                </div>
+                <div class="picker">
+                    <div><label for="">{{'_choose_color_site' | language_translate:language}}</label> </div>
+                    <div>
+                        <input [(colorPicker)]="color" [cpPosition]="'bottom-left'" (colorPickerChange)="change($event)"
+                            [style.background]="color" />
+
+                        <!-- <input (colorPickerSelect)="change($event)"  [(colorPicker)]="color" [style.background]="color" /> -->
+                    </div>
+                </div>
             </div>
             <div class="menu_items">
                 <nav class="items">
@@ -41,6 +53,7 @@
                             style="margin:0 6px">/</span><span (click)="onClickRegister()"
                             class="hover_underline">{{'_registration' | language_translate:language}}</span></span>
                 </div>
+
             </div>
             <div class="search_bar">
                 <div class="search_content">

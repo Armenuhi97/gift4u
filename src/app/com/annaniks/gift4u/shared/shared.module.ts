@@ -29,6 +29,7 @@ import { TableModule } from 'primeng/table';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { Ng5SliderModule } from 'ng5-slider';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
         ReactiveFormsModule,
         Ng5SliderModule,
         MultiSelectModule,
+        ColorPickerModule
         
     ],
     exports: [
@@ -104,7 +106,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
         AccordeonListComponent,
         AccordionListItemComponent,
         MultiSelectModule,
-        TranslateLanguagePipe
+        TranslateLanguagePipe,
+        ColorPickerModule
         
     ]
 })

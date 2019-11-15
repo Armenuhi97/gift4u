@@ -10,7 +10,7 @@
             padding:0 10px;
             height: 60px;
             z-index: 4;
-            background-color: $main-color;
+            background-color: var(--main-color);
             .icon_small{
                 .basket_count_small{
                     min-width: 18px;
@@ -149,6 +149,15 @@
     .toolbar{
         margin-left:25px;
         width: 100%;
+        .picker{
+            label{
+                font-size: 13px;
+            }
+           input{
+               width: 100%;
+               border: none;
+           } 
+        }
         .languages{
             font-size: 13px;
             div{

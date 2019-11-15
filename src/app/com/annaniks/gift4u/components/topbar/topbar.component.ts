@@ -6,6 +6,7 @@ import { LoginModal, RegistrationModal, BackCallModal, SelectCityModal } from '.
 import { MainService } from '../../views/main/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService, ApiService, TranslateService } from '../../services';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
     selector: 'app-topbar',
@@ -20,6 +21,7 @@ export class TopbarComponent implements OnInit {
     private _settings: Setting[] = [];
     public active_lng;
     private _windowWidth: number;
+    public color: string
     public languages = [
         {
             label: 'en',
@@ -59,10 +61,20 @@ export class TopbarComponent implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _apiService: ApiService,
         private _translateService: TranslateService,
+        private _cookieService: CookieService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
-        this.active_lng = JSON.parse(localStorage.getItem('language_key'))
+        this.active_lng = JSON.parse(localStorage.getItem('language_key'));
+       
+        if (this._cookieService.get('color')){
+            document.documentElement.style
+            .setProperty('--main-color', this._cookieService.get('color'));
+            this.color = this._cookieService.get('color')
+        }else{
+            this.color= "#00001b";
+        }
+            
     }
 
     ngOnInit() { }
@@ -74,6 +86,11 @@ export class TopbarComponent implements OnInit {
             }
         }
 
+    }
+    public change($event) {
+        document.documentElement.style
+            .setProperty('--main-color', $event);
+        this._cookieService.set('color', $event)
     }
     public blurSearch(event) {
         if (event) {

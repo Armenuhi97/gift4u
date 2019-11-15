@@ -16,6 +16,7 @@
                         </div>
 
                         <div align-items-center display-flex justify-conten-space-between>
+                            <div text-align-center>Տվյալ ապրանքը կարող է ունենալ շեղումներ</div>
                             <!-- <span class="product_id">{{'_article' | language_translate:language}}: <b>{{product.sku}}</b></span> -->
                             <!-- <span class="pr_d">{{product.title}}</span> -->
                             <div class="product_rating" margin-left-2 display-flex>
@@ -44,7 +45,7 @@
                             <h1>{{getAttributeName(product,'name')}}</h1>
                         </div>
                         <!-- <span class="product_id">{{'_article' | language_translate:language}}: <b>{{product.sku}}</b></span> -->
-
+                        <div text-align-center>Տվյալ ապրանքը կարող է ունենալ շեղումներ</div>
                         <!-- <span class="pr_d">{{product.title}}</span> -->
                         <div class="product_rating" display-flex>
                             <app-rating [size]="16" margin-left-auto [rating]="productRating"
@@ -97,10 +98,10 @@
                                 {{'_back' | language_translate:language}}</span>
                             <a class="disc_text" href="/settings/club"
                                 font-weight-bold>{{'_more' | language_translate:language}}</a>
-                                <div class="maked_days">
-                                    {{'_maked_day' | language_translate:language}} 
-                                    {{product?.duration_of_preparation}}  {{'_days' | language_translate:language}}
-                                </div>
+                            <div class="maked_days">
+                                {{'_maked_day' | language_translate:language}}
+                                {{product?.duration_of_preparation}} {{'_days' | language_translate:language}}
+                            </div>
                         </div>
                         <div class="buttons">
                             <!-- <div class="oneclick_button">
