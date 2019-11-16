@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MenuItemsService, TranslateService } from '../../services';
+import { MenuItemsService, TranslateService1 } from '../../services';
 import { MenuItem } from '../../models/models';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { MainService } from '../../views/main/main.service';
@@ -23,7 +23,7 @@ export class CatalogComponent implements OnInit {
     constructor(private _mainService: MainService,
         private _activatedRoute: ActivatedRoute,
         private _menuItemsService: MenuItemsService, private _router: Router,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) { }
 
     ngOnInit() {        

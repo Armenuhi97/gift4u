@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { DiscountService } from './discount.service';
-import { AppService, TranslateService } from '../../../services';
+import { AppService, TranslateService1 } from '../../../services';
 import { Announcement, ServerResponse } from '../../../models/models';
 import { Title } from '@angular/platform-browser';
 
@@ -17,7 +17,7 @@ export class DiscountView implements OnInit, OnDestroy {
         private _discountService: DiscountService,
         private _appService: AppService,
         private _title: Title,
-        private _translateservice:TranslateService
+        private _translateservice:TranslateService1
     ) { }
 
 

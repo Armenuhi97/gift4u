@@ -3,7 +3,7 @@ import { MainService } from '../../views/main/main.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CityCountry, ServerResponse } from '../../models/models';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AppService, TranslateService } from '../../services';
+import { AppService, TranslateService1 } from '../../services';
 
 @Component({
     selector: 'select-city-modal',
@@ -20,7 +20,7 @@ export class SelectCityModal implements OnInit {
         private _mainService: MainService,
         private _fb: FormBuilder,
         private _appService: AppService,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

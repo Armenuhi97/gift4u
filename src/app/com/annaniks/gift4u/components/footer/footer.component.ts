@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { Setting, SocialItem } from '../../models/models';
-import { AppService, MenuItemsService, TranslateService } from '../../services';
+import { AppService, MenuItemsService, TranslateService1 } from '../../services';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -36,7 +36,7 @@ export class FooterComponent implements OnInit {
         private _appService: AppService,
         private _menuItemsService: MenuItemsService,
         private _router: Router,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() { }
@@ -93,9 +93,6 @@ export class FooterComponent implements OnInit {
     }
     get phone_2(){
         return this._phone_2
-    }
-    get language(){
-        return this._translateService.getActiveLanguage()
     }
 
 }

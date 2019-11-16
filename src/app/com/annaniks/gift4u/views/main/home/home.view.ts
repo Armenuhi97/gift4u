@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { LoadingService } from '../../../services/loading.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 import { MainService } from '../main.service';
 
 @Component({
@@ -34,7 +34,6 @@ export class HomeView implements OnInit, OnDestroy {
         @Inject('FILE_URL') public fileUrl: string,
         private _titleService: Title,
         private _loadingService: LoadingService,
-        private _translateService: TranslateService,
         private _mainService:MainService
     ) { }
 
@@ -68,9 +67,6 @@ export class HomeView implements OnInit, OnDestroy {
                 this._loadingService.hideLoading();
             })
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
-    }
     private _checkWindowSize(): void {
         if (window.innerWidth <= 445) {
             this.imageKey = 'smallImage';
@@ -91,9 +87,6 @@ export class HomeView implements OnInit, OnDestroy {
         if (this.emailFormControl.valid) {
             this._subscribeEmail(this.emailFormControl.value);
         }
-    }
-    get language(){
-        return this._translateService.getActiveLanguage()
     }
 
     ngOnDestroy() {

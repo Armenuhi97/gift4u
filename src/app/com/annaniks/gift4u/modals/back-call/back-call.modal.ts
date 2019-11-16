@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { MainService } from '../../views/main/main.service';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: 'back-call-modal',
@@ -14,7 +14,7 @@ export class BackCallModal implements OnInit {
     private _errorMessage: string = undefined;
     private _loading: boolean = false;
     constructor(private _fb: FormBuilder, private _dialogRef: MatDialogRef<BackCallModal>, private _mainService: MainService,
-        private _translateService:TranslateService) { }
+        private _translateService:TranslateService1) { }
     ngOnInit() {
         this._formBuilder();
     }

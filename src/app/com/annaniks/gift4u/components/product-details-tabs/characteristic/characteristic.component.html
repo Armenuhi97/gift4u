@@ -1,18 +1,18 @@
 <div class="desc">
     <p class="label">
-        {{'_characteristics' | language_translate:language}}
+        {{'_characteristics' | translate}}
     </p>
     <div class="description">
         <div>
-            <span class="description_item bold">{{'brand' | language_translate:language}}: <span >{{characteristicData.brandName}}</span></span>
-            <span class="description_item bold"> {{'_brand_country' | language_translate:language}}: <span
+            <span class="description_item bold">{{'brand' | translate}}: <span >{{characteristicData.brandName}}</span></span>
+            <span class="description_item bold"> {{'_brand_country' | translate}}: <span
               >{{characteristicData.brandCountryName}}</span></span>
-            <span class="description_item bold"> {{'_manufacture_country' | language_translate:language}}: <span
+            <span class="description_item bold"> {{'_manufacture_country' | translate}}: <span
                     >{{characteristicData.cityName}}</span></span>
             
-            <span class="description_item bold" *ngIf="characteristicData.composition"> {{'_composition' | language_translate:language}}: <span
+            <span class="description_item bold" *ngIf="characteristicData.composition"> {{'_composition' | translate}}: <span
                     >{{getAttributeName(characteristicData,'composition')}}</span></span>
-            <span class="description_item bold" *ngIf="characteristicData.weight"> {{'_weight' | language_translate:language}}: <span
+            <span class="description_item bold" *ngIf="characteristicData.weight"> {{'_weight' | translate}}: <span
                     >{{characteristicData?.weight}}</span></span>
             <span class="description_item" *ngFor="let item of characteristicData.attributeSet"><span
                     *ngIf="item.AttributeProductValue.length>0" class="bold">{{item.name}}:</span>

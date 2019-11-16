@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 // import { Request } from 'express';
 // import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TranslateInterceptor } from './i18n/services/translate.interceptor';
 // import { CookieService } from 'angular2-cookie';
 
 // @Injectable()
@@ -30,6 +32,7 @@ import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
   ],
   providers: [
     CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: TranslateInterceptor, multi: true }
     // { provide: 'req', useClass: RequestCookies }
 
   ],

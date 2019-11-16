@@ -6,7 +6,7 @@ import { CatalogService } from '../catalog.service';
 import { ServerResponse, ProductFull, CombinedProduct, CombinedAttribute, LikeProduct, AttributeProductValue, AttributeSet, Path, Product, ProductScore, Reviews } from '../../../../models/models';
 import { Subscription } from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
-import { AppService, TranslateService } from '../../../../services';
+import { AppService, TranslateService1 } from '../../../../services';
 import { MainService } from '../../main.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { ProductDetailsService } from './product-details.service';
@@ -50,7 +50,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _productDetailsService: ProductDetailsService,
         private _lightbox: Lightbox,
         private _lightboxEvent: LightboxEvent,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) {
         this._activatedRoute.params.subscribe(params => {
             if (params && params.id) {
@@ -233,14 +233,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._product = data.messages;
             this._calcProductRating(this._product.productScore);
             this._mainImage = this._appService.checkPropertyValue(data.messages, 'image');
-            // this._product.productImages.unshift(
-            //     {
-            //         id: 0,
-            //         name: this._appService.checkPropertyValue(data.messages, 'image'),
-            //         order: "0",
-            //         product_id: this._product.id
-            //     }
-            // );
+           
             this._loadingService.hideLoading();
         },
             () => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { MenuItemsService, TranslateService } from '../../services';
+import { MenuItemsService, TranslateService1 } from '../../services';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { MenuItem } from '../../models/models';
 import { Router } from '@angular/router';
@@ -33,7 +33,7 @@ export class SlideNavComponent implements OnInit {
         private _router: Router,
         private _mainService: MainService,
         private _matDialog: MatDialog,
-        private _translateService:TranslateService) { }
+        private _translateService:TranslateService1) { }
 
     ngOnInit() {
         this._checkWindowSize();

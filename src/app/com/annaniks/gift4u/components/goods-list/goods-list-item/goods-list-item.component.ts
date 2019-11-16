@@ -3,7 +3,8 @@ import { Product, ProductScore } from '../../../models/models';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MainService } from '../../../views/main/main.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-goods-list-item',
@@ -19,13 +20,17 @@ export class GoodsListItemComponent implements OnInit {
         private _router: Router,
         private _titleService: Title,
         private _mainService: MainService,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1,
+        private _translate:TranslateService
     ) { }
 
-    ngOnInit() {
+    ngOnInit() {        
         this._calcProductRating(this._product.productScore)
     }
-    public getAttributeName(obj,name: string) {
+    public getTranslateWord(word:string){
+        return this._translateService.getTranslate(word)
+    }
+    public getAttributeName(obj,name: string) {                
         return this._translateService.getRequestTranslateAttributeName(obj,name)
     }
     private setProductToBasket(product): void {
@@ -75,8 +80,5 @@ export class GoodsListItemComponent implements OnInit {
 
     get productRating(): number {
         return this._productRating
-    }
-    get language(){
-        return this._translateService.getActiveLanguage()
     }
 }

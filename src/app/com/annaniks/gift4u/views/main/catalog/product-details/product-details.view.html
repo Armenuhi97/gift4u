@@ -17,7 +17,7 @@
 
                         <div align-items-center display-flex justify-content-space-beetwen>
                             <div class="product_id">Տվյալ ապրանքը կարող է ունենալ շեղումներ</div>
-                            <!-- <span class="product_id">{{'_article' | language_translate:language}}: <b>{{product.sku}}</b></span> -->
+                            <!-- <span class="product_id">{{'_article' | translate}}: <b>{{product.sku}}</b></span> -->
                             <!-- <span class="pr_d">{{product.title}}</span> -->
                             <div class="product_rating" margin-left-2 display-flex>
                                 <app-rating [size]="16" margin-right-auto margin-left-auto
@@ -44,7 +44,7 @@
                         <div class="product_name">
                             <h1>{{getAttributeName(product,'name')}}</h1>
                         </div>
-                        <!-- <span class="product_id">{{'_article' | language_translate:language}}: <b>{{product.sku}}</b></span> -->
+                        <!-- <span class="product_id">{{'_article' | translate}}: <b>{{product.sku}}</b></span> -->
                         <span class="product_id" >Տվյալ ապրանքը կարող է ունենալ շեղումներ</span>
                         <!-- <span class="pr_d">{{product.title}}</span> -->
                         <div class="product_rating" display-flex>
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="product_count">
                                     <p no-margin class="label" text-align-center>
-                                        {{'_choose_quantity' | language_translate:language}}</p>
+                                        {{'_choose_quantity' | translate}}</p>
                                     <div class="count" display-flex>
                                         <div width-fit margin-auto display-flex align-items-center
                                             justify-content-space-beetwen>
@@ -91,16 +91,16 @@
                             <p class="current_price">
                                 {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ֏</p>
                             <span class="disc_text">
-                                {{'_product_return_price_text' | language_translate:language}}
+                                {{'_product_return_price_text' | translate}}
                             </span>
                             <span class="disc_text" *ngIf="isAuthorized"
-                                font-weight-bold>{{'_return' | language_translate:language}} {{bonusPrice}} ֏
-                                {{'_back' | language_translate:language}}</span>
+                                font-weight-bold>{{'_return' | translate}} {{bonusPrice}} ֏
+                                {{'_back' | translate}}</span>
                             <a class="disc_text" href="/settings/club"
-                                font-weight-bold>{{'_more' | language_translate:language}}</a>
+                                font-weight-bold>{{'_more' | translate}}</a>
                             <div class="maked_days">
-                                {{'_maked_day' | language_translate:language}}
-                                {{product?.duration_of_preparation}} {{'_days' | language_translate:language}}
+                                {{'_maked_day' | translate}}
+                                {{product?.duration_of_preparation}} {{'_days' | translate}}
                             </div>
                         </div>
                         <div class="buttons">
@@ -109,7 +109,7 @@
                                 </div> -->
 
                             <div class="basket_button sm_buscet_button" (click)="onClickAddBasket()">
-                                <button>{{'_add_to_basket' | language_translate:language}}</button>
+                                <button>{{'_add_to_basket' | translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -120,15 +120,15 @@
             <div class="tab_bar">
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='description'}"
                     (click)="onClickTabItem('description')">
-                    <span class="label">{{'_description' | language_translate:language}}</span>
+                    <span class="label">{{'_description' | translate}}</span>
                 </div>
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='characteristic'}"
                     (click)="onClickTabItem('characteristic')">
-                    <span class="label">{{'_characteristics' | language_translate:language}}</span>
+                    <span class="label">{{'_characteristics' | translate}}</span>
                 </div>
                 <div class="tab_item" [ngClass]="{'activeTabItem' : activeTabItem==='reviews'}"
                     (click)="onClickTabItem('reviews')">
-                    <span class="label">{{'_reviews' | language_translate:language}}</span>
+                    <span class="label">{{'_reviews' | translate}}</span>
                 </div>
             </div>
             <div class="tabs_content" [class.no-padding]="activeTabItem == 'reviews'" [ngSwitch]="activeTabItem">

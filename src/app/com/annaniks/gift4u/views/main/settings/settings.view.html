@@ -23,48 +23,48 @@
                             <div class="form_content">
                                 <div class="form_group">
                                     <div class="label_wrapper">
-                                        <label>{{'_your_name' | language_translate:language}}</label>
+                                        <label>{{'_your_name' | translate}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="name" />
                                         <span required-field
-                                            *ngIf="feedBackForm.get('name').hasError('required') && feedBackForm.get('name').touched">{{'error1' | language_translate:language}}
+                                            *ngIf="feedBackForm.get('name').hasError('required') && feedBackForm.get('name').touched">{{'error1' | translate}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_phone_number' | language_translate:language}}</label>
+                                        <label>{{'_phone_number' | translate}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                                         <span required-field
-                                            *ngIf="feedBackForm.get('phone').hasError('required') && feedBackForm.get('phone').touched">{{'error1' | language_translate:language}}
+                                            *ngIf="feedBackForm.get('phone').hasError('required') && feedBackForm.get('phone').touched">{{'error1' | translate}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group">
                                     <div class="label_wrapper_right">
-                                        <label>{{'_email' | language_translate:language}}</label>
+                                        <label>{{'_email' | translate}}</label>
                                     </div>
                                     <div class="input_container">
                                         <input type="text" formControlName="email" />
                                         <span required-field
-                                            *ngIf="feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched">{{'error1' | language_translate:language}}
+                                            *ngIf="feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched">{{'error1' | translate}}
                                             *</span>
                                         <span required-field
-                                            *ngIf="feedBackForm.get('email').hasError('pattern') && feedBackForm.get('email').touched">{{'error2' | language_translate:language}}
+                                            *ngIf="feedBackForm.get('email').hasError('pattern') && feedBackForm.get('email').touched">{{'error2' | translate}}
                                             *</span>
                                     </div>
                                 </div>
                                 <div class="form_group_textarea" full-width>
                                     <div class="label_wrapper">
-                                        <label>{{'_your_message' | language_translate:language}}</label>
+                                        <label>{{'_your_message' | translate}}</label>
                                     </div>
                                     <div class="input_container textarea">
                                         <textarea formControlName="message"></textarea>
                                         <span required-field
-                                            *ngIf="feedBackForm.get('message').hasError('required') && feedBackForm.get('message').touched">{{'error1' | language_translate:language}}
+                                            *ngIf="feedBackForm.get('message').hasError('required') && feedBackForm.get('message').touched">{{'error1' | translate}}
                                             *</span>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="feedback_button">
                                 <button (click)="onClickSendFeedBack()" [disabled]="feedBackForm.invalid || loading"
                                     [ngClass]="{'disabled':feedBackForm.invalid || loading}">
-                                    <span>{{'_send' | language_translate:language}}</span>
+                                    <span>{{'_send' | translate}}</span>
                                 </button>
                             </div>
                         </form>

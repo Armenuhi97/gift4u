@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { AttributeFilter, City, CategoryFilter, Reduction } from '../../views/main/catalog/catalog.models';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService, TranslateService } from '../../services';
+import { AppService, TranslateService1 } from '../../services';
 import { MainService } from '../../views/main/main.service';
 
 @Component({
@@ -42,14 +42,16 @@ export class FiltersComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _activatedRoute: ActivatedRoute,
         private _appService: AppService,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {
         this._formBuilder();
         this._getFilters();
     }
-    
+    public getTranslateWord(word:string){
+        return this._translateService.getTranslate(word)
+    }
     private _formBuilder(): void {
         this._filterForm = this._fb.group({
             price: [[0, 100000]],
@@ -170,7 +172,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
         return this._mainService.getAttributes().pipe(
             map((data: ServerResponse<AttributeFilter[]>) => {
                 this._attributes = data.messages;
-                console.log(this._attributes);
                 this._attributes.forEach((element, index) => {
                     element.attributValue.map((el) => {
                         let val = el.value.split(',')

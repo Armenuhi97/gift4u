@@ -6,42 +6,42 @@
         <form [formGroup]="addressForm">
             <div class="form_row">
                 <div class="form_group">
-                    <label>{{'_address_name' | language_translate:language}}:</label>
+                    <label>{{'_address_name' | translate}}:</label>
                     <input formControlName="name" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('name').hasError('required') && addressForm.get('name').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('name').hasError('required') && addressForm.get('name').touched">{{'error1' | translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_full_name' | language_translate:language}}:</label>
+                    <label>{{'_full_name' | translate}}:</label>
                     <input formControlName="fullName" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('fullName').hasError('required') && addressForm.get('fullName').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('fullName').hasError('required') && addressForm.get('fullName').touched">{{'error1' | translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_address' | language_translate:language}}:</label>
+                    <label>{{'_address' | translate}}:</label>
                     <input formControlName="address" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('address').hasError('required') && addressForm.get('address').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('address').hasError('required') && addressForm.get('address').touched">{{'error1' | translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_index' | language_translate:language}}:</label>
+                    <label>{{'_index' | translate}}:</label>
                     <input formControlName="index" type="text" />
                     <span required-field
-                        *ngIf="addressForm.get('index').hasError('required') && addressForm.get('index').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('index').hasError('required') && addressForm.get('index').touched">{{'error1' | translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_phone_number' | language_translate:language}}:</label>
+                    <label>{{'_phone_number' | translate}}:</label>
                     <input type="text" formControlName="phone" prefix="+374" mask="(00) 00 00 00" />
                     <span required-field
-                        *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('phone').hasError('required') && addressForm.get('phone').touched">{{'error1' | translate}} *</span>
                 </div>
                 <div class="form_group">
-                    <label>{{'_your_city' | language_translate:language}}: </label>
+                    <label>{{'_your_city' | translate}}: </label>
                     <p-dropdown [options]="cities"
                         [style]="{'width':'100%','padding': '5px','margin-top':'10px','border-color':'#cccccc'}"
                         formControlName="city" [placeholder]="translateWords('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" [optionLabel]="getAttributeName('name')"></p-dropdown>
                     <span required-field
-                        *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">{{'error1' | language_translate:language}} *</span>
+                        *ngIf="addressForm.get('city').hasError('required') && addressForm.get('city').touched">{{'error1' | translate}} *</span>
                 </div>
             </div>
         </form>

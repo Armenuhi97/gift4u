@@ -4,6 +4,7 @@ import { HomeRoutingModule } from './home.routing.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { HomeService } from './home.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     imports: [
         HomeRoutingModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule
     ],
     providers: [HomeService]
 })

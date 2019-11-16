@@ -5,6 +5,9 @@
     "_busket": "Корзина",
     "_enter_request": "Введите запрос",
     "_call_back": "Заказать обратный звонок",
+    "_popular_products":"Популярные товары",
+    "special_offer":"Спецпредложения",
+    "_new_items_on_site":"НОВИНКИ НА САЙТЕ",
     "_call_back_text": "обратный звонок",
     "_for_the_sum": "на сумму",
     "_subscribe_text": "ПОДПИСКА НА НОВОСТИ, АКЦИИ И СКИДКИ",
@@ -86,7 +89,7 @@
     "_characteristics": "Характеристики",
     "_reviews": "Отзывы",
     "_add_to_busket": "Добавить в корзину",
-    "_product_return_price_text": "Мы возвращаем от 3% до 15% на бонусный счёт.",
+    "_product_return_price_text": "Мы возвращаем от 2% до 8% на бонусный счёт.",
     "_choose_quantity": "Выберите количество",
     "_more": "Подробнее",
     "_return": "вернём",
@@ -176,6 +179,8 @@
     "_post_error": "Данный товар не имеет возможности отправить по почте",
     "_maked_day":"Длительность изготовления продукта",
     "_days":"д.",
-    "_choose_color_site":"Choose color of site"
+    "_choose_color_site":"Выберите цвет сайта",
+    "_main":"Главная",
+    "_gyumri":"Гюмри"
 
 }

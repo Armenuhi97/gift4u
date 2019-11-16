@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CombinedAttribute } from '../../models/models';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: "app-product-attribute",
@@ -22,7 +22,7 @@ export class ProductAttributeComponent implements OnInit {
     }
     @Output('selectAttribute') private _selectAttribute = new EventEmitter();
 
-    constructor(private _translateService:TranslateService) { }
+    constructor(private _translateService:TranslateService1) { }
 
     ngOnInit() { }
 

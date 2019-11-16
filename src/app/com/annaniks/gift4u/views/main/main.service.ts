@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { ApiService, MenuItemsService, TranslateService } from '../../services';
+import { ApiService, MenuItemsService, TranslateService1 } from '../../services';
 import { Observable, of } from 'rxjs';
 import { ServerResponse, CityCountry, Setting, User, SocialItem, Product, AllSettings } from '../../models/models';
 import { Category, AttributeFilter, Brand, Reduction } from './catalog/catalog.models';
@@ -10,7 +10,6 @@ import { MessageService } from 'primeng/api';
 import { MatDialog } from '@angular/material';
 import { AddProductBasketModal } from '../../modals/add-product-basket/add-product-basket.modal';
 import { CookieService } from '../../services/cookie.service';
-import { translate } from '../../translate-params/translate';
 
 @Injectable()
 export class MainService {
@@ -23,7 +22,7 @@ export class MainService {
         private _cookieService: CookieService,
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) { }
 
     public getCategories(): Observable<ServerResponse<Category[]>> {
@@ -96,7 +95,7 @@ export class MainService {
             }
         })
         matDialog.afterClosed().subscribe((data) => {
-            this._messageService.add({ severity: 'success', summary: translate('_message'), detail: translate('_added_product_success_message') })
+            this._messageService.add({ severity: 'success', summary: this._translateService.getTranslate('_message'), detail: this._translateService.getTranslate('_added_product_success_message') })
         })
     }
 
@@ -120,7 +119,7 @@ export class MainService {
         return this._apiService.get('/settings').pipe(
             map((settings: ServerResponse<any[]>) => {
                 let sett = settings.messages;
-                let pageSettings: { label: string,label_ru:string,label_en:string, routerLink: string }[] = [];
+                let pageSettings: { label: string, label_ru: string, label_en: string, routerLink: string }[] = [];
                 sett.forEach((element, index) => {
                     if (element.isPage && element.isPage == '1') {
                         pageSettings.push({ label: element.name, label_ru: element.name_ru, label_en: element.name_en, routerLink: '/settings/' + element.key })

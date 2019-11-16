@@ -2,13 +2,13 @@
     <div *ngIf="paymentHistory[0]" style="overflow-x:auto">
         <table>
             <tr class="table-header">
-                <th>{{'_order_number' | language_translate:language}} №</th>
-                <th>{{'_date' | language_translate:language}}</th>
-                <th>{{'_sum' | language_translate:language}}</th>
-                <th>{{'_payment_by_money' | language_translate:language}}</th>
-                <th>{{'_payment_by_bonuses' |language_translate:language}}</th>
-                <th>{{'payment_method' | language_translate:language}}</th>
-                <th>{{'_status' | language_translate:language}}</th>
+                <th>{{'_order_number' | translate}} №</th>
+                <th>{{'_date' | translate}}</th>
+                <th>{{'_sum' | translate}}</th>
+                <th>{{'_payment_by_money' | translate}}</th>
+                <th>{{'_payment_by_bonuses' |translate}}</th>
+                <th>{{'payment_method' | translate}}</th>
+                <th>{{'_status' | translate}}</th>
             </tr>
             <tr *ngFor="let history of paymentHistory">
                 <td>{{history?.orderId}}</td>
@@ -21,5 +21,5 @@
             </tr>
         </table>
     </div>
-    <div *ngIf="!paymentHistory[0]" class="default-text"> {{'_empty' | language_translate:language}} </div>
+    <div *ngIf="!paymentHistory[0]" class="default-text"> {{'_empty' | translate}} </div>
 </div>

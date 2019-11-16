@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../../views/main/catalog/catalog.models';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MenuItemsService, TranslateService } from '../../../services';
+import { MenuItemsService, TranslateService1 } from '../../../services';
 
 @Component({
     selector: 'app-category',
@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
     private _activeCategory: boolean = false;
 
     constructor(private _router: Router, private _activatedRoute: ActivatedRoute,
-        private _translateService:TranslateService, private _menuItemsService: MenuItemsService) { }
+        private _translateService:TranslateService1, private _menuItemsService: MenuItemsService) { }
 
     ngOnInit() {
         if (this._category.subCategory.length) {

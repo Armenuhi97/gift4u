@@ -5,7 +5,7 @@ import { CityCountry, Addresses } from "../../models/models";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ShippingAddressesServices } from "../../views/main/personal-area/shipping-addresses/shipping-addresses.service";
 import { LoadingService } from "../../services/loading.service";
-import { TranslateService } from "../../services";
+import { TranslateService1 } from "../../services";
 
 @Component({
     selector: 'add-address-modal',
@@ -23,7 +23,7 @@ export class AddAddressModal {
         private _addressService: ShippingAddressesServices,
         private _fb: FormBuilder,
         private _loadingService: LoadingService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) { }
     ngOnInit() {
         this.buttonText = this._data ? this.translateWords('Save', 'Сохранить', 'Պահպանել') : this.translateWords('Add', 'Добавить', 'Ավելացնել')

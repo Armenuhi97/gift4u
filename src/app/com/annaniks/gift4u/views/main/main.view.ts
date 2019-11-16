@@ -3,7 +3,7 @@ import { MainService } from './main.service';
 import { ServerResponse, Setting, SocialItem, AllSettings } from '../../models/models';
 import { Category } from './catalog/catalog.models';
 import { Meta } from '@angular/platform-browser';
-import { TranslateService, MenuItemsService } from '../../services';
+import { TranslateService1, MenuItemsService } from '../../services';
 
 @Component({
     selector: 'main-view',
@@ -18,7 +18,7 @@ export class MainView implements OnInit, OnDestroy {
 
     constructor(private _mainService: MainService, 
         private _meta: Meta, 
-        private _translateService: TranslateService,
+        private _translateService: TranslateService1,
         private _menuItemsService:MenuItemsService) { }
 
     ngOnInit() {

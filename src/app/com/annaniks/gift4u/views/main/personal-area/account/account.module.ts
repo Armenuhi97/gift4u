@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { ChangePasswordComponent } from '../../../../components';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     declarations: [
         AccountView,
@@ -20,7 +21,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         DropdownModule,
         SharedModule,
         MatCheckboxModule,
-        MatRadioModule
+        MatRadioModule,
+        TranslateModule
     ],
     providers: [DatePipe],
     exports:[AccountView]

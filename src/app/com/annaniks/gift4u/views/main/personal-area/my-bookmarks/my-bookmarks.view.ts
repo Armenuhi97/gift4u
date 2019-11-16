@@ -4,7 +4,7 @@ import { Bookmark } from "../../../../models/models";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
-import { TranslateService } from "../../../../services";
+import { TranslateService1 } from "../../../../services";
 
 @Component({
     selector: 'my-bookmarks-view',
@@ -23,8 +23,8 @@ export class MyBookmarksView implements OnInit {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
-        private _translateService:TranslateService) {
-        this._title.setTitle(this._activatedRoute.data['_value'].title);
+        private _translateService:TranslateService1) {
+        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
         this._checkQueryParams();
     }
     ngOnInit() { }

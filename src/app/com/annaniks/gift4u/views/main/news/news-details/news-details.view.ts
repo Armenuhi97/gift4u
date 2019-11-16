@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Announcement } from '../../../../models/models';
 import { Title, Meta } from '@angular/platform-browser';
 import { SettingsService } from '../../settings/settings.service';
-import { TranslateService } from '../../../../services';
+import { TranslateService1 } from '../../../../services';
 
 @Component({
     selector: 'news-details-view',
@@ -19,7 +19,7 @@ export class NewsDetailsView implements OnInit {
         @Inject('FILE_URL') private _fileUrl: string,
         private _title: Title,
         private _meta: Meta,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

@@ -14,6 +14,7 @@ import { PaymentHistoryModule } from './payment-history/payment-history.module';
 import { MyOrdersModule } from './my-orders/my-orders.module';
 import { ShippingAddressesModule } from './shipping-addresses/shipping-addresses.module';
 import { NewsletterSubscriptionModule } from './newsletter-subscription/newsletter-subscription.module';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     declarations: [PersonalAreaView],
     imports: [
@@ -30,6 +31,7 @@ import { NewsletterSubscriptionModule } from './newsletter-subscription/newslett
         SharedModule,
         ReactiveFormsModule,
         MatDialogModule,
+        TranslateModule
     ],
     providers: [PersonalAreaService],
     entryComponents: [],

@@ -5,7 +5,7 @@ import { Brand } from './brands.models';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../services/loading.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 @Component({
     selector: 'brands-veiw',
@@ -22,7 +22,7 @@ export class BrandsView implements OnInit, OnDestroy {
         private _brandsService: BrandsService,
         private _title: Title,
         private _loadingService:LoadingService,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

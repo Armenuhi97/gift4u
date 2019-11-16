@@ -2,11 +2,11 @@
     <div class="catalog_container" container>
         <div class="header">
             <div class="item" [ngClass]="{'active_item':activeTab=='catalog'}" (click)="onClickHeader('catalog')">
-                <div class="label">{{'_catalog' | language_translate:language}}</div>
+                <div class="label">{{'_catalog' | translate}}</div>
             </div>
             <div class="item" [ngClass]="{'active_item':activeTab=='information'}"
                 (click)="onClickHeader('information')">
-                <div class="label">{{'_info' | language_translate:language}}</div>
+                <div class="label">{{'_info' | translate}}</div>
             </div>
         </div>
         <div class="content">
@@ -33,7 +33,7 @@
             </a>
             <div class="item" routerLink="/brands" (click)="onClickItem()" *ngIf="activeTab=='catalog'"
                 routerLinkActive="active_item" [routerLinkActiveOptions]="{exact: true}">
-                <div class="label">{{'brands' | language_translate:language}}</div>
+                <div class="label">{{'brands' | translate}}</div>
             </div>
         </div>
     </div>

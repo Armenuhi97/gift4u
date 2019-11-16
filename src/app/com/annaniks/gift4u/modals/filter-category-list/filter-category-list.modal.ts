@@ -11,7 +11,7 @@ import { Observable, forkJoin, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { Options } from 'ng5-slider';
 import { FormGroup } from "@angular/forms";
-import { TranslateService } from "../../services";
+import { TranslateService1 } from "../../services";
 @Component({
     selector: 'filter-category-list',
     templateUrl: 'filter-category-list.modal.html',
@@ -82,7 +82,7 @@ export class FilterCategoryListModal {
         private _activatedRoute: ActivatedRoute,
         private _titleService: Title,
         private _router: Router,
-        private _translateService:TranslateService,
+        private _translateService:TranslateService1,
         private _loadingService: LoadingService, ) {
         this.compbineObservable()
     }

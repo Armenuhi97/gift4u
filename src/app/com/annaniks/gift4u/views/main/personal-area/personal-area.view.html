@@ -12,7 +12,7 @@
                         class="label">{{item.label}}</span>
                 </div>
                 <div class="main-left-item" (click)="onClickLogOut()"><i class="fa fa-angle-right"
-                        aria-hidden="true"></i><span class="label">{{'_exit' | language_translate:language}}</span>
+                        aria-hidden="true"></i><span class="label">{{'_exit' | translate}}</span>
                 </div>
             </div>
             <div class="main-right">
@@ -28,7 +28,7 @@
                         <i *ngIf="body1"
                             [ngClass]="{'active':body1 && body1.expanded,'unactive':body1 && !body1.expanded}"
                             class=" fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_personal_account' |language_translate:language}}</span>
+                        <span>{{'_personal_account' |translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body1 [expanded]="true">
@@ -42,7 +42,7 @@
                         <i *ngIf="body2"
                             [ngClass]="{'active':body2 && body2.expanded,'unactive':body2 && !body2.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span> {{'_user_account' | language_translate:language}}</span>
+                        <span> {{'_user_account' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body2 [expanded]="false">
@@ -57,7 +57,7 @@
                         <i *ngIf="body3"
                             [ngClass]="{'active':body3 && body3.expanded,'unactive':body3 && !body3.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span> {{'_delivery_address' | language_translate:language}}</span>
+                        <span> {{'_delivery_address' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body3 [expanded]="false">
@@ -72,7 +72,7 @@
                         <i *ngIf="body4"
                             [ngClass]="{'active':body4 && body4.expanded,'unactive':body4 && !body4.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_my_bookmarks' | language_translate:language}}</span>
+                        <span>{{'_my_bookmarks' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body4 [expanded]="false">
@@ -86,7 +86,7 @@
                         <i *ngIf="body5"
                             [ngClass]="{'active':body5 && body5.expanded,'unactive':body5 && !body5.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_order_history' | language_translate:language}}</span>
+                        <span>{{'_order_history' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body5 [expanded]="false">
@@ -100,7 +100,7 @@
                         <i *ngIf="body6"
                             [ngClass]="{'active':body6 && body6.expanded,'unactive':body6 && !body6.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_bonus_point' | language_translate:language}}</span>
+                        <span>{{'_bonus_point' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body6 [expanded]="false">
@@ -114,7 +114,7 @@
                         <i *ngIf="body7"
                             [ngClass]="{'active':body7 && body7.expanded,'unactive':body7 && !body7.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_payment_history' | language_translate:language}}</span>
+                        <span>{{'_payment_history' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body7 [expanded]="false">
@@ -128,7 +128,7 @@
                         <i *ngIf="body8"
                             [ngClass]="{'active':body8 && body8.expanded,'unactive':body8 && !body8.expanded}"
                             class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span>{{'_news_subscription' | language_translate:language}}</span>
+                        <span>{{'_news_subscription' | translate}}</span>
                     </div>
                 </collapsible-header>
                 <collapsible-body #body8 [expanded]="false">
@@ -139,6 +139,6 @@
         </collapsible-list>
         <div class="main-left-item" (click)="onClickLogOut()">
             <i class="fa fa-angle-right" aria-hidden="true"></i>
-            <span class="label">{{'_exit' |language_translate:language}}</span></div>
+            <span class="label">{{'_exit' |translate}}</span></div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Product } from '../../../models/models';
-import { AppService, TranslateService } from '../../../services';
+import { AppService, TranslateService1 } from '../../../services';
 
 @Component({
     selector: '[basketListItem]',
@@ -13,7 +13,7 @@ export class BasketListItemComponent implements OnInit {
     @Output('deleteEvent') private _deleteEvent: EventEmitter<void> = new EventEmitter<void>();
     private _count: number = 1;
 
-    constructor(@Inject('FILE_URL') private _fileUrl: string, private _appService: AppService,private _translateService:TranslateService) { }
+    constructor(@Inject('FILE_URL') private _fileUrl: string, private _appService: AppService,private _translateService:TranslateService1) { }
 
     ngOnInit() { }
 

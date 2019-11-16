@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from './search.service';
 import { Product, ServerResponse } from '../../../models/models';
 import { LoadingService } from '../../../services/loading.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 @Component({
     selector: 'search-view',
@@ -23,7 +23,7 @@ export class SearchView implements OnInit, OnDestroy {
         private _router: Router,
         private _searchService: SearchService,
         private _loadingService: LoadingService,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) {
         this._checkQueryParams();
     }

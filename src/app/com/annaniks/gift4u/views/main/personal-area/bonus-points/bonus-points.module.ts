@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material";
 import { BonusPointsServices } from "./bonus-points.service";
 import { DatePipe } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [BonusPointsView],
@@ -13,8 +14,10 @@ import { DatePipe } from "@angular/common";
         BonusPointesRoutingModule,
         ReactiveFormsModule,
         SharedModule,
-        MatDialogModule],
-        providers:[BonusPointsServices,DatePipe],
-        exports:[BonusPointsView]
+        MatDialogModule,
+        TranslateModule
+    ],
+    providers: [BonusPointsServices, DatePipe],
+    exports: [BonusPointsView]
 })
 export class BonusPointsModule { }

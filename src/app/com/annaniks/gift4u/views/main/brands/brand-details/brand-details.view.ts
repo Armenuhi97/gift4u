@@ -6,7 +6,7 @@ import { Product } from '../../../../models/models';
 import { Brand } from '../brands.models';
 import { Meta, Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../../services/loading.service';
-import { TranslateService } from '../../../../services';
+import { TranslateService1 } from '../../../../services';
 
 @Component({
     selector: 'brand-details-view',
@@ -36,7 +36,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
         private _title: Title,
         private _meta: Meta,
         private _loadingService: LoadingService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) {
         this._checkBrandId();
     }

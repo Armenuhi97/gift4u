@@ -7,7 +7,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { LoadingService } from '../../../../services/loading.service';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '../../../../services';
+import { TranslateService1 } from '../../../../services';
 
 
 @Component({
@@ -39,9 +39,9 @@ export class MyOrdersView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _title: Title,
         private _activatedRoute: ActivatedRoute,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) {
-        this._title.setTitle(this._activatedRoute.data['_value'].title);
+        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
     }
 
     ngOnInit() {

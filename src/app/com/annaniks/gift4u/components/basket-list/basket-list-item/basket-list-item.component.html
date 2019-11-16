@@ -4,7 +4,7 @@
             style="margin-right: 50px" />
         <p class="name">{{getAttributeName(basketItem,'name')}}</p>
     </div>
-    <div class="error" *ngIf="!basketItem?.is_post">{{'_post_error' | language_translate:language}}</div>
+    <div class="error" *ngIf="!basketItem?.is_post">{{'_post_error' | translate}}</div>
 </td>
 <td text-align-center>
     <p>{{basketItem?.duration_of_preparation}} </p>

@@ -4,7 +4,7 @@ import { Addresses, ServerResponse } from "../../../../models/models";
 import { MatDialog } from "@angular/material";
 import { AddAddressModal } from "../../../../modals/add-address/add-address.modal";
 import { LoadingService } from "../../../../services/loading.service";
-import { AppService, TranslateService } from "../../../../services";
+import { AppService, TranslateService1 } from "../../../../services";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
@@ -21,8 +21,8 @@ export class ShippingAddressesView implements OnInit {
         private _appService: AppService,
         private _loadingService: LoadingService,
         private _title: Title,
-        private _translateService:TranslateService) {
-        this._title.setTitle(this._activatedRoute.data['_value'].title);
+        private _translateService:TranslateService1) {
+        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
     }
     ngOnInit() {
         this._getAddresses()

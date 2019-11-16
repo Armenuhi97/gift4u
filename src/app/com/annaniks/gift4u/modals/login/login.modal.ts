@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { LoginService, TranslateService } from '../../services';
+import { LoginService, TranslateService1 } from '../../services';
 // import { CookieService } from 'angular2-cookie';
 import { LoginResponse } from '../../models/models';
 import { MainService } from '../../views/main/main.service';
@@ -27,7 +27,7 @@ export class LoginModal implements OnInit {
         private _mainService: MainService,
         private _matDialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

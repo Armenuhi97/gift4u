@@ -25,6 +25,7 @@ import { DropdownModule } from 'primeng/primeng';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from '../../services/cookie.service';
 import { CheckboxModule } from 'primeng/checkbox';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { CheckboxModule } from 'primeng/checkbox';
         FormsModule,
         HttpClientModule,
         CheckboxModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        TranslateModule
     ],
     providers: [
         MenuItemsService,

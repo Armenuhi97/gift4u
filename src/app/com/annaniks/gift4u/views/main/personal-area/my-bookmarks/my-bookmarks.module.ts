@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material";
 import { MyBookmarksService } from "./my-bookmarks.service";
 import { SharedModule } from "../../../../shared/shared.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [MyBookmarksView],
@@ -12,7 +13,8 @@ import { SharedModule } from "../../../../shared/shared.module";
         MyBookmarksRoutingModule,
         ReactiveFormsModule,
         SharedModule,
-        MatDialogModule
+        MatDialogModule,
+        TranslateModule
     ],
     providers:[MyBookmarksService],
     exports:[MyBookmarksView]

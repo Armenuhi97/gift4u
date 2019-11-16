@@ -1,15 +1,14 @@
 <div [ngClass]="{'has-border':!isBorder,'no-border':isBorder}" class="filters_content">
     <div class="filters_container">
-        <!-- (руб.) -->
-        <p class="header">{{'_price' | language_translate:language}} </p>
+        <p class="header">{{getTranslateWord('_price')}} </p>
 
         <div class="inputs-container" display-flex justify-content-space-beetwen>
             <label>
-                <span capitalize>{{'_from' | language_translate:language}}</span>
+                <span capitalize>{{getTranslateWord('_from')}}</span>
                 <input type="number" (ngModelChange)="changeMinValue($event)" [(ngModel)]="min">
             </label>
             <label>
-                <span capitalize>{{'_to' | language_translate:language}}</span>
+                <span capitalize>{{getTranslateWord('_to')}}</span>
                 <input type="number" (ngModelChange)="changeMaxValue($event)" [(ngModel)]="max">
             </label>
         </div>
@@ -46,10 +45,10 @@
             </div>
             <div class="buttons">
                 <button class="show_variants" (click)="onClickFilter()">
-                    <span>{{'_show_options' | language_translate:language}}</span>
+                    <span>{{getTranslateWord('_show_options')}}</span>
                 </button>
                 <button class="clear_filters" (click)="onClickClearFilters()">
-                    <span>{{'_reset_filters' | language_translate:language}}</span>
+                    <span> {{getTranslateWord('_reset_filters')}}</span>
                 </button>
             </div>
         </form>

@@ -15,6 +15,7 @@ import { LightboxModal } from '../../../../modals';
 import { MatDialogModule } from '@angular/material';
 import { ProductDetailsService } from './product-details.service';
 import { LightboxModule } from 'ngx-lightbox';
+import { TranslateModule } from '@ngx-translate/core';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'vertical',
     slidesPerView: 'auto'
@@ -36,7 +37,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         FormsModule,
         SwiperModule,
         MatDialogModule,
-        LightboxModule
+        LightboxModule,
+        TranslateModule
     ],
     providers: [
         {

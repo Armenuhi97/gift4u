@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material';
 import { LoginModal } from '../../../modals';
 import { MessageService } from 'primeng/api';
 import { Reviews } from '../../../models/models';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 @Component({
     selector: 'app-reviews',
@@ -31,7 +31,7 @@ export class ReviewsTabComponent implements OnInit {
         private _mainService: MainService,
         private _loadingService: LoadingService,
         private _messageService: MessageService,
-        private _translateService:TranslateService,
+        private _translateService:TranslateService1,
         @Inject('FILE_URL') public fileUrl: string) { }
 
     ngOnInit() {

@@ -6,7 +6,7 @@
                 <div class="content" full-width display-flex justify-content-space-beetwen>
                     <div class="first3">
                         <div class="form_group">
-                            <label class="label">{{'_full_name' | language_translate:language}}:*</label>
+                            <label class="label">{{'_full_name' | translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='text' formControlName="name" [placeholder]="getTranslateWord('* Full Name','* ФИО','* ԱԱՀ')"  name="name">
                                 <!-- <i class="material-icons" (click)="onClickEditField('name')">edit</i> -->
@@ -20,7 +20,7 @@
                             </mat-radio-group>
                         </div>
                         <div class="form_group">
-                            <label class="label">{{'_date_of_birdth' | language_translate:language}}:*</label>
+                            <label class="label">{{'_date_of_birdth' | translate}}:*</label>
                             <div class="date" display-flex align-items-center>
                                 <p-dropdown style="width:30%" [options]="day"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="form_group">
-                            <label class="label">{{'_city' | language_translate:language}}:*</label>
+                            <label class="label">{{'_city' | translate}}:*</label>
                             <div class="city" display-flex align-items-center>
                                 <!-- ,'max-width':'487px' -->
                                 <p-dropdown full-width [options]="cities" [filter]="true"
@@ -52,7 +52,7 @@
                     </div>
                     <div class="second3">
                         <div class="form_group">
-                            <label class="label">{{'_phone' | language_translate:language}}:*</label>
+                            <label class="label">{{'_phone' | translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='tel' prefix="+374" mask="(00) 00 00 00" formControlName="phone"
                                     [placeholder]="getTranslateWord('* Phone','* Телефон','* Հեռախոսահամար')" name="tel">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="form_group">
-                            <label class="label">{{'_email' | language_translate:language}}:*</label>
+                            <label class="label">{{'_email' | translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='email' formControlName="email" [placeholder]="getTranslateWord('* E-MAIL','* E-MAIL','* Էլ․հասցե')" name="mail">
                                 <!-- <i class="material-icons" (click)="onClickEditField('email')">edit</i> -->
@@ -78,8 +78,8 @@
             </form>
             <div class="main-right-bottom">
                 <button [disabled]="userForm.invalid" [ngClass]="{'disabled':userForm.invalid}"
-                    (click)="onClickContinue()"><span>{{'_confirm' | language_translate:language}}</span></button>
-                <div class="button-right"><span><span class="star">*</span> {{'error3' | language_translate:language}}</span>
+                    (click)="onClickContinue()"><span>{{'_confirm' | translate}}</span></button>
+                <div class="button-right"><span><span class="star">*</span> {{'error3' | translate}}</span>
                 </div>
             </div>
             <div class="change_password_wrapper">

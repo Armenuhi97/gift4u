@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Translate } from '../models/models';
 import { DatePipe } from '@angular/common';
-import { TranslateService } from '../services';
+import { TranslateService1 } from '../services';
 
 @Pipe({
     name: 'splice_text'
@@ -20,15 +20,6 @@ export class SpliceText implements PipeTransform {
             }
         }
         return text;
-    }
-}
-@Pipe({
-    name: 'language_translate'
-})
-export class TranslateLanguagePipe implements PipeTransform {
-    constructor(private _translateService: TranslateService) { }
-    transform(value, lng) {
-        return this._translateService.translate(value)
     }
 }
 @Pipe({

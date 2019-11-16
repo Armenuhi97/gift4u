@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProductFull, Product } from '../../models/models';
 import { Router } from '@angular/router';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: 'add-product-basket-modal',
@@ -17,7 +17,7 @@ export class AddProductBasketModal implements OnInit {
         @Inject("FILE_URL") private _fileUrl: string,
         private _dialogRef: MatDialogRef<AddProductBasketModal>,
         private _router: Router,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

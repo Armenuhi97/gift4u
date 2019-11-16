@@ -1,6 +1,6 @@
 import { Banner, Partner, Video } from "../views/main/home/home.models";
 import { Category } from "../views/main/catalog/catalog.models";
-import { TranslateService } from "../services";
+import { TranslateService1 } from "../services";
 
 export interface RequestParams {
     headers?;
@@ -254,7 +254,7 @@ export interface ParfumeInfo {
 }
 
 export interface Breadcrumbs {
-    label: string;
+    label: any;
     status: string;
     url: string;
     queryParams: any;
@@ -346,16 +346,12 @@ export class User {
     orderSum: number;
     profile_image: string
 
-    constructor() {
+    constructor() {        
         this.active = 0;
         this.address = '';
         this.balance = '';
         this.birthday = '';
-        if (localStorage.getItem('language_key')) {
-            this.cityCountriesName = JSON.parse(localStorage.getItem('language_key')) == 'arm' ? 'Գյումրի' : JSON.parse(localStorage.getItem('language_key')) == 'ru' ? 'Гюмри' : 'Gyumri';
-        } else {
-            this.cityCountriesName = 'Գյումրի'
-        }
+        this.cityCountriesName = ''
         this.cityCountryId = 1;
         this.created_at = '';
         this.email = '';

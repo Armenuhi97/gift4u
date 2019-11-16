@@ -4,10 +4,10 @@
             <i class="material-icons">
                 keyboard_arrow_left
             </i>
-            <span font-size-17>{{'_back_catalog' | language_translate:language}}</span>
+            <span font-size-17>{{'_back_catalog' | translate}}</span>
         </div>
         <div *ngIf="allGet()" (click)="reset()">
-            <span font-size-13>{{'_reset' | language_translate:language}}</span>
+            <span font-size-13>{{'_reset' | translate}}</span>
         </div>
     </div>
     <div margin-top-30>
@@ -27,11 +27,11 @@
         <accordion-list (click)="closeOtherCategory(3)" [category]="categotyListName[3]">
             <div class="inputs-container" display-flex align-items-center justify-content-space-beetwen>
                 <label>
-                    <span capitalize>{{'_from' | language_translate:language}}</span>
+                    <span capitalize>{{'_from' | translate}}</span>
                     <input [(ngModel)]="value" type="number">
                 </label>
                 <label>
-                    <span capitalize>{{'_to' | language_translate:language}}</span>
+                    <span capitalize>{{'_to' | translate}}</span>
                     <input [(ngModel)]="highValue" type="number">
                 </label>
             </div>
@@ -50,6 +50,6 @@
     </div>
 </div>
 <div class="bottom-button">
-    <button [disabled]="!allGet()" class="clean" (click)="reset()">{{'_clean' | language_translate:language}}</button>
-    <button [disabled]="!allGet()" class="apply" (click)="apply()">{{'_apply' | language_translate:language}}</button>
+    <button [disabled]="!allGet()" class="clean" (click)="reset()">{{'_clean' | translate}}</button>
+    <button [disabled]="!allGet()" class="apply" (click)="apply()">{{'_apply' | translate}}</button>
 </div>

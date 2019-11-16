@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: 'buy-one-click-modal',
@@ -12,7 +12,7 @@ export class BuyOneClickModal implements OnInit {
     private _buyOneClickForm: FormGroup;
 
     constructor(private _fb: FormBuilder, private _dialogRef: MatDialogRef<BuyOneClickModal>,
-        private _translateService:TranslateService) { }
+        private _translateService:TranslateService1) { }
 
     ngOnInit() {
         this._formBuilder();

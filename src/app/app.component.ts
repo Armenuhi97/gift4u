@@ -1,6 +1,9 @@
 import { Component, ApplicationRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
+import { PlatformService } from './com/annaniks/gift4u/services/platform.service';
 
 
 @Component({
@@ -12,9 +15,16 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'gift4u';
 
-  constructor(private _ref: ApplicationRef, private _router: Router) {
+  constructor(private _ref: ApplicationRef, private _router: Router,
+    private _platformService: PlatformService,
+    private _translate: TranslateService, private _cookieService: CookieService) {
     _router.events.subscribe((value) => {
       _ref.tick();
     });
+    if (this._platformService.isBrowser) {
+      let active_lng = this._cookieService.get('language') ? this._cookieService.get('language') : 'arm';
+      this._translate.use(active_lng)
+    }
+
   }
 }

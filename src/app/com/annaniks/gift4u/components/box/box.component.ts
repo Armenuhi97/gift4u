@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService, TranslateService } from '../../services';
+import { AppService, TranslateService1 } from '../../services';
 import { MatDialog } from '@angular/material';
 import { FilterCategoryListModal } from '../../modals';
 
@@ -31,7 +31,7 @@ export class BoxComponent implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _appService: AppService,
         private _matDialog: MatDialog,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) {
         this._checkQueryParams();
     }

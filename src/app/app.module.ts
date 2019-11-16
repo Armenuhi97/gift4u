@@ -6,16 +6,22 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { httpParams } from './com/annaniks/gift4u/params/httpParams';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppService, TranslateService } from './com/annaniks/gift4u/services';
-import { HttpClientModule } from '@angular/common/http';
+import { AppService, TranslateService1 } from './com/annaniks/gift4u/services';
 import { HttpModule } from '@angular/http';
 import { LoadingService } from './com/annaniks/gift4u/services/loading.service';
 import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
 import { PlatformService } from './com/annaniks/gift4u/services/platform.service';
 import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-transfer-http';
+import { TranslateModule, TranslateLoader, TranslateService } from  '@ngx-translate/core';
+import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from  '@angular/common/http';
 import localeRu from '@angular/common/locales/ru';
 
 registerLocaleData(localeRu)
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +33,14 @@ registerLocaleData(localeRu)
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'app-root' }),
-    TransferHttpModule
+    TransferHttpModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     AppService,
@@ -36,6 +49,7 @@ registerLocaleData(localeRu)
     CookieService,
     PlatformService,
     TranslateService,
+    TranslateService1,
     {
       provide: 'req',
       useValue: null

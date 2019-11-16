@@ -3,13 +3,12 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
 import { Product, ServerResponse, CityCountry, Addresses } from '../../../models/models';
 import { MainService } from '../main.service';
 import { BasketService } from './basket.service';
-import { AppService, TranslateService } from '../../../services';
+import { AppService, TranslateService1 } from '../../../services';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShippingPrice, CarrierType, PromoCode } from './basket.models';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from '../../../services/cookie.service';
-import { translate } from '../../../translate-params/translate';
 
 @Component({
     selector: 'basket-view',
@@ -46,7 +45,7 @@ export class BasketView implements OnInit {
     public _localShippingInfo: ShippingPrice = {} as ShippingPrice
     public isFreeShipping: boolean = false;
     public codPrice: number = 0;
-    public makeOrderError: string = translate('_error');
+    public makeOrderError:string =this._translateService.getTranslate('_error'); 
     public allAddresses: Addresses[];
     public isDiscount: boolean = false
     public isRegistration: boolean;
@@ -91,8 +90,8 @@ export class BasketView implements OnInit {
         clear: 'Очистить',
     }
     public paymentMethods = [
-        { id: 0, header: translate('_pay_now'), under: translate('_bank_card'), percent: 0 },
-        { id: 1, header: translate('_upon_receipt'), under: translate('_cash_courier'), percent: 0 },
+        { id: 0, header:this._translateService.getTranslate('_pay_now'), under:this._translateService.getTranslate('_bank_card'), percent: 0 },
+        { id: 1, header:this._translateService.getTranslate('_upon_receipt'), under:this._translateService.getTranslate('_cash_courier'), percent: 0 },
     ]
     private _allTimes = [
         { name: '10:00 - 13:00' },
@@ -113,9 +112,9 @@ export class BasketView implements OnInit {
         private _router: Router,
         private _title: Title,
         private _cookieService: CookieService,
-        private _translateService: TranslateService,
+        private _translateService: TranslateService1,
         @Inject("FILE_URL") private _fileUrl: string
-    ) {
+    ) {        
         this._checkBasketProducts();
         this._checkQueryParams();
         this.visiblePaymentMethods = this.paymentMethods;
@@ -344,11 +343,11 @@ export class BasketView implements OnInit {
         })
     }
 
-    private _setRouteSteps(): void {
-        this._title.setTitle(translate('_busket'));
+    private _setRouteSteps(): void {        
+        this._title.setTitle(this._translateService.getTranslate('_busket'));
         this.routeSteps.push(
-            { label: this.getTranslateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
-            { label: translate('_busket'), url: '/basket', queryParams: {}, status: '' }
+            { label:this._translateService.getTranslate('_main'), url: '/', queryParams: {}, status: '' },
+            { label:this._translateService.getTranslate('_busket'), url: '/basket', queryParams: {}, status: '' }
         )
     }
 
@@ -478,7 +477,7 @@ export class BasketView implements OnInit {
                 if (data.error) {
                     this.error = true;
                     //this.makeOrderError = data.message;
-                    this.makeOrderError = translate('error2')
+                    this.makeOrderError =this._translateService.getTranslate('error2')
                     return;
                 }
                 this.error = false;

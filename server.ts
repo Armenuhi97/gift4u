@@ -148,6 +148,13 @@ app.listen(PORT, () => {
   console.log(`Node server listening on http://localhost:${PORT}`);
 });
 
-
+app.get('*', (req: express.Request, res: express.Response) => {
+  res.render('index', {
+    req,
+    providers: [
+      { provide: REQUEST, useValue: req },
+    ]
+  });
+});
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { LoginService, AppService, TranslateService } from '../../services';
+import { LoginService, AppService, TranslateService1 } from '../../services';
 import { MainService } from '../../views/main/main.service';
 import { CityCountry, ServerResponse, LoginResponse } from '../../models/models';
 // import { CookieService } from 'angular2-cookie';
@@ -26,7 +26,7 @@ export class RegistrationModal implements OnInit {
         private _mainService: MainService,
         private _appService: AppService,
         private _cookieService: CookieService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) { }
 
     ngOnInit() {

@@ -5,8 +5,9 @@ import { MatDialog } from '@angular/material';
 import { LoginModal, RegistrationModal, BackCallModal, SelectCityModal } from '../../modals';
 import { MainService } from '../../views/main/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService, ApiService, TranslateService } from '../../services';
+import { AppService, ApiService, TranslateService1 } from '../../services';
 import { CookieService } from '../../services/cookie.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-topbar',
@@ -60,21 +61,22 @@ export class TopbarComponent implements OnInit {
         private _appService: AppService,
         private _activatedRoute: ActivatedRoute,
         private _apiService: ApiService,
-        private _translateService: TranslateService,
+        private _translateService: TranslateService1,
         private _cookieService: CookieService,
-        @Inject('FILE_URL') private _fileUrl: string
+        @Inject('FILE_URL') private _fileUrl: string,
+        private _translate: TranslateService
     ) {
         this._checkQueryParams();
-        this.active_lng = JSON.parse(localStorage.getItem('language_key'));
-       
-        if (this._cookieService.get('color')){
+        this.active_lng = this._translate.currentLang;
+
+        if (this._cookieService.get('color')) {
             document.documentElement.style
-            .setProperty('--main-color', this._cookieService.get('color'));
+                .setProperty('--main-color', this._cookieService.get('color'));
             this.color = this._cookieService.get('color')
-        }else{
-            this.color= "#00001b";
+        } else {
+            this.color = "#00001b";
         }
-            
+
     }
 
     ngOnInit() { }
@@ -100,10 +102,9 @@ export class TopbarComponent implements OnInit {
         }
     }
     public changeLanguage(lang_key: string) {
-        this._translateService.setActiveLng(lang_key);
-    }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+        window.location.reload();
+        this._cookieService.set('language', lang_key);
+        this._translate.use(lang_key);
     }
     public onClickMenuButton(): void {
         this._menuItemsService.openMenu();
@@ -271,13 +272,16 @@ export class TopbarComponent implements OnInit {
         return this._mainService.isAuthorized();
     }
     get activeLanguage() {
-        return this._translateService.getActiveLanguage()
+        return this._translate.currentLang
     }
     get openMenu(): boolean {
         return this._menuItemsService.getOpenMenu();
     }
     get city(): string {
-        return this._mainService.getUserInfo().cityCountriesName
+        if(!this._mainService.getUserInfo().cityCountriesName){
+            this._mainService.getUserInfo().cityCountriesName =this._translateService.getTranslate('_gyumri')
+        }
+        return this._mainService.getUserInfo().cityCountriesName 
     }
 
     get phone(): string {
@@ -288,7 +292,7 @@ export class TopbarComponent implements OnInit {
         return this._workingTime;
     }
     get language() {
-        return this._translateService.getActiveLanguage()
+        return this._translate.currentLang
     }
     get similarProducts(): string[] {
         return this._similarProducts;

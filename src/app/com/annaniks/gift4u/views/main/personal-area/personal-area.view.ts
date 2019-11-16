@@ -6,7 +6,7 @@ import { MainService } from '../main.service';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { CookieService } from '../../../services/cookie.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class PersonalAreaView implements OnInit {
         private _mainService: MainService,
         private _title: Title,
         private _matDialog: MatDialog,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) {
         this._getUser();
     }

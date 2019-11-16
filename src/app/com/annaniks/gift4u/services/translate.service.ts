@@ -1,27 +1,31 @@
 import { Injectable } from "@angular/core";
 import { TransferHttpService } from "@gorniv/ngx-transfer-http";
-import { DICTIONARY } from '../translate-params/dictionary'
 import { AppService } from "./app.service";
+import { CookieService } from "./cookie.service";
+import { TranslateService } from "@ngx-translate/core";
 @Injectable()
-export class TranslateService {
-    private _activeLanguage: string = JSON.parse(localStorage.getItem('language_key')) ? JSON.parse(localStorage.getItem('language_key')) : 'arm';
+export class TranslateService1 {
+    private _activeLanguage: string = this._translate.currentLang;
 
-    constructor(private _httpClient: TransferHttpService,private _appService:AppService) { }
+    constructor(private _httpClient: TransferHttpService, private _translate: TranslateService, private _appService: AppService, private _cookieService: CookieService) { }
     ngOnInit() {
+
     }
-   
+
     public getActiveLanguage() {
         return this._activeLanguage
     }
-    public setActiveLng(lng: string) {
-        window.location.reload();
-        this._activeLanguage = lng;
-        localStorage.setItem('language_key', JSON.stringify(lng));
+    public getTranslate(word: string) {
+        let translate: string;
+        this._translate.get(word).subscribe((data) => {
+            translate = data;
+            return translate
+        })
+        return translate
     }
-    public translate(key) {
-        return DICTIONARY[this._activeLanguage][key]
-    }
+    
     public translateImportant(key1: string, key2: string, key3: string) {
+        this._activeLanguage = this._translate.currentLang;
         if (this._activeLanguage == "en") {
             return key1
         } else {
@@ -35,23 +39,23 @@ export class TranslateService {
 
         }
     }
-    public getRequestTranslateAttributeName(object,name: string) {
-        let activeLanguage = this._activeLanguage;
+    public getRequestTranslateAttributeName(object, name: string) {
+        let activeLanguage = this._translate.currentLang;
         let attributeName;
         if (activeLanguage == 'arm') {
-            attributeName= name;
-            return this._appService.checkPropertyValue(object,attributeName)
+            attributeName = name;
+            return this._appService.checkPropertyValue(object, attributeName)
         } else {
-            attributeName= name + '_' + activeLanguage
-            return this._appService.checkPropertyValue(object,attributeName)
+            attributeName = name + '_' + activeLanguage
+            return this._appService.checkPropertyValue(object, attributeName)
         }
 
     }
     public getRequestTranslateAttribute(name: string) {
         let activeLanguage = this._activeLanguage;
-        if (activeLanguage == 'arm') {       
+        if (activeLanguage == 'arm') {
             return name
-        } else {            
+        } else {
             return name + '_' + activeLanguage
         }
 

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DatePipe } from '@angular/common';
 import { MatDialogModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     declarations: [
         UserInfoView,
@@ -13,7 +14,8 @@ import { MatDialogModule } from '@angular/material';
         UserInfoRoutingModule,
         ReactiveFormsModule,
         SharedModule,
-        MatDialogModule
+        MatDialogModule,
+        TranslateModule
     ],
     providers: [DatePipe],
     exports:[UserInfoView]

@@ -4,7 +4,7 @@ import { ServerResponse, User, Month, Day, Year } from 'src/app/com/annaniks/gif
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MainService } from '../../main.service';
 import { PersonalAreaService } from '../personal-area.service';
-import { AppService, TranslateService } from '../../../../services';
+import { AppService, TranslateService1 } from '../../../../services';
 import { MessageService } from 'primeng/api';
 import { LoadingService } from '../../../../services/loading.service';
 import { MatDialog } from '@angular/material';
@@ -56,9 +56,9 @@ export class AccountView implements OnInit {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1
     ) {
-        this._title.setTitle(this._activatedRoute.data['_value'].title);
+        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
     }
 
     ngOnInit() {

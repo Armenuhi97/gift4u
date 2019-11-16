@@ -11,6 +11,9 @@
     "_show_all": "Show all",
     "_subscribe_text": "SUBSCRIBE TO NEWS, PROMOTIONS AND DISCOUNTS",
     "_subscribe": "Subscribe",
+    "_popular_products":"Popular product",
+    "special_offer":"Special offer",
+    "_new_items_on_site":"NEW ITEMS ON THE SITE",
     "_join": "JOIN",
     "_social_media": "Us on social media",
     "_fast_delivery": "FAST DELIVERY",
@@ -94,7 +97,7 @@
     "_characteristics": "Characteristics",
     "_reviews": "Reviews",
     "_add_to_basket": "add to basket",
-    "_product_return_price_text": "We return from 3% to 15% to the bonus account.",
+    "_product_return_price_text": "We return from 2% to 8% to the bonus account.",
     "_choose_quantity": "Choose quantity",
     "_more": "More",
     "_return": "we will return",
@@ -175,6 +178,9 @@
     "_send_message_success_message": "Your message has been sent successfully",
     "_maked_day":"The duration of manufacture of the product is",
     "_days":"d."  ,
-    "_choose_color_site":"Choose color of site"
+    "_choose_color_site":"Choose color of site",
+    "_main":"Main",
+    "_gyumri":"Gyumri"
+
 
 }

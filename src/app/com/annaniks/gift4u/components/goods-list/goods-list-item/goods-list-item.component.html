@@ -17,7 +17,7 @@
             </div>
             <div class="description" cursor-pointer>
                 <a [routerLink]="'/catalog/'+product?.id">
-                    <span>{{getAttributeName(product,'name') | splice_text:80:30}}</span>
+                    <span [innerHtml]="getAttributeName(product,'name') | splice_text:80:30"></span>
                 </a>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     ֏</p>
             </div>
             <div class="basket_button">
-                <button (click)="onClickAddBasket()">{{'_into_busket' | language_translate:language}}</button>
+                <button (click)="onClickAddBasket()">{{getTranslateWord('_into_busket')}}</button>
             </div>
         </div>
     </div>

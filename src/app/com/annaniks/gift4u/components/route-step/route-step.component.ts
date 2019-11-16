@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Inject } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Breadcrumbs } from '../../models/models';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: "app-route-step",
@@ -13,7 +13,7 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     tempState = [];
     public arrow_icon: string
     @Input('routes') breadcrumbs: Array<Breadcrumbs> = [];
-    constructor(private router: Router, private route: ActivatedRoute, private _titleService: Title,private _translateService:TranslateService) {
+    constructor(private router: Router, private route: ActivatedRoute, private _titleService: Title,private _translateService:TranslateService1) {
         // this.router.routeReuseStrategy.shouldReuseRoute = function(){
         //     return false;
         // }

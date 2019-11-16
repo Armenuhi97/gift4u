@@ -6,7 +6,7 @@ import { PersonalAreaService } from '../personal-area.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { TranslateService } from '../../../../services';
+import { TranslateService1 } from '../../../../services';
 
 @Component({
     selector: 'user-info-view',
@@ -32,10 +32,10 @@ export class UserInfoView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
-        private _translateService: TranslateService,
+        private _translateService: TranslateService1,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
-        this._title.setTitle(this._activatedRoute.data['_value'].title);
+        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
     }
 
     ngOnInit() {
@@ -63,10 +63,10 @@ export class UserInfoView implements OnInit, OnDestroy {
     }
     public getGender(): string {
         if (this._userInfo.gender == 0) {
-            return this.translateWords('Male','Мужской','Արական')
+            return this.translateWords('Male', 'Мужской', 'Արական')
         } else {
             if (this._userInfo.gender == 1) {
-                return this.translateWords('Female','Женский','Իգական')
+                return this.translateWords('Female', 'Женский', 'Իգական')
             }
         }
     }
@@ -177,7 +177,7 @@ export class UserInfoView implements OnInit, OnDestroy {
     get isActiveGift(): boolean {
         return this._isActiveGift
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
     get giftError(): boolean {

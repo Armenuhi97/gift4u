@@ -7,6 +7,7 @@ import { BastketListComponent, BasketListItemComponent } from '../../../componen
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/primeng';
 import {CalendarModule} from 'primeng/calendar';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {CalendarModule} from 'primeng/calendar';
         ReactiveFormsModule,
         FormsModule,
         DropdownModule,
-        CalendarModule
+        CalendarModule,
+        TranslateModule
     ],
     providers: [BasketService]
 })

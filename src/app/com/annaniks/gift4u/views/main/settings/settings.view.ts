@@ -2,12 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../main.service';
 import { Setting, Announcement, ServerResponse, AnnouncementType } from '../../../models/models';
-import { AppService, TranslateService } from '../../../services';
+import { AppService, TranslateService1 } from '../../../services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { MessageService } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
-import { translate } from '../../../translate-params/translate';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class SettingsView implements OnInit {
     private _feedbackForm: FormGroup;
     private _loading: boolean = false;
     private _error: string;
-    @ViewChild('iframe',{static:false}) private _iframeContent: ElementRef<HTMLElement>;
+    @ViewChild('iframe', { static: false }) private _iframeContent: ElementRef<HTMLElement>;
 
     constructor(
         private _activatedRoute: ActivatedRoute,
@@ -35,7 +34,7 @@ export class SettingsView implements OnInit {
         private _settingService: SettingsService,
         private _messageService: MessageService,
         private _title: Title,
-        private _translateService:TranslateService,
+        private _translateService: TranslateService1,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
@@ -53,7 +52,7 @@ export class SettingsView implements OnInit {
     }
 
     private _getNews(id: number): void {
-        this._settingService.getNews(id).subscribe((data: ServerResponse<Announcement[]>) => {            
+        this._settingService.getNews(id).subscribe((data: ServerResponse<Announcement[]>) => {
             this._news = data.messages;
         })
     }
@@ -69,8 +68,8 @@ export class SettingsView implements OnInit {
             }
         })
     }
-    public translateWord(key1:string,key2:string,key3:string){
-        return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
 
     private _formBuilder(): void {
@@ -89,18 +88,18 @@ export class SettingsView implements OnInit {
         })
     }
 
-    private _findSetting(): void {        
+    private _findSetting(): void {
         let setting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', this._settingName), 0);
         if (setting) {
             this._setting = setting;
-            this._title.setTitle(this.getAttributeName(setting,'name'));
-            if (this._setting.key.toLowerCase() === 'contacts') {          
+            this._title.setTitle(this.getAttributeName(setting, 'name'));
+            if (this._setting.key.toLowerCase() === 'contacts') {
                 let mapSetting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', 'maps'), 0);
                 this._setting.map = mapSetting;
-                
+
                 this._visibleContent = true;
                 setTimeout(() => {
-                    this._iframeContent.nativeElement.innerHTML =this.getAttributeName(mapSetting,'description');
+                    this._iframeContent.nativeElement.innerHTML = this.getAttributeName(mapSetting, 'description');
                 }, 10)
             }
             else {
@@ -114,8 +113,8 @@ export class SettingsView implements OnInit {
             this._router.navigate(['/not-found']);
         }
     }
-    public getAttributeName(object,name: string) {
-        return this._translateService.getRequestTranslateAttributeName(object,name)
+    public getAttributeName(object, name: string) {
+        return this._translateService.getRequestTranslateAttributeName(object, name)
     }
     private _sendFeedback(): void {
         this._settingService.sendFeedback({
@@ -125,11 +124,11 @@ export class SettingsView implements OnInit {
             message: this._feedbackForm.get('message').value
         })
             .subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary: translate('_message'), detail:translate('_send_message_success_message')})
+                this._messageService.add({ severity: 'success', summary: this._translateService.getTranslate('_message'), detail: this._translateService.getTranslate('_send_message_success_message') })
                 this._loading = false;
             },
                 (error) => {
-                    this._error = translate('_error');
+                    this._error =this._translateService.getTranslate('_error');
                 })
     }
 
@@ -156,7 +155,7 @@ export class SettingsView implements OnInit {
     get loading(): boolean {
         return this._loading;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
     get error(): string {

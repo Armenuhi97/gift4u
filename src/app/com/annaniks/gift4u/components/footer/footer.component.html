@@ -15,14 +15,14 @@
                 </div> -->
             </div>
             <div class="map_item">
-                <p class="header">{{'_about_company' | language_translate:language}}</p>
+                <p class="header">{{'_about_company' | translate}}</p>
                 <p class="items " *ngFor="let item of menuItems" (click)="onClickMenuItem(item)" cursor-pointer>
                     <!-- <span class="arrow">></span> -->
                     <span class="hover_underline">{{getAttributeName(item,'label')}}</span>
                 </p>
             </div>
             <div class="map_item">
-                <p class="header">{{'_products_catalog' | language_translate:language}}</p>
+                <p class="header">{{'_products_catalog' | translate}}</p>
                 <p class="items" *ngFor="let item of categories" cursor-pointer routerLink="/catalog"
                     [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}'>
                     <!-- <span class="arrow">></span> -->
@@ -32,7 +32,7 @@
                 </p>
             </div>
             <div class="map_item" display-flex flex-direction-column>
-                <p class="header">{{'contacts' | language_translate:language}}</p>
+                <p class="header">{{'contacts' | translate}}</p>
                 <div class="items it" display-flex align-items-center>
                     <img class="icon" src="/assets/images/location_f.png" alt="" width="18px" height="21px">
                     <p class="text font_14">{{address}}</p>

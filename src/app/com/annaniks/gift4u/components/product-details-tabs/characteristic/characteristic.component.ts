@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 @Component({
     selector: 'app-characteristic',
@@ -9,7 +9,7 @@ import { TranslateService } from '../../../services';
 export class CharacteristicTabComponent implements OnInit {
     @Input('data') private _characteristicData;
 
-    constructor(@Inject('FILE_URL') private _fileUrl: string,private _translateService:TranslateService) { }
+    constructor(@Inject('FILE_URL') private _fileUrl: string,private _translateService:TranslateService1) { }
 
     ngOnInit() {}
     public getAttributeName(obj,name: string) {

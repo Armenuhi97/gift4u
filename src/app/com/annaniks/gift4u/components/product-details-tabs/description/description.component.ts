@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
 
 @Component({
     selector: "app-description",
@@ -9,7 +9,7 @@ import { TranslateService } from '../../../services';
 export class DescriptionTabComponent implements OnInit {
     @Input('data') private _descriptionData;
 
-    constructor(private _translateService:TranslateService) { }
+    constructor(private _translateService:TranslateService1) { }
 
     ngOnInit() {}
 

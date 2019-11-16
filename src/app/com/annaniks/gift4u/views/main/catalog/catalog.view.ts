@@ -5,7 +5,8 @@ import { ServerResponse, Product, Breadcrumbs, Path } from '../../../models/mode
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../services/loading.service';
-import { TranslateService } from '../../../services';
+import { TranslateService1 } from '../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'catalog-view',
@@ -29,7 +30,7 @@ export class CatalogView implements OnInit {
     public isChangeCategory: boolean = false
     private _previousParentId: number
     private _routeSteps: Breadcrumbs[] = [
-        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
+        { label: this._translateService.getTranslate('_main'), url: '/', queryParams: {}, status: '' }
     ];
 
     constructor(
@@ -38,16 +39,18 @@ export class CatalogView implements OnInit {
         private _titleService: Title,
         private _router: Router,
         private _loadingService: LoadingService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService1,
+        private _translate:TranslateService
     ) {
         this._checkQueryParams();
     }
 
-    ngOnInit() {
+    ngOnInit() {       
         if (window.innerWidth <= 973) {
             this._isShowFilters = false;
         }
     }
+    private _getTransla
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
     }

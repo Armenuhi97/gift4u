@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
 import { OrderProducts } from '../../views/main/personal-area/personal-area.models';
-import { TranslateService } from '../../services';
+import { TranslateService1 } from '../../services';
 
 @Component({
     selector: "app-my-orders-table",
@@ -11,7 +11,7 @@ import { TranslateService } from '../../services';
 export class MyOrdersTableComponent implements OnInit {
     @Input('productsData') private _products: OrderProducts[] = [];
 
-    constructor(@Inject('FILE_URL') private _fileUrl: string,private _translateService:TranslateService) { }
+    constructor(@Inject('FILE_URL') private _fileUrl: string,private _translateService:TranslateService1) { }
 
     ngOnInit() { }
 

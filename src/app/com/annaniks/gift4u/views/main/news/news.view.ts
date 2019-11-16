@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { NewsService } from './news.service';
-import { AppService, TranslateService } from '../../../services';
+import { AppService, TranslateService1 } from '../../../services';
 import { Announcement, ServerResponse, AnnouncementType } from '../../../models/models';
 import { Title } from '@angular/platform-browser';
 
@@ -17,7 +17,7 @@ export class NewsView implements OnInit, OnDestroy {
         private _newsService: NewsService,
         private _appService: AppService,
         private _title: Title,
-        private _translateService:TranslateService
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {

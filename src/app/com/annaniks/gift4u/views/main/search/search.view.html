@@ -9,7 +9,7 @@
                     (paginate)="onPageChange($event)"></app-paginator>
             </div>
             <div class="not_found" *ngIf="(!productsCount || productsCount==0) && !loading">
-                <p text-align-center>{{'_search_error' | language_translate:language}}</p>
+                <p text-align-center>{{'_search_error' | translate}}</p>
             </div>
         </app-box>
     </div>

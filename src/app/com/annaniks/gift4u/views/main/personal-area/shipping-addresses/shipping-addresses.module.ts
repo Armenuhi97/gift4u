@@ -6,6 +6,7 @@ import { MatDialogModule } from "@angular/material";
 import { SharedModule } from "../../../../shared/shared.module";
 import { ShippingAddressesServices } from "./shipping-addresses.service";
 import { AddAddressModal } from "../../../../modals/add-address/add-address.modal";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [ShippingAddressesView, AddAddressModal],
@@ -14,7 +15,8 @@ import { AddAddressModal } from "../../../../modals/add-address/add-address.moda
         ShippingAddressesRoutingModule,
         ReactiveFormsModule,
         SharedModule,
-        MatDialogModule
+        MatDialogModule,
+        TranslateModule
     ],
     providers: [ShippingAddressesServices],
     exports:[ShippingAddressesView]

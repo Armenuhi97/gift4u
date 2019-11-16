@@ -6,10 +6,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material";
 import { PaymentHistoryService } from "./payment-history.service";
 import { DatePipe } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [PaymentHistoryView],
-    imports: [PaymentHistoryRoutingModule, SharedModule, MatDialogModule, ReactiveFormsModule],
+    imports: [PaymentHistoryRoutingModule,TranslateModule, SharedModule, MatDialogModule, ReactiveFormsModule],
     providers:[PaymentHistoryService,DatePipe],
     exports:[PaymentHistoryView]
 })
