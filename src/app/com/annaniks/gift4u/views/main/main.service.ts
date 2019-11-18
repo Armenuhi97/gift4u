@@ -42,20 +42,23 @@ export class MainService {
         return this._apiService.get('/city');
     }
     public getUser(): Observable<User> {
-        let accessToken = this._cookieService.get('accessToken');
-        if (accessToken) {
-            return this._apiService.get('/me', true).pipe(
-                map((data: any) => {
-                    this._user = data.data[0];
-                    this.checkUserBasketPrice();
-                    this._isAuthorized = true;
-                    return this._user;
-                })
-            );
-        }
-        else {
-            return of()
-        }
+        let accessToken;
+        if (this._platformService.isBrowser) 
+             accessToken = this._cookieService.get('accessToken');
+            if (accessToken) {
+                return this._apiService.get('/me', true).pipe(
+                    map((data: any) => {
+                        this._user = data.data[0];
+                        this.checkUserBasketPrice();
+                        this._isAuthorized = true;
+                        return this._user;
+                    })
+                );
+            }
+            else {
+                return of()
+            }
+        
     }
 
     public checkUserBasketPrice(): void {
@@ -101,7 +104,7 @@ export class MainService {
             }
         })
         matDialog.afterClosed().subscribe((data) => {
-            this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message','Сообщение','Հաղորդագրություն'), detail: this._translateService.translateImportant('Product successfully added to basket','Товар успешно добавлен в корзину','Ապրանքը հաջողությամբ ավելացված է զամբյուղի մեջ') })
+            this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'), detail: this._translateService.translateImportant('Product successfully added to basket', 'Товар успешно добавлен в корзину', 'Ապրանքը հաջողությամբ ավելացված է զամբյուղի մեջ') })
         })
     }
 

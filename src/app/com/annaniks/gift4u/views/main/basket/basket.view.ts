@@ -314,17 +314,18 @@ export class BasketView implements OnInit {
         })
     }
     private _getAllAddresses() {
-        if (this._cookieService.get('accessToken')) {
-            this._basketService.getAllAddresses().subscribe((data: ServerResponse<Addresses[]>) => {
-                this.allAddresses = data.messages;
-                for (let address of this.allAddresses) {
-                    if (address.status == '1') {
-                        this._isHasMainAddress = true
+        if (this._platformService.isBrowser)
+            if (this._cookieService.get('accessToken')) {
+                this._basketService.getAllAddresses().subscribe((data: ServerResponse<Addresses[]>) => {
+                    this.allAddresses = data.messages;
+                    for (let address of this.allAddresses) {
+                        if (address.status == '1') {
+                            this._isHasMainAddress = true
+                        }
                     }
-                }
-                this._setMainAddress();
-            })
-        }
+                    this._setMainAddress();
+                })
+            }
     }
     private _setMainAddress(): void {
         if (this._isHasMainAddress) {
@@ -902,9 +903,9 @@ export class BasketView implements OnInit {
     get allTimes() {
         return this._newAllTimes
     }
-    get isPost():boolean{
+    get isPost(): boolean {
         return this._isPost
     }
 
- 
+
 }

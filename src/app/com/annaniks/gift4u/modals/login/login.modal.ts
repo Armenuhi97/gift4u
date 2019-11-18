@@ -8,6 +8,7 @@ import { MainService } from '../../views/main/main.service';
 import { RecoverPasswordModal } from '../recover-password/recover-password.modal';
 import { CookieService } from '../../services/cookie.service';
 import { RegistrationModal } from '../registration/registration.modal';
+import { PlatformService } from '../../services/platform.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginModal implements OnInit {
         private _mainService: MainService,
         private _matDialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private _translateService:TranslateService1
+        private _translateService: TranslateService1,
+        private _platformService: PlatformService
     ) { }
 
     ngOnInit() {
@@ -64,7 +66,7 @@ export class LoginModal implements OnInit {
                 });
             }, (error) => {
                 if (error.status === 401 || error.status === 404) {
-                    this._errorMessage =this._translateService.translateImportant('Incorrect login or password','Неправильный логин или пароль','Սխալ է մուտքագրված գաղտնանունը կամ գաղտնաբառը') 
+                    this._errorMessage = this._translateService.translateImportant('Incorrect login or password', 'Неправильный логин или пароль', 'Սխալ է մուտքագրված գաղտնանունը կամ գաղտնաբառը')
                 }
                 if (error.status === 400) { }
             })
@@ -79,7 +81,8 @@ export class LoginModal implements OnInit {
         if (value) {
             expires_date = new Date(new Date().getTime() + expires);
         }
-        this._cookieService.set('accessToken', token, { expires: expires_date });
+        if (this._platformService.isBrowser)
+            this._cookieService.set('accessToken', token, { expires: expires_date });
     }
 
     public onClickLogin(): void {
@@ -105,7 +108,7 @@ export class LoginModal implements OnInit {
     get errorMessage(): string {
         return this._errorMessage;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 }

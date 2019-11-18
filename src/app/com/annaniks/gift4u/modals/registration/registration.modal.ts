@@ -8,6 +8,7 @@ import { CityCountry, ServerResponse, LoginResponse } from '../../models/models'
 
 import { PasswordValidation } from '../../controls/controls';
 import { CookieService } from '../../services/cookie.service';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: 'registration-modal',
@@ -26,7 +27,8 @@ export class RegistrationModal implements OnInit {
         private _mainService: MainService,
         private _appService: AppService,
         private _cookieService: CookieService,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _platformService:PlatformService
     ) { }
 
     ngOnInit() {
@@ -58,7 +60,8 @@ export class RegistrationModal implements OnInit {
             password: this._registrationForm.get('password').value
         }).subscribe((data: LoginResponse) => {
             this._error = undefined;
-            this._cookieService.set('accessToken', data.access_token);
+            if (this._platformService.isBrowser)
+                this._cookieService.set('accessToken', data.access_token);
             this._dialogRef.close(true);
         },
             (error) => {
@@ -101,7 +104,7 @@ export class RegistrationModal implements OnInit {
     get error(): string {
         return this._error;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 }
