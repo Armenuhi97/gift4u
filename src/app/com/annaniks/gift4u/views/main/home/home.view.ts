@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { LoadingService } from '../../../services/loading.service';
 import { TranslateService1 } from '../../../services';
 import { MainService } from '../main.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'home-view',
@@ -34,13 +35,13 @@ export class HomeView implements OnInit, OnDestroy {
         @Inject('FILE_URL') public fileUrl: string,
         private _titleService: Title,
         private _loadingService: LoadingService,
-        private _mainService:MainService
+        private _mainService:MainService,
+        private _translateService:TranslateService1
     ) { }
 
     ngOnInit() {
         this._checkWindowSize();
-        this._titleService.setTitle('Gift4u');
-        // this._titleService.setTitle('Интернет-магазин «Дядя Бритва» - эксклюзив для мужчин');
+        this._titleService.setTitle(this._translateService.translateImportant('Gift for you','Подарок для тебя','Նվեր քո համար'));
         this._getHomeData();
     }
 

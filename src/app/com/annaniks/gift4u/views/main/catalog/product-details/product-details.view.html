@@ -16,7 +16,7 @@
                         </div>
 
                         <div align-items-center display-flex justify-content-space-beetwen>
-                            <div class="product_id">Տվյալ ապրանքը կարող է ունենալ շեղումներ</div>
+                            <div class="product_id">{{'_hand_make' | translate}}</div>
                             <!-- <span class="product_id">{{'_article' | translate}}: <b>{{product.sku}}</b></span> -->
                             <!-- <span class="pr_d">{{product.title}}</span> -->
                             <div class="product_rating" margin-left-2 display-flex>
@@ -45,7 +45,7 @@
                             <h1>{{getAttributeName(product,'name')}}</h1>
                         </div>
                         <!-- <span class="product_id">{{'_article' | translate}}: <b>{{product.sku}}</b></span> -->
-                        <span class="product_id" >Տվյալ ապրանքը կարող է ունենալ շեղումներ</span>
+                        <span class="product_id" >{{'_hand_make' | translate}}</span>
                         <!-- <span class="pr_d">{{product.title}}</span> -->
                         <div class="product_rating" display-flex>
                             <app-rating [size]="16" margin-left-auto [rating]="productRating"
@@ -85,16 +85,16 @@
                         </div>
                         <div class="product_price">
 
-                            <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? product?.price_with_vat : ''
-                                }} ֏</p>
+                            <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? (product?.price_with_vat | price_format) : ''
+                                }} &#1423;</p>
 
                             <p class="current_price">
-                                {{(product?.specificPrice) ? product?.specificPrice : product?.price_with_vat}} ֏</p>
+                                {{(product?.specificPrice) ? (product?.specificPrice | price_format) : (product?.price_with_vat | price_format)}} &#1423;</p>
                             <span class="disc_text">
                                 {{'_product_return_price_text' | translate}}
                             </span>
                             <span class="disc_text" *ngIf="isAuthorized"
-                                font-weight-bold>{{'_return' | translate}} {{bonusPrice}} ֏
+                                font-weight-bold>{{'_return' | translate}} {{bonusPrice | price_format}} &#1423;
                                 {{'_back' | translate}}</span>
                             <a class="disc_text" href="/settings/club"
                                 font-weight-bold>{{'_more' | translate}}</a>

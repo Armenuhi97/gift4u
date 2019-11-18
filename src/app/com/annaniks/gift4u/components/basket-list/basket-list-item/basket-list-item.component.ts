@@ -10,6 +10,7 @@ import { AppService, TranslateService1 } from '../../../services';
 })
 export class BasketListItemComponent implements OnInit {
     @Input('basketItem') private _basketItem: Product = new Product();
+    @Input('isClick') private _isClick:boolean=false
     @Output('deleteEvent') private _deleteEvent: EventEmitter<void> = new EventEmitter<void>();
     private _count: number = 1;
 
@@ -36,6 +37,9 @@ export class BasketListItemComponent implements OnInit {
 
     get count(): number {
         return this._count;
+    }
+    get isClick():boolean{
+        return this._isClick
     }
 
     get basketItem(): Product {

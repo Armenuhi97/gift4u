@@ -35,7 +35,7 @@ export class UserInfoView implements OnInit, OnDestroy {
         private _translateService: TranslateService1,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this._translateService.translateImportant('Personal account','Личный кабинет','Անձնական գրասենյակ'));
     }
 
     ngOnInit() {

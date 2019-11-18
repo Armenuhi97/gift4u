@@ -62,6 +62,7 @@ export class SlideNavComponent implements OnInit {
         })
         matDialog.afterClosed().subscribe((data) => {
             if (data) {
+                this._openLoginModal()
                 this._mainService.getUser();
             }
         })

@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { MatDialog } from '@angular/material';
 import { AddProductBasketModal } from '../../modals/add-product-basket/add-product-basket.modal';
 import { CookieService } from '../../services/cookie.service';
+import { PlatformService } from '../../services/platform.service';
 
 @Injectable()
 export class MainService {
@@ -22,7 +23,8 @@ export class MainService {
         private _cookieService: CookieService,
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _platformService: PlatformService
     ) { }
 
     public getCategories(): Observable<ServerResponse<Category[]>> {
@@ -58,12 +60,14 @@ export class MainService {
 
     public checkUserBasketPrice(): void {
         this._user['basketPrice'] = 0;
-        let baskekProducts = localStorage.getItem('basket_products');
-        if (baskekProducts) {
-            let products: any[] = JSON.parse(baskekProducts)
-            products.forEach((element) => {
-                this._user['basketPrice'] += element.count * ((element && element.specificPrice) ? +element.specificPrice : +element.price_with_vat);
-            })
+        if (this._platformService.isBrowser) {
+            let baskekProducts = localStorage.getItem('basket_products');
+            if (baskekProducts) {
+                let products: any[] = JSON.parse(baskekProducts)
+                products.forEach((element) => {
+                    this._user['basketPrice'] += element.count * ((element && element.specificPrice) ? +element.specificPrice : +element.price_with_vat);
+                })
+            }
         }
     }
 
@@ -76,14 +80,16 @@ export class MainService {
 
     public addProductBasket(product): void {
         let productsItems = [];
-        let products = localStorage.getItem('basket_products');
-        if (products) {
-            productsItems = JSON.parse(products);
+        if (this._platformService.isBrowser) {
+            let products = localStorage.getItem('basket_products');
+            if (products) {
+                productsItems = JSON.parse(products);
+            }
+            productsItems.push(product);
+            localStorage.setItem('basket_products', JSON.stringify(productsItems));
+            this.checkUserBasketPrice();
+            this._openAddProductBasketModal(product);
         }
-        productsItems.push(product);
-        localStorage.setItem('basket_products', JSON.stringify(productsItems));
-        this.checkUserBasketPrice();
-        this._openAddProductBasketModal(product);
     }
 
     private _openAddProductBasketModal(product): void {
@@ -95,7 +101,7 @@ export class MainService {
             }
         })
         matDialog.afterClosed().subscribe((data) => {
-            this._messageService.add({ severity: 'success', summary: this._translateService.getTranslate('_message'), detail: this._translateService.getTranslate('_added_product_success_message') })
+            this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message','Сообщение','Հաղորդագրություն'), detail: this._translateService.translateImportant('Product successfully added to basket','Товар успешно добавлен в корзину','Ապրանքը հաջողությամբ ավելացված է զամբյուղի մեջ') })
         })
     }
 

@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppService, ApiService, TranslateService1 } from '../../services';
 import { CookieService } from '../../services/cookie.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: 'app-topbar',
@@ -64,17 +65,19 @@ export class TopbarComponent implements OnInit {
         private _translateService: TranslateService1,
         private _cookieService: CookieService,
         @Inject('FILE_URL') private _fileUrl: string,
-        private _translate: TranslateService
+        private _translate: TranslateService,
+        private _platformService: PlatformService
     ) {
         this._checkQueryParams();
         this.active_lng = this._translate.currentLang;
-
-        if (this._cookieService.get('color')) {
-            document.documentElement.style
-                .setProperty('--main-color', this._cookieService.get('color'));
-            this.color = this._cookieService.get('color')
-        } else {
-            this.color = "#00001b";
+        if (this._platformService.isBrowser) {
+            if (this._cookieService.get('color')) {
+                document.documentElement.style
+                    .setProperty('--main-color', this._cookieService.get('color'));
+                this.color = this._cookieService.get('color')
+            } else {
+                this.color = "#00001b";
+            }
         }
 
     }
@@ -167,6 +170,7 @@ export class TopbarComponent implements OnInit {
         })
         matDialog.afterClosed().subscribe((data) => {
             if (data) {
+                this._openLoginModal(false)
                 this._mainService.getUser();
             }
         })
@@ -265,8 +269,10 @@ export class TopbarComponent implements OnInit {
         return this._mainService.getUserInfo();
     }
     get basketCount() {
-        if (localStorage.getItem('basket_products'))
-            return JSON.parse(localStorage.getItem('basket_products')).length
+        if (this._platformService.isBrowser) {
+            if (localStorage.getItem('basket_products'))
+                return JSON.parse(localStorage.getItem('basket_products')).length
+        }
     }
     get isAuthorized(): boolean {
         return this._mainService.isAuthorized();
@@ -278,10 +284,10 @@ export class TopbarComponent implements OnInit {
         return this._menuItemsService.getOpenMenu();
     }
     get city(): string {
-        if(!this._mainService.getUserInfo().cityCountriesName){
-            this._mainService.getUserInfo().cityCountriesName =this._translateService.getTranslate('_gyumri')
+        if (!this._mainService.getUserInfo().cityCountriesName) {
+            this._mainService.getUserInfo().cityCountriesName = this._translateService.translateImportant('Gyumri','Гюмри','Գյումրի')
         }
-        return this._mainService.getUserInfo().cityCountriesName 
+        return this._mainService.getUserInfo().cityCountriesName
     }
 
     get phone(): string {
@@ -298,8 +304,8 @@ export class TopbarComponent implements OnInit {
         return this._similarProducts;
     }
 
-    get userEmail(): string {
-        return this._mainService.getUserInfo().email;
+    get userName(): string {
+        return this._mainService.getUserInfo().name
     }
 
     get fileUrl(): string {

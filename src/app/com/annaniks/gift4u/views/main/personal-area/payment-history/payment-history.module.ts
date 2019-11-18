@@ -10,9 +10,15 @@ import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [PaymentHistoryView],
-    imports: [PaymentHistoryRoutingModule,TranslateModule, SharedModule, MatDialogModule, ReactiveFormsModule],
-    providers:[PaymentHistoryService,DatePipe],
-    exports:[PaymentHistoryView]
+    imports: [
+        PaymentHistoryRoutingModule,
+        TranslateModule,
+        SharedModule,
+        MatDialogModule,
+        ReactiveFormsModule
+    ],
+    providers: [PaymentHistoryService, DatePipe],
+    exports: [PaymentHistoryView]
 })
 export class PaymentHistoryModule {
 

@@ -1,6 +1,6 @@
 <div class="my-orders-content">
     <div *ngIf="isGet" class="my-orders-container">
-        <p-table *ngIf="orderHistory[0]" [value]="orderHistory.order" dataKey="id">
+        <p-table *ngIf="orderHistory && orderHistory[0]" [value]="orderHistory" dataKey="id">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th style="width: 3em"></th>
@@ -23,7 +23,7 @@
                     <td class="t-body">{{rowData?.created_at}}</td>
                     <td class="t-body">{{rowData?.total}}</td>
                     <td class="t-body">
-                        {{(rowData?.isCash==1) ?translateWord('In cash','НАЛИЧНЫМИ','Կանխիկ եղանակով'):translateWord('ONLINE ON THE SITE','ОНЛАЙН НА САЙТЕ','ԱՌՑԱՆՑ ԿԱՅՔՈՒՄ')}}
+                        {{(rowData?.isCash==1) ?translateWord('In cash','Наличными','Կանխիկ եղանակով'):translateWord('Online on the site','Онлайн на сайте','Առցանց կայքում')}}
                     </td>
                     <td class="t-body">{{rowData?.carriersName}}</td>
                     <td class="t-body">{{rowData?.statusName}}</td>
@@ -40,26 +40,6 @@
                 </tr>
             </ng-template>
         </p-table>
-        <div *ngIf="!orderHistory[0]" class="default-text"> {{'_empty' | translate}} </div>
-        <!-- <table class="orders-table" full-width>
-            <thead>
-                <th class="t-head">ЗАКАЗ №</th>
-                <th class="t-head">ДАТА</th>
-                <th class="t-head">СУММА</th>
-                <th class="t-head">СПОСОБ ОПЛАТЫ</th>
-                <th class="t-head">СПОСОБ ДОСТАВКИ</th>
-                <th class="t-head">СТАТУС</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of orderHistory.order;let ind=index" (click)="openDetails(ind)">
-                    <td class="t-body">{{item?.id}}</td>
-                    <td class="t-body">{{item?.created_at}}</td>
-                    <td class="t-body">{{item?.total}}</td>
-                    <td class="t-body">{{(item?.isCash==1) ? 'НАЛИЧНЫМИ' : 'ОНЛАЙН НА САЙТЕ'}}</td>
-                    <td class="t-body">{{item?.carriersName}}</td>
-                    <td class="t-body">{{item?.statusName}}</td>
-                </tr>
-            </tbody>
-        </table> -->
+        <div *ngIf="!orderHistory || (orderHistory && !orderHistory[0])" class="default-text"> {{'_empty' | translate}} </div>
     </div>
 </div>

@@ -63,6 +63,19 @@ export class DateFormat implements PipeTransform {
             return birthday.replace(/-/g, '.');;
     }
 }
+
+@Pipe({ name: 'price_format' })
+export class PriceFormat implements PipeTransform {
+    transform(value: string | number) {
+        if(value){
+              return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }else{
+            return value
+        }
+        
+    }
+}
+
 @Pipe({ name: 'date_locale_format' })
 export class DateLocaleFormat implements PipeTransform {
     transform(value: string) {

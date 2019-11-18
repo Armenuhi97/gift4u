@@ -19,7 +19,7 @@ export class PaymentHistoryView implements OnInit {
         private _title: Title,
         private _activatedRoute: ActivatedRoute,
         private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this._translateService.translateImportant('Payment history','История платежей','Վճարումների պատմություն'));
     }
     ngOnInit() {
         this._getPaymentHistory()
@@ -36,35 +36,37 @@ export class PaymentHistoryView implements OnInit {
                 this._loadingService.hideLoading()
             })
     }
+    public translateWord(word:string){
+        return this._translateService.getTranslate(word)
+    }
     private _changeParamsValue() {
         for (let history of this.paymentHistory) {
-            //  history.date = this._datePipe.transform(history.date, 'dd.MM.yyyy');
             history.bonus = history.bonus == null ? '-' : history.bonus;
             switch (history.isCash) {
                 case 0: {
-                    history.cashTitle = "Оплатить сейчас";
+                    history.cashTitle = this._translateService.translateImportant('Pay now', 'Оплатить сейчас', 'Վճարել հիմա');
                     break
                 }
                 case 1: {
-                    history.cashTitle = "При получении";
+                    history.cashTitle = this._translateService.translateImportant('Upon receipt', 'При получении', 'Ստանալիս');
                     break
                 }
                 case 2: {
-                    history.cashTitle = "Бонус";
+                    history.cashTitle =this._translateService.translateImportant('Bonus', "Бонус", 'Բոնուս') ;
                     break
                 }
                 case 3: {
-                    history.cashTitle = "Баланс";
+                    history.cashTitle =this._translateService.translateImportant('Balance', "Баланс", 'Բալանս') ;
                     break
                 }
-                case 4: {
-                    history.cashTitle = "Почта России НАЛОЖЕННЫЙ ПЛАТЕЖ 4,5%";
-                    break
-                }
-                case 5: {
-                    history.cashTitle = "ТК «СДЭК» НАЛОЖЕННЫЙ ПЛАТЕЖ 3%";
-                    break
-                }
+                // case 4: {
+                //     history.cashTitle = "Почта России НАЛОЖЕННЫЙ ПЛАТЕЖ 4,5%";
+                //     break
+                // }
+                // case 5: {
+                //     history.cashTitle = "ТК «СДЭК» НАЛОЖЕННЫЙ ПЛАТЕЖ 3%";
+                //     break
+                // }
             }
         }
     }

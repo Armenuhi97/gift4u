@@ -64,7 +64,7 @@ export class LoginModal implements OnInit {
                 });
             }, (error) => {
                 if (error.status === 401 || error.status === 404) {
-                    this._errorMessage = 'Неправильный логин или пароль'
+                    this._errorMessage =this._translateService.translateImportant('Incorrect login or password','Неправильный логин или пароль','Սխալ է մուտքագրված գաղտնանունը կամ գաղտնաբառը') 
                 }
                 if (error.status === 400) { }
             })

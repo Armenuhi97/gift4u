@@ -58,7 +58,7 @@ export class AccountView implements OnInit {
         private _title: Title,
         private _translateService: TranslateService1
     ) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this.getTranslateWord('User account','Учетная запись','Հաշիվ'));
     }
 
     ngOnInit() {
@@ -238,7 +238,7 @@ export class AccountView implements OnInit {
                 cityCountryId: this._appService.checkPropertyValue(this._userForm.get('city').value, 'id', '').toString(),
                 birthday: this._datePipe.transform(date, 'yyyy-MM-dd')
             }).subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary: 'Сообщение', detail: 'Спасибо! Ваш профиль успешно изменен ' })
+                this._messageService.add({ severity: 'success', summary:this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'), detail:this._translateService.translateImportant('Thanks! Your profile has been successfully modified','Спасибо! Ваш профиль успешно изменен','Շնորհակալություն! Ձեր պրոֆիլը հաջողությամբ փոփոխվել է')  })
                 this._mainService.getUser();
             },
                 (error) => {

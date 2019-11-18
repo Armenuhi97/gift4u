@@ -10,8 +10,8 @@
         <app-box [header]="getTranslateWord('Basket','Корзина','Զամբյուղ')" [marginTop]="'30px'">
             <div class="basket_items">
                 <app-basket-list>
-                    <tr basketListItem *ngFor="let item of basketProducts;let ind=index;" [basketItem]="item"
-                        (deleteEvent)="handleDeleteEvent(ind)"></tr>
+                    <tr basketListItem *ngFor="let item of basketProducts;let ind=index;"
+                        [isClick]="this.orderStep == 2" [basketItem]="item" (deleteEvent)="handleDeleteEvent(ind)"></tr>
                 </app-basket-list>
             </div>
             <div class="basket_info">
@@ -43,8 +43,7 @@
 
                             </div>
                             <div class="center">
-                                <label
-                                    (click)="onClickisPostcard()">{{'_postcard' | translate}}</label>
+                                <label (click)="onClickisPostcard()">{{'_postcard' | translate}}</label>
                             </div>
                         </div>
                         <div *ngIf="isPostCard">
@@ -66,8 +65,8 @@
                     </div> -->
                 </div>
                 <p>{{'_total' | translate}}: <span
-                        [ngClass]="{'discount_price':isPromocode}">{{totalPrice}}֏</span>
-                    <span *ngIf="isPromocode"> - {{discountPrice}}֏</span>
+                        [ngClass]="{'discount_price':isPromocode}">{{totalPrice | price_format}}&#1423;</span>
+                    <span *ngIf="isPromocode"> - {{discountPrice | price_format}}&#1423;</span>
                 </p>
             </div>
             <div class="make_order" *ngIf="orderStep!=2">
@@ -141,8 +140,7 @@
                                         <label>{{'_delivery_time' | translate}}</label>
                                     </div>
                                     <div class="input_container">
-                                        <p-dropdown
-                                            [options]="allTimes"
+                                        <p-dropdown [options]="allTimes"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="delivery_time"
                                             [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
@@ -233,19 +231,25 @@
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | translate}}
                                     *</span>
                                 <div class="items">
-                                    <div class="item" *ngFor="let item of visibleCarrierTypes;let ind=index;">
-                                        <label style="margin-top: 10px;" class="container">
-                                            <input type="radio" formControlName="shipping_method" [value]="item.id"
-                                                name="shipping_method">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <div align-items-center display-flex class="img_wrapper">
-                                            <img [src]="fileUrl+'carriers/'+item.logo" />
-                                            <span class="label">{{item.name}}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <div [class.disabled]="item.id == 4 && isPost"
+                                        *ngFor="let item of visibleCarrierTypes;let ind=index;">
+                                        <div class="item">
+                                            <label style="margin-top: 10px;" class="container">
+                                                <input type="radio" formControlName="shipping_method" [value]="item.id"
+                                                    name="shipping_method">
+                                                <span class="checkmark"></span>
 
+                                            </label>
+                                            <div align-items-center display-flex class="img_wrapper">
+                                                <img [src]="fileUrl+'carriers/'+item.logo" />
+                                                <span class="label">{{item.name}}</span>
+                                            </div>
+                                        </div>
+                                        <span error *ngIf="item.id == 4 && isPost">{{'_post_error2' | translate}}
+                                            </span>
+                                    </div>
+                                    
+                                </div>
                             </div>
                             <div *ngIf="visibleCarrierTypes && visibleCarrierTypes.length" class="center-container">
                                 <p class="label">{{'payment_method' | translate}}</p>
@@ -257,16 +261,21 @@
                                         [ngClass]="setDisabledPaymentMethods(paymethod)"
                                         *ngFor="let paymethod of visiblePaymentMethods"
                                         (click)="onClickPayNow(paymethod)">
-                                        <label class="container payment-container">
+                                        <label [class.disabled]="paymethod.id == 0" class="container payment-container">
                                             <input type="radio" formControlName="payment_method" [value]="paymethod.id"
                                                 name="payment_method">
                                             <span class="checkmark" top-0></span>
                                         </label>
-                                        <div class="text_wrapper text_payment">
+                                        <div [class.disabled]="paymethod.id == 0" class="text_wrapper text_payment">
                                             <p class="header">{{paymethod?.header}}</p>
                                             <p class="under">
                                                 {{paymethod?.under}}
                                             </p>
+                                            <!--  -->
+                                            <p class="under" error *ngIf="paymethod.id == 0">
+                                                {{'_disabled_text' | translate}}
+                                            </p>
+                                            <!--  -->
                                         </div>
                                     </div>
                                 </div>
@@ -322,27 +331,28 @@
                         <div class="price_container">
                             <div class="sh_price">
                                 <span class="key">{{'_order_sum' | translate}}</span>
-                                <span class="value">{{totalPrice}}֏</span>
+                                <span class="value">{{totalPrice | price_format}}&#1423;</span>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_delivery' | translate}}</span>
-                                <span class="value">{{shippingPrice}}֏ <span class="abs_cont"
+                                <span class="value">{{shippingPrice | price_format}}&#1423; <span class="abs_cont"
                                         *ngIf="shippingPrice==0 && (orderForm.get('payment_method').value==4 || orderForm.get('payment_method').value==5)">(300
-                                        ֏ {{'_insurance' | translate}})</span></span>
+                                        &#1423; {{'_insurance' | translate}})</span></span>
                             </div>
 
                             <div class="sh_price">
                                 <span class="key">{{'_total_text' | translate}}</span>
                                 <div [ngClass]="{'paylater':isPromocode && payLaterPrice}">
                                     <span [ngClass]="{'discount_price':isPromocode && payLaterPrice}"
-                                        class="value">{{payLaterPrice}}֏
+                                        class="value">{{payLaterPrice | price_format}}&#1423;
                                     </span>
-                                    <span *ngIf="isPromocode && payLaterPrice"> - {{discountPayLaterPrice}}֏</span>
+                                    <span *ngIf="isPromocode && payLaterPrice"> -
+                                        {{discountPayLaterPrice | price_format}}&#1423;</span>
                                 </div>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_total_pay_now' | translate}}</span>
-                                <span class="value">{{payNowPrice}}֏</span>
+                                <span class="value">{{payNowPrice | price_format}}&#1423;</span>
                             </div>
                         </div>
                         <div class="make_order">

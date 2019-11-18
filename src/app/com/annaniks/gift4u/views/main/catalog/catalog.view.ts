@@ -30,7 +30,7 @@ export class CatalogView implements OnInit {
     public isChangeCategory: boolean = false
     private _previousParentId: number
     private _routeSteps: Breadcrumbs[] = [
-        { label: this._translateService.getTranslate('_main'), url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
     ];
 
     constructor(

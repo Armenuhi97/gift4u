@@ -20,7 +20,7 @@ export class PersonalAreaView implements OnInit {
         { label: this.translateWord('Personal account','Личный кабинет','Անձնական գրասենյակ'), link: 'user' },
         { label: this.translateWord('User account','Учетная запись','Հաշիվ'), link: 'account' },
         { label: this.translateWord('Delivery address','Адреса доставки','Առաքման հասցեները'), link: 'shipping-addresses' },
-        { label:  this.translateWord('My bookmarks','Мои закладки','Իմ էջանիշները'), link: 'my-bookmarks' },
+        { label:  this.translateWord('My bookmarks','Мои закладки','Նախընտրելիները'), link: 'my-bookmarks' },
         { label: this.translateWord('Order history','История заказов','Պատվերների պատմություն'), link: 'my-orders' },
         { label: this.translateWord('Bonus point','Бонусные баллы','Բոնուսային միավորներ'), link: 'bonus-points' },
         { label: this.translateWord('Payment history','История платежей','Վճարումների պատմություն'), link: 'payment-history' },

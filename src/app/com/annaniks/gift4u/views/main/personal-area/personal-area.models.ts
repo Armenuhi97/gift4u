@@ -4,7 +4,7 @@ export interface OrderHistory {
     order: Order[];
 }
 
-interface Order {
+export interface Order {
     address: string;
     billing_address_id: string;
     billing_company_id: string;

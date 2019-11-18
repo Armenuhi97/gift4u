@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { BuyOneClickModal, LightboxModal } from '../../../../modals';
 import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogService } from '../catalog.service';
 import { ServerResponse, ProductFull, CombinedProduct, CombinedAttribute, LikeProduct, AttributeProductValue, AttributeSet, Path, Product, ProductScore, Reviews } from '../../../../models/models';
 import { Subscription } from 'rxjs';
@@ -50,7 +50,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _productDetailsService: ProductDetailsService,
         private _lightbox: Lightbox,
         private _lightboxEvent: LightboxEvent,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _router: Router
     ) {
         this._activatedRoute.params.subscribe(params => {
             if (params && params.id) {
@@ -61,7 +62,6 @@ export class ProductDetailsView implements OnInit, OnDestroy {
 
     ngOnInit() {
         this._checkProductId();
-        this._checkIsFavorite()
     }
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
@@ -69,9 +69,10 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     public getAttributeName(obj, name: string) {
         return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
-    private _checkIsFavorite(): void {
+    private _checkIsFavorite(id: string | number): void {
         if (this._mainService.isAuthorized) {
-            this._productDetailsService.getFavoriteBookmark(this._id).subscribe((data: ServerResponse<boolean>) => {
+            this.activeIcon = '';
+            this._productDetailsService.getFavoriteBookmark(id).subscribe((data: ServerResponse<boolean>) => {
                 this._isFavorite = data.messages;
                 this.activeIcon = this._isFavorite ? 'favorite' : 'favorite_border'
             })
@@ -88,11 +89,24 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _checkProductId(): void {
         this._paramsSubscription = this._activatedRoute.params.subscribe((params) => {
             if (params && params.id) {
-                this._getProductReviews(params.id)
                 this._getProduct(params.id);
+                this._getProductReviews(params.id)
             }
         })
     }
+    // private _checkProductId(): void {
+    //     this._paramsSubscription = this._activatedRoute.params.subscribe((params) => {
+    //         if (params && params.productId && (params.productId.toLowerCase() != 'undefined' && params.productId.toLowerCase() != 'null')) {
+    //             this._id = params.productId;
+    //             this._getProduct(params.productId);
+    //             this._getProductReviews(this._id);
+    //             this._checkIsFavorite(this._id);
+    //         }
+    //         else {
+    //             this._router.navigate(['/not-found'])
+    //         }
+    //     })
+    // }
 
     private _setProductToBasket(): void {
         this._product['count'] = this.count;
@@ -119,6 +133,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._combinedAttributes = [];
         this._subscription = this._catalogService.getProductById(id).subscribe((data: ServerResponse<ProductFull>) => {
             this._product = data.messages;
+            this._checkIsFavorite(this._id);
             this._calcProductRating(this._product.productScore);
             this._metaService.updateTag(
                 { name: 'description', content: this._product.description },
@@ -126,7 +141,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._metaService.addTag({ name: 'keywords', content: this._product.keywords })
             this._mainImage = window.innerWidth > 920 ?
                 this._appService.checkPropertyValue(data.messages, 'smallImage') : this._appService.checkPropertyValue(data.messages, 'image');
-           
+
             let paths: Path[] = this._product.path.reverse();
             paths.forEach((element, index) => {
                 if (index == 0) {
@@ -233,7 +248,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._product = data.messages;
             this._calcProductRating(this._product.productScore);
             this._mainImage = this._appService.checkPropertyValue(data.messages, 'image');
-           
+
             this._loadingService.hideLoading();
         },
             () => {

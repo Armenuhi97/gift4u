@@ -24,7 +24,7 @@ export class MyBookmarksView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this._translateService.translateImportant('My bookmarks','Мои закладки','Նախընտրելիները'));
         this._checkQueryParams();
     }
     ngOnInit() { }

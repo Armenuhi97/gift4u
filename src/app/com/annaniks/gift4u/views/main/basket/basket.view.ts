@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShippingPrice, CarrierType, PromoCode } from './basket.models';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from '../../../services/cookie.service';
+import { PlatformService } from '../../../services/platform.service';
 
 @Component({
     selector: 'basket-view',
@@ -45,7 +46,7 @@ export class BasketView implements OnInit {
     public _localShippingInfo: ShippingPrice = {} as ShippingPrice
     public isFreeShipping: boolean = false;
     public codPrice: number = 0;
-    public makeOrderError:string =this._translateService.getTranslate('_error'); 
+    public makeOrderError: string = this._translateService.translateImportant('Error', 'Ошибка', 'Սխալ');
     public allAddresses: Addresses[];
     public isDiscount: boolean = false
     public isRegistration: boolean;
@@ -90,8 +91,8 @@ export class BasketView implements OnInit {
         clear: 'Очистить',
     }
     public paymentMethods = [
-        { id: 0, header:this._translateService.getTranslate('_pay_now'), under:this._translateService.getTranslate('_bank_card'), percent: 0 },
-        { id: 1, header:this._translateService.getTranslate('_upon_receipt'), under:this._translateService.getTranslate('_cash_courier'), percent: 0 },
+        { id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'), under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'), percent: 0 },
+        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash or card to the courier', 'Наличными или картой курьеру', 'Կանխիկ'), percent: 0 },
     ]
     private _allTimes = [
         { name: '10:00 - 13:00' },
@@ -113,8 +114,9 @@ export class BasketView implements OnInit {
         private _title: Title,
         private _cookieService: CookieService,
         private _translateService: TranslateService1,
+        private _platformService: PlatformService,
         @Inject("FILE_URL") private _fileUrl: string
-    ) {        
+    ) {
         this._checkBasketProducts();
         this._checkQueryParams();
         this.visiblePaymentMethods = this.paymentMethods;
@@ -280,30 +282,29 @@ export class BasketView implements OnInit {
     }
 
     private _checkBasketProducts(): void {
-        if (JSON.parse(localStorage.getItem('basket_products'))) {
+        if (this._platformService.isBrowser) {
+            if (JSON.parse(localStorage.getItem('basket_products'))) {
 
-            let basket = JSON.parse(localStorage.getItem('basket_products'))
-            if ((this.basketProducts.length !== basket.length)) {
-                if (this.basketProducts.length > basket.length) {
-                    this.basketProducts.forEach((data, i) => {
-                        let index = basket.indexOf(data);
-                        if (index == -1) {
-                            this.basketProducts.splice(i, 1)
-                        }
-                    })
-                } else {
-                    basket.forEach((data) => {
-                        let index = this.basketProducts.indexOf(data);
-                        if (index == -1) {
-                            this.basketProducts.push(data)
-                        }
-                    })
+                let basket = JSON.parse(localStorage.getItem('basket_products'))
+                if ((this.basketProducts.length !== basket.length)) {
+                    if (this.basketProducts.length > basket.length) {
+                        this.basketProducts.forEach((data, i) => {
+                            let index = basket.indexOf(data);
+                            if (index == -1) {
+                                this.basketProducts.splice(i, 1)
+                            }
+                        })
+                    } else {
+                        basket.forEach((data) => {
+                            let index = this.basketProducts.indexOf(data);
+                            if (index == -1) {
+                                this.basketProducts.push(data)
+                            }
+                        })
+                    }
                 }
             }
         }
-        // if (products) {
-        //     this.basketProducts = JSON.parse(products);
-        // }
     }
 
     private _getCities() {
@@ -342,12 +343,14 @@ export class BasketView implements OnInit {
             city: city
         })
     }
-
-    private _setRouteSteps(): void {        
-        this._title.setTitle(this._translateService.getTranslate('_busket'));
+    public translateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
+    }
+    private _setRouteSteps(): void {
+        this._title.setTitle(this.translateWord('Basket', 'Корзина', 'Զամբյուղ'));
         this.routeSteps.push(
-            { label:this._translateService.getTranslate('_main'), url: '/', queryParams: {}, status: '' },
-            { label:this._translateService.getTranslate('_busket'), url: '/basket', queryParams: {}, status: '' }
+            { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
+            { label: this.translateWord('Basket', 'Корзина', 'Զամբյուղ'), url: '/basket', queryParams: {}, status: '' }
         )
     }
 
@@ -364,7 +367,8 @@ export class BasketView implements OnInit {
         this.isPaymentChecked = false;
         this._basketService.checkVerifyPayment(orderId).subscribe(
             (data) => {
-                localStorage.removeItem('basket_products')
+                if (this._platformService.isBrowser)
+                    localStorage.removeItem('basket_products')
                 this.basketProducts = [];
                 this._mainService.checkUserBasketPrice();
                 this.message = this.getTranslateWord(
@@ -398,7 +402,7 @@ export class BasketView implements OnInit {
                     return;
                 }
                 else {
-                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ֏`, `Доставка +${+shippingPrice.price} ֏`, `Առաքումը +${+shippingPrice.price} ֏`)
+                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} &#1423;`, `Доставка +${+shippingPrice.price} &#1423;`, `Առաքումը +${+shippingPrice.price} &#1423;`)
                     this.shippingPrice = +shippingPrice.price;
                 }
                 return;
@@ -411,7 +415,8 @@ export class BasketView implements OnInit {
             delete this._promoCode[deletedProductId];
         }
         this.basketProducts.splice(index, 1);
-        localStorage.setItem('basket_products', JSON.stringify(this.basketProducts));
+        if (this._platformService.isBrowser)
+            localStorage.setItem('basket_products', JSON.stringify(this.basketProducts));
         this._setMinDate();
         this._isPostProduct()
         if (this.isPromocode) {
@@ -477,7 +482,7 @@ export class BasketView implements OnInit {
                 if (data.error) {
                     this.error = true;
                     //this.makeOrderError = data.message;
-                    this.makeOrderError =this._translateService.getTranslate('error2')
+                    this.makeOrderError = this._translateService.translateImportant('Error', 'Ошибка', 'Սխալ')
                     return;
                 }
                 this.error = false;
@@ -495,7 +500,8 @@ export class BasketView implements OnInit {
                                 window.location.href = `https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=${payment.PaymentID}&lang=am`;
                             }
                             else {
-                                localStorage.removeItem('basket_products');
+                                if (this._platformService.isBrowser)
+                                    localStorage.removeItem('basket_products');
                                 this._mainService.checkUserBasketPrice();
                                 this.basketProducts = [];
                                 this.orderStep = 1;
@@ -503,7 +509,8 @@ export class BasketView implements OnInit {
                             }
                         }
                         else {
-                            localStorage.removeItem('basket_products');
+                            if (this._platformService.isBrowser)
+                                localStorage.removeItem('basket_products');
                             this._mainService.checkUserBasketPrice();
                             this.basketProducts = [];
                             this.orderStep = 1;
@@ -511,7 +518,8 @@ export class BasketView implements OnInit {
                         }
                     }
                     else {
-                        localStorage.removeItem('basket_products');
+                        if (this._platformService.isBrowser)
+                            localStorage.removeItem('basket_products');
                         this._mainService.checkUserBasketPrice();
                         this.basketProducts = [];
                         this.orderStep = 1;
@@ -537,23 +545,17 @@ export class BasketView implements OnInit {
         } else {
             this._isPost = false
         }
-
     }
     private _setVisibleCarriers(city: CityCountry): void {
         if (city) {
             if (city.region === 3 || city.region === 2 || city.region === 1) {
 
-                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
+                this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4)
+                // : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
             }
-            // if (city.region === 2) {
-            //     this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 3 || element.id === 2 || element.id === 4) : this.carrierTypes.filter((element) => element.id === 3 || element.id === 2);
-            // }
-            // if (city.region === 1) {
-            //     this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 2 || element.id === 3);
-            // }
-
             if (city.region === 4) {
-                this.visibleCarrierTypes = !this._isPost ? this.carrierTypes.filter((element) => element.id === 4 || element.id === 3) : this.carrierTypes.filter((element) => element.id === 3)
+                this.visibleCarrierTypes = this.carrierTypes.filter((element) => element.id === 4 || element.id === 3)
+                // : this.carrierTypes.filter((element) => element.id === 3)
             }
         }
         let filteredArr = this.visibleCarrierTypes.filter((element) => element.id == this._orderForm.get('shipping_method').value)
@@ -657,16 +659,18 @@ export class BasketView implements OnInit {
     private _checkPromoCode(): void {
         this._productIdArray = []
         this.promoCodeLoading = true;
-        if (localStorage.getItem('basket_products')) {
-            let basket = JSON.parse(localStorage.getItem('basket_products'))
-            if (this.basketProducts.length !== basket.length) {
-                if (this.basketProducts.length > basket.length) {
-                    this.basketProducts.forEach((data, i) => {
-                        let index = basket.indexOf(data);
-                        if (index == -1) {
-                            this.basketProducts.splice(i, 1)
-                        }
-                    })
+        if (this._platformService.isBrowser) {
+            if (localStorage.getItem('basket_products')) {
+                let basket = JSON.parse(localStorage.getItem('basket_products'))
+                if (this.basketProducts.length !== basket.length) {
+                    if (this.basketProducts.length > basket.length) {
+                        this.basketProducts.forEach((data, i) => {
+                            let index = basket.indexOf(data);
+                            if (index == -1) {
+                                this.basketProducts.splice(i, 1)
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -779,7 +783,7 @@ export class BasketView implements OnInit {
             this._totalPrice = totalPrice;
             if (this._totalPrice < +this._localShippingInfo.priceForFree) {
                 this.shippingPrice = +this._localShippingInfo.price;
-                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ֏`, `Доставка +${this.shippingPrice} ֏`, `Առաքումը +${this.shippingPrice} ֏ է`)
+                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} &#1423;`, `Доставка +${this.shippingPrice} &#1423;`, `Առաքումը +${this.shippingPrice} &#1423; է`)
             }
             else {
                 this.shippingPrice = 0;
@@ -807,18 +811,18 @@ export class BasketView implements OnInit {
     }
 
     get fullPrice(): string {
-        let price = `${this._totalPrice} ֏`;
+        let price = `${this._totalPrice} &#1423;`;
         let total = this._totalPrice + this.shippingPrice + this.codPrice;
         if ((this._orderForm.get('payment_method').value == 4 || this._orderForm.get('payment_method').value === 5) && (this._orderForm.get('shipping_method').value == 4 || this._orderForm.get('shipping_method').value == 5) && this._currierInfo) {
             this.codPrice = this._checkBasketPrice() * this._currierInfo.percent / 100;
         }
         if (this.codPrice != 0) {
-            price += ` + ${this.codPrice} ֏`
+            price += ` + ${this.codPrice} &#1423;`
         }
         if (this.shippingPrice != 0) {
-            price += ` + ${this.shippingPrice} ֏`;
+            price += ` + ${this.shippingPrice} &#1423;`;
         }
-        price += ` = ${total} ֏`
+        price += ` = ${total} &#1423;`
         this._fullPrice = this._totalPrice + this.shippingPrice + this.codPrice;
         return price;
     }
@@ -833,7 +837,7 @@ export class BasketView implements OnInit {
         if (this._mainService.isAuthorized()) {
             if (this._mainService.getUserInfo().percent) {
                 bonusPrice = ((this._fullPrice - this.shippingPrice) * +this._mainService.getUserInfo().percent) / 100;
-                message = this.getTranslateWord(`Your bonuse  ${bonusPrice} ֏`, `Your bonus: ${bonusPrice} ֏`, `Ձեր բոնուսը՝ ${bonusPrice} ֏ է`);
+                message = this.getTranslateWord(`Your bonuse  ${bonusPrice} &#1423;`, `Your bonus: ${bonusPrice} &#1423;`, `Ձեր բոնուսը՝ ${bonusPrice} &#1423; է`);
             }
         }
         return message;
@@ -898,5 +902,9 @@ export class BasketView implements OnInit {
     get allTimes() {
         return this._newAllTimes
     }
+    get isPost():boolean{
+        return this._isPost
+    }
 
+ 
 }

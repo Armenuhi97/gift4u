@@ -6,8 +6,7 @@
             </i>
         </div>
         <div class="logo" routerLink="" cursor-pointer>
-            <div style="width:156px; height:156px"></div>
-            <!-- <img src="/assets/images/logo.jpg" width="156px" height="156px" /> -->
+            <img src="/assets/images/logo-gift4uam.png" width="156px" height="156px" />
         </div>
 
         <div class="toolbar">
@@ -26,8 +25,6 @@
                     <div>
                         <input [(colorPicker)]="color" [cpPosition]="'bottom-left'" (colorPickerChange)="change($event)"
                             [style.background]="color" />
-
-                        <!-- <input (colorPickerSelect)="change($event)"  [(colorPicker)]="color" [style.background]="color" /> -->
                     </div>
                 </div>
             </div>
@@ -47,7 +44,7 @@
                 </div>
                 <div class="personal_area" cursor-pointer>
                     <img src="/assets/images/key.png" />
-                    <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userEmail}}</span>
+                    <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userName}}</span>
                     <span class="label " *ngIf="!isAuthorized"><span class="hover_underline"
                             (click)="onClickLogin()">{{'_login' | translate}}</span><span
                             style="margin:0 6px">/</span><span (click)="onClickRegister()"
@@ -116,7 +113,8 @@
                         <div class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
                             <span class="label">{{'_busket' | translate}}</span>
                             <span class="count">{{'_for_the_sum' |translate}}
-                                {{basketInfo?.basketPrice}}֏</span>
+                                {{basketInfo?.basketPrice | price_format}} <span>&#1423;</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -202,10 +200,8 @@
 
                 </div>
                 <div routerLink="">
-                    <div class="sm_logo" margin-side-auto no-margin cursor-pointer
-                        style="width:120px;height: 120px;border:1px solid; border-radius: 50%;"></div>
-                    <!-- <img no-margin cursor-pointer src="/assets/images/logo.jpg" class="sm_logo" width="120px" height="120px"
-                    margin-side-auto /> -->
+                    <img no-margin cursor-pointer src="/assets/images/logo-gift4uam.png" class="sm_logo" width="120px"
+                        height="120px" margin-side-auto />
                 </div>
                 <div class="info">
                     <div margin-bottom-5 display-flex align-items-center class="location">

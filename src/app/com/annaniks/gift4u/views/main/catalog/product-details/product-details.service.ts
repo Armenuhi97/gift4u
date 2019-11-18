@@ -8,7 +8,7 @@ export class ProductDetailsService {
      * 
      * @param id 
      */
-    public getFavoriteBookmark(id: number) {
+    public getFavoriteBookmark(id: any) {
         return this._apiService.get(`/favorite/bookmark/${id}`,true)
     }
     /**

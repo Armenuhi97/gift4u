@@ -16,6 +16,8 @@ export class MyOrdersTableComponent implements OnInit {
     ngOnInit() { }
 
     get products(): OrderProducts[] {
+        console.log(this._products);
+        
         return this._products;
     }
 

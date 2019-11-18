@@ -74,8 +74,8 @@ export class ReviewsTabComponent implements OnInit {
                 commentBody['productId'] = this.id;
                 this._mainService.addReview(commentBody).subscribe((data) => {
                     this._messageService.add({
-                        severity: 'success', summary: 'Сообщение',
-                        detail: 'Спасибо! Ваше сообщение успешно отправлено'
+                        severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'),
+                        detail: this._translateService.translateImportant('Your message has been sent successfully','Ваше сообщение успешно отправлено','Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է')
                     })
                     this.isCheck = false
                     this.commentForm.reset();

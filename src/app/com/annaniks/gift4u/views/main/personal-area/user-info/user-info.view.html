@@ -15,7 +15,7 @@
                             </label>
                         </div>
                     </div>
-                    <div>{{(userInfo?.priceWithBonus) ? userInfo?.priceWithBonus : 0}} ֏</div>
+                    <div>{{(userInfo?.priceWithBonus) ? (userInfo?.priceWithBonus | price_format) : 0}} &#1423;</div>
                 </div>
                 <div class="user">
                     <div class="left">

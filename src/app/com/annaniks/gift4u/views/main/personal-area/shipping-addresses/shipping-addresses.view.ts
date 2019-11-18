@@ -22,7 +22,7 @@ export class ShippingAddressesView implements OnInit {
         private _loadingService: LoadingService,
         private _title: Title,
         private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this._translateService.translateImportant('Delivery address','Адреса доставки','Առաքման հասցեները'));
     }
     ngOnInit() {
         this._getAddresses()

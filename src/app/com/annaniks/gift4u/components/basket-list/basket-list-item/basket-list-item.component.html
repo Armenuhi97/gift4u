@@ -4,7 +4,7 @@
             style="margin-right: 50px" />
         <p class="name">{{getAttributeName(basketItem,'name')}}</p>
     </div>
-    <div class="error" *ngIf="!basketItem?.is_post">{{'_post_error' | translate}}</div>
+    <div class="error" *ngIf="!basketItem?.is_post && isClick">{{'_post_error' | translate}}</div>
 </td>
 <td text-align-center>
     <p>{{basketItem?.duration_of_preparation}} </p>
@@ -12,10 +12,10 @@
 <td>
     <div class="price">
         <p [ngClass]="{'old':promoPrice,'new':!promoPrice}">
-            {{ basketItem?.price_with_vat}} ֏
+            {{ basketItem?.price_with_vat | price_format}} &#1423;
         </p>
         <p *ngIf="promoPrice" class="new">
-            {{promoPrice}} ֏</p>
+            {{promoPrice | price_format}} &#1423;</p>
     </div>
 </td>
 <td>
@@ -37,8 +37,8 @@
 </td>
 <td>
     <div class="price flex_element">
-        <p [ngClass]="{'new':!promocodeDiscountPrice,'old':promocodeDiscountPrice}">{{currentPrice}} ֏</p>
-        <p *ngIf="promocodeDiscountPrice" class="new">{{promocodeDiscountPrice}} ֏</p>
+        <p [ngClass]="{'new':!promocodeDiscountPrice,'old':promocodeDiscountPrice}">{{currentPrice | price_format}} &#1423;</p>
+        <p *ngIf="promocodeDiscountPrice" class="new">{{promocodeDiscountPrice | price_format}} &#1423;</p>
     </div>
 </td>
 <td>

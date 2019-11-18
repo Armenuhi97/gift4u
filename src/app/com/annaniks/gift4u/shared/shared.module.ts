@@ -18,7 +18,7 @@ import {
 } from '../components';
 import { CommonModule } from '@angular/common';
 import { NgxCarousel3dModule } from '../modules/ngx-carousel-3d/ngx-carousel-3d.module';
-import { SpliceText, SafePipe, TranslatePipe, DateFormat, SpliceSearch, DateLocaleFormat } from '../pipes/pipes';
+import { SpliceText, SafePipe, TranslatePipe, DateFormat, SpliceSearch, DateLocaleFormat, PriceFormat } from '../pipes/pipes';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 import { OnlyNumberDirective, OpenLinkInNewWindowDirective } from '../directives';
@@ -46,6 +46,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         PaginatorComponent,
         TranslatePipe,
         DateFormat,
+        PriceFormat,
         DateLocaleFormat,
         OnlyNumberDirective,
         AnnouncementList,
@@ -89,6 +90,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
         PaginatorComponent,
         TranslatePipe,
         DateFormat,
+        PriceFormat,
         DateLocaleFormat,
         NgxMaskModule,
         OnlyNumberDirective,

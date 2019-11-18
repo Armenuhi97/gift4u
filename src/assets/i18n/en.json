@@ -35,7 +35,7 @@
     "_total": "TOTAL",
     "_order": "To do order",
     "_duration_of_preparation": "duration of the training (day)",
-    "_pack_sum": "֏ to order",
+    "_pack_sum": "&#1423; to order",
     "_contact_entity": "Contact details",
     "_full_name": "Full Name",
     "_phone": "Phone",
@@ -76,6 +76,7 @@
     "_enter": "Enter",
     "_recover_password": "Recover the password",
     "_post_error": "This product is not possible to send by post",
+    "_post_error2":"In the ordered goods there are goods that can not be sent by post",
     "_password": "Password",
     "_confirm_password": "Confirm password",
     "_password_error": "Passwords do not match",
@@ -170,8 +171,8 @@
     "_quantity": "QUANTITY",
     "_in_cash": "In cash",
     "_online_on_site": "ONLINE ON THE SITE",
-    "_payment_by_money": "PAYMENT BY MONEY",
-    "_payment_by_bonuses": "PAYMENT BY BONUSES",
+    "_payment_by_money": "Payment by money",
+    "_payment_by_bonuses": "Payment by bonuses",
     "_search_error": "Nothing found on your request",
     "_message": "Message",
     "_error": "Error",
@@ -180,7 +181,10 @@
     "_days":"d."  ,
     "_choose_color_site":"Choose color of site",
     "_main":"Main",
-    "_gyumri":"Gyumri"
+    "_gyumri":"Gyumri",
+    "_hand_make":"This product may have some deviations",
+    "_disabled_text":"This service is no longer available"
+
 
 
 }

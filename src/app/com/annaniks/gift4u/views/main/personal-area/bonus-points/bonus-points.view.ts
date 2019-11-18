@@ -20,7 +20,7 @@ export class BonusPointsView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _translateService: TranslateService1
     ) {
-        this._title.setTitle(this._translateService.getTranslate(this._activatedRoute.data['_value'].title));
+        this._title.setTitle(this.translateWord('Bonus point','Бонусные баллы','Բոնուսային միավորներ'));
     }
     ngOnInit() {
         this._getBonusPoints()

@@ -124,11 +124,12 @@ export class SettingsView implements OnInit {
             message: this._feedbackForm.get('message').value
         })
             .subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary: this._translateService.getTranslate('_message'), detail: this._translateService.getTranslate('_send_message_success_message') })
+                this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message','Сообщение','Հաղորդագրություն'),
+                 detail: this._translateService.translateImportant('Your message has been sent successfully','Ваше сообщение успешно отправлено','Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է') })
                 this._loading = false;
             },
                 (error) => {
-                    this._error =this._translateService.getTranslate('_error');
+                    this._error =this._translateService.translateImportant('Error','Ошибка','Սխալ');
                 })
     }
 
