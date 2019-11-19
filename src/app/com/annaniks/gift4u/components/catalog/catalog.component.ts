@@ -4,6 +4,7 @@ import { MenuItem } from '../../models/models';
 import { Category } from '../../views/main/catalog/catalog.models';
 import { MainService } from '../../views/main/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: 'app-catalog',
@@ -23,24 +24,26 @@ export class CatalogComponent implements OnInit {
     constructor(private _mainService: MainService,
         private _activatedRoute: ActivatedRoute,
         private _menuItemsService: MenuItemsService, private _router: Router,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _platformService: PlatformService
     ) { }
 
-    ngOnInit() {        
+    ngOnInit() {
         this._checkwindowSize();
-        window.addEventListener('scroll', () => {
-            let y = window.pageYOffset;
-            if (y >= 180) {
-                if (!this._scroll)
-                    this._scroll = true;
-            } else {
-                if (this._scroll)
-                    this._scroll = false;
-            }
-        })
+        if (this._platformService.isBrowser)
+            window.addEventListener('scroll', () => {
+                let y = window.pageYOffset;
+                if (y >= 180) {
+                    if (!this._scroll)
+                        this._scroll = true;
+                } else {
+                    if (this._scroll)
+                        this._scroll = false;
+                }
+            })
     }
-    public getAttributeName(obj,name:string){                
-     return   this._translateService.getRequestTranslateAttributeName(obj,name)
+    public getAttributeName(obj, name: string) {
+        return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
     private _checkwindowSize(): void {
         if (window.innerWidth <= 1000) {
@@ -82,7 +85,7 @@ export class CatalogComponent implements OnInit {
         }
 
     }
-   
+
     get activeTab(): string {
         return this._activeTab;
     }
@@ -98,7 +101,7 @@ export class CatalogComponent implements OnInit {
     get scroll(): boolean {
         return this._scroll;
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 

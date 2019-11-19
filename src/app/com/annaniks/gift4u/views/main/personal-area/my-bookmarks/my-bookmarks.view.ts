@@ -5,6 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
 import { TranslateService1 } from "../../../../services";
+import { PlatformService } from "../../../../services/platform.service";
 
 @Component({
     selector: 'my-bookmarks-view',
@@ -23,8 +24,9 @@ export class MyBookmarksView implements OnInit {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
-        private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.translateImportant('My bookmarks','Мои закладки','Նախընտրելիները'));
+        private _translateService: TranslateService1,
+        private _platformService: PlatformService) {
+        this._title.setTitle(this._translateService.translateImportant('My bookmarks', 'Мои закладки', 'Նախընտրելիները'));
         this._checkQueryParams();
     }
     ngOnInit() { }
@@ -59,15 +61,17 @@ export class MyBookmarksView implements OnInit {
     }
     private _setPage(pageNumber: number): void {
         this._products = this._bookmarks.slice((pageNumber - 1) * this._pageLength, pageNumber * this._pageLength);
-        if (window.innerWidth > 920)
-            window.scrollTo(0, 0)
+        if (this._platformService.isBrowser)
+            if (window.innerWidth > 920)
+                window.scrollTo(0, 0)
     }
     public onPageChange($event) {
         this._setPage($event.pageNumber);
         if ($event.isArrow) {
             this._router.navigate([], { relativeTo: this._activatedRoute, queryParams: { page: $event.pageNumber }, queryParamsHandling: 'merge' })
-            if (window.innerWidth > 920)
-                window.scrollTo(0, 0)
+            if (this._platformService.isBrowser)
+                if (window.innerWidth > 920)
+                    window.scrollTo(0, 0)
         }
         // this._setPage($event.pageNumber);
         // this._router.navigate([], { relativeTo: this._activatedRoute, queryParams: { page: $event.pageNumber }, queryParamsHandling: 'merge' })
@@ -87,7 +91,7 @@ export class MyBookmarksView implements OnInit {
     get bookmarks() {
         return this._bookmarks
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 }

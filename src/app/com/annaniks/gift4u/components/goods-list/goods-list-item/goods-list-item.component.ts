@@ -29,6 +29,9 @@ export class GoodsListItemComponent implements OnInit {
     }
     public getTranslateWord(word:string){
         return this._translateService.getTranslate(word)
+    }  
+    public translate(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
     public getAttributeName(obj,name: string) {                
         return this._translateService.getRequestTranslateAttributeName(obj,name)

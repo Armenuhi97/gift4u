@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Breadcrumbs } from '../../models/models';
 import { TranslateService1 } from '../../services';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: "app-route-step",
@@ -13,7 +14,9 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     tempState = [];
     public arrow_icon: string
     @Input('routes') breadcrumbs: Array<Breadcrumbs> = [];
-    constructor(private router: Router, private route: ActivatedRoute, private _titleService: Title,private _translateService:TranslateService1) {
+    constructor(private router: Router, private route: ActivatedRoute,
+        private _platformService: PlatformService,
+        private _titleService: Title, private _translateService: TranslateService1) {
         // this.router.routeReuseStrategy.shouldReuseRoute = function(){
         //     return false;
         // }
@@ -21,7 +24,8 @@ export class RouteStepComponent implements OnInit, OnDestroy {
         this.router.events
             .subscribe((event) => {
                 if (event instanceof NavigationEnd) {
-                    window.scrollTo(0, 0)
+                    if (this._platformService.isBrowser)
+                        window.scrollTo(0, 0)
                     // this.router.navigated = false;
                     // this.breadcrumbs = [];
                     // this.tempState = [];
@@ -59,8 +63,8 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() { }
-    public translateWord(key1:string,key2:string,key3:string){
-        return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key1: string, key2: string, key3: string) {
+        return this._translateService.translateImportant(key1, key2, key3)
     }
     ngOnDestroy() { }
 }

@@ -240,12 +240,12 @@
                                                 <span class="checkmark"></span>
 
                                             </label>
-                                            <div align-items-center display-flex class="img_wrapper">
+                                            <div align-items-center display-flex class="img_wrapper" [class.carrier-type-by-warming-text]="isHasWarming">
                                                 <img [src]="fileUrl+'carriers/'+item.logo" />
                                                 <span class="label">{{item.name}}</span>
                                             </div>
                                         </div>
-                                        <span error *ngIf="item.id == 4 && isPost">{{'_post_error2' | translate}}
+                                        <span class="post-error-text" *ngIf="item.id == 4 && isPost">{{'_post_error2' | translate}}
                                             </span>
                                     </div>
                                     
@@ -257,9 +257,9 @@
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | translate}}
                                     *</span>
                                 <div class="items">
-                                    <div display-flex align-items-center class="item right_item"
+                                    <div display-flex align-items-center class="item right_item" [ngClass]="{'has-error-padding':paymethod?.errorText && isHasWarming,'has-not-error-padding':!paymethod?.errorText && isHasWarming}"
                                         [ngClass]="setDisabledPaymentMethods(paymethod)"
-                                        *ngFor="let paymethod of visiblePaymentMethods"
+                                        *ngFor="let paymethod of visiblePaymentMethods;let i=index"
                                         (click)="onClickPayNow(paymethod)">
                                         <label [class.disabled]="paymethod.id == 0" class="container payment-container">
                                             <input type="radio" formControlName="payment_method" [value]="paymethod.id"
@@ -272,8 +272,8 @@
                                                 {{paymethod?.under}}
                                             </p>
                                             <!--  -->
-                                            <p class="under" error *ngIf="paymethod.id == 0">
-                                                {{'_disabled_text' | translate}}
+                                            <p class="under" error *ngIf="paymethod?.errorText">
+                                                {{paymethod?.errorText}}
                                             </p>
                                             <!--  -->
                                         </div>
@@ -307,7 +307,7 @@
                                             </p> -->
                                         </div>
                                     </div>
-                                    <div display-flex align-items-center [ngClass]="{'disabled-bonuce':userBonuce<=0}"
+                                    <div display-flex align-items-center [ngClass]="{'disabled-bonuce':userBonuce<=0,'error-text-padding':isHasWarming}"
                                         class="item right_item" *ngIf="isAuthorized">
                                         <label class="container payment-container"
                                             [ngClass]="{'disabled':userBonuce<=0}">
@@ -320,7 +320,7 @@
                                                 {{'_your_bonus' | translate}} {{userBonuce}}
                                             </p>
                                             <p class="under" error *ngIf="userBonuce<=0">
-                                                {{'_bonus_error' |translate}}
+                                                {{'_bonus_error' | translate}}
                                             </p>
                                         </div>
                                     </div>

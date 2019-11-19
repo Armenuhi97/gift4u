@@ -21,8 +21,6 @@
                 </a>
             </div>
         </div>
-        <!-- <span class="ct_text" font-weight-bold
-            *ngIf="product?.countProduct!=''">{{(+product.countProduct > 0) ? 'Есть в наличии' : 'Нет в наличии'}}</span> -->
         <div class="info">
             <div class="price">
                 <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat | price_format}} &#1423;
@@ -32,7 +30,7 @@
                     &#1423;</p>
             </div>
             <div class="basket_button">
-                <button (click)="onClickAddBasket()">{{getTranslateWord('_into_busket')}}</button>
+                <button (click)="onClickAddBasket()">{{translate('Into the basket','В корзину','Զամբյուղ')}}</button>
             </div>
         </div>
     </div>

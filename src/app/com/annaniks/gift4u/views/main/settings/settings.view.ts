@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { MessageService } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
+import { PlatformService } from '../../../services/platform.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class SettingsView implements OnInit {
         private _messageService: MessageService,
         private _title: Title,
         private _translateService: TranslateService1,
+        private _platformService:PlatformService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
@@ -99,7 +101,8 @@ export class SettingsView implements OnInit {
 
                 this._visibleContent = true;
                 setTimeout(() => {
-                    this._iframeContent.nativeElement.innerHTML = this.getAttributeName(mapSetting, 'description');
+                    if (this._platformService.isBrowser)
+                        this._iframeContent.nativeElement.innerHTML = this.getAttributeName(mapSetting, 'description');
                 }, 10)
             }
             else {
@@ -124,12 +127,14 @@ export class SettingsView implements OnInit {
             message: this._feedbackForm.get('message').value
         })
             .subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message','Сообщение','Հաղորդագրություն'),
-                 detail: this._translateService.translateImportant('Your message has been sent successfully','Ваше сообщение успешно отправлено','Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է') })
+                this._messageService.add({
+                    severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'),
+                    detail: this._translateService.translateImportant('Your message has been sent successfully', 'Ваше сообщение успешно отправлено', 'Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է')
+                })
                 this._loading = false;
             },
                 (error) => {
-                    this._error =this._translateService.translateImportant('Error','Ошибка','Սխալ');
+                    this._error = this._translateService.translateImportant('Error', 'Ошибка', 'Սխալ');
                 })
     }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: 'app-rating',
@@ -17,7 +18,7 @@ export class RatingComponent implements OnInit {
         this._checkClass();
     }
     @Output('onSetRaing') private _onSetRating: EventEmitter<number> = new EventEmitter<number>();
-    @ViewChild('starContainer',{static:false}) private _starContainer: ElementRef;
+    @ViewChild('starContainer', { static: false }) private _starContainer: ElementRef;
     private _width: number = 0;
     private _starsCountArray: number[] = [];
     private _starIndex: number = 0;
@@ -26,7 +27,7 @@ export class RatingComponent implements OnInit {
     private _className: string;
     private _halfStarIndex: number = -1;
     private _starsElements = [];
-    constructor() { }
+    constructor(private _platformService: PlatformService) { }
 
     ngOnInit() {
         this._setStarsCount();
@@ -71,29 +72,30 @@ export class RatingComponent implements OnInit {
 
     private _checkClass() {
         setTimeout(() => {
-            if (this._starContainer.nativeElement.children) {
-                let childArray = Array.prototype.slice.call(this._starContainer.nativeElement.children);                
-                this._starsElements = childArray;
-                childArray.forEach((element, starIndex) => {
-                    if (!this._selected) {
-                        if (this._rating > starIndex) {
-                            if (starIndex === Math.floor(this._rating)) {
-                                if (this._rating / 10 != 0 && this._rating != Math.floor(this._rating)) {
-                                    element.classList.add('br-unit-fracion');
-                                    this._halfStarIndex = starIndex;
+            if (this._platformService.isBrowser)
+                if (this._starContainer.nativeElement.children) {
+                    let childArray = Array.prototype.slice.call(this._starContainer.nativeElement.children);
+                    this._starsElements = childArray;
+                    childArray.forEach((element, starIndex) => {
+                        if (!this._selected) {
+                            if (this._rating > starIndex) {
+                                if (starIndex === Math.floor(this._rating)) {
+                                    if (this._rating / 10 != 0 && this._rating != Math.floor(this._rating)) {
+                                        element.classList.add('br-unit-fracion');
+                                        this._halfStarIndex = starIndex;
+                                    }
+                                    else {
+                                        element.classList.add('selected');
+                                    }
                                 }
                                 else {
                                     element.classList.add('selected');
                                 }
-                            }
-                            else {
-                                element.classList.add('selected');
-                            }
 
+                            }
                         }
-                    }
-                })
-            }
+                    })
+                }
         })
     }
 

@@ -21,7 +21,7 @@ export class TopbarComponent implements OnInit {
     private _phone_2: string = '';
     private _smallText: string
     private _settings: Setting[] = [];
-    public active_lng;
+    public active_lng:string;
     private _windowWidth: number;
     public color: string
     public languages = [
@@ -69,14 +69,21 @@ export class TopbarComponent implements OnInit {
         private _platformService: PlatformService
     ) {
         this._checkQueryParams();
-        this.active_lng = this._translate.currentLang;
+        if (this._platformService.isBrowser)
+            this.active_lng = this._translate.currentLang;
+
         if (this._platformService.isBrowser) {
             if (this._cookieService.get('color')) {
                 document.documentElement.style
                     .setProperty('--main-color', this._cookieService.get('color'));
                 this.color = this._cookieService.get('color')
             } else {
-                this.color = "#00001b";
+                this.color = '#00001b';
+                document.documentElement.style
+                    .setProperty('--main-color', this.color);
+                // #515185
+                // getComputedStyle(document.documentElement)
+                //     .getPropertyValue('--main-color')
             }
         }
 
@@ -285,7 +292,7 @@ export class TopbarComponent implements OnInit {
     }
     get city(): string {
         if (!this._mainService.getUserInfo().cityCountriesName) {
-            this._mainService.getUserInfo().cityCountriesName = this._translateService.translateImportant('Gyumri','Гюмри','Գյումրի')
+            this._mainService.getUserInfo().cityCountriesName = this._translateService.translateImportant('Gyumri', 'Гюмри', 'Գյումրի')
         }
         return this._mainService.getUserInfo().cityCountriesName
     }

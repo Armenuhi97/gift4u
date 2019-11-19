@@ -165,7 +165,7 @@
     width: 34px;
     background-color: white;
     border-radius: 50%;
-    border: 2px solid var(--main-color);
+    border: 2px solid $second-color;
   }
 
   /* When the radio button is checked, add a blue background */
@@ -199,7 +199,7 @@
     top: 3px;
     width: 8px;
     height: 17px;
-    border: solid var(--main-color);
+    border: solid $second-color;
     border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -218,7 +218,7 @@
   .ui-calendar.ui-calendar-w-btn .ui-datepicker-trigger.ui-button{
     position: absolute;
     right: 0;
-    background: #00001b;
+    background: $second-color;
     border: none;
   }
   .ui-inputtext{
@@ -377,13 +377,13 @@
       }
       .img_wrapper {
         //padding: 23px 0;
-        padding: 35px 0;
+        padding: 30px 0 16px;
         // border-bottom: 1px solid #efefef;
         width: 100%;
       }
    
       .balance_item{
-        padding-top: 24px
+        padding-top: 26px
       }
     }
   }
@@ -409,10 +409,26 @@
     margin: 0;   
   }
   .disabled-bonuce{
-    padding-top: 30px !important 
+    padding-top: 14px !important 
   }
   .disabled-balance{
     padding-top: 0px !important 
+  }
+  .has-error-padding{
+    padding-top: 16px !important;
+  }
+  .has-not-error-padding{
+    padding-top: 35px !important;
+  }
+  .error-text-padding{
+    padding-top: 40px !important;
+  }
+  .carrier-type-by-warming-text{
+    padding: 35px 0 !important;
+  }
+  .post-error-text{
+    color: red;
+    font-size: 12px;
   }
   @media only screen and (max-width: 1061px){
     .payment_method{

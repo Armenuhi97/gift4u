@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject, ViewChild, HostListener, NgZone } from '@angular/core';
 import { Partner } from '../../views/main/home/home.models';
+import { PlatformService } from '../../services/platform.service';
 
 @Component({
     selector: 'app-slider',
@@ -24,16 +25,17 @@ export class SliderComponent implements OnInit {
         "nextArrow": "<img class='a-right control-c next slick-next' src='assets/images/baseline_keyboard_arrow_right_white.png'>",
     };
 
-    constructor(@Inject('FILE_URL') private _fileUrl: string, private _ngZone: NgZone) { }
+    constructor(@Inject('FILE_URL') private _fileUrl: string, private _ngZone: NgZone, private _platformService: PlatformService) { }
 
     ngOnInit() {
         this._checkCarouselType();
     }
 
     ngAfterViewInit() {
-        if (this._startSlideIndex) {
-            this.carousel.moveTo(this._startSlideIndex);
-        }
+        if (this._platformService.isBrowser)
+            if (this._startSlideIndex) {
+                this.carousel.moveTo(this._startSlideIndex);
+            }
     }
     slickInit($event) {
         if ($event) {

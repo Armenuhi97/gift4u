@@ -55,6 +55,7 @@ export class BasketView implements OnInit {
     public postcard: string;
     private _productIdArray: Array<number> = [];
     private _minDate: Date;
+    private _isWarmingText:boolean=false
     private _CALENDER_CONFIG_en = {
         firstDayOfWeek: 0,
         dayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -91,8 +92,10 @@ export class BasketView implements OnInit {
         clear: 'Очистить',
     }
     public paymentMethods = [
-        { id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'), under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'), percent: 0 },
-        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash or card to the courier', 'Наличными или картой курьеру', 'Կանխիկ'), percent: 0 },
+        { id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'),
+         under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'),
+         errorText:this.translateWord('This service is no longer available','Эта услуга сейчас не доступна','Այս ծառայությունը հիմա հասանելի չի'), percent: 0 },
+        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash or card to the courier', 'Наличными или картой курьеру', 'Կանխիկ'),errorText:'', percent: 0 },
     ]
     private _allTimes = [
         { name: '10:00 - 13:00' },
@@ -126,6 +129,7 @@ export class BasketView implements OnInit {
         this._newAllTimes = this._allTimes
         this._formBuilder();
         this._setRouteSteps();
+        this._checkWarmingText();
         this._setFormValues();
         this._getAllAddresses();
         this._getCities();
@@ -133,7 +137,14 @@ export class BasketView implements OnInit {
         this._setMinDate();
         this._isPostProduct()
     }
-
+    private _checkWarmingText(){
+        this._isWarmingText=false
+        this.paymentMethods.forEach((data)=>{
+            if(data.errorText){
+                this._isWarmingText=true
+            }
+        })
+    }
     private _checkQueryParams(): void {
         let params = this._activatedRoute.snapshot.queryParams;
         if (params && params.orderID) {
@@ -905,6 +916,9 @@ export class BasketView implements OnInit {
     }
     get isPost(): boolean {
         return this._isPost
+    }
+    get isHasWarming(){
+        return this._isWarmingText
     }
 
 
