@@ -52,10 +52,12 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _lightboxEvent: LightboxEvent,
         private _translateService: TranslateService1,
         private _router: Router
-    ) { }
+    ) {
+        this._checkProductId();
+    }
 
     ngOnInit() {
-        this._checkProductId();
+
     }
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
@@ -63,7 +65,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     public getAttributeName(obj, name: string) {
         return this._translateService.getRequestTranslateAttributeName(obj, name)
     }
-    private _checkIsFavorite(id: string | number): void {
+    private _checkIsFavorite(id: number): void {
         if (this._mainService.isAuthorized) {
             this.activeIcon = '';
             this._productDetailsService.getFavoriteBookmark(id).subscribe((data: ServerResponse<boolean>) => {
@@ -83,9 +85,10 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _checkProductId(): void {
         this._paramsSubscription = this._activatedRoute.params.subscribe((params) => {
             if (params && params.id) {
-                this._id=params.id
+                this._id = params.id
                 this._getProduct(params.id);
-                this._getProductReviews(params.id)
+                this._getProductReviews(params.id);
+                this._checkIsFavorite(this._id)
             }
         })
     }
@@ -113,14 +116,13 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._loadingService.showLoading();
         this._routeSteps = [{ label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }];
         this._combinedAttributes = [];
-        this._subscription = this._catalogService.getProductById(id).subscribe((data: ServerResponse<ProductFull>) => {
+        this._subscription = this._catalogService.getProductById(id).subscribe((data) => {
             this._product = data.messages;
-            this._checkIsFavorite(id);
+            
             this._calcProductRating(this._product.productScore);
             this._metaService.updateTag(
                 { name: 'description', content: this._product.description },
             )
-
             this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' + this._router.url })
             this._metaService.updateTag({ property: "og:type", content: "article" })
             this._metaService.updateTag({ property: "og:title", content: this._product.name })

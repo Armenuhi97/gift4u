@@ -1,8 +1,9 @@
 /// <reference types="node" />
+
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import * as express from 'express';
-import { HttpRequest, HttpHandler, HttpInterceptor } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 
 @Injectable()
 export class TranslateInterceptor implements HttpInterceptor {
