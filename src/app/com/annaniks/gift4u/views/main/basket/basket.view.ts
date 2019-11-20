@@ -206,23 +206,22 @@ export class BasketView implements OnInit {
             let currentDate = new Date();
             let today = currentDate.getDate();
             let currentTime = currentDate.getHours();
-            if (value.getDate() == today) {
-                if (currentTime >= 13 && currentTime <= 16) {
-                    this._newAllTimes = this._newAllTimes.slice(2);
+            if (value.getDate() == today) {                
+                if (currentTime >= 13 && currentTime <= 16) {                    
+                    this._newAllTimes = this._allTimes.slice(2);
                     if (this._orderForm.get('delivery_time').value == this._allTimes[0] || this._orderForm.get('delivery_time').value == this._allTimes[1]) {
                         this._orderForm.get('delivery_time').reset();
                     }
                 } else {
-                    if (currentTime >= 10 && currentTime <= 13) {
-                        this._newAllTimes = this._newAllTimes.splice(1);
+                    if (currentTime >= 10 && currentTime <= 13) {                        
                         if (this._orderForm.get('delivery_time').value == this._allTimes[0]) {
                             this._orderForm.get('delivery_time').reset()
                         }
                     }
                 }
-            } else {
+            } else {                
                 this._newAllTimes = this._allTimes
-            }
+            }            
 
         })
         this._orderForm.controls.shipping_method.valueChanges.subscribe((data) => {
