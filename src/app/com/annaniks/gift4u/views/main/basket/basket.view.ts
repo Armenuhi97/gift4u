@@ -214,6 +214,7 @@ export class BasketView implements OnInit {
                     }
                 } else {
                     if (currentTime >= 10 && currentTime <= 13) {                        
+                        this._newAllTimes = this._allTimes.slice(1);                      
                         if (this._orderForm.get('delivery_time').value == this._allTimes[0]) {
                             this._orderForm.get('delivery_time').reset()
                         }
