@@ -12,11 +12,11 @@
         content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Նվեր քո համար նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն">
 
-    <meta  property= "og:url" content="">
-    <meta  property= "og:type" content="">
-    <meta  property= "og:title" content="">
-    <meta  property= "og:description" content="">
-    <meta  property= "og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
 
     <meta name="yandex-verification" content="01db160ef08075c9" />
 
@@ -34,6 +34,27 @@
 
         gtag('config', 'UA-39840160-2');
     </script>
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v5.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat" attribution=setup_tool page_id="102108774590177" theme_color="#505768"> </div>
 </head>
 
 <body>
