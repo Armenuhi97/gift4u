@@ -50,7 +50,7 @@ export class UserInfoView implements OnInit, OnDestroy {
         this._mainService.getUser().subscribe((data: User) => {
             this._loadingService.hideLoading();
             this._userInfo = data;
-            this.defaultImage = this._userInfo.profile_image ? this._fileUrl + this._userInfo.profile_image : null
+            this.defaultImage = this._userInfo.profile_image ? (this._fileUrl + this._userInfo.profile_image ): "/assets/images/logo-gift4uam.png";            
             this.uploadIcon = this._userInfo.profile_image ? 'edit' : 'add'
             if (!isFirst) {
                 this._giftFormBuilder();

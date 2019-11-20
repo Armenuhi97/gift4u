@@ -260,13 +260,11 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('../../../../../../../../assets/images/gift.png');
+    background-image: url('../../../../../../../../assets/images/gift1.png');
     margin: 0 auto;
 }
 @media only screen and (max-width:750px){
-    .gift-image{
-     //   background-image: url('../../../../../../../../assets/images/gifth2.png') !important
-    }
+  
     .user{
         margin-left:0 !important;
         flex-direction: column;

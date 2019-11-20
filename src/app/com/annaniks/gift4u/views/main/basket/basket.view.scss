@@ -92,6 +92,7 @@
         margin-left: 20px;
         cursor: pointer;
         color: white;
+        margin-top: 5px;
       }
       // .top {
       //   font-size: 13px;
@@ -105,8 +106,8 @@
     }
     .checkbox {
       .checkmark {
-        top: 0;
-        left: 65px;
+        top: 9px;
+        left: 58px;
       }
     }
   }
@@ -312,6 +313,9 @@
       justify-content: space-between;
       font-weight: bold;
       position: relative;
+      .key{
+        width: 80%;
+      }
       .abs_cont {
         width: fit-content;
         top: 0;
@@ -546,6 +550,11 @@
 @media only screen and (max-width: 460px){
   .price_container {
     width: 100% !important;
+  }
+  .sh_price {
+    .key{
+      width: 73% !important;
+    }
   }
 }
 @media only screen and (max-width: 340px){
