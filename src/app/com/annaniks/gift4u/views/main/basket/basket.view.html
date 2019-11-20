@@ -37,13 +37,15 @@
                         <div>
                             <div class="checkbox">
                                 <label class="container">
-                                    <input type="checkbox" [(ngModel)]="isPostCard">
+                                    <input type="checkbox" [(ngModel)]="isPack">
                                     <span class="checkmark"></span>
                                 </label>
 
                             </div>
                             <div class="center">
-                                <label (click)="onClickisPostcard()">{{'_postcard' | translate}}</label>
+                                    <div class="top">{{'_postcard' | translate}}</div>
+                                    <div class="bottom">(+150 &#1423; {{'_pack_sum' | translate}})</div>
+                                <!-- <label (click)="onClickisPack()">{{'_postcard' | translate}}</label> -->
                             </div>
                         </div>
                         <div *ngIf="isPostCard">

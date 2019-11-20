@@ -82,10 +82,16 @@
     .center {
       margin: auto;
       margin-bottom: 14px;
-      font-size: 25px;
-      label{
+      .top{
+        font-size: 25px;
+      }
+      .bottom{
+        font-size: 15px;
+      }
+      .top,.bottom{
         margin-left: 20px;
         cursor: pointer;
+        color: white;
       }
       // .top {
       //   font-size: 13px;
@@ -299,7 +305,7 @@
   }
 
   .price_container {
-    width: 300px;
+    width: 400px;
     .sh_price {
       margin-top: 10px;
       display: flex;
@@ -535,6 +541,11 @@
   .get_discount {
     margin-top: 10px;
     width: 100%;
+  }
+}
+@media only screen and (max-width: 460px){
+  .price_container {
+    width: 460px;
   }
 }
 @media only screen and (max-width: 340px){
