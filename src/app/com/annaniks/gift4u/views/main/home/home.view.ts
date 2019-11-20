@@ -4,7 +4,7 @@ import { ServerResponse, ParfumeInfo, Product, SocialItem, AllSettings } from '.
 import { Banner, Partner, Video } from './home.models';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { LoadingService } from '../../../services/loading.service';
 import { TranslateService1 } from '../../../services';
@@ -35,22 +35,29 @@ export class HomeView implements OnInit, OnDestroy {
         @Inject('FILE_URL') public fileUrl: string,
         private _titleService: Title,
         private _loadingService: LoadingService,
-        private _mainService:MainService,
-        private _translateService:TranslateService1
+        private _mainService: MainService,
+        private _translateService: TranslateService1,
+        private _metaService: Meta
     ) { }
 
     ngOnInit() {
         this._checkWindowSize();
-        this._titleService.setTitle(this._translateService.translateImportant('Gift for you','Подарок для тебя','Նվեր քո համար'));
+        this._titleService.setTitle(this._translateService.translateImportant('Gift for you', 'Подарок для тебя', 'Նվեր քո համար'));
+        this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' })
+        this._metaService.updateTag({ property: "og:type", content: "article" })
+        this._metaService.updateTag({ property: "og:title", content: 'Նվեր քո համար' })
+        this._metaService.updateTag({ property: "og:description", content: 'Նվեր քո համար նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն' })
+        this._metaService.updateTag({ property: "og:image", content: '' })
+
         this._getHomeData();
     }
 
     private _getHomeData(): void {
         this._getAllSettings()
     }
-    private _getAllSettings():void {
+    private _getAllSettings(): void {
         this._loadingService.showLoading();
-        this._mainService.getSettingsAll().subscribe((data:ServerResponse<AllSettings>) => {
+        this._mainService.getSettingsAll().subscribe((data: ServerResponse<AllSettings>) => {
             this.banners = data.messages.banner;
             this.socialNetworks = data.messages.socialNetworks;
             this.specialProducts = data.messages.special;

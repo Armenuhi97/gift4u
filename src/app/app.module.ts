@@ -34,6 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'app-root' }),
     TransferHttpModule,
+    
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

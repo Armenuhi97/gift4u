@@ -52,13 +52,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _lightboxEvent: LightboxEvent,
         private _translateService: TranslateService1,
         private _router: Router
-    ) {
-        this._activatedRoute.params.subscribe(params => {
-            if (params && params.id) {
-                this._id = params['id'];
-            }
-        });
-    }
+    ) { }
 
     ngOnInit() {
         this._checkProductId();
@@ -89,24 +83,12 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _checkProductId(): void {
         this._paramsSubscription = this._activatedRoute.params.subscribe((params) => {
             if (params && params.id) {
+                this._id=params.id
                 this._getProduct(params.id);
                 this._getProductReviews(params.id)
             }
         })
     }
-    // private _checkProductId(): void {
-    //     this._paramsSubscription = this._activatedRoute.params.subscribe((params) => {
-    //         if (params && params.productId && (params.productId.toLowerCase() != 'undefined' && params.productId.toLowerCase() != 'null')) {
-    //             this._id = params.productId;
-    //             this._getProduct(params.productId);
-    //             this._getProductReviews(this._id);
-    //             this._checkIsFavorite(this._id);
-    //         }
-    //         else {
-    //             this._router.navigate(['/not-found'])
-    //         }
-    //     })
-    // }
 
     private _setProductToBasket(): void {
         this._product['count'] = this.count;
@@ -133,11 +115,18 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._combinedAttributes = [];
         this._subscription = this._catalogService.getProductById(id).subscribe((data: ServerResponse<ProductFull>) => {
             this._product = data.messages;
-            this._checkIsFavorite(this._id);
+            this._checkIsFavorite(id);
             this._calcProductRating(this._product.productScore);
             this._metaService.updateTag(
                 { name: 'description', content: this._product.description },
             )
+
+            this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' + this._router.url })
+            this._metaService.updateTag({ property: "og:type", content: "article" })
+            this._metaService.updateTag({ property: "og:title", content: this._product.name })
+            this._metaService.updateTag({ property: "og:description", content: this._product.description })
+            this._metaService.updateTag({ property: "og:image", content: this._fileUrl + 'products/' + this._product.image })
+
             this._metaService.addTag({ name: 'keywords', content: this._product.keywords })
             this._mainImage = window.innerWidth > 920 ?
                 this._appService.checkPropertyValue(data.messages, 'smallImage') : this._appService.checkPropertyValue(data.messages, 'image');
