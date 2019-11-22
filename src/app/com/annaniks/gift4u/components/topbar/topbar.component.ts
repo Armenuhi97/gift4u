@@ -112,9 +112,10 @@ export class TopbarComponent implements OnInit {
         }
     }
     public changeLanguage(lang_key: string) {
-        window.location.reload();
-        this._cookieService.set('language', lang_key);
         this._translate.use(lang_key);
+
+        window.location.reload();
+        // this._cookieService.set('language', lang_key);
     }
     public onClickMenuButton(): void {
         this._menuItemsService.openMenu();

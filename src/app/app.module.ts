@@ -12,16 +12,16 @@ import { LoadingService } from './com/annaniks/gift4u/services/loading.service';
 import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
 import { PlatformService } from './com/annaniks/gift4u/services/platform.service';
 import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-transfer-http';
-import { TranslateModule, TranslateLoader, TranslateService } from  '@ngx-translate/core';
+// import { TranslateModule, TranslateLoader, TranslateService } from  '@ngx-translate/core';
 import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from  '@angular/common/http';
 import localeRu from '@angular/common/locales/ru';
 
 registerLocaleData(localeRu)
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+// export function createTranslateLoader(http: HttpClient) {
+//   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+// }
 @NgModule({
   declarations: [
     AppComponent
@@ -35,13 +35,13 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule.withServerTransition({ appId: 'app-root' }),
     TransferHttpModule,
     
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
-      }
-  })
+  //   TranslateModule.forRoot({
+  //     loader: {
+  //         provide: TranslateLoader,
+  //         useFactory: (createTranslateLoader),
+  //         deps: [HttpClient]
+  //     }
+  // })
   ],
   providers: [
     AppService,
@@ -49,7 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpModule,
     CookieService,
     PlatformService,
-    TranslateService,
+    // TranslateService,
     TranslateService1,
     {
       provide: 'req',

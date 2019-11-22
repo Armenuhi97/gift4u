@@ -46,6 +46,8 @@ app.route('/sitemap.xml')
   .get((req, res) => {
     res.sendFile(join(DIST_FOLDER, '/sitemap.xml'));
   });
+  
+app.use(cookieParser());
 
 app.engine('html', (_, options, callback) => {
   renderModuleFactory(AppServerModuleNgFactory, {
@@ -84,7 +86,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Node server listening on http://localhost:${PORT}`);
 });
-
+import * as cookieParser from 'cookie-parser';
 app.get('*', (req: express.Request, res: express.Response) => {
   res.render('index', {
     req,
