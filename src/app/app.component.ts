@@ -21,10 +21,10 @@ export class AppComponent {
     _router.events.subscribe((value) => {
       _ref.tick();
     });
-    if (this._platformService.isBrowser) {
-      let active_lng = this._cookieService.get('language') ? this._cookieService.get('language') : 'arm';
-      this._translate.use(active_lng)
-    }
+    // if (this._platformService.isBrowser) {
+    //   let active_lng = this._cookieService.get('language') ? this._cookieService.get('language') : 'arm';
+    //   this._translate.use(active_lng)
+    // }
 
   }
 }

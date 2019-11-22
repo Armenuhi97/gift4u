@@ -35,13 +35,13 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule.withServerTransition({ appId: 'app-root' }),
     TransferHttpModule,
     
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
-      }
-  })
+  //   TranslateModule.forRoot({
+  //     loader: {
+  //         provide: TranslateLoader,
+  //         useFactory: (createTranslateLoader),
+  //         deps: [HttpClient]
+  //     }
+  // })
   ],
   providers: [
     AppService,
@@ -49,7 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpModule,
     CookieService,
     PlatformService,
-    TranslateService,
+    // TranslateService,
     TranslateService1,
     {
       provide: 'req',

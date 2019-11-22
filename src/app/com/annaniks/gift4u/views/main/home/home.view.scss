@@ -330,7 +330,18 @@ div{
         .slider{
             app-slider{
                 .slide{
-                    height: 300px !important;
+                    height: 280px !important;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width:570px) {
+    :host ::ng-deep{
+        .slider{
+            app-slider{
+                .slide{
+                    height: 245px !important;
                 }
             }
         }
@@ -486,7 +497,11 @@ div{
         .slider{
             app-slider{
                 .slide{
-                    height: 200px !important;
+                    height: 150px !important;
+                }
+                .slick-prev,.slick-next{
+                    height: 27px !important;
+                    width: 27px !important;
                 }
                 .carousel_item {
                     padding:0 !important;

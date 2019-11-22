@@ -9,6 +9,7 @@ import * as express from 'express';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
+import * as cookieParser from 'cookie-parser';
 
 
 // Faster server renders w/ Prod mode (dev mode never needed)
@@ -41,7 +42,7 @@ global["window"] = win;
 global["document"] = win.document;
 global["branch"] = null;
 global["object"] = win.object;
-
+app.use(cookieParser());
 app.route('/sitemap.xml')
   .get((req, res) => {
     res.sendFile(join(DIST_FOLDER, '/sitemap.xml'));

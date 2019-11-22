@@ -21,7 +21,7 @@ export class TopbarComponent implements OnInit {
     private _phone_2: string = '';
     private _smallText: string
     private _settings: Setting[] = [];
-    public active_lng:string;
+    public active_lng: string;
     private _windowWidth: number;
     public color: string
     public languages = [
@@ -53,7 +53,7 @@ export class TopbarComponent implements OnInit {
     public search: string;
     private _similarProducts: string[] = [];
     private _isShowSimilarProducts: boolean = true;
-
+    
     constructor(
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
@@ -69,9 +69,7 @@ export class TopbarComponent implements OnInit {
         private _platformService: PlatformService
     ) {
         this._checkQueryParams();
-        if (this._platformService.isBrowser)
-            this.active_lng = this._translate.currentLang;
-
+        this.active_lng = this._translate.currentLang;
         if (this._platformService.isBrowser) {
             if (this._cookieService.get('color')) {
                 document.documentElement.style
@@ -112,9 +110,12 @@ export class TopbarComponent implements OnInit {
         }
     }
     public changeLanguage(lang_key: string) {
-        window.location.reload();
-        this._cookieService.set('language', lang_key);
         this._translate.use(lang_key);
+        this._translate.setDefaultLang(lang_key);
+        this._translate.getTranslation(lang_key);
+        setTimeout(()=>{
+            window.location.reload();
+        },1000)
     }
     public onClickMenuButton(): void {
         this._menuItemsService.openMenu();

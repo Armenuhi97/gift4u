@@ -16,7 +16,7 @@
                     [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}' class="label">
                     {{getAttributeName(item,'name') || getAttributeName(item,'label')}}
                 </div>
-                <div class="item___overlay">
+                <div *ngIf="isShowCatalog" class="item___overlay">
                     <div *ngFor="let subItem of item.subCategory;let ind = index"
                         [ngStyle]="{width:(100/item.subCategory.length)+'%'}">
                         <p class="sub_label sub_header" [routerLink]="'/catalog'"

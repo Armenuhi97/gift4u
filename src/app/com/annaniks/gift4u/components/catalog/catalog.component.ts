@@ -17,7 +17,7 @@ export class CatalogComponent implements OnInit {
     set catalogItems($event) {
         this._catalogItems = $event;
     }
-
+    private _isShowCatalog: boolean = false
     private _activeTab: string = 'catalog';
     private _isSmallDisplay: boolean = false;
     private _scroll: boolean = false
@@ -29,6 +29,8 @@ export class CatalogComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        if (this._platformService.isBrowser)
+            this._isShowCatalog = true
         this._checkwindowSize();
         if (this._platformService.isBrowser)
             window.addEventListener('scroll', () => {
@@ -104,5 +106,7 @@ export class CatalogComponent implements OnInit {
     get language() {
         return this._translateService.getActiveLanguage()
     }
-
+    get isShowCatalog():boolean{
+        return this._isShowCatalog
+    }
 }
