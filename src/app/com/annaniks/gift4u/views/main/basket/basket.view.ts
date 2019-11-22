@@ -55,7 +55,7 @@ export class BasketView implements OnInit {
     public postcard: string;
     private _productIdArray: Array<number> = [];
     private _minDate: Date;
-    private _isWarmingText:boolean=false
+    private _isWarmingText: boolean = false
     private _CALENDER_CONFIG_en = {
         firstDayOfWeek: 0,
         dayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -92,15 +92,18 @@ export class BasketView implements OnInit {
         clear: 'Очистить',
     }
     public paymentMethods = [
-        { id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'),
-         under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'),
-         errorText:this.translateWord('This service is no longer available','Эта услуга сейчас не доступна','Այս ծառայությունը հիմա հասանելի չի'), percent: 0 },
-        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash or card to the courier', 'Наличными или картой курьеру', 'Կանխիկ'),errorText:'', percent: 0 },
+        {
+            id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'),
+            under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'),
+            errorText: this.translateWord('This service is no longer available', 'Эта услуга сейчас не доступна', 'Այս ծառայությունը հիմա հասանելի չի'), percent: 0
+        },
+        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash or card to the courier', 'Наличными или картой курьеру', 'Կանխիկ'), errorText: '', percent: 0 },
     ]
     private _allTimes = [
-        { name: '10:00 - 13:00' },
-        { name: '13:00 - 16:00' },
-        { name: '16:00 - 19:00' }
+        { name: '09:00 - 12:00', start: 9, end: 12, id: 1 },
+        { name: '12:00 - 15:00', start: 12, end: 15, id: 2 },
+        { name: '15:00 - 18:00', start: 15, end: 18, id: 3 },
+        { name: '18:00 - 21:00', start: 18, end: 21, id: 4 }
     ]
     private _newAllTimes = []
 
@@ -137,11 +140,11 @@ export class BasketView implements OnInit {
         this._setMinDate();
         this._isPostProduct()
     }
-    private _checkWarmingText(){
-        this._isWarmingText=false
-        this.paymentMethods.forEach((data)=>{
-            if(data.errorText){
-                this._isWarmingText=true
+    private _checkWarmingText() {
+        this._isWarmingText = false
+        this.paymentMethods.forEach((data) => {
+            if (data.errorText) {
+                this._isWarmingText = true
             }
         })
     }
@@ -165,7 +168,7 @@ export class BasketView implements OnInit {
         if (maxduration == 0) {
             let currentDate = new Date();
             let currentTime = currentDate.getHours();
-            if (currentTime >= 16) {
+            if (currentTime >= this._allTimes[this._allTimes.length - 1].start) {
                 minDate.setDate(today.getDate() + 1)
                 minDate.setMonth(today.getMonth())
                 minDate.setFullYear(today.getFullYear());
@@ -206,23 +209,18 @@ export class BasketView implements OnInit {
             let currentDate = new Date();
             let today = currentDate.getDate();
             let currentTime = currentDate.getHours();
-            if (value.getDate() == today) {                
-                if (currentTime >= 13 && currentTime <= 16) {                    
-                    this._newAllTimes = this._allTimes.slice(2);
-                    if (this._orderForm.get('delivery_time').value == this._allTimes[0] || this._orderForm.get('delivery_time').value == this._allTimes[1]) {
+            if (value.getDate() == today) {
+                this._allTimes.forEach((data, index) => {
+                    if (currentTime >= data.start && currentTime <= data.end) {
+                        this._newAllTimes = this._allTimes.slice(index + 1);
+                    }
+                    if (this._orderForm.get('delivery_time').value && this._orderForm.get('delivery_time').value.id <= index + 1) {
                         this._orderForm.get('delivery_time').reset();
                     }
-                } else {
-                    if (currentTime >= 10 && currentTime <= 13) {                        
-                        this._newAllTimes = this._allTimes.slice(1);                      
-                        if (this._orderForm.get('delivery_time').value == this._allTimes[0]) {
-                            this._orderForm.get('delivery_time').reset()
-                        }
-                    }
-                }
-            } else {                
+                })
+            } else {
                 this._newAllTimes = this._allTimes
-            }            
+            }
 
         })
         this._orderForm.controls.shipping_method.valueChanges.subscribe((data) => {
@@ -917,7 +915,7 @@ export class BasketView implements OnInit {
     get isPost(): boolean {
         return this._isPost
     }
-    get isHasWarming(){
+    get isHasWarming() {
         return this._isWarmingText
     }
 

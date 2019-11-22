@@ -162,7 +162,11 @@
         align-items: center;
         .map_item{
             min-height: 200px;
+            width: fit-content !important;
         }
+    }
+    .logo{
+        width: fit-content !important 
     }
 
 }

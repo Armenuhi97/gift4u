@@ -107,7 +107,7 @@
     .checkbox {
       .checkmark {
         top: 9px;
-        left: 58px;
+        left: 35px;
       }
     }
   }
@@ -215,6 +215,12 @@
 :host::ng-deep p-calendar {  
   .ui-calendar,.ui-inputtext{
     width: 100%;  
+  }
+  .ui-datepicker table td > a.ui-state-active, body .ui-datepicker table td > span.ui-state-active{
+    color: white !important;
+  }
+  .ui-datepicker{
+    z-index: 2 !important;
   }
   .ui-widget{
     font-family: 'Roboto';
