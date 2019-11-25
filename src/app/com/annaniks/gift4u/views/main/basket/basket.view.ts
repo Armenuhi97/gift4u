@@ -10,6 +10,7 @@ import { ShippingPrice, CarrierType, PromoCode } from './basket.models';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from '../../../services/cookie.service';
 import { PlatformService } from '../../../services/platform.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'basket-view',
@@ -121,6 +122,7 @@ export class BasketView implements OnInit {
         private _cookieService: CookieService,
         private _translateService: TranslateService1,
         private _platformService: PlatformService,
+        private _datePipe: DatePipe,
         @Inject("FILE_URL") private _fileUrl: string
     ) {
         this._checkBasketProducts();
@@ -412,7 +414,7 @@ export class BasketView implements OnInit {
                     return;
                 }
                 else {
-                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} &#1423;`, `Доставка +${+shippingPrice.price} &#1423;`, `Առաքումը +${+shippingPrice.price} &#1423;`)
+                    this.shippingMessage = this.getTranslateWord(`Shipping +${+shippingPrice.price} ֏`, `Доставка +${+shippingPrice.price} ֏`, `Առաքումը +${+shippingPrice.price} ֏`)
                     this.shippingPrice = +shippingPrice.price;
                 }
                 return;
@@ -485,7 +487,9 @@ export class BasketView implements OnInit {
             cartRuleId: cartRuleId,
             user_id: (this._mainService.isAuthorized) ? this._mainService.getUserInfo().id : null,
             isBonus: (this._orderForm.get('isBonuce').value) ? this._orderForm.get('isBonuce').value : false,
-            isBalance: (this._orderForm.get('isBalance').value) ? this._orderForm.get('isBalance').value : false
+            isBalance: (this._orderForm.get('isBalance').value) ? this._orderForm.get('isBalance').value : false,
+            day_of_delivery: this._datePipe.transform(this._orderForm.get('delivery_day').value, 'dd.MM.yyyy'),
+            hour_of_delivery: this._orderForm.get('delivery_time').value.name
         }, this._mainService.isAuthorized()).subscribe(
             (data) => {
                 this.loading = false;

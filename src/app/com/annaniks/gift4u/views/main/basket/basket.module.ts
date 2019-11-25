@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/primeng';
 import {CalendarModule} from 'primeng/calendar';
 import { TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,6 @@ import { TranslateModule } from '@ngx-translate/core';
         CalendarModule,
         TranslateModule
     ],
-    providers: [BasketService]
+    providers: [BasketService,DatePipe]
 })
 export class BasketModule { }

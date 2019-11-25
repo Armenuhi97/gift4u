@@ -44,7 +44,7 @@
                             </div>
                             <div class="center">
                                     <div class="top">{{'_postcard' | translate}}</div>
-                                    <div class="bottom">(+150 &#1423; {{'_pack_sum' | translate}})</div>
+                                    <div class="bottom">(+150 <span font-family-verdana>&#1423;</span> {{'_pack_sum' | translate}})</div>
                                 <!-- <label (click)="onClickisPack()">{{'_postcard' | translate}}</label> -->
                             </div>
                         </div>
@@ -67,8 +67,8 @@
                     </div> -->
                 </div>
                 <p>{{'_total' | translate}}: <span
-                        [ngClass]="{'discount_price':isPromocode}">{{totalPrice | price_format}}&#1423;</span>
-                    <span *ngIf="isPromocode"> - {{discountPrice | price_format}}&#1423;</span>
+                        [ngClass]="{'discount_price':isPromocode}">{{totalPrice | price_format}}<span font-family-verdana>&#1423;</span></span>
+                    <span *ngIf="isPromocode"> - {{discountPrice | price_format}}<span font-family-verdana>&#1423;</span></span>
                 </p>
             </div>
             <div class="make_order" *ngIf="orderStep!=2">
@@ -333,28 +333,28 @@
                         <div class="price_container">
                             <div class="sh_price">
                                 <span class="key">{{'_order_sum' | translate}}</span>
-                                <span class="value">{{totalPrice | price_format}}&#1423;</span>
+                                <span class="value">{{totalPrice | price_format}}<span font-family-verdana>&#1423;</span></span>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_delivery' | translate}}</span>
-                                <span class="value">{{shippingPrice | price_format}}&#1423; <span class="abs_cont"
+                                <span class="value">{{shippingPrice | price_format}}<span font-family-verdana>&#1423;</span> <span class="abs_cont"
                                         *ngIf="shippingPrice==0 && (orderForm.get('payment_method').value==4 || orderForm.get('payment_method').value==5)">(300
-                                        &#1423; {{'_insurance' | translate}})</span></span>
+                                        <span font-family-verdana>&#1423;</span> {{'_insurance' | translate}})</span></span>
                             </div>
 
                             <div class="sh_price">
                                 <span class="key">{{'_total_text' | translate}}</span>
                                 <div [ngClass]="{'paylater':isPromocode && payLaterPrice}">
                                     <span [ngClass]="{'discount_price':isPromocode && payLaterPrice}"
-                                        class="value">{{payLaterPrice | price_format}}&#1423;
+                                        class="value">{{payLaterPrice | price_format}}<span font-family-verdana>&#1423;</span>
                                     </span>
                                     <span *ngIf="isPromocode && payLaterPrice"> -
-                                        {{discountPayLaterPrice | price_format}}&#1423;</span>
+                                        {{discountPayLaterPrice | price_format}}<span font-family-verdana>&#1423;</span></span>
                                 </div>
                             </div>
                             <div class="sh_price">
                                 <span class="key">{{'_total_pay_now' | translate}}</span>
-                                <span class="value">{{payNowPrice | price_format}}&#1423;</span>
+                                <span class="value">{{payNowPrice | price_format}}<span font-family-verdana>&#1423;</span></span>
                             </div>
                         </div>
                         <div class="make_order">

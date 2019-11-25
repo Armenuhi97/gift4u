@@ -23,11 +23,11 @@
         </div>
         <div class="info">
             <div class="price">
-                <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat | price_format}} &#1423;
+                <p class="custom_price" *ngIf="product?.specificPrice">{{product.price_with_vat | price_format}} <span font-family-verdana>&#1423;</span>
                 </p>
                 <p class="current_price">
                     {{(product.specificPrice) ? (product?.specificPrice | price_format ): (product?.price_with_vat | price_format)}}
-                    &#1423;</p>
+                    <span font-family-verdana>&#1423;</span></p>
             </div>
             <div class="basket_button">
                 <button (click)="onClickAddBasket()">{{translate('Into the basket','В корзину','Զամբյուղ')}}</button>

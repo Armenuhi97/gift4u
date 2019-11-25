@@ -11,6 +11,7 @@ import { MainService } from '../../main.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { ProductDetailsService } from './product-details.service';
 import { Lightbox, LightboxEvent, LIGHTBOX_EVENT } from 'ngx-lightbox';
+import { PlatformService } from '../../../../services/platform.service';
 
 @Component({
     selector: 'product-details-view',
@@ -51,7 +52,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _lightbox: Lightbox,
         private _lightboxEvent: LightboxEvent,
         private _translateService: TranslateService1,
-        private _router: Router
+        private _router: Router,
+        private _platformService:PlatformService
     ) {
         this._checkProductId();
     }
@@ -118,7 +120,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         this._combinedAttributes = [];
         this._subscription = this._catalogService.getProductById(id).subscribe((data) => {
             this._product = data.messages;
-            
+
             this._calcProductRating(this._product.productScore);
             this._metaService.updateTag(
                 { name: 'description', content: this._product.description },
@@ -311,7 +313,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
                 .subscribe(event => {
                     this._onReceivedEvent(event)
                 });
-            document.body.style.overflow = 'hidden';
+            if (this._platformService.isBrowser)
+                document.body.style.overflow = 'hidden';
             // document.body.style.paddingRight = "18px"
         } else {
             // document.body.style.paddingRight = "0px"
@@ -321,8 +324,10 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _onReceivedEvent(event: any): void {
         // remember to unsubscribe the event when lightbox is closed
         if (event.id === LIGHTBOX_EVENT.CLOSE) {
-            document.body.style.overflow = 'auto';
-            document.body.style.paddingRight = "0px"
+            if (this._platformService.isBrowser) {
+                document.body.style.overflow = 'auto';
+                document.body.style.paddingRight = "0px"
+            }
             this._subscription.unsubscribe();
         }
     }

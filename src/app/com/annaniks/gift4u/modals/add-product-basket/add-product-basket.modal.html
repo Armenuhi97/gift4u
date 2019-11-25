@@ -17,8 +17,8 @@
                             {{product?.count}}{{'_product' | translate}} <br>
                             <span display-flex align-items-center> {{'_price' | translate}}։
                                 <div margin-left-7>
-                                    <div [class.specificprice]="specificPrice">{{price | price_format}} &#1423;</div>
-                                    <div *ngIf="specificPrice">{{specificPrice | price_format}} &#1423;</div>
+                                    <div [class.specificprice]="specificPrice">{{price | price_format}} <span font-family-verdana>&#1423;</span></div>
+                                    <div *ngIf="specificPrice">{{specificPrice | price_format}} <span font-family-verdana>&#1423;</span></div>
                                 </div>
                             </span>
                         </span>
