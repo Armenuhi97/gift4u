@@ -85,7 +85,7 @@
                         </div>
                         <div class="product_price">
 
-                            <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? (product?.price_with_vat | price_format) : ''}} <span font-family-verdana>&#1423;</span></p>
+                            <p class="custom_price" *ngIf="product.specificPrice">{{(product?.specificPrice) ? (product?.price_with_vat | price_format) : ''}} <span display-inline font-family-verdana>&#1423;</span></p>
 
                             <p class="current_price">
                                 {{(product?.specificPrice) ? (product?.specificPrice | price_format) : (product?.price_with_vat | price_format)}} <span display-inline font-family-verdana>&#1423;</span></p>
@@ -93,7 +93,7 @@
                                 {{'_product_return_price_text' | translate}}
                             </span>
                             <span class="disc_text" *ngIf="isAuthorized"
-                                font-weight-bold>{{'_return' | translate}} {{bonusPrice | price_format}} <span font-family-verdana>&#1423;</span>
+                                font-weight-bold>{{'_return' | translate}} {{bonusPrice | price_format}} <span font-family-verdana display-inline>&#1423;</span>
                                 {{'_back' | translate}}</span>
                             <a class="disc_text" href="/settings/club"
                                 font-weight-bold>{{'_more' | translate}}</a>
