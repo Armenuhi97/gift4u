@@ -16,7 +16,8 @@ import { TranslateModule, TranslateLoader, TranslateService } from  '@ngx-transl
 import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from  '@angular/common/http';
 import localeRu from '@angular/common/locales/ru';
-
+import { GalleryModule } from '@ngx-gallery/core';
+import { LightboxModule, LIGHTBOX_CONFIG } from '@ngx-gallery/lightbox';
 registerLocaleData(localeRu)
 
 export function createTranslateLoader(http: HttpClient) {
@@ -34,7 +35,8 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'app-root' }),
     TransferHttpModule,
-
+    GalleryModule,
+    LightboxModule.withConfig({ panelClass: 'fullscreen' }),
   ],
   providers: [
     AppService,
@@ -43,6 +45,12 @@ export function createTranslateLoader(http: HttpClient) {
     CookieService,
     PlatformService,
     TranslateService1,
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false
+      }
+    },
     {
       provide: 'req',
       useValue: null

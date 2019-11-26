@@ -12,6 +12,8 @@ import { LoadingService } from '../../../../services/loading.service';
 import { ProductDetailsService } from './product-details.service';
 import { Lightbox, LightboxEvent, LIGHTBOX_EVENT } from 'ngx-lightbox';
 import { PlatformService } from '../../../../services/platform.service';
+import { Gallery, GalleryItem, ImageItem, GalleryConfig, ImageSize, ThumbnailsPosition } from '@ngx-gallery/core';
+import { Lightbox as L } from '@ngx-gallery/lightbox';
 
 @Component({
     selector: 'product-details-view',
@@ -23,6 +25,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _activeSizeItem: number = 0;
     private _activeTabItem: string = 'description';
     public count: number = 1;
+    public items: GalleryItem[];
     private _product: ProductFull = new ProductFull();
     private _subscription: Subscription = new Subscription();
     private _paramsSubscription: Subscription = new Subscription();
@@ -53,7 +56,10 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _lightboxEvent: LightboxEvent,
         private _translateService: TranslateService1,
         private _router: Router,
-        private _platformService:PlatformService
+        private _platformService:PlatformService,
+        private lightbox: L,
+        public gallery: Gallery
+
     ) {
         this._checkProductId();
     }
@@ -295,19 +301,19 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             }
             images.push({ image: element.name })
         })
+        let _albums = [];
+        for (let img of images) {
+            const src = this.fileUrl + 'products/' + img.image;
+            const caption = this.fileUrl + 'products/' + img.image
+            const thumb = this.fileUrl + 'products/' + img.image;
+            const album = {
+                src: src,
+                caption: caption,
+                thumb: thumb
+            };
+            _albums.push(album);
+        }
         if (window.innerWidth > 920) {
-            let _albums = [];
-            for (let img of images) {
-                const src = this.fileUrl + 'products/' + img.image;
-                const caption = this.fileUrl + 'products/' + img.image
-                const thumb = this.fileUrl + 'products/' + img.image;
-                const album = {
-                    src: src,
-                    caption: caption,
-                    thumb: thumb
-                };
-                _albums.push(album);
-            }
             this._lightbox.open(_albums, imageIndex, { centerVertically: true });
             this._subscription = this._lightboxEvent.lightboxEvent$
                 .subscribe(event => {
@@ -315,10 +321,25 @@ export class ProductDetailsView implements OnInit, OnDestroy {
                 });
             if (this._platformService.isBrowser)
                 document.body.style.overflow = 'hidden';
-            // document.body.style.paddingRight = "18px"
         } else {
-            // document.body.style.paddingRight = "0px"
-            this._openLightboxModal(images, imageIndex);
+            this.items = _albums.map(item =>
+                new ImageItem({ src: item.src, thumb: item.src })
+            );
+            const config: GalleryConfig = {
+                loadingMode: "indeterminate",
+                imageSize: ImageSize.Contain,
+                thumbPosition: ThumbnailsPosition.Bottom,
+                counterPosition: 'bottom',
+                loop: true,
+                gestures: true,
+                nav:false
+            };
+            const galleryRef = this.gallery.ref('lightbox');
+            galleryRef.setConfig(config)
+            galleryRef.load(this.items);
+            this.lightbox.open(imageIndex, 'lightbox', {
+                panelClass: 'fullscreen'
+            });
         }
     }
     private _onReceivedEvent(event: any): void {
