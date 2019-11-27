@@ -171,18 +171,12 @@ export class BasketView implements OnInit {
             let currentDate = new Date();
             let currentTime = currentDate.getHours();
             if (currentTime >= this._allTimes[this._allTimes.length - 1].start) {
-                minDate.setDate(today.getDate() + 1)
-                minDate.setMonth(today.getMonth())
-                minDate.setFullYear(today.getFullYear());
+                minDate.setDate(today.getDate() + 1);
             } else {
-                minDate.setDate(today.getDate() + maxduration)
-                minDate.setMonth(today.getMonth())
-                minDate.setFullYear(today.getFullYear());
+                minDate.setDate(today.getDate() + maxduration);
             }
         } else {
-            minDate.setDate(today.getDate() + maxduration)
-            minDate.setMonth(today.getMonth())
-            minDate.setFullYear(today.getFullYear());
+            minDate.setDate(today.getDate() + maxduration);
         }
         this._minDate = minDate
     }
@@ -211,7 +205,7 @@ export class BasketView implements OnInit {
             let currentDate = new Date();
             let today = currentDate.getDate();
             let currentTime = currentDate.getHours();
-            if (value.getDate() == today) {
+            if (value && value.getDate() == today) {
                 this._allTimes.forEach((data, index) => {
                     if (currentTime >= data.start && currentTime <= data.end) {
                         this._newAllTimes = this._allTimes.slice(index + 1);

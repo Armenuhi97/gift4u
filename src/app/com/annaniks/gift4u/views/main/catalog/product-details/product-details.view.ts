@@ -322,24 +322,25 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             if (this._platformService.isBrowser)
                 document.body.style.overflow = 'hidden';
         } else {
-            this.items = _albums.map(item =>
-                new ImageItem({ src: item.src, thumb: item.src })
-            );
-            const config: GalleryConfig = {
-                loadingMode: "indeterminate",
-                imageSize: ImageSize.Contain,
-                thumbPosition: ThumbnailsPosition.Bottom,
-                counterPosition: 'bottom',
-                loop: true,
-                gestures: true,
-                nav:false
-            };
-            const galleryRef = this.gallery.ref('lightbox');
-            galleryRef.setConfig(config)
-            galleryRef.load(this.items);
-            this.lightbox.open(imageIndex, 'lightbox', {
-                panelClass: 'fullscreen'
-            });
+            this._openLightboxModal(images,imageIndex)
+            // this.items = _albums.map(item =>
+            //     new ImageItem({ src: item.src, thumb: item.src })
+            // );
+            // const config: GalleryConfig = {
+            //     loadingMode: "indeterminate",
+            //     imageSize: ImageSize.Contain,
+            //     thumbPosition: ThumbnailsPosition.Bottom,
+            //     counterPosition: 'bottom',
+            //     loop: true,
+            //     gestures: true,
+            //     nav:false
+            // };
+            // const galleryRef = this.gallery.ref('lightbox');
+            // galleryRef.setConfig(config)
+            // galleryRef.load(this.items);
+            // this.lightbox.open(imageIndex, 'lightbox', {
+            //     panelClass: 'fullscreen'
+            // });
         }
     }
     private _onReceivedEvent(event: any): void {

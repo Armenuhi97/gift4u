@@ -139,7 +139,7 @@
                     <app-slider [carouselType]="'good'" [carouselItems]="[{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]}]"
                         [itemHeight]="inherit"></app-slider>
                 </app-box> -->
-            <div class="products">
+            <div *ngIf="product?.similarProducts && product?.similarProducts.length" class="products">
                 <app-box [isP]="true"
                     [header]="translateWord('SIMILAR PRODUCTS','ПОХОЖИЕ ТОВАРЫ','ՆՄԱՆԱՏԻՊ ԱՊՐԱՆՔՆԵՐ')">
                     <app-slider [carouselType]="'good'" [carouselItems]="product?.similarProducts"
