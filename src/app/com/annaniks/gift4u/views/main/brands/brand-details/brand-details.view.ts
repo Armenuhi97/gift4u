@@ -83,7 +83,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
             this._brandInfo = data.messages.brand[0];
             this._banners = this._brandInfo.images
             this._title.setTitle(this._brandInfo.name);
-            this._meta.updateTag({ name: 'description', content: this._brandInfo.description })
+            this._meta.updateTag({ name: 'description', content:this.getAttributeName( this._brandInfo,'description') })
             this._meta.updateTag({ name: 'keywords', content: this._brandInfo.keywords })
             // this._sortProducts(this._sort);
             this._loadingService.hideLoading()
@@ -149,5 +149,7 @@ export class BrandDetailsView implements OnInit, OnDestroy {
     }
     ngOnDestroy() {
         this._routeSubscription.unsubscribe();
+        this._meta.updateTag({ name: 'description', content: '' });
+        this._meta.updateTag({ name: 'keywords', content: '' });
     }
 }

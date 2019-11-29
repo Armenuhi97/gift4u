@@ -43,21 +43,23 @@ export class HomeView implements OnInit, OnDestroy {
     ngOnInit() {
         this._checkWindowSize();
         this._titleService.setTitle(this._translateService.translateImportant('Gift for you', 'Подарок для тебя', 'Նվեր քո համար'));
-        this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' })
-        this._metaService.updateTag({ property: "og:type", content: "article" })
-        this._metaService.updateTag({ property: "og:title", content: 'Նվեր քո համար' })
-        this._metaService.updateTag({ property: "og:description", content: 'Նվեր քո համար նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն' })
-        this._metaService.updateTag({ property: "og:image", content: '' })
-
+        this._setMetaTag()
         this._getHomeData();
     }
-
+    private _setMetaTag() {
+        this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' })
+        this._metaService.updateTag({ property: "og:type", content: "article" })
+        this._metaService.updateTag({ property: "og:title", content: this._translateService.translateImportant('Gift for you', 'Подарок для тебя', 'Նվեր քո համար') })
+        this._metaService.updateTag({ property: "og:description", content: this._translateService.translateImportant('Gift for you. Give what you want to give yourself', 'Подарок для тебя. Подари то, что хочешь подарить себе', 'Նվեր քո համար: Նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն') })
+        this._metaService.updateTag({ property: "og:image", content: '' })
+    }
     private _getHomeData(): void {
         this._getAllSettings()
     }
     private _getAllSettings(): void {
         this._loadingService.showLoading();
         this._mainService.getSettingsAll().subscribe((data: ServerResponse<AllSettings>) => {
+            this._metaService.updateTag({ name: 'description', content: this._translateService.translateImportant('Gift for you. Give what you want to give yourself', 'Подарок для тебя. Подари то, что хочешь подарить себе', 'Նվեր քո համար: Նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն') });
             this.banners = data.messages.banner;
             this.socialNetworks = data.messages.socialNetworks;
             this.specialProducts = data.messages.special;
@@ -96,8 +98,13 @@ export class HomeView implements OnInit, OnDestroy {
             this._subscribeEmail(this.emailFormControl.value);
         }
     }
-
     ngOnDestroy() {
         this._subscription.unsubscribe();
+        this._metaService.updateTag({ property: "og:url", content: '' })
+        this._metaService.updateTag({ property: "og:type", content: '' })
+        this._metaService.updateTag({ property: "og:title", content: '' })
+        this._metaService.updateTag({ property: "og:description", content: '' })
+        this._metaService.updateTag({ property: "og:image", content: '' })
+        this._metaService.updateTag({ name: 'description', content: '' });
     }
 }

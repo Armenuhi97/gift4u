@@ -50,7 +50,6 @@ export class CatalogView implements OnInit {
             this._isShowFilters = false;
         }
     }
-    private _getTransla
     public translateWord(key1: string, key2: string, key3: string) {
         return this._translateService.translateImportant(key1, key2, key3)
     }

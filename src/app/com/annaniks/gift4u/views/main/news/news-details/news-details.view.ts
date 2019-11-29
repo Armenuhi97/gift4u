@@ -30,12 +30,17 @@ export class NewsDetailsView implements OnInit {
         let announcementId: number = this._activatedRoute.snapshot.params.id
         this._getNewsById(announcementId);
     }
-
+    public getAttributeName(obj, name: string) {
+        if (obj && obj[name]) {
+            let attribute = this._translateService.getRequestTranslateAttributeName(obj, name);
+            return attribute ? attribute : obj[name]
+        }
+    }
     private _getNewsById(id: number): void {
         this._settingsService.getNewsById(id).subscribe((data) => {
             this._announcementInfo = data.messages[0];
             this._title.setTitle(this._announcementInfo.title);
-            this._meta.updateTag({ name: 'description', content: this._announcementInfo.description })
+            this._meta.updateTag({ name: 'description', content:this.getAttributeName(this._announcementInfo,'description') })
             this._meta.updateTag({ name: 'keywords', content: this._announcementInfo.keywords })
         })
     }
@@ -58,5 +63,9 @@ export class NewsDetailsView implements OnInit {
 
     get showText(): string {
         return (this._showMore) ? this._translateService.translateImportant('hide', 'свернуть', 'թաքցնել') : this._translateService.translateImportant('more', 'развернуть', 'ավելին')
+    }
+    ngOnDestroy() {
+        this._meta.updateTag({ name: 'description', content: '' });
+        this._meta.updateTag({ name: 'keywords', content: '' });
     }
 }

@@ -36,8 +36,8 @@ export class SettingsView implements OnInit {
         private _messageService: MessageService,
         private _title: Title,
         private _translateService: TranslateService1,
-        private _platformService:PlatformService,
-        private _metaService:Meta,
+        private _platformService: PlatformService,
+        private _metaService: Meta,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
@@ -95,11 +95,11 @@ export class SettingsView implements OnInit {
         let setting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', this._settingName), 0);
         if (setting) {
             this._setting = setting;
-            this._metaService.updateTag({ name: 'description', content: this._setting.metaDescription })
+            this._metaService.updateTag({ name: 'description', content: this.getAttributeName(this._setting, 'metaDescription') })
             this._title.setTitle(this.getAttributeName(setting, 'name'));
             if (this._setting.key.toLowerCase() === 'contacts') {
                 let mapSetting: Setting = this._appService.checkPropertyValue(this._appService.filterArray(this._settings, 'key', 'maps'), 0);
-                this._setting.map = mapSetting;                
+                this._setting.map = mapSetting;
                 this._visibleContent = true;
                 setTimeout(() => {
                     if (this._platformService.isBrowser)
@@ -146,7 +146,6 @@ export class SettingsView implements OnInit {
         }
     }
 
-
     get setting(): Setting {
         return this._setting;
     }
@@ -171,8 +170,11 @@ export class SettingsView implements OnInit {
     get fileUrl(): string {
         return this._fileUrl;
     }
-
     get news() {
         return this._news;
+    }
+
+    ngOnDestroy() {
+        this._metaService.updateTag({ name: 'description', content: '' });
     }
 }

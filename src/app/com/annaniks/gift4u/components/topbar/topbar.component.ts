@@ -81,9 +81,6 @@ export class TopbarComponent implements OnInit {
                 this.color = '#00001b';
                 document.documentElement.style
                     .setProperty('--main-color', this.color);
-                // #515185
-                // getComputedStyle(document.documentElement)
-                //     .getPropertyValue('--main-color')
             }
         }
 

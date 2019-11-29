@@ -54,7 +54,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _lightboxEvent: LightboxEvent,
         private _translateService: TranslateService1,
         private _router: Router,
-        private _platformService:PlatformService,
+        private _platformService: PlatformService,
         private _crystalLightbox: CrystalLightbox
 
 
@@ -126,13 +126,11 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             this._product = data.messages;
 
             this._calcProductRating(this._product.productScore);
-            this._metaService.updateTag(
-                { name: 'description', content: this._product.description },
-            )
+            this._metaService.updateTag({ name: 'description', content: this.getAttributeName(this._product, 'description') })
             this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' + this._router.url })
             this._metaService.updateTag({ property: "og:type", content: "article" })
-            this._metaService.updateTag({ property: "og:title", content: this._product.name })
-            this._metaService.updateTag({ property: "og:description", content: this._product.description })
+            this._metaService.updateTag({ property: "og:title", content: this.getAttributeName(this._product, 'name') })
+            this._metaService.updateTag({ property: "og:description", content: this.getAttributeName(this._product, 'description') })
             this._metaService.updateTag({ property: "og:image", content: this._fileUrl + 'products/' + this._product.image })
 
             this._metaService.addTag({ name: 'keywords', content: this._product.keywords })
@@ -325,7 +323,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             if (this._platformService.isBrowser)
                 document.body.style.overflow = 'hidden';
         } else {
-            this._crystalLightbox.open(sm_albums, { index: imageIndex,manasory:false, counter: true })
+            this._crystalLightbox.open(sm_albums, { index: imageIndex, manasory: false, counter: true })
 
         }
     }
@@ -444,9 +442,15 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         return this._id
     }
 
-
     ngOnDestroy() {
         this._subscription.unsubscribe();
         this._paramsSubscription.unsubscribe();
+        this._metaService.updateTag({ property: "og:url", content: '' })
+        this._metaService.updateTag({ property: "og:type", content: '' })
+        this._metaService.updateTag({ property: "og:title", content: '' })
+        this._metaService.updateTag({ property: "og:description", content: '' })
+        this._metaService.updateTag({ property: "og:image", content: '' })
+        this._metaService.updateTag({ name: 'description', content: '' });
+        this._metaService.updateTag({ name: 'keywords', content: '' });
     }
 }
