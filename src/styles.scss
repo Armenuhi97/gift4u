@@ -34,6 +34,23 @@ gallery-core{
    
 }
 
+crystal-lightbox-mobile{       
+    background-color: white !important;        
+}
+.cg-image-wrap{
+    background-color: white !important;  
+}
+.cg-show{
+    color: black !important;
+}
+.cg-back{
+    background: url('assets/images/close-24px.svg')  center/contain no-repeat !important;
+    right: 0 !important;
+    left: auto !important;
+}
+.ui-placeholder {
+    color: #898989 !important;
+} 
 @media only screen and (max-width:920px){
     .route_step{
         margin-top: 10px !important;

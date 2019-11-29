@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material';
 import { ProductDetailsService } from './product-details.service';
 import { LightboxModule } from 'ngx-lightbox';
 import { TranslateModule } from '@ngx-translate/core';
+import {CrystalGalleryModule} from 'ngx-crystal-gallery';
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     direction: 'vertical',
     slidesPerView: 'auto'
@@ -38,7 +40,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         SwiperModule,
         MatDialogModule,
         LightboxModule,
-        TranslateModule
+        TranslateModule,
+        CrystalGalleryModule
     ],
     providers: [
         {

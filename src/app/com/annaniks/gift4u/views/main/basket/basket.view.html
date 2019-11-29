@@ -258,8 +258,8 @@
                                 <span required-field
                                     *ngIf="orderForm.get('shipping_method').hasError('required') && orderForm.get('shipping_method').touched">{{'error1' | translate}}
                                     *</span>
-                                <div class="items">
-                                    <div display-flex align-items-center class="item right_item" [ngClass]="{'has-error-padding':paymethod?.errorText && isHasWarming,'has-not-error-padding':!paymethod?.errorText && isHasWarming}"
+                                <div class="items" [ngClass]="{'has-error-padding':paymethod?.errorText && isHasWarming,'has-not-error-padding':!paymethod?.errorText && isHasWarming}">
+                                    <div class="delivery_content" display-flex align-items-center class="item right_item" 
                                         [ngClass]="setDisabledPaymentMethods(paymethod)"
                                         *ngFor="let paymethod of visiblePaymentMethods;let i=index"
                                         (click)="onClickPayNow(paymethod)">

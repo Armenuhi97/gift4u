@@ -45,7 +45,7 @@
                 <div class="personal_area" cursor-pointer>
                     <img src="/assets/images/key.png" />
                     <span class="label" *ngIf="isAuthorized" (click)="onClickPersonalArea()">{{userName}}</span>
-                    <span class="label " *ngIf="!isAuthorized"><span class="hover_underline"
+                    <span class="label" *ngIf="!isAuthorized"><span class="hover_underline"
                             (click)="onClickLogin()">{{'_login' | translate}}</span><span
                             style="margin:0 6px">/</span><span (click)="onClickRegister()"
                             class="hover_underline">{{'_registration' | translate}}</span></span>
@@ -113,7 +113,7 @@
                         <div class="information margin-left-5 hover_underline" routerLink="/basket" cursor-pointer>
                             <span class="label">{{'_busket' | translate}}</span>
                             <span class="count">{{'_for_the_sum' |translate}}
-                                {{basketInfo?.basketPrice | price_format}} <span><span font-family-verdana>&#1423;</span></span>
+                                {{basketInfo?.basketPrice | price_format}} <span font-family-verdana>&#1423;</span>
                             </span>
                         </div>
                     </div>

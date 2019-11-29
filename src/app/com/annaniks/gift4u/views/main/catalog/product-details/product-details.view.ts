@@ -12,8 +12,7 @@ import { LoadingService } from '../../../../services/loading.service';
 import { ProductDetailsService } from './product-details.service';
 import { Lightbox, LightboxEvent, LIGHTBOX_EVENT } from 'ngx-lightbox';
 import { PlatformService } from '../../../../services/platform.service';
-import { Gallery, GalleryItem, ImageItem, GalleryConfig, ImageSize, ThumbnailsPosition } from '@ngx-gallery/core';
-import { Lightbox as L } from '@ngx-gallery/lightbox';
+import { CrystalLightbox } from 'ngx-crystal-gallery';
 
 @Component({
     selector: 'product-details-view',
@@ -25,7 +24,6 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _activeSizeItem: number = 0;
     private _activeTabItem: string = 'description';
     public count: number = 1;
-    public items: GalleryItem[];
     private _product: ProductFull = new ProductFull();
     private _subscription: Subscription = new Subscription();
     private _paramsSubscription: Subscription = new Subscription();
@@ -57,8 +55,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _translateService: TranslateService1,
         private _router: Router,
         private _platformService:PlatformService,
-        private lightbox: L,
-        public gallery: Gallery
+        private _crystalLightbox: CrystalLightbox
+
 
     ) {
         this._checkProductId();
@@ -301,6 +299,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             }
             images.push({ image: element.name })
         })
+        let sm_albums = []
         let _albums = [];
         for (let img of images) {
             const src = this.fileUrl + 'products/' + img.image;
@@ -311,6 +310,10 @@ export class ProductDetailsView implements OnInit, OnDestroy {
                 caption: caption,
                 thumb: thumb
             };
+            sm_albums.push({
+                preview: src,
+                full: src,
+            })
             _albums.push(album);
         }
         if (window.innerWidth > 920) {
@@ -322,25 +325,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
             if (this._platformService.isBrowser)
                 document.body.style.overflow = 'hidden';
         } else {
-            this._openLightboxModal(images,imageIndex)
-            // this.items = _albums.map(item =>
-            //     new ImageItem({ src: item.src, thumb: item.src })
-            // );
-            // const config: GalleryConfig = {
-            //     loadingMode: "indeterminate",
-            //     imageSize: ImageSize.Contain,
-            //     thumbPosition: ThumbnailsPosition.Bottom,
-            //     counterPosition: 'bottom',
-            //     loop: true,
-            //     gestures: true,
-            //     nav:false
-            // };
-            // const galleryRef = this.gallery.ref('lightbox');
-            // galleryRef.setConfig(config)
-            // galleryRef.load(this.items);
-            // this.lightbox.open(imageIndex, 'lightbox', {
-            //     panelClass: 'fullscreen'
-            // });
+            this._crystalLightbox.open(sm_albums, { index: imageIndex,manasory:false, counter: true })
+
         }
     }
     private _onReceivedEvent(event: any): void {

@@ -283,7 +283,8 @@ export interface Setting {
     updated_at: string;
     value: string;
     isPage: string;
-    map?: Setting
+    map?: Setting;
+    metaDescription:string
 }
 
 export interface Announcement {

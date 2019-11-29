@@ -12,12 +12,9 @@ import { LoadingService } from './com/annaniks/gift4u/services/loading.service';
 import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
 import { PlatformService } from './com/annaniks/gift4u/services/platform.service';
 import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-transfer-http';
-import { TranslateModule, TranslateLoader, TranslateService } from  '@ngx-translate/core';
 import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from  '@angular/common/http';
 import localeRu from '@angular/common/locales/ru';
-import { GalleryModule } from '@ngx-gallery/core';
-import { LightboxModule, LIGHTBOX_CONFIG } from '@ngx-gallery/lightbox';
 registerLocaleData(localeRu)
 
 export function createTranslateLoader(http: HttpClient) {
@@ -34,9 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'app-root' }),
-    TransferHttpModule,
-    GalleryModule,
-    LightboxModule.withConfig({ panelClass: 'fullscreen' }),
+    TransferHttpModule
   ],
   providers: [
     AppService,
@@ -45,12 +40,6 @@ export function createTranslateLoader(http: HttpClient) {
     CookieService,
     PlatformService,
     TranslateService1,
-    {
-      provide: LIGHTBOX_CONFIG,
-      useValue: {
-        keyboardShortcuts: false
-      }
-    },
     {
       provide: 'req',
       useValue: null

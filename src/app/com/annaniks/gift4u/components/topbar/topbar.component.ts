@@ -9,6 +9,7 @@ import { AppService, ApiService, TranslateService1 } from '../../services';
 import { CookieService } from '../../services/cookie.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PlatformService } from '../../services/platform.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
     selector: 'app-topbar',
@@ -66,7 +67,8 @@ export class TopbarComponent implements OnInit {
         private _cookieService: CookieService,
         @Inject('FILE_URL') private _fileUrl: string,
         private _translate: TranslateService,
-        private _platformService: PlatformService
+        private _platformService: PlatformService,
+        private _loadingService:LoadingService
     ) {
         this._checkQueryParams();
         this.active_lng = this._translate.currentLang;
@@ -111,9 +113,11 @@ export class TopbarComponent implements OnInit {
     }
     public changeLanguage(lang_key: string) {
         this._translate.use(lang_key);
+        this._loadingService.showLoading()
         this._translate.setDefaultLang(lang_key);
         this._translate.getTranslation(lang_key);
         setTimeout(()=>{
+            this._loadingService.hideLoading()
             window.location.reload();
         },1000)
     }

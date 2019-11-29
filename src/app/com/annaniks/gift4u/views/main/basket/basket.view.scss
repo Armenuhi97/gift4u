@@ -431,11 +431,15 @@
     padding-top: 0px !important 
   }
   .has-error-padding{
-    padding-top: 16px !important;
+    .delivery_content{
+      padding-top: 16px !important;
   }
+}
   .has-not-error-padding{
-    padding-top: 35px !important;
+    .delivery_content{
+      padding-top: 35px !important;
   }
+}
   .error-text-padding{
     padding-top: 40px !important;
   }
