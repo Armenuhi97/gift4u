@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CityCountry, ServerResponse } from '../../models/models';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AppService, TranslateService1 } from '../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'select-city-modal',
@@ -20,6 +21,7 @@ export class SelectCityModal implements OnInit {
         private _mainService: MainService,
         private _fb: FormBuilder,
         private _appService: AppService,
+        private _translate:TranslateService,
         private _translateService:TranslateService1
     ) { }
 
@@ -33,8 +35,8 @@ export class SelectCityModal implements OnInit {
             city: [null, Validators.required]
         })
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public getTranslateWord(key: string) {
+        return this._translate.instant(key)
     }
     getAttributeName(name){
         return this._translateService.getRequestTranslateAttribute(name)
@@ -70,8 +72,5 @@ export class SelectCityModal implements OnInit {
 
     get loading(): boolean {
         return this._loading;
-    }
-    get language(){
-        return this._translateService.getActiveLanguage()
     }
 }

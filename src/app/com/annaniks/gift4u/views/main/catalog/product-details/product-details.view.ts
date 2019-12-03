@@ -13,6 +13,7 @@ import { ProductDetailsService } from './product-details.service';
 import { Lightbox, LightboxEvent, LIGHTBOX_EVENT } from 'ngx-lightbox';
 import { PlatformService } from '../../../../services/platform.service';
 import { CrystalLightbox } from 'ngx-crystal-gallery';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'product-details-view',
@@ -29,7 +30,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _paramsSubscription: Subscription = new Subscription();
     private _mainImage: string = '';
     private _routeSteps = [
-        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
+        { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' },
     ];
     private _combinedProducts: CombinedProduct[] = [];
     private _selectedAttributse: { id: string; fullName: string, value: string }[] = []
@@ -55,7 +56,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
         private _translateService: TranslateService1,
         private _router: Router,
         private _platformService: PlatformService,
-        private _crystalLightbox: CrystalLightbox
+        private _crystalLightbox: CrystalLightbox,
+        private _translate:TranslateService
 
 
     ) {
@@ -65,8 +67,8 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     ngOnInit() {
 
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     public getAttributeName(obj, name: string) {
         return this._translateService.getRequestTranslateAttributeName(obj, name)
@@ -120,7 +122,7 @@ export class ProductDetailsView implements OnInit, OnDestroy {
     private _getProduct(id: number): void {
         this._subscription.unsubscribe();
         this._loadingService.showLoading();
-        this._routeSteps = [{ label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }];
+        this._routeSteps = [{ label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' }];
         this._combinedAttributes = [];
         this._subscription = this._catalogService.getProductById(id).subscribe((data) => {
             this._product = data.messages;

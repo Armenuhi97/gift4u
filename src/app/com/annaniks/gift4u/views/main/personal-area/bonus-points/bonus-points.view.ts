@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
 import { BonusPoint, ServerResponse } from "../../../../models/models";
 import { TranslateService1 } from "../../../../services";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'bonus-points-view',
@@ -18,9 +19,10 @@ export class BonusPointsView implements OnInit {
         private _title: Title,
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _translate:TranslateService
     ) {
-        this._title.setTitle(this.translateWord('Bonus point','Бонусные баллы','Բոնուսային միավորներ'));
+        this._title.setTitle(this.translateWord('_bonus_point'));
     }
     ngOnInit() {
         this._getBonusPoints()
@@ -36,10 +38,8 @@ export class BonusPointsView implements OnInit {
                 this._loadingService.hideLoading()
             })
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
-    get language() {
-        return this._translateService.getActiveLanguage()
-    }
+ 
 }

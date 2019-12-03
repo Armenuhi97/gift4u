@@ -37,20 +37,21 @@ export class HomeView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _mainService: MainService,
         private _translateService: TranslateService1,
-        private _metaService: Meta
+        private _metaService: Meta,
+        private _translate:TranslateService
     ) { }
 
     ngOnInit() {
         this._checkWindowSize();
-        this._titleService.setTitle(this._translateService.translateImportant('Gift for you', 'Подарок для тебя', 'Նվեր քո համար'));
+        this._titleService.setTitle(this._translate.instant('gift4u'));
         this._setMetaTag()
         this._getHomeData();
     }
     private _setMetaTag() {
         this._metaService.updateTag({ property: "og:url", content: 'https://gift4u.am' })
         this._metaService.updateTag({ property: "og:type", content: "article" })
-        this._metaService.updateTag({ property: "og:title", content: this._translateService.translateImportant('Gift for you', 'Подарок для тебя', 'Նվեր քո համար') })
-        this._metaService.updateTag({ property: "og:description", content: this._translateService.translateImportant('Gift for you. Give what you want to give yourself', 'Подарок для тебя. Подари то, что хочешь подарить себе', 'Նվեր քո համար: Նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն') })
+        this._metaService.updateTag({ property: "og:title", content:this._translate.instant('gift4u') })
+        this._metaService.updateTag({ property: "og:description", content: this._translate.instant('gift4u_description') })
         this._metaService.updateTag({ property: "og:image", content: '' })
     }
     private _getHomeData(): void {
@@ -59,7 +60,7 @@ export class HomeView implements OnInit, OnDestroy {
     private _getAllSettings(): void {
         this._loadingService.showLoading();
         this._mainService.getSettingsAll().subscribe((data: ServerResponse<AllSettings>) => {
-            this._metaService.updateTag({ name: 'description', content: this._translateService.translateImportant('Gift for you. Give what you want to give yourself', 'Подарок для тебя. Подари то, что хочешь подарить себе', 'Նվեր քո համար: Նվիրիր այն, ինչ կցանկանաս քեզ նվիրեն') });
+            this._metaService.updateTag({ name: 'description', content: this._translate.instant('gift4u_description') });
             this.banners = data.messages.banner;
             this.socialNetworks = data.messages.socialNetworks;
             this.specialProducts = data.messages.special;

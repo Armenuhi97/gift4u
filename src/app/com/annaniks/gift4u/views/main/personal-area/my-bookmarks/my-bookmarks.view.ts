@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LoadingService } from "../../../../services/loading.service";
 import { TranslateService1 } from "../../../../services";
 import { PlatformService } from "../../../../services/platform.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'my-bookmarks-view',
@@ -25,8 +26,9 @@ export class MyBookmarksView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _translateService: TranslateService1,
+        private _translate:TranslateService,
         private _platformService: PlatformService) {
-        this._title.setTitle(this._translateService.translateImportant('My bookmarks', 'Мои закладки', 'Նախընտրելիները'));
+        this._title.setTitle(this.translateWord('_my_bookmarks'));
         this._checkQueryParams();
     }
     ngOnInit() { }
@@ -45,6 +47,9 @@ export class MyBookmarksView implements OnInit {
                 this._router.navigate(['/']);
             }
         })
+    }
+    public translateWord(key: string):string {
+        return this._translate.instant(key)
     }
     private _getBookmark(): void {
         this._loadingService.showLoading()

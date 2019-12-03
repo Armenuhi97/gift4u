@@ -7,6 +7,7 @@ import { LoadingService } from "../../../../services/loading.service";
 import { AppService, TranslateService1 } from "../../../../services";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'shipping-address-view',
@@ -21,11 +22,16 @@ export class ShippingAddressesView implements OnInit {
         private _appService: AppService,
         private _loadingService: LoadingService,
         private _title: Title,
-        private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.translateImportant('Delivery address','Адреса доставки','Առաքման հասցեները'));
+        private _translateService:TranslateService1,
+        private _translate:TranslateService) {
+        this._title.setTitle(this.translateWord('_delivery_address'));
     }
     ngOnInit() {
         this._getAddresses()
+    
+    }
+    public translateWord(key: string):string {
+        return this._translate.instant(key)
     }
     private _getAddresses(): void {
         this._loadingService.showLoading()

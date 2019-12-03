@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'account-view',
@@ -27,23 +28,23 @@ export class AccountView implements OnInit {
     private _error: string = null;
     public selected: number = -1
     public genderArray = [
-        { id: 0, title: this.getTranslateWord('Male', 'Мужской', 'Արական') },
-        { id: 1, title: this.getTranslateWord('Female', 'Женский', 'Իգական') }
+        { id: 0, title: this.getTranslateWord('_male') },
+        { id: 1, title: this.getTranslateWord('_female') }
     ]
     public day: Day[] = []
     public month: Month[] = [
-        { text: this.getTranslateWord('January', 'Январь', 'Հունվար'), id: 1 },
-        { text: this.getTranslateWord('February', 'Февраль', 'Փետրվար'), id: 2 },
-        { text: this.getTranslateWord('March', 'Март', 'Մարտ'), id: 3 },
-        { text: this.getTranslateWord('April', 'Апрель', 'Ապրիլ'), id: 4 },
-        { text: this.getTranslateWord('May', 'Май', 'Մայիս'), id: 5 },
-        { text: this.getTranslateWord('June', 'Июнь', 'Հունիս'), id: 6 },
-        { text: this.getTranslateWord('July', 'Июль', 'Հուլիս'), id: 7 },
-        { text: this.getTranslateWord('August', 'Август', 'Օգօստոս'), id: 8 },
-        { text: this.getTranslateWord('September', 'Сентябрь', 'Սեպտեմբեր'), id: 9 },
-        { text: this.getTranslateWord('October', 'Октябрь', 'Հոկտեմբեր'), id: 10 },
-        { text: this.getTranslateWord('November', 'Ноябрь', 'Նոյեմբեր'), id: 11 },
-        { text: this.getTranslateWord('ecember', 'Декабрь', 'Դեկտեմբեր'), id: 12 }
+        { text: this.translateWords('January', 'Январь', 'Հունվար'), id: 1 },
+        { text: this.translateWords('February', 'Февраль', 'Փետրվար'), id: 2 },
+        { text: this.translateWords('March', 'Март', 'Մարտ'), id: 3 },
+        { text: this.translateWords('April', 'Апрель', 'Ապրիլ'), id: 4 },
+        { text: this.translateWords('May', 'Май', 'Մայիս'), id: 5 },
+        { text: this.translateWords('June', 'Июнь', 'Հունիս'), id: 6 },
+        { text: this.translateWords('July', 'Июль', 'Հուլիս'), id: 7 },
+        { text: this.translateWords('August', 'Август', 'Օգօստոս'), id: 8 },
+        { text: this.translateWords('September', 'Сентябрь', 'Սեպտեմբեր'), id: 9 },
+        { text: this.translateWords('October', 'Октябрь', 'Հոկտեմբեր'), id: 10 },
+        { text: this.translateWords('November', 'Ноябрь', 'Նոյեմբեր'), id: 11 },
+        { text: this.translateWords('December', 'Декабрь', 'Դեկտեմբեր'), id: 12 }
     ]
     public years: Year[] = []
     constructor(
@@ -56,9 +57,10 @@ export class AccountView implements OnInit {
         private _loadingService: LoadingService,
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _translate:TranslateService
     ) {
-        this._title.setTitle(this.getTranslateWord('User account','Учетная запись','Հաշիվ'));
+        this._title.setTitle(this.getTranslateWord('_user_account'));
     }
 
     ngOnInit() {
@@ -67,8 +69,11 @@ export class AccountView implements OnInit {
         this._getCities();
         this._setDateVariants(1, 31)
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public getTranslateWord(key: string) {
+        return this._translate.instant(key)
+    }
+    public translateWords(key1:string,key2:string,key3:string){
+        return this._translateService.translateImportant(key1,key2,key3)
     }
     private _setDay(start: number, end: number): void {
         if (!this.day[0])
@@ -238,7 +243,7 @@ export class AccountView implements OnInit {
                 cityCountryId: this._appService.checkPropertyValue(this._userForm.get('city').value, 'id', '').toString(),
                 birthday: this._datePipe.transform(date, 'yyyy-MM-dd')
             }).subscribe((data) => {
-                this._messageService.add({ severity: 'success', summary:this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'), detail:this._translateService.translateImportant('Thanks! Your profile has been successfully modified','Спасибо! Ваш профиль успешно изменен','Շնորհակալություն! Ձեր պրոֆիլը հաջողությամբ փոփոխվել է')  })
+                this._messageService.add({ severity: 'success', summary:this.getTranslateWord('_message'), detail:this.getTranslateWord('_account_change_message')  })
                 this._mainService.getUser();
             },
                 (error) => {

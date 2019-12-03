@@ -7,6 +7,7 @@ import { LoadingService } from '../../../../services/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService1 } from '../../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'user-info-view',
@@ -33,17 +34,18 @@ export class UserInfoView implements OnInit, OnDestroy {
         private _activatedRoute: ActivatedRoute,
         private _title: Title,
         private _translateService: TranslateService1,
+        private _translate:TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
-        this._title.setTitle(this._translateService.translateImportant('Personal account','Личный кабинет','Անձնական գրասենյակ'));
+        this._title.setTitle(this.translateWord('_personal_account'));
     }
 
     ngOnInit() {
         this._getUser(false);
         this._giftFullFormBuilder()
     }
-    public translateWords(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string):string {
+        return this._translate.instant(key)
     }
     private _getUser(isFirst: boolean): void {
         this._loadingService.showLoading();
@@ -63,10 +65,10 @@ export class UserInfoView implements OnInit, OnDestroy {
     }
     public getGender(): string {
         if (this._userInfo.gender == 0) {
-            return this.translateWords('Male', 'Мужской', 'Արական')
+            return this.translateWord('_male')
         } else {
             if (this._userInfo.gender == 1) {
-                return this.translateWords('Female', 'Женский', 'Իգական')
+                return this.translateWord('_female')
             }
         }
     }

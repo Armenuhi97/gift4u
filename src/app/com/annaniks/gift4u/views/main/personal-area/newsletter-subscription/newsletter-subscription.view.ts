@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { NewsletterSubscriptionService } from "./newsletter-subscription.service";
 import { TranslateService1 } from "../../../../services";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector:'newsletter-subscription-view',
@@ -13,8 +14,8 @@ export class NewsletterSubscriptionView{
     constructor(private _activatedRoute:ActivatedRoute,
         private _title: Title,
         private _newsletterSubscriptionService:NewsletterSubscriptionService,
-        private _translateService:TranslateService1){
-        this._title.setTitle(this._translateService.translateImportant('News subscription','Подписка на новости','Նորությունների բաժանորդագրություն'));
+        private _translate:TranslateService){
+        this._title.setTitle(this._translate.instant('_news_subscription'));
 
     }
 }

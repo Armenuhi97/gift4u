@@ -7,6 +7,7 @@ import { LoginModal } from '../../../modals';
 import { MessageService } from 'primeng/api';
 import { Reviews } from '../../../models/models';
 import { TranslateService1 } from '../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-reviews',
@@ -31,7 +32,8 @@ export class ReviewsTabComponent implements OnInit {
         private _mainService: MainService,
         private _loadingService: LoadingService,
         private _messageService: MessageService,
-        private _translateService:TranslateService1,
+        private _translateService: TranslateService1,
+        private _translate: TranslateService,
         @Inject('FILE_URL') public fileUrl: string) { }
 
     ngOnInit() {
@@ -47,8 +49,8 @@ export class ReviewsTabComponent implements OnInit {
             comments: ['', Validators.required]
         })
     }
-    public translateWord(key1:string,key2:string,key3:string){
-        return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     private _setFormValue(): void {
         if (this._mainService.isAuthorized) {
@@ -74,8 +76,8 @@ export class ReviewsTabComponent implements OnInit {
                 commentBody['productId'] = this.id;
                 this._mainService.addReview(commentBody).subscribe((data) => {
                     this._messageService.add({
-                        severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'),
-                        detail: this._translateService.translateImportant('Your message has been sent successfully','Ваше сообщение успешно отправлено','Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է')
+                        severity: 'success', summary: this.translateWord('_message'),
+                        detail: this.translateWord('_send_message_success_message')
                     })
                     this.isCheck = false
                     this.commentForm.reset();
@@ -102,7 +104,7 @@ export class ReviewsTabComponent implements OnInit {
         return review.users && review.users.profile_image ?
             this.fileUrl + review.users.profile_image : 'assets/images/logo.jpg';
     }
-    get language(){
+    get language() {
         return this._translateService.getActiveLanguage()
     }
 }

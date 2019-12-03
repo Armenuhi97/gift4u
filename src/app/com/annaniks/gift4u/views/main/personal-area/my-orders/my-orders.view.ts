@@ -8,6 +8,7 @@ import { LoadingService } from '../../../../services/loading.service';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService1 } from '../../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -40,16 +41,17 @@ export class MyOrdersView implements OnInit, OnDestroy {
         private _loadingService: LoadingService,
         private _title: Title,
         private _activatedRoute: ActivatedRoute,
-        private _translateService: TranslateService1
+        private _translateService: TranslateService1,
+        private _translate:TranslateService
     ) {
-        this._title.setTitle(this.translateWord('Order history', 'История заказов', 'Պատվերների պատմություն'));
+        this._title.setTitle(this.translateWord('_order_history'));
     }
 
     ngOnInit() {
         this._getOrders();
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string):string {
+        return this._translate.instant(key)
     }
     private _getOrders(): void {
         this._loadingService.showLoading();
@@ -69,9 +71,6 @@ export class MyOrdersView implements OnInit, OnDestroy {
 
     get fileUrl(): string {
         return this._fileUrl;
-    }
-    get language() {
-        return this._translateService.getActiveLanguage()
     }
     ngOnDestroy() {
         this._subscription.unsubscribe();

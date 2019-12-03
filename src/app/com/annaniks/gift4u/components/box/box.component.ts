@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppService, TranslateService1 } from '../../services';
 import { MatDialog } from '@angular/material';
 import { FilterCategoryListModal } from '../../modals';
+import { Translate } from '../../models/models';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-box',
@@ -19,9 +21,9 @@ export class BoxComponent implements OnInit {
     @Input('isP') private _isP: boolean
     public sort: { name: string, value: string };
     private _sortings: { name: string, value: string }[] = [
-        { name: this.getTranslateWord('By default','По умолчанию','Ըստ նախնականի'), value: 'none' },
-        { name:this.getTranslateWord('Price min to max','Цена от мин до макс','Գինը մինիմալից մաքսիմում') , value: 'min' },
-        { name: this.getTranslateWord('Price max to min','Цена от макс до мин','Գինը մաքսիմումից մինիմալ'), value: 'max' },
+        { name: this.getTranslateWord('_default'), value: 'none' },
+        { name:this.getTranslateWord('_min-max') , value: 'min' },
+        { name: this.getTranslateWord('_max-min'), value: 'max' },
         // { name: 'По популярности', value: 'none' },
         // { name: 'По новизне', value: 'none' }
     ]
@@ -31,7 +33,8 @@ export class BoxComponent implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _appService: AppService,
         private _matDialog: MatDialog,
-        private _translateService:TranslateService1
+        private _translateService:TranslateService1,
+        private _translate:TranslateService
     ) {
         this._checkQueryParams();
     }
@@ -49,8 +52,8 @@ export class BoxComponent implements OnInit {
             };
         }
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public getTranslateWord(key: string) {
+        return this._translate.instant(key)
     }
     public onChangeSort(event): void {
         this._router.navigate([], { relativeTo: this._activatedRoute, queryParams: { sort: event.value }, queryParamsHandling: 'merge' })

@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import { AddProductBasketModal } from '../../modals/add-product-basket/add-product-basket.modal';
 import { CookieService } from '../../services/cookie.service';
 import { PlatformService } from '../../services/platform.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class MainService {
@@ -24,6 +25,7 @@ export class MainService {
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
         private _translateService: TranslateService1,
+        private _translate:TranslateService,
         private _platformService: PlatformService
     ) { }
 
@@ -104,7 +106,8 @@ export class MainService {
             }
         })
         matDialog.afterClosed().subscribe((data) => {
-            this._messageService.add({ severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'), detail: this._translateService.translateImportant('Product successfully added to basket', 'Товар успешно добавлен в корзину', 'Ապրանքը հաջողությամբ ավելացված է զամբյուղի մեջ') })
+            this._messageService.add({ severity: 'success', summary: this._translate.instant('_message'), 
+            detail: this._translate.instant('_added_product_success_message') })
         })
     }
 

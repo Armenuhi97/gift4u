@@ -7,7 +7,7 @@
     </div>
     <div content *ngIf="basketProducts && basketProducts.length>0 && isPaymentChecked" class="basket_container">
 
-        <app-box [header]="getTranslateWord('Basket','Корзина','Զամբյուղ')" [marginTop]="'30px'">
+        <app-box [header]="translateWord('_busket')" [marginTop]="'30px'">
             <div class="basket_items">
                 <app-basket-list>
                     <tr basketListItem *ngFor="let item of basketProducts;let ind=index;"
@@ -18,7 +18,7 @@
                 <div>
                     <div class="discount">
                         <input type="text"
-                            [placeholder]="getTranslateWord('Enter the discount promo code','Введите промокод скидки','Մուտքագրեք զեղչի պրոմոկոդը')"
+                            [placeholder]="translateWord('_enter_promocode')"
                             [formControl]="promoCodeFormControl" />
                         <button class="get_discount"
                             [disabled]="promoCodeFormControl.invalid || promoCodeLoading || isPromocode"
@@ -77,7 +77,7 @@
                 </button>
             </div>
         </app-box>
-        <app-box [header]="getTranslateWord('To do order','Оформить заказ','Պատվիրել')" *ngIf="orderStep==2">
+        <app-box [header]="translateWord('_order')" *ngIf="orderStep==2">
             <p error text-align-center *ngIf="error">{{makeOrderError}}</p>
             <div class="order_container">
                 <form [formGroup]="orderForm">
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="input_container">
                                         <p-calendar dateFormat="dd.mm.yy" [locale]="locale"
-                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            [placeholder]="translateWord('add_to_select')"
                                             formControlName="delivery_day" [showIcon]="true" [minDate]="minDate">
                                         </p-calendar>
                                         <span required-field
@@ -145,7 +145,7 @@
                                         <p-dropdown [options]="allTimes"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="delivery_time"
-                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            [placeholder]="translateWord('add_to_select')"
                                             optionLabel="name">
                                         </p-dropdown>
                                         <span required-field
@@ -162,11 +162,11 @@
                                     </div>
                                     <div class="input_container">
                                         <p-dropdown
-                                            [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
+                                            [emptyFilterMessage]="translateWord('_not_found_result')"
                                             [options]="allAddresses" [filter]="true"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="allAddress"
-                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            [placeholder]="translateWord('add_to_select')"
                                             optionLabel="name">
                                         </p-dropdown>
                                     </div>
@@ -177,10 +177,10 @@
                                     </div>
                                     <div class="input_container">
                                         <p-dropdown [options]="cities" [filter]="true"
-                                            [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
+                                            [emptyFilterMessage]="translateWord('_not_found_result')"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="city"
-                                            [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                                            [placeholder]="translateWord('add_to_select')"
                                             [optionLabel]="getAttributeName('name')"></p-dropdown>
                                         <span required-field
                                             *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | translate}}

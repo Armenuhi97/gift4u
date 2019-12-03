@@ -12,6 +12,7 @@ import { map } from "rxjs/operators";
 import { Options } from 'ng5-slider';
 import { FormGroup } from "@angular/forms";
 import { TranslateService1 } from "../../services";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
     selector: 'filter-category-list',
     templateUrl: 'filter-category-list.modal.html',
@@ -42,28 +43,28 @@ export class FilterCategoryListModal {
     private _selectedCity: Array<number> = []
     private _selectedCategory = [];
     private _routeSteps: Breadcrumbs[] = [
-        { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' }
     ];
 
     public categotyListName: Array<{ name: string, isOpen: boolean }> = [
         {
-            name:this.translateWord('Categories','Категории','Կատեգորիաներ') ,
+            name:this.translateWord('_categories') ,
             isOpen: false
         },
         {
-            name:this.translateWord('Brands','Бренды','Ապրանքանիշներ') ,
+            name:this.translateWord('brands') ,
             isOpen: false
         },
         {
-            name: this.translateWord('Country','Страна','Երկիրը'),
+            name: this.translateWord('_country'),
             isOpen: false
         },
         {
-            name:this.translateWord('Price','Цена','Գինը') ,
+            name:this.translateWord('_price') ,
             isOpen: false
         },
         {
-            name: this.translateWord('Discount','Скидка','Զեղչ') ,
+            name: this.translateWord('_discount') ,
             isOpen: false
         },
     ]
@@ -83,7 +84,8 @@ export class FilterCategoryListModal {
         private _titleService: Title,
         private _router: Router,
         private _translateService:TranslateService1,
-        private _loadingService: LoadingService, ) {
+        private _loadingService: LoadingService,
+        private _transate:TranslateService ) {
         this.compbineObservable()
     }
     ngOnInit() {
@@ -104,8 +106,8 @@ export class FilterCategoryListModal {
             }
         }
     }
-    public translateWord(key1:string,key2:string,key3:string){
-       return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key:string){
+       return this._transate.instant(key)
     }
     public apply(): void {
         let cityId = this._selectedCity.join(',');
@@ -363,7 +365,7 @@ export class FilterCategoryListModal {
 
     private _resetProperties(): void {
         this._routeSteps = [
-            { label: this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' }
+            { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' }
         ];
     }
     public allGet(): boolean {

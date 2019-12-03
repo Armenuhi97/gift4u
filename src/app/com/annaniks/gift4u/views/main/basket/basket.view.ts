@@ -11,6 +11,7 @@ import { Title } from '@angular/platform-browser';
 import { CookieService } from '../../../services/cookie.service';
 import { PlatformService } from '../../../services/platform.service';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'basket-view',
@@ -47,7 +48,7 @@ export class BasketView implements OnInit {
     public _localShippingInfo: ShippingPrice = {} as ShippingPrice
     public isFreeShipping: boolean = false;
     public codPrice: number = 0;
-    public makeOrderError: string = this._translateService.translateImportant('Error', 'Ошибка', 'Սխալ');
+    public makeOrderError: string = this._translate.instant('_error');
     public allAddresses: Addresses[];
     public isDiscount: boolean = false
     public isRegistration: boolean;
@@ -94,11 +95,11 @@ export class BasketView implements OnInit {
     }
     public paymentMethods = [
         {
-            id: 0, header: this.translateWord('Pay now', 'Оплатить сейчас', 'Վճարել հիմա'),
-            under: this.translateWord('with Bank cards', 'Банковскими картами', 'Բանկային քարտերով'),
-            errorText: this.translateWord('This service is no longer available', 'Эта услуга сейчас не доступна', 'Այս ծառայությունը հիմա հասանելի չէ'), percent: 0
+            id: 0, header: this.translateWord('_pay_now'),
+            under: this.translateWord('_bank_card'),
+            errorText: this.translateWord('available_message'), percent: 0
         },
-        { id: 1, header: this.translateWord('Upon receipt', 'При получении', 'Ստանալիս'), under: this.translateWord('Cash', 'Наличными', 'Կանխիկ'), errorText: '', percent: 0 },
+        { id: 1, header: this.translateWord('_upon_receipt'), under: this.translateWord('_in_cash'), errorText: '', percent: 0 },
     ]
     private _allTimes = [
         { name: '09:00 - 12:00', start: 9, end: 12, id: 1 },
@@ -123,6 +124,7 @@ export class BasketView implements OnInit {
         private _translateService: TranslateService1,
         private _platformService: PlatformService,
         private _datePipe: DatePipe,
+        private _translate:TranslateService,
         @Inject("FILE_URL") private _fileUrl: string
     ) {
         this._checkBasketProducts();
@@ -289,7 +291,6 @@ export class BasketView implements OnInit {
     private _checkBasketProducts(): void {
         if (this._platformService.isBrowser) {
             if (JSON.parse(localStorage.getItem('basket_products'))) {
-
                 let basket = JSON.parse(localStorage.getItem('basket_products'))
                 if ((this.basketProducts.length !== basket.length)) {
                     if (this.basketProducts.length > basket.length) {
@@ -349,14 +350,14 @@ export class BasketView implements OnInit {
             city: city
         })
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     private _setRouteSteps(): void {
-        this._title.setTitle(this.translateWord('Basket', 'Корзина', 'Զամբյուղ'));
+        this._title.setTitle(this.translateWord('_busket'));
         this.routeSteps.push(
-            { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' },
-            { label: this.translateWord('Basket', 'Корзина', 'Զամբյուղ'), url: '/basket', queryParams: {}, status: '' }
+            { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' },
+            { label: this.translateWord('_busket'), url: '/basket', queryParams: {}, status: '' }
         )
     }
 
@@ -495,9 +496,8 @@ export class BasketView implements OnInit {
                 }
                 this.error = false;
                 this.messageService.add({
-                    severity: 'success', summary: this.getTranslateWord('Message', 'Сообщение', 'Հաղորդագրություն'),
-                    detail: this.getTranslateWord('Thank you! Your order is successfully accepted', 'Спасибо! Ваш заказ успешно принят',
-                        'Շնորհակալություն: Ձեր պատվերը հաջողությամբ ընդունվել է')
+                    severity: 'success', summary: this.translateWord('_message'),
+                    detail: this.translateWord('_order_success_message')
                 })
                 if (data && data.orderId) {
                     if (data.isCash == 0 || data.isCash == 4 || data.isCash == 5) {
@@ -692,13 +692,13 @@ export class BasketView implements OnInit {
                 this._promoCode = data.messages;
                 this._type = data.type
                 this.isPromocode = true;
-                this.promoCodeMessage = this.getTranslateWord(`Promo code successfully activated`, `Успешно активирован промокод`, `Պրոմոկոդը հաջողությամբ ակտիվացված է`);;
+                this.promoCodeMessage = this.translateWord('_success_promocode_message');;
                 this.promoCodeLoading = false;
                 this.isDiscount = true
                 this._calculatePromocodeDiscountPrice()
             },
             (error) => {
-                this.promoCodeMessage = this.getTranslateWord('Wrong promo code', 'Неправильный промокод', 'Մուտքագրված է սխալ պրոմոկոդ');
+                this.promoCodeMessage = this.translateWord('_promocode_error_message');
                 this.promoCodeLoading = false;
             })
     }

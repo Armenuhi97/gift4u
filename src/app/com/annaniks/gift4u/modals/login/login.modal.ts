@@ -9,6 +9,7 @@ import { RecoverPasswordModal } from '../recover-password/recover-password.modal
 import { CookieService } from '../../services/cookie.service';
 import { RegistrationModal } from '../registration/registration.modal';
 import { PlatformService } from '../../services/platform.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class LoginModal implements OnInit {
         private _matDialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _translateService: TranslateService1,
-        private _platformService: PlatformService
+        private _platformService: PlatformService,
+        private _translate:TranslateService
     ) { }
 
     ngOnInit() {
@@ -66,7 +68,7 @@ export class LoginModal implements OnInit {
                 });
             }, (error) => {
                 if (error.status === 401 || error.status === 404) {
-                    this._errorMessage = this._translateService.translateImportant('Incorrect login or password', 'Неправильный логин или пароль', 'Սխալ է մուտքագրված գաղտնանունը կամ գաղտնաբառը')
+                    this._errorMessage = this._translate.instant('_login_error')
                 }
                 if (error.status === 400) { }
             })
@@ -107,8 +109,5 @@ export class LoginModal implements OnInit {
 
     get errorMessage(): string {
         return this._errorMessage;
-    }
-    get language() {
-        return this._translateService.getActiveLanguage()
     }
 }

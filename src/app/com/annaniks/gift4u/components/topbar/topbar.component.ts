@@ -108,9 +108,9 @@ export class TopbarComponent implements OnInit {
             }
         }
     }
-    public changeLanguage(lang_key: string) {
+    public changeLanguage(lang_key: string): void {
         this._loadingService.showLoading()
-        if (this._cookieService.get('lang')){
+        if (this._cookieService.get('lang')) {
             this._cookieService.remove('lang')
             this._cookieService.remove('lang', { path: '/catalog' });
             this._cookieService.remove('lang', { path: '/brands' });
@@ -118,7 +118,7 @@ export class TopbarComponent implements OnInit {
             this._cookieService.remove('lang', { path: '/personal-area' });
         }
         this._translate.use(lang_key);
-        this._cookieService.set('lang',lang_key)
+        this._cookieService.set('lang', lang_key)
         this._translate.setDefaultLang(lang_key);
         this._translate.getTranslation(lang_key);
 
@@ -303,7 +303,7 @@ export class TopbarComponent implements OnInit {
     }
     get city(): string {
         if (!this._mainService.getUserInfo().cityCountriesName) {
-            this._mainService.getUserInfo().cityCountriesName = this._translateService.translateImportant('Gyumri', 'Гюмри', 'Գյումրի')
+            this._mainService.getUserInfo().cityCountriesName = this._translate.instant('_gyumri')
         }
         return this._mainService.getUserInfo().cityCountriesName
     }

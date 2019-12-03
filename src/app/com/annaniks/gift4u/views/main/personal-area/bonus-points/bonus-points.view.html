@@ -1,6 +1,6 @@
 <div *ngIf="isGet">
     <div class="bonus-table">
-        <table *ngIf="bonusPoint[0]">
+        <table *ngIf="bonusPoint && bonusPoint[0]">
             <tr class="table-header">
                 <th uppercase>{{'_order_number' | translate}} №</th>
                 <th uppercase>{{'_date' | translate}}</th>
@@ -15,9 +15,9 @@
                 <td>{{bonus?.total}}</td>
                 <td>{{bonus?.bonus}}</td>
                 <td>{{bonus?.percent}}%</td>
-                <td uppercase>{{(bonus?.status) == '1'? translateWord('Enrolled','Зачислен','Հաշվառված'):translateWord('Refund','Возврат','Վերադարձ')}}</td>
+                <td uppercase>{{(bonus?.status) == '1'? translateWord('_enrolled') : translateWord('_refund')}}</td>
             </tr>
         </table>
     </div>
-    <div *ngIf="!bonusPoint[0]" class="default-text"> {{'_empty' | translate}} </div>
+    <div *ngIf="!bonusPoint || (bonusPoint && !bonusPoint[0])" class="default-text"> {{'_empty' | translate}} </div>
 </div>

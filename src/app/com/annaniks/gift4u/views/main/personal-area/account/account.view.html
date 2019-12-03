@@ -8,7 +8,7 @@
                         <div class="form_group">
                             <label class="label">{{'_full_name' | translate}}:*</label>
                             <div display-flex align-items-center>
-                                <input type='text' formControlName="name" [placeholder]="getTranslateWord('* Full Name','* ФИО','* ԱԱՀ')"  name="name">
+                                <input type='text' formControlName="name" [placeholder]="getTranslateWord('_full_name')"  name="name">
                                 <!-- <i class="material-icons" (click)="onClickEditField('name')">edit</i> -->
                             </div>
                         </div>
@@ -24,15 +24,15 @@
                             <div class="date" display-flex align-items-center>
                                 <p-dropdown style="width:30%" [options]="day"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    [placeholder]="getTranslateWord('Day','День','Օր')" formControlName="day" optionLabel="day">
+                                    [placeholder]="getTranslateWord('_day')" formControlName="day" optionLabel="day">
                                 </p-dropdown>
                                 <p-dropdown [options]="month" style="width:40%;margin-left: 10px"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    [placeholder]="getTranslateWord('Month','Месяц','Ամիս')"  formControlName="month" optionLabel="text">
+                                    [placeholder]="getTranslateWord('_month')"  formControlName="month" optionLabel="text">
                                 </p-dropdown>
                                 <p-dropdown [options]="years" style="width:30%;margin-left: 10px"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    [placeholder]="getTranslateWord('Year','Год','Տարի')" formControlName="year" optionLabel="year">
+                                    [placeholder]="getTranslateWord('_year')" formControlName="year" optionLabel="year">
                                 </p-dropdown>
                             </div>
                         </div>
@@ -41,9 +41,9 @@
                             <div class="city" display-flex align-items-center>
                                 <!-- ,'max-width':'487px' -->
                                 <p-dropdown full-width [options]="cities" [filter]="true"
-                                 [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
+                                 [emptyFilterMessage]="getTranslateWord('_not_found_result')"
                                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc'}"
-                                    formControlName="city" [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')" [optionLabel]="getAttributeName('name')">
+                                    formControlName="city" [placeholder]="getTranslateWord('_add_to_select')" [optionLabel]="getAttributeName('name')">
                                 </p-dropdown>
                                 <!-- <i class="material-icons" (click)="onClickEditField('city')">edit</i> -->
                             </div>
@@ -55,14 +55,14 @@
                             <label class="label">{{'_phone' | translate}}:*</label>
                             <div display-flex align-items-center>
                                 <input type='tel' prefix="+374" mask="(00) 00 00 00" formControlName="phone"
-                                    [placeholder]="getTranslateWord('* Phone','* Телефон','* Հեռախոսահամար')" name="tel">
+                                    [placeholder]="getTranslateWord('_phone')" name="tel">
                                 <!-- <i class="material-icons" (click)="onClickEditField('phone')">edit</i> -->
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label">{{'_email' | translate}}:*</label>
                             <div display-flex align-items-center>
-                                <input type='email' formControlName="email" [placeholder]="getTranslateWord('* E-MAIL','* E-MAIL','* Էլ․հասցե')" name="mail">
+                                <input type='email' formControlName="email" [placeholder]="getTranslateWord('_email')" name="mail">
                                 <!-- <i class="material-icons" (click)="onClickEditField('email')">edit</i> -->
                             </div>
                         </div>

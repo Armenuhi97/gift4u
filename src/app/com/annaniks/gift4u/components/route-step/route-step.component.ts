@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Breadcrumbs } from '../../models/models';
 import { TranslateService1 } from '../../services';
 import { PlatformService } from '../../services/platform.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: "app-route-step",
@@ -16,7 +17,7 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     @Input('routes') breadcrumbs: Array<Breadcrumbs> = [];
     constructor(private router: Router, private route: ActivatedRoute,
         private _platformService: PlatformService,
-        private _titleService: Title, private _translateService: TranslateService1) {
+        private _titleService: Title, private _translateService: TranslateService1,private _translate:TranslateService) {
         // this.router.routeReuseStrategy.shouldReuseRoute = function(){
         //     return false;
         // }
@@ -63,8 +64,8 @@ export class RouteStepComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() { }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     ngOnDestroy() { }
 }

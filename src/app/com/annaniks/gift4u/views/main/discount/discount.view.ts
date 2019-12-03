@@ -3,6 +3,7 @@ import { DiscountService } from './discount.service';
 import { AppService, TranslateService1 } from '../../../services';
 import { Announcement, ServerResponse } from '../../../models/models';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'discount-view',
@@ -17,16 +18,17 @@ export class DiscountView implements OnInit, OnDestroy {
         private _discountService: DiscountService,
         private _appService: AppService,
         private _title: Title,
-        private _translateservice:TranslateService1
+        private _translateservice:TranslateService1,
+        private _translate:TranslateService
     ) { }
 
 
     ngOnInit() {
-        this._title.setTitle(this.translateWord('Discounts','Скидки','Զեղչեր'));
+        this._title.setTitle(this.translateWord('_discounts'));
         this._getAnnouncmentType();
     }
-    public  translateWord(key1:string,key2:string,key3:string){
-        return this._translateservice.translateImportant(key1,key2,key3)
+    public  translateWord(key:string){
+        return this._translate.instant(key)
     }
     private _getAnnouncmentType(): void {
         this._discountService.getAnnouncmentType().subscribe((data) => {

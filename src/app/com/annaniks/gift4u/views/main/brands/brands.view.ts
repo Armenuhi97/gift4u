@@ -5,7 +5,7 @@ import { Brand } from './brands.models';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../../services/loading.service';
-import { TranslateService1 } from '../../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'brands-veiw',
@@ -22,15 +22,15 @@ export class BrandsView implements OnInit, OnDestroy {
         private _brandsService: BrandsService,
         private _title: Title,
         private _loadingService:LoadingService,
-        private _translateService:TranslateService1
+        private _translate:TranslateService
     ) { }
 
     ngOnInit() {
         this._setRouteSteps();
         this._getBrands();
     }
-    public translateWord(key1:string,key2:string,key3:string){
-       return this._translateService.translateImportant(key1,key2,key3)
+    public translateWord(key:string){
+       return this._translate.instant(key)
     }
     private _getBrands(): void {
         this._loadingService.showLoading()
@@ -41,10 +41,10 @@ export class BrandsView implements OnInit, OnDestroy {
     }
 
     private _setRouteSteps(): void {
-        this._title.setTitle(this.translateWord('Brands','Бренды','Ապրանքանիշներ'));
+        this._title.setTitle(this.translateWord('brands'));
         this._routeSteps.push(
-            { label:this.translateWord('Main','Главная','Գլխավոր'), url: '/', queryParams: {}, status: '' },
-            { label: this.translateWord('Brands','Бренды','Ապրանքանիշներ'), url: '/brands', queryParams: {}, status: '' }
+            { label:this.translateWord('_main'), url: '/', queryParams: {}, status: '' },
+            { label: this.translateWord('brands'), url: '/brands', queryParams: {}, status: '' }
         )
     }
 

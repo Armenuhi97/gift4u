@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService1 } from '../../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'buy-one-click-modal',
@@ -12,7 +13,8 @@ export class BuyOneClickModal implements OnInit {
     private _buyOneClickForm: FormGroup;
 
     constructor(private _fb: FormBuilder, private _dialogRef: MatDialogRef<BuyOneClickModal>,
-        private _translateService:TranslateService1) { }
+        private _translateService:TranslateService1,
+        private _translate:TranslateService) { }
 
     ngOnInit() {
         this._formBuilder();
@@ -24,8 +26,8 @@ export class BuyOneClickModal implements OnInit {
             phone: [null, Validators.required]
         })
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     public closeModal(): void {
         this._dialogRef.close();

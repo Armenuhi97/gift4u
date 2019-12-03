@@ -9,6 +9,7 @@ import { CityCountry, ServerResponse, LoginResponse } from '../../models/models'
 import { PasswordValidation } from '../../controls/controls';
 import { CookieService } from '../../services/cookie.service';
 import { PlatformService } from '../../services/platform.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'registration-modal',
@@ -28,15 +29,16 @@ export class RegistrationModal implements OnInit {
         private _appService: AppService,
         private _cookieService: CookieService,
         private _translateService: TranslateService1,
-        private _platformService:PlatformService
+        private _platformService:PlatformService,
+        private _translate:TranslateService
     ) { }
 
     ngOnInit() {
         this._formBuilder();
         this._getCities();
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public getTranslateWord(key: string) {
+        return this._translate.instant(key)
     }
     private _formBuilder(): void {
         this._registrationForm = this._fb.group({
@@ -65,7 +67,6 @@ export class RegistrationModal implements OnInit {
             this._dialogRef.close(true);
         },
             (error) => {
-                console.error(error);
                 if (error) {
                     this._error = error.error.message[0];
                 }

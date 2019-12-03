@@ -30,7 +30,7 @@ export class CatalogView implements OnInit {
     public isChangeCategory: boolean = false
     private _previousParentId: number
     private _routeSteps: Breadcrumbs[] = [
-        { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
+        { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' }
     ];
 
     constructor(
@@ -50,8 +50,8 @@ export class CatalogView implements OnInit {
             this._isShowFilters = false;
         }
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string) {
+        return this._translate.instant(key)
     }
     private _checkQueryParams(): void {
         this._activatedRoute.queryParams.subscribe((params) => {
@@ -142,7 +142,7 @@ export class CatalogView implements OnInit {
 
     private _resetProperties(): void {
         this._routeSteps = [
-            { label: this.translateWord('Main', 'Главная', 'Գլխավոր'), url: '/', queryParams: {}, status: '' }
+            { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' }
         ];
         this._label = this._routeSteps[this._routeSteps.length - 1].label
         this._titleService.setTitle(this._label);

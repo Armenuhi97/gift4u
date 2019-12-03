@@ -1,5 +1,5 @@
 <div id="bookmark" *ngIf="isGet">
-    <div *ngIf="bookmarks[0]" class="items">
+    <div *ngIf="bookmarks && bookmarks.length" class="items">
         <app-goods-list>
             <app-goods-list-item [style]="{'minWidth':'80px'}" *ngFor="let item of products" [product]="item">
             </app-goods-list-item>
@@ -7,5 +7,5 @@
         <app-paginator [count]="bookmarkCount" [pageLength]="pageLength" [currentPage]="page"
             (paginate)="onPageChange($event)"></app-paginator>
     </div>
-    <div *ngIf="!bookmarks[0]" class="default-text">{{'_empty' | translate}}</div>
+    <div *ngIf="!bookmarks && (bookmarks && !bookmarks.length)" class="default-text">{{'_empty' | translate}}</div>
 </div>

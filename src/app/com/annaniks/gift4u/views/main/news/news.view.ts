@@ -3,6 +3,7 @@ import { NewsService } from './news.service';
 import { AppService, TranslateService1 } from '../../../services';
 import { Announcement, ServerResponse, AnnouncementType } from '../../../models/models';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'news-view',
@@ -17,15 +18,16 @@ export class NewsView implements OnInit, OnDestroy {
         private _newsService: NewsService,
         private _appService: AppService,
         private _title: Title,
-        private _translateService:TranslateService1
+        private _translateService:TranslateService1,
+        private _translate:TranslateService
     ) { }
 
     ngOnInit() {
-        this._title.setTitle(this.getTranslateWord('NEWS','НОВОСТИ','նՈՐՈՒԹՅՈՒՆՆԵՐ'));
+        this._title.setTitle(this.getTranslateWord('_news'));
         this._getAnnouncmentType();
     }
-    public getTranslateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public getTranslateWord(key: string) {
+        return this._translate.instant(key)
     }
     private _getAnnouncmentType(): void {
         this._newsService.getAnnouncmentType().subscribe((data: ServerResponse<AnnouncementType[]>) => {

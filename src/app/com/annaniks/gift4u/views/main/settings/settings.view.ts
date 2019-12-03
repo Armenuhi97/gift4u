@@ -8,6 +8,7 @@ import { SettingsService } from './settings.service';
 import { MessageService } from 'primeng/api';
 import { Title, Meta } from '@angular/platform-browser';
 import { PlatformService } from '../../../services/platform.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class SettingsView implements OnInit {
         private _translateService: TranslateService1,
         private _platformService: PlatformService,
         private _metaService: Meta,
+        private _translate:TranslateService,
         @Inject('FILE_URL') private _fileUrl: string
     ) {
         this._checkQueryParams();
@@ -71,8 +73,8 @@ export class SettingsView implements OnInit {
             }
         })
     }
-    public translateWord(key1: string, key2: string, key3: string) {
-        return this._translateService.translateImportant(key1, key2, key3)
+    public translateWord(key: string):string {
+        return this._translate.instant(key)
     }
 
     private _formBuilder(): void {
@@ -129,13 +131,13 @@ export class SettingsView implements OnInit {
         })
             .subscribe((data) => {
                 this._messageService.add({
-                    severity: 'success', summary: this._translateService.translateImportant('Message', 'Сообщение', 'Հաղորդագրություն'),
-                    detail: this._translateService.translateImportant('Your message has been sent successfully', 'Ваше сообщение успешно отправлено', 'Ձեր հաղորդագրությունը հաջողությամբ ուղարկվել է')
+                    severity: 'success', summary: this.translateWord('_message'),
+                    detail: this.translateWord('_send_message_success_message')
                 })
                 this._loading = false;
             },
                 (error) => {
-                    this._error = this._translateService.translateImportant('Error', 'Ошибка', 'Սխալ');
+                    this._error = this.translateWord('_error');
                 })
     }
 
@@ -160,9 +162,6 @@ export class SettingsView implements OnInit {
 
     get loading(): boolean {
         return this._loading;
-    }
-    get language() {
-        return this._translateService.getActiveLanguage()
     }
     get error(): string {
         return this._error;

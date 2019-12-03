@@ -23,7 +23,7 @@
                     <td class="t-body">{{rowData?.created_at}}</td>
                     <td class="t-body">{{rowData?.total}}</td>
                     <td class="t-body">
-                        {{(rowData?.isCash==1) ?translateWord('In cash','Наличными','Կանխիկ եղանակով'):translateWord('Online on the site','Онлайн на сайте','Առցանց կայքում')}}
+                        {{(rowData?.isCash==1) ?translateWord('_in_cash'):translateWord('_online_on_site')}}
                     </td>
                     <td class="t-body">{{rowData?.carriersName}}</td>
                     <td class="t-body">{{rowData?.statusName}}</td>
@@ -40,6 +40,7 @@
                 </tr>
             </ng-template>
         </p-table>
-        <div *ngIf="!orderHistory || (orderHistory && !orderHistory[0])" class="default-text"> {{'_empty' | translate}} </div>
+        <div *ngIf="!orderHistory || (orderHistory && !orderHistory[0])" class="default-text"> {{'_empty' | translate}}
+        </div>
     </div>
 </div>

@@ -6,11 +6,11 @@
         <form [formGroup]="selectCityForm">
             <div class="form_group">
                 <p-dropdown
-                    [emptyFilterMessage]="getTranslateWord('No Results Found','Результаты не найдены','Ոչ մի արդյունք չի գտնվել')"
+                    [emptyFilterMessage]="getTranslateWord('_not_found_result')"
                     [options]="cities" [filter]="true"
                     [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                     formControlName="city"
-                    [placeholder]="getTranslateWord('Click to select','Нажмите чтобы выбрать','Սեղմեք ընտրելու համար')"
+                    [placeholder]="getTranslateWord('_add_to_select')"
                     [optionLabel]="getAttributeName('name')"></p-dropdown>
             </div>
             <div class="set_city">

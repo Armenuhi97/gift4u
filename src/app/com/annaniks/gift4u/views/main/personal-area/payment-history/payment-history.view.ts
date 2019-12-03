@@ -5,6 +5,7 @@ import { LoadingService } from "../../../../services/loading.service";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { TranslateService1 } from "../../../../services";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'payment-history-view',
@@ -18,11 +19,16 @@ export class PaymentHistoryView implements OnInit {
         private _loadingService: LoadingService,
         private _title: Title,
         private _activatedRoute: ActivatedRoute,
-        private _translateService:TranslateService1) {
-        this._title.setTitle(this._translateService.translateImportant('Payment history','История платежей','Վճարումների պատմություն'));
+        private _translateService:TranslateService1,
+        private _translate:TranslateService) {
+        this._title.setTitle(this.getTranslateWord('_payment_history'));
     }
     ngOnInit() {
         this._getPaymentHistory()
+    }
+
+    public getTranslateWord(key: string):string {
+        return this._translate.instant(key)
     }
     private _getPaymentHistory() {
         this._loadingService.showLoading()
@@ -44,33 +50,23 @@ export class PaymentHistoryView implements OnInit {
             history.bonus = history.bonus == null ? '-' : history.bonus;
             switch (history.isCash) {
                 case 0: {
-                    history.cashTitle = this._translateService.translateImportant('Pay now', 'Оплатить сейчас', 'Վճարել հիմա');
+                    history.cashTitle = this.getTranslateWord('_pay_now');
                     break
                 }
                 case 1: {
-                    history.cashTitle = this._translateService.translateImportant('Upon receipt', 'При получении', 'Ստանալիս');
+                    history.cashTitle = this.getTranslateWord('_upon_receipt') ;
                     break
                 }
                 case 2: {
-                    history.cashTitle =this._translateService.translateImportant('Bonus', "Бонус", 'Բոնուս') ;
+                    history.cashTitle =this.getTranslateWord('_bonuse') ;
                     break
                 }
                 case 3: {
-                    history.cashTitle =this._translateService.translateImportant('Balance', "Баланс", 'Բալանս') ;
+                    history.cashTitle =this.getTranslateWord('_balance');
                     break
-                }
-                // case 4: {
-                //     history.cashTitle = "Почта России НАЛОЖЕННЫЙ ПЛАТЕЖ 4,5%";
-                //     break
-                // }
-                // case 5: {
-                //     history.cashTitle = "ТК «СДЭК» НАЛОЖЕННЫЙ ПЛАТЕЖ 3%";
-                //     break
-                // }
+                }            
             }
         }
     }
-    get language(){
-        return this._translateService.getActiveLanguage()
-    }
+
 }
