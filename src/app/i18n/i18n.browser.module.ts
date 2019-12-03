@@ -33,7 +33,6 @@ export class I18nBrowserModule {
   ) {
     translateCacheService.init();
     translate.addLangs(['en', 'ru', 'arm']);
-
     const browserLang = translateCacheService.getCachedLanguage() || translate.getBrowserLang();
     translate.use(browserLang.match(/en|ru|arm/) ? browserLang : 'en');
   }

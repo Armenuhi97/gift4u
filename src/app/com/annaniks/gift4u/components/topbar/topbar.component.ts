@@ -54,7 +54,7 @@ export class TopbarComponent implements OnInit {
     public search: string;
     private _similarProducts: string[] = [];
     private _isShowSimilarProducts: boolean = true;
-    
+
     constructor(
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
@@ -68,7 +68,7 @@ export class TopbarComponent implements OnInit {
         @Inject('FILE_URL') private _fileUrl: string,
         private _translate: TranslateService,
         private _platformService: PlatformService,
-        private _loadingService:LoadingService
+        private _loadingService: LoadingService,
     ) {
         this._checkQueryParams();
         this.active_lng = this._translate.currentLang;
@@ -109,14 +109,23 @@ export class TopbarComponent implements OnInit {
         }
     }
     public changeLanguage(lang_key: string) {
-        this._translate.use(lang_key);
         this._loadingService.showLoading()
+        if (this._cookieService.get('lang')){
+            this._cookieService.remove('lang')
+            this._cookieService.remove('lang', { path: '/catalog' });
+            this._cookieService.remove('lang', { path: '/brands' });
+            this._cookieService.remove('lang', { path: '/settings' });
+            this._cookieService.remove('lang', { path: '/personal-area' });
+        }
+        this._translate.use(lang_key);
+        this._cookieService.set('lang',lang_key)
         this._translate.setDefaultLang(lang_key);
         this._translate.getTranslation(lang_key);
-        setTimeout(()=>{
+
+        setTimeout(() => {
             this._loadingService.hideLoading()
             window.location.reload();
-        },1000)
+        }, 1000)
     }
     public onClickMenuButton(): void {
         this._menuItemsService.openMenu();

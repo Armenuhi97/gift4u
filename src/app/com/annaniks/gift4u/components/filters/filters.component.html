@@ -13,7 +13,7 @@
             </label>
         </div>
         <form [formGroup]="filterForm">
-            <div class="custom-slider">
+            <div *ngIf="isBrowser" class="custom-slider">
                 <ng5-slider formControlName="price" (ngModelChange)="changeSlider($event)" [options]="options">
                 </ng5-slider>
             </div>

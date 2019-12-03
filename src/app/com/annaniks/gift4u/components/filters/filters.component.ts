@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, Input, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { Subscription, Observable, forkJoin } from 'rxjs';
 import { ServerResponse, CityCountry } from '../../models/models';
@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService, TranslateService1 } from '../../services';
 import { MainService } from '../../views/main/main.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-filters',
@@ -29,6 +30,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         floor: 0,
         ceil: 100000
     };
+    private _isBrowser:boolean
     @Input('isBorder') private _isBorder: boolean = false;
     @Input('item')
     set item($event) {
@@ -42,8 +44,12 @@ export class FiltersComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _activatedRoute: ActivatedRoute,
         private _appService: AppService,
-        private _translateService:TranslateService1
-    ) { }
+        private _translateService:TranslateService1,
+        @Inject(PLATFORM_ID) private platformId
+    ) { 
+        this._isBrowser = isPlatformBrowser(platformId);
+
+    }
 
     ngOnInit() {
         this._formBuilder();
@@ -222,8 +228,8 @@ export class FiltersComponent implements OnInit, OnDestroy {
     get isBorder(): boolean {
         return this._isBorder;
     }
-    get language(){
-        return this._translateService.getActiveLanguage()
+    get isBrowser():boolean{
+        return this._isBrowser
     }
     ngOnDestroy() {
         this._subscription.unsubscribe();
