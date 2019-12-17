@@ -59,10 +59,10 @@ export class BasketView implements OnInit {
     private _minDate: Date;
     private _isWarmingText: boolean = false
     private _CALENDER_CONFIG_en = {
-        firstDayOfWeek: 0,
-        dayNames: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        dayNamesShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        dayNamesMin: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+        firstDayOfWeek: 1,
+        dayNames: ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', ],
+        dayNamesShort: [ 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        dayNamesMin: ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
             'November', 'December'],
         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -70,10 +70,10 @@ export class BasketView implements OnInit {
         clear: 'Clear',
     }
     private _CALENDER_CONFIG_arm = {
-        firstDayOfWeek: 0,
-        dayNames: ['Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ', 'Կիրակի'],
-        dayNamesShort: ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ', 'Կիր'],
-        dayNamesMin: ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ', 'Կիր'],
+        firstDayOfWeek: 1,
+        dayNames: ['Կիրակի','Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'],
+        dayNamesShort: [ 'Կիր','Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
+        dayNamesMin: ['Կիր','Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
         monthNames: ['Հունվար', 'Փետրվար', 'Մարտ', 'Ապրիլ', 'Մայիս', 'Հունիս', 'Հուլիս', 'Օգոստոս', 'Սեպտեմբեր', 'Հոկտեմբեր',
             'Նոյեմբեր', 'Դեկտեմբեր'],
         monthNamesShort: ['հուն', 'փետ', 'մարտ', 'ապր', 'մայ', 'հուն', 'հուլ', 'օգս', 'սեպ', 'հոկ',
@@ -82,10 +82,10 @@ export class BasketView implements OnInit {
         clear: 'Ջնջել',
     }
     private _CALENDER_CONFIG_ru = {
-        firstDayOfWeek: 0,
-        dayNames: ['Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
-        dayNamesShort: ['Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб', 'Вос'],
-        dayNamesMin: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        firstDayOfWeek: 1,
+        dayNames: ['Воскресенье','Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота',],
+        dayNamesShort: [ 'Вос','Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб'],
+        dayNamesMin: ['Вс','Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         monthNames: ['Январь', 'Февраль	', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
             'Ноябрь', 'Декабрь'],
         monthNamesShort: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт',
@@ -202,6 +202,17 @@ export class BasketView implements OnInit {
         this._orderForm.get('allAddress').valueChanges.subscribe((value: Addresses) => {
             this._setValueAfterSelectAddress(value)
 
+        })
+        this._orderForm.get('city').valueChanges.subscribe((value) => {
+            this._orderForm.get('isBonuce').setValue(null)
+            this._orderForm.get('isBalance').setValue(null);       
+            this._localShippingInfo.price=null                           
+            if(this._orderForm.get('shipping_method')){
+                this._orderForm.get('shipping_method').reset()
+            }
+            if(this._orderForm.get('payment_method')){
+                this._orderForm.get('payment_method').reset()
+            }
         })
         this._orderForm.get('delivery_day').valueChanges.subscribe((value) => {
             let currentDate = new Date();
@@ -350,14 +361,14 @@ export class BasketView implements OnInit {
             city: city
         })
     }
-    public translateWord(key: string) {
+    public translateWord(key: string) {        
         return this._translate.instant(key)
     }
     private _setRouteSteps(): void {
-        this._title.setTitle(this.translateWord('_busket'));
+        this._title.setTitle(this.translateWord('_basket'));
         this.routeSteps.push(
             { label: this.translateWord('_main'), url: '/', queryParams: {}, status: '' },
-            { label: this.translateWord('_busket'), url: '/basket', queryParams: {}, status: '' }
+            { label: this.translateWord('_basket'), url: '/basket', queryParams: {}, status: '' }
         )
     }
 
@@ -395,7 +406,7 @@ export class BasketView implements OnInit {
 
     private _checkShippingPrice(cityId, currerId: number): void {
         if (currerId)
-            this._basketService.checkShippingPrice(cityId, currerId).subscribe((data: ServerResponse<ShippingPrice>) => {
+            this._basketService.checkShippingPrice(cityId, currerId).subscribe((data: ServerResponse<ShippingPrice>) => {                
                 this._localShippingInfo = data.messages;
                 let shippingPrice: ShippingPrice = data.messages;
                 if (shippingPrice.priceForFree && this._totalPrice >= +shippingPrice.priceForFree) {
@@ -790,8 +801,8 @@ export class BasketView implements OnInit {
         if (!this.isPromocode || (!this.isDiscount && this.isPromocode)) {
             this._totalPrice = totalPrice;
             if (this._totalPrice < +this._localShippingInfo.priceForFree) {
-                this.shippingPrice = +this._localShippingInfo.price;
-                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} &#1423;`, `Доставка +${this.shippingPrice} &#1423;`, `Առաքումը +${this.shippingPrice} &#1423; է`)
+                this.shippingPrice = +this._localShippingInfo.price;                
+                this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ֏`, `Доставка +${this.shippingPrice} ֏`, `Առաքումը +${this.shippingPrice} ֏ է`)
             }
             else {
                 this.shippingPrice = 0;
@@ -819,18 +830,18 @@ export class BasketView implements OnInit {
     }
 
     get fullPrice(): string {
-        let price = `${this._totalPrice} &#1423;`;
+        let price = `${this._totalPrice} ֏`;
         let total = this._totalPrice + this.shippingPrice + this.codPrice;
         if ((this._orderForm.get('payment_method').value == 4 || this._orderForm.get('payment_method').value === 5) && (this._orderForm.get('shipping_method').value == 4 || this._orderForm.get('shipping_method').value == 5) && this._currierInfo) {
             this.codPrice = this._checkBasketPrice() * this._currierInfo.percent / 100;
         }
         if (this.codPrice != 0) {
-            price += ` + ${this.codPrice} &#1423;`
+            price += ` + ${this.codPrice} ֏`
         }
         if (this.shippingPrice != 0) {
-            price += ` + ${this.shippingPrice} &#1423;`;
+            price += ` + ${this.shippingPrice} ֏`;
         }
-        price += ` = ${total} &#1423;`
+        price += ` = ${total} ֏`
         this._fullPrice = this._totalPrice + this.shippingPrice + this.codPrice;
         return price;
     }
@@ -845,7 +856,7 @@ export class BasketView implements OnInit {
         if (this._mainService.isAuthorized()) {
             if (this._mainService.getUserInfo().percent) {
                 bonusPrice = ((this._fullPrice - this.shippingPrice) * +this._mainService.getUserInfo().percent) / 100;
-                message = this.getTranslateWord(`Your bonuse  ${bonusPrice} &#1423;`, `Your bonus: ${bonusPrice} &#1423;`, `Ձեր բոնուսը՝ ${bonusPrice} &#1423; է`);
+                message = this.getTranslateWord(`Your bonuse  ${bonusPrice} ֏`, `Your bonus: ${bonusPrice} ֏`, `Ձեր բոնուսը՝ ${bonusPrice} ֏ է`);
             }
         }
         return message;

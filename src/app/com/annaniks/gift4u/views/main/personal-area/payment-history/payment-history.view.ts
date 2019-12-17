@@ -21,7 +21,7 @@ export class PaymentHistoryView implements OnInit {
         private _activatedRoute: ActivatedRoute,
         private _translateService:TranslateService1,
         private _translate:TranslateService) {
-        this._title.setTitle(this.getTranslateWord('_payment_history'));
+        this._title.setTitle(this.getTranslateWord(this._activatedRoute.data['_value'].title));
     }
     ngOnInit() {
         this._getPaymentHistory()

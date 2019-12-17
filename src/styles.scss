@@ -13,6 +13,9 @@
 *:focus {
     outline:0 !important;
 }
+.fb_reset>div{
+    z-index: 3 !important;
+}
 h1{
     margin: 0;
     font-weight: inherit;

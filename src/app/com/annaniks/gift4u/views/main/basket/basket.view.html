@@ -7,7 +7,7 @@
     </div>
     <div content *ngIf="basketProducts && basketProducts.length>0 && isPaymentChecked" class="basket_container">
 
-        <app-box [header]="translateWord('_busket')" [marginTop]="'30px'">
+        <app-box [header]="translateWord('_basket')" [marginTop]="'30px'">
             <div class="basket_items">
                 <app-basket-list>
                     <tr basketListItem *ngFor="let item of basketProducts;let ind=index;"
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="input_container">
                                         <p-calendar dateFormat="dd.mm.yy" [locale]="locale"
-                                            [placeholder]="translateWord('add_to_select')"
+                                            [placeholder]="translateWord('_add_to_select')"
                                             formControlName="delivery_day" [showIcon]="true" [minDate]="minDate">
                                         </p-calendar>
                                         <span required-field
@@ -145,7 +145,7 @@
                                         <p-dropdown [options]="allTimes"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="delivery_time"
-                                            [placeholder]="translateWord('add_to_select')"
+                                            [placeholder]="translateWord('_add_to_select')"
                                             optionLabel="name">
                                         </p-dropdown>
                                         <span required-field
@@ -166,7 +166,7 @@
                                             [options]="allAddresses" [filter]="true"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="allAddress"
-                                            [placeholder]="translateWord('add_to_select')"
+                                            [placeholder]="translateWord('_add_to_select')"
                                             optionLabel="name">
                                         </p-dropdown>
                                     </div>
@@ -180,7 +180,7 @@
                                             [emptyFilterMessage]="translateWord('_not_found_result')"
                                             [style]="{'width':'100%','padding': '5px','border-color':'#cccccc','max-width':'487px','margin':'8px 0'}"
                                             formControlName="city"
-                                            [placeholder]="translateWord('add_to_select')"
+                                            [placeholder]="translateWord('_add_to_select')"
                                             [optionLabel]="getAttributeName('name')"></p-dropdown>
                                         <span required-field
                                             *ngIf="orderForm.get('city').hasError('required') && orderForm.get('city').touched">{{'error1' | translate}}
@@ -370,7 +370,7 @@
     </div>
     <div class="empty_basket"
         *ngIf="((basketProducts && basketProducts.length==0) || !basketProducts) && isPaymentChecked">
-        <h1>{{'_empty_busket' | translate}}</h1>
+        <h1>{{'_empty_basket' | translate}}</h1>
     </div>
 
 

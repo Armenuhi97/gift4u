@@ -112,10 +112,12 @@ export class TopbarComponent implements OnInit {
         this._loadingService.showLoading()
         if (this._cookieService.get('lang')) {
             this._cookieService.remove('lang')
-            this._cookieService.remove('lang', { path: '/catalog' });
-            this._cookieService.remove('lang', { path: '/brands' });
-            this._cookieService.remove('lang', { path: '/settings' });
-            this._cookieService.remove('lang', { path: '/personal-area' });
+            if (this._cookieService.get('lang')) {
+                this._cookieService.remove('lang', { path: '/catalog' });
+                this._cookieService.remove('lang', { path: '/brands' });
+                this._cookieService.remove('lang', { path: '/settings' });
+                this._cookieService.remove('lang', { path: '/personal-area' });
+            }
         }
         this._translate.use(lang_key);
         this._cookieService.set('lang', lang_key)

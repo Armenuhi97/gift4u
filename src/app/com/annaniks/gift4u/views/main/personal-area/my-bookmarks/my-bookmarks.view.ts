@@ -28,7 +28,7 @@ export class MyBookmarksView implements OnInit {
         private _translateService: TranslateService1,
         private _translate:TranslateService,
         private _platformService: PlatformService) {
-        this._title.setTitle(this.translateWord('_my_bookmarks'));
+        this._title.setTitle(this.translateWord(this._activatedRoute.data['_value'].title));
         this._checkQueryParams();
     }
     ngOnInit() { }

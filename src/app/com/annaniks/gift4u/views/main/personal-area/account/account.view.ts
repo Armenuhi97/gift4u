@@ -60,7 +60,7 @@ export class AccountView implements OnInit {
         private _translateService: TranslateService1,
         private _translate:TranslateService
     ) {
-        this._title.setTitle(this.getTranslateWord('_user_account'));
+        this._title.setTitle(this.getTranslateWord(this._activatedRoute.data['_value'].title));
     }
 
     ngOnInit() {

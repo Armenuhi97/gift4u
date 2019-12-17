@@ -135,10 +135,7 @@
                 <app-characteristic *ngSwitchCase="'characteristic'" [data]="product"></app-characteristic>
                 <app-reviews *ngSwitchCase="'reviews'" [id]="id" [data]="reviews"></app-reviews>
             </div>
-            <!-- <app-box [header]="'С ЭТИМ ТОВАРОМ ПОКУПАЮТ'">
-                    <app-slider [carouselType]="'good'" [carouselItems]="[{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]},{productImages:[]}]"
-                        [itemHeight]="inherit"></app-slider>
-                </app-box> -->
+   
             <div *ngIf="product?.similarProducts && product?.similarProducts.length" class="products">
                 <app-box [isP]="true"
                     [header]="translateWord('_similar_products')">

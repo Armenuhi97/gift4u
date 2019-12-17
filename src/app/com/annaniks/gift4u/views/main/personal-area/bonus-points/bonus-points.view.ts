@@ -22,7 +22,7 @@ export class BonusPointsView implements OnInit {
         private _translateService: TranslateService1,
         private _translate:TranslateService
     ) {
-        this._title.setTitle(this.translateWord('_bonus_point'));
+        this._title.setTitle(this.translateWord(this._activatedRoute.data['_value'].title));
     }
     ngOnInit() {
         this._getBonusPoints()

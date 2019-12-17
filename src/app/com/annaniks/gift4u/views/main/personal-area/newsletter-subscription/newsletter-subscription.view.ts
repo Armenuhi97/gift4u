@@ -15,7 +15,7 @@ export class NewsletterSubscriptionView{
         private _title: Title,
         private _newsletterSubscriptionService:NewsletterSubscriptionService,
         private _translate:TranslateService){
-        this._title.setTitle(this._translate.instant('_news_subscription'));
+        this._title.setTitle(this._translate.instant(this._activatedRoute.data['_value'].title));
 
     }
 }

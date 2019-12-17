@@ -24,7 +24,7 @@ export class ShippingAddressesView implements OnInit {
         private _title: Title,
         private _translateService:TranslateService1,
         private _translate:TranslateService) {
-        this._title.setTitle(this.translateWord('_delivery_address'));
+        this._title.setTitle(this.translateWord(this._activatedRoute.data['_value'].title));
     }
     ngOnInit() {
         this._getAddresses()
@@ -98,8 +98,5 @@ export class ShippingAddressesView implements OnInit {
     public showHide(address: Addresses): void {
         address.showOrHide = !address.showOrHide;
         address.icon = address.showOrHide ? 'remove' : 'add'
-    }
-    get language(){
-        return this._translateService.getActiveLanguage()
     }
 }

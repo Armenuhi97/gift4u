@@ -44,7 +44,7 @@ export class MyOrdersView implements OnInit, OnDestroy {
         private _translateService: TranslateService1,
         private _translate:TranslateService
     ) {
-        this._title.setTitle(this.translateWord('_order_history'));
+        this._title.setTitle(this.translateWord(this._activatedRoute.data['_value'].title));
     }
 
     ngOnInit() {
