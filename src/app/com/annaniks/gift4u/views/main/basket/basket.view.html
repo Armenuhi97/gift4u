@@ -263,12 +263,14 @@
                                         [ngClass]="setDisabledPaymentMethods(paymethod)"
                                         *ngFor="let paymethod of visiblePaymentMethods;let i=index"
                                         (click)="onClickPayNow(paymethod)">
-                                        <label [class.disabled]="paymethod.id == 0" class="container payment-container">
+                                    <!-- [class.disabled]="paymethod.id == 0" -->
+                                        <label  class="container payment-container">
                                             <input type="radio" formControlName="payment_method" [value]="paymethod.id"
                                                 name="payment_method">
                                             <span class="checkmark" top-0></span>
                                         </label>
-                                        <div [class.disabled]="paymethod.id == 0" class="text_wrapper text_payment">
+                                        <!-- [class.disabled]="paymethod.id == 0" -->
+                                        <div  class="text_wrapper text_payment">
                                             <p class="header">{{paymethod?.header}}</p>
                                             <p class="under">
                                                 {{paymethod?.under}}

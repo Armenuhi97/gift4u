@@ -12,6 +12,7 @@ import { CookieService } from '../../../services/cookie.service';
 import { PlatformService } from '../../../services/platform.service';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { LoadingService } from '../../../services/loading.service';
 
 @Component({
     selector: 'basket-view',
@@ -60,9 +61,9 @@ export class BasketView implements OnInit {
     private _isWarmingText: boolean = false
     private _CALENDER_CONFIG_en = {
         firstDayOfWeek: 1,
-        dayNames: ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', ],
-        dayNamesShort: [ 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        dayNamesMin: ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',],
+        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
             'November', 'December'],
         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -71,9 +72,9 @@ export class BasketView implements OnInit {
     }
     private _CALENDER_CONFIG_arm = {
         firstDayOfWeek: 1,
-        dayNames: ['Կիրակի','Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'],
-        dayNamesShort: [ 'Կիր','Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
-        dayNamesMin: ['Կիր','Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
+        dayNames: ['Կիրակի', 'Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'],
+        dayNamesShort: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
+        dayNamesMin: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
         monthNames: ['Հունվար', 'Փետրվար', 'Մարտ', 'Ապրիլ', 'Մայիս', 'Հունիս', 'Հուլիս', 'Օգոստոս', 'Սեպտեմբեր', 'Հոկտեմբեր',
             'Նոյեմբեր', 'Դեկտեմբեր'],
         monthNamesShort: ['հուն', 'փետ', 'մարտ', 'ապր', 'մայ', 'հուն', 'հուլ', 'օգս', 'սեպ', 'հոկ',
@@ -83,9 +84,9 @@ export class BasketView implements OnInit {
     }
     private _CALENDER_CONFIG_ru = {
         firstDayOfWeek: 1,
-        dayNames: ['Воскресенье','Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота',],
-        dayNamesShort: [ 'Вос','Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб'],
-        dayNamesMin: ['Вс','Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        dayNames: ['Воскресенье', 'Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота',],
+        dayNamesShort: ['Вос', 'Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб'],
+        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         monthNames: ['Январь', 'Февраль	', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
             'Ноябрь', 'Декабрь'],
         monthNamesShort: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт',
@@ -97,7 +98,7 @@ export class BasketView implements OnInit {
         {
             id: 0, header: this.translateWord('_pay_now'),
             under: this.translateWord('_bank_card'),
-            errorText: this.translateWord('available_message'), percent: 0
+            errorText: '', percent: 0
         },
         { id: 1, header: this.translateWord('_upon_receipt'), under: this.translateWord('_in_cash'), errorText: '', percent: 0 },
     ]
@@ -124,7 +125,8 @@ export class BasketView implements OnInit {
         private _translateService: TranslateService1,
         private _platformService: PlatformService,
         private _datePipe: DatePipe,
-        private _translate:TranslateService,
+        private _translate: TranslateService,
+        private _loadingService: LoadingService,
         @Inject("FILE_URL") private _fileUrl: string
     ) {
         this._checkBasketProducts();
@@ -205,12 +207,12 @@ export class BasketView implements OnInit {
         })
         this._orderForm.get('city').valueChanges.subscribe((value) => {
             this._orderForm.get('isBonuce').setValue(null)
-            this._orderForm.get('isBalance').setValue(null);       
-            this._localShippingInfo.price=null                           
-            if(this._orderForm.get('shipping_method')){
+            this._orderForm.get('isBalance').setValue(null);
+            this._localShippingInfo.price = null
+            if (this._orderForm.get('shipping_method')) {
                 this._orderForm.get('shipping_method').reset()
             }
-            if(this._orderForm.get('payment_method')){
+            if (this._orderForm.get('payment_method')) {
                 this._orderForm.get('payment_method').reset()
             }
         })
@@ -361,7 +363,7 @@ export class BasketView implements OnInit {
             city: city
         })
     }
-    public translateWord(key: string) {        
+    public translateWord(key: string) {
         return this._translate.instant(key)
     }
     private _setRouteSteps(): void {
@@ -406,7 +408,7 @@ export class BasketView implements OnInit {
 
     private _checkShippingPrice(cityId, currerId: number): void {
         if (currerId)
-            this._basketService.checkShippingPrice(cityId, currerId).subscribe((data: ServerResponse<ShippingPrice>) => {                
+            this._basketService.checkShippingPrice(cityId, currerId).subscribe((data: ServerResponse<ShippingPrice>) => {
                 this._localShippingInfo = data.messages;
                 let shippingPrice: ShippingPrice = data.messages;
                 if (shippingPrice.priceForFree && this._totalPrice >= +shippingPrice.priceForFree) {
@@ -470,6 +472,7 @@ export class BasketView implements OnInit {
 
     private _makeOrder(): void {
         this.loading = true;
+        this._loadingService.showLoading()
         let cartRuleId = '0';
         for (let id of this._productIdArray) {
             cartRuleId = this._type == 1 ? (this._promoCode['id'] ? this._promoCode['id'] : '0') : (this._promoCode[id] ? this._promoCode[id]['id'] : '0');
@@ -498,6 +501,7 @@ export class BasketView implements OnInit {
             hour_of_delivery: this._orderForm.get('delivery_time').value.name
         }, this._mainService.isAuthorized()).subscribe(
             (data) => {
+                this._loadingService.hideLoading()
                 this.loading = false;
                 if (data.error) {
                     this.error = true;
@@ -516,7 +520,8 @@ export class BasketView implements OnInit {
                             let payment = data.paymant
                             // let responseData = JSON.parse(data.paymant);
                             if (payment.PaymentID && data.pay) {
-                                window.location.href = `https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=${payment.PaymentID}&lang=am`;
+                                // https://services.ameriabank.am/VPOS
+                                window.location.href = `https://services.ameriabank.am/VPOS/Payments/Pay?id=${payment.PaymentID}&lang=am`;
                             }
                             else {
                                 if (this._platformService.isBrowser)
@@ -655,7 +660,7 @@ export class BasketView implements OnInit {
         }
     }
 
-    public setDisabledPaymentMethods(paymethod): string {        
+    public setDisabledPaymentMethods(paymethod): string {
         let shipMethod = this._orderForm.get('shipping_method').value;
         if (!shipMethod) {
             return 'disabled';
@@ -801,7 +806,7 @@ export class BasketView implements OnInit {
         if (!this.isPromocode || (!this.isDiscount && this.isPromocode)) {
             this._totalPrice = totalPrice;
             if (this._totalPrice < +this._localShippingInfo.priceForFree) {
-                this.shippingPrice = +this._localShippingInfo.price;                
+                this.shippingPrice = +this._localShippingInfo.price;
                 this.shippingMessage = this.getTranslateWord(`Delivery +${this.shippingPrice} ֏`, `Доставка +${this.shippingPrice} ֏`, `Առաքումը +${this.shippingPrice} ֏ է`)
             }
             else {
