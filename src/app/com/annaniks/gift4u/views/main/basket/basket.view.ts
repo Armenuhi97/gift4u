@@ -20,6 +20,7 @@ import { LoadingService } from '../../../services/loading.service';
     styleUrls: ['basket.view.scss']
 })
 export class BasketView implements OnInit {
+    public isGet: boolean = false
     private _orderForm: FormGroup;
     public basketProducts: Product[] = [];
     public routeSteps = [];
@@ -59,41 +60,7 @@ export class BasketView implements OnInit {
     private _productIdArray: Array<number> = [];
     private _minDate: Date;
     private _isWarmingText: boolean = false
-    private _CALENDER_CONFIG_en = {
-        firstDayOfWeek: 1,
-        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',],
-        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-            'November', 'December'],
-        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        today: 'Today',
-        clear: 'Clear',
-    }
-    private _CALENDER_CONFIG_arm = {
-        firstDayOfWeek: 1,
-        dayNames: ['Կիրակի', 'Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'],
-        dayNamesShort: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
-        dayNamesMin: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
-        monthNames: ['Հունվար', 'Փետրվար', 'Մարտ', 'Ապրիլ', 'Մայիս', 'Հունիս', 'Հուլիս', 'Օգոստոս', 'Սեպտեմբեր', 'Հոկտեմբեր',
-            'Նոյեմբեր', 'Դեկտեմբեր'],
-        monthNamesShort: ['հուն', 'փետ', 'մարտ', 'ապր', 'մայ', 'հուն', 'հուլ', 'օգս', 'սեպ', 'հոկ',
-            'նոյ', 'դեկ'],
-        today: 'Այսօր',
-        clear: 'Ջնջել',
-    }
-    private _CALENDER_CONFIG_ru = {
-        firstDayOfWeek: 1,
-        dayNames: ['Воскресенье', 'Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота',],
-        dayNamesShort: ['Вос', 'Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб'],
-        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        monthNames: ['Январь', 'Февраль	', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
-            'Ноябрь', 'Декабрь'],
-        monthNamesShort: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт',
-            'Ноя', 'Дек'],
-        today: 'Сегодня',
-        clear: 'Очистить',
-    }
+
     public paymentMethods = [
         {
             id: 0, header: this.translateWord('_pay_now'),
@@ -127,7 +94,10 @@ export class BasketView implements OnInit {
         private _datePipe: DatePipe,
         private _translate: TranslateService,
         private _loadingService: LoadingService,
-        @Inject("FILE_URL") private _fileUrl: string
+        @Inject("FILE_URL") private _fileUrl: string,
+        @Inject("CALENDER_CONFIG_ARM") private _calendarConfigarm,
+        @Inject("CALENDER_CONFIG_EN") private _calendarConfigen,
+        @Inject("CALENDER_CONFIG_RU") private _calendarConfigru,
     ) {
         this._checkBasketProducts();
         this._checkQueryParams();
@@ -304,13 +274,14 @@ export class BasketView implements OnInit {
     private _checkBasketProducts(): void {
         if (this._platformService.isBrowser) {
             if (JSON.parse(localStorage.getItem('basket_products'))) {
-                let basket = JSON.parse(localStorage.getItem('basket_products'))
+                let basket = JSON.parse(localStorage.getItem('basket_products'));
+                this.isGet = true
                 if ((this.basketProducts.length !== basket.length)) {
                     if (this.basketProducts.length > basket.length) {
                         this.basketProducts.forEach((data, i) => {
                             let index = basket.indexOf(data);
                             if (index == -1) {
-                                this.basketProducts.splice(i, 1)
+                                this.basketProducts.splice(i, 1);
                             }
                         })
                     } else {
@@ -852,7 +823,7 @@ export class BasketView implements OnInit {
     }
     get locale() {
         let activeLanguage = this._translateService.getActiveLanguage();
-        return this['_CALENDER_CONFIG_' + activeLanguage]
+        return this['_calendarConfig' + activeLanguage]
 
     }
     get bonusPrice(): string {

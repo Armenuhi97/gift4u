@@ -1,0 +1,35 @@
+export const CALENDER_CONFIG_EN = {
+    firstDayOfWeek: 1,
+    dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',],
+    dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+        'November', 'December'],
+    monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    today: 'Today',
+    clear: 'Clear',
+}
+export const CALENDER_CONFIG_ARM = {
+    firstDayOfWeek: 1,
+    dayNames: ['Կիրակի', 'Երկուշաբթի', 'Երեքշաբթի', 'Չորեքշաբթի', 'Հինգշաբթի', 'Ուրբաթ', 'Շաբաթ'],
+    dayNamesShort: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
+    dayNamesMin: ['Կիր', 'Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբ'],
+    monthNames: ['Հունվար', 'Փետրվար', 'Մարտ', 'Ապրիլ', 'Մայիս', 'Հունիս', 'Հուլիս', 'Օգոստոս', 'Սեպտեմբեր', 'Հոկտեմբեր',
+        'Նոյեմբեր', 'Դեկտեմբեր'],
+    monthNamesShort: ['հուն', 'փետ', 'մարտ', 'ապր', 'մայ', 'հուն', 'հուլ', 'օգս', 'սեպ', 'հոկ',
+        'նոյ', 'դեկ'],
+    today: 'Այսօր',
+    clear: 'Ջնջել',
+}
+export const CALENDER_CONFIG_RU = {
+    firstDayOfWeek: 1,
+    dayNames: ['Воскресенье', 'Понедельник', 'Вторник ', 'Среда', 'Четверг', 'Пятница', 'Суббота',],
+    dayNamesShort: ['Вос', 'Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб'],
+    dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    monthNames: ['Январь', 'Февраль	', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
+        'Ноябрь', 'Декабрь'],
+    monthNamesShort: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт',
+        'Ноя', 'Дек'],
+    today: 'Сегодня',
+    clear: 'Очистить',
+}

@@ -1,6 +1,6 @@
 export const httpParams = {
-    // baseUrl: 'https://admin.gift4u.am/api/client',
+    baseUrl: 'https://admin.gift4u.am/api/client',
     fileUrl: 'https://admin.gift4u.am/uploads/',
-    baseUrl: 'http://192.168.1.103:8000/api/client',
+    // baseUrl: 'http://192.168.1.103:8000/api/client',
 }
 

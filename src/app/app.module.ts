@@ -5,6 +5,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { httpParams } from './com/annaniks/gift4u/params/httpParams';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppService, TranslateService1 } from './com/annaniks/gift4u/services';
 import { HttpModule } from '@angular/http';
@@ -12,9 +13,10 @@ import { LoadingService } from './com/annaniks/gift4u/services/loading.service';
 import { CookieService } from './com/annaniks/gift4u/services/cookie.service';
 import { PlatformService } from './com/annaniks/gift4u/services/platform.service';
 import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-transfer-http';
-import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from  '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import localeRu from '@angular/common/locales/ru';
+import { CALENDER_CONFIG_EN, CALENDER_CONFIG_ARM, CALENDER_CONFIG_RU } from './com/annaniks/gift4u/params/calendarParams';
 registerLocaleData(localeRu)
 
 export function createTranslateLoader(http: HttpClient) {
@@ -47,6 +49,18 @@ export function createTranslateLoader(http: HttpClient) {
     {
       provide: 'BASE_URL',
       useValue: httpParams.baseUrl
+    },
+    {
+      provide: 'CALENDER_CONFIG_EN',
+      useValue: CALENDER_CONFIG_EN
+    },
+    {
+      provide: 'CALENDER_CONFIG_ARM',
+      useValue: CALENDER_CONFIG_ARM
+    },
+    {
+      provide: 'CALENDER_CONFIG_RU',
+      useValue: CALENDER_CONFIG_RU
     },
     {
       provide: 'FILE_URL',

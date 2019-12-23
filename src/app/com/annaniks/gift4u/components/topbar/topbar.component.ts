@@ -83,7 +83,6 @@ export class TopbarComponent implements OnInit {
                     .setProperty('--main-color', this.color);
             }
         }
-
     }
 
     ngOnInit() { }
