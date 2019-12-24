@@ -62,11 +62,7 @@ export class BasketView implements OnInit {
     private _isWarmingText: boolean = false
 
     public paymentMethods = [
-        {
-            id: 0, header: this.translateWord('_pay_now'),
-            under: this.translateWord('_bank_card'),
-            errorText: '', percent: 0
-        },
+        { id: 0, header: this.translateWord('_pay_now'), under: this.translateWord('_bank_card'), errorText: '', percent: 0 },
         { id: 1, header: this.translateWord('_upon_receipt'), under: this.translateWord('_in_cash'), errorText: '', percent: 0 },
     ]
     private _allTimes = [

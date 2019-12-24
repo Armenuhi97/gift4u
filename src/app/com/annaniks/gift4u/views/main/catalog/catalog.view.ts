@@ -40,12 +40,12 @@ export class CatalogView implements OnInit {
         private _router: Router,
         private _loadingService: LoadingService,
         private _translateService: TranslateService1,
-        private _translate:TranslateService
+        private _translate: TranslateService
     ) {
         this._checkQueryParams();
     }
 
-    ngOnInit() {       
+    ngOnInit() {
         if (window.innerWidth <= 973) {
             this._isShowFilters = false;
         }
@@ -78,9 +78,9 @@ export class CatalogView implements OnInit {
                         }
                     }
                 }
-
                 if (params.filter) {
                     this._filters = JSON.parse(params.filter);
+
                 } else {
                     this._filters = new CategoryFilter()
                 }
@@ -88,14 +88,15 @@ export class CatalogView implements OnInit {
                     this.isChangeCategory = true
                 }
                 this.isGet = false
-                this._filters["min"] = this._sort == 'min' ? true : null;
-                this._filters["max"] = this._sort == 'max' ? true : null;
-                this._filters["page"] = this._page - 1
-                this._filters["count"] = this._pageLength
-                this._filters["parentId"] = params.parentcategoryid;
-                this._filters["categoryId"] = (this._categoryId && this._categoryId !== params.parentcategoryid) ? this._categoryId : null
+                this._filters.min = this._sort == 'min' ? true : null;
+                this._filters.max = this._sort == 'max' ? true : null;
+                this._filters.page = this._page - 1
+                this._filters.count = this._pageLength
+                this._filters.parentId = params.parentcategoryid;
+                if (this._filters && !this._filters.categoryId)
+                    this._filters.categoryId = (this._categoryId && this._categoryId !== params.parentcategoryid) ? this._categoryId : null
                 this._filterProducts();
-                this._previousParentId = params.parentcategoryid
+                this._previousParentId = params.parentcategoryid;
             }
             else {
                 this._router.navigate(['/']);

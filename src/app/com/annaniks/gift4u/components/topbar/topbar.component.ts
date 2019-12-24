@@ -26,21 +26,9 @@ export class TopbarComponent implements OnInit {
     private _windowWidth: number;
     public color: string
     public languages = [
-        {
-            label: 'en',
-            image: 'assets/images/en_flag.png',
-            value: 'en'
-        },
-        {
-            label: 'ru',
-            image: 'assets/images/ru_flag.png',
-            value: 'ru'
-        },
-        {
-            label: 'arm',
-            image: 'assets/images/arm_flag.png',
-            value: 'arm'
-        },
+        { label: 'en', image: 'assets/images/en_flag.png', value: 'en' },
+        { label: 'ru', image: 'assets/images/ru_flag.png', value: 'ru' },
+        { label: 'arm', image: 'assets/images/arm_flag.png', value: 'arm' },
 
     ]
     @Input('settings')
@@ -78,7 +66,7 @@ export class TopbarComponent implements OnInit {
                     .setProperty('--main-color', this._cookieService.get('color'));
                 this.color = this._cookieService.get('color')
             } else {
-                this.color = '#00001b';
+                this.color = '#3d3d76';
                 document.documentElement.style
                     .setProperty('--main-color', this.color);
             }

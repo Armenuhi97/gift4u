@@ -19,17 +19,24 @@ export class CategoryFilter {
     priceMin: number;
     priceMax: number;
     brandsId: any;
+    page: number;
     cityId: any;
+    count: number;
     reduction: any
-    // attribut: FilterAttribut[];
+    categoryId?: any
+    parentId?: any
+    min: boolean;
+    max: boolean;
 
     constructor() {
         this.priceMin = null;
         this.priceMax = null;
-        this.brandsId =null;
+        this.brandsId = null;
         this.cityId = null;
-        // this.attribut = null;
-        this.reduction=null
+        this.reduction = null
+        this.min = false;
+        this.max = false;
+        this.page = null;
     }
 }
 

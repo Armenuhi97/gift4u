@@ -21,7 +21,6 @@ import { Observable, of } from 'rxjs';
 export class I18nServerModule {
     constructor(translate: TranslateService, @Inject(REQUEST) req: Request) {
         translate.addLangs(['en', 'ru', 'arm']);
-
         const language: 'en' | 'ru' | 'arm' = req.cookies.lang || 'en';
         translate.use(language.match(/en|ru|arm/) ? language : 'en');
     }
