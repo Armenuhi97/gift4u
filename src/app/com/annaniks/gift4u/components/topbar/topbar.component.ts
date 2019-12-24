@@ -66,7 +66,7 @@ export class TopbarComponent implements OnInit {
                     .setProperty('--main-color', this._cookieService.get('color'));
                 this.color = this._cookieService.get('color')
             } else {
-                this.color = '#3d3d76';
+                this.color = '#3c3c62';
                 document.documentElement.style
                     .setProperty('--main-color', this.color);
             }

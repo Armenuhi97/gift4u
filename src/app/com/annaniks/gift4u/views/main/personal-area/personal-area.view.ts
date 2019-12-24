@@ -26,7 +26,7 @@ export class PersonalAreaView implements OnInit {
         { label: this.translateWord('_order_history'), link: 'my-orders' },
         { label: this.translateWord('_bonus_point'), link: 'bonus-points' },
         { label: this.translateWord('_payment_history'), link: 'payment-history' },
-        { label: this.translateWord('_news_subscription'), link: 'newsletter-subscription' },
+        { label: this.translateWord('_news_subscription'), link: '#' },
     ]
 
     constructor(
@@ -38,15 +38,14 @@ export class PersonalAreaView implements OnInit {
         private _title: Title,
         private _matDialog: MatDialog,
         private _translateService: TranslateService1,
-        private _platformService:PlatformService,
-        private _translate:TranslateService
+        private _platformService: PlatformService,
+        private _translate: TranslateService
     ) {
         this._getUser();
     }
 
-    ngOnInit() {
-    }
-    public translateWord(key: string):string {
+    ngOnInit() { }
+    public translateWord(key: string): string {
         return this._translate.instant(key)
     }
     public onClickLogOut(): void {
