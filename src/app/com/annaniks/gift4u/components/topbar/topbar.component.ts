@@ -10,6 +10,8 @@ import { CookieService } from '../../services/cookie.service';
 import { TranslateService } from '@ngx-translate/core';
 import { PlatformService } from '../../services/platform.service';
 import { LoadingService } from '../../services/loading.service';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-topbar',
@@ -42,7 +44,7 @@ export class TopbarComponent implements OnInit {
     public search: string;
     private _similarProducts: string[] = [];
     private _isShowSimilarProducts: boolean = true;
-
+    private _document: any
     constructor(
         private _menuItemsService: MenuItemsService,
         private _matDialog: MatDialog,
@@ -57,18 +59,37 @@ export class TopbarComponent implements OnInit {
         private _translate: TranslateService,
         private _platformService: PlatformService,
         private _loadingService: LoadingService,
+        private _translateService1: TranslateService1,
+        @Inject(DOCUMENT) document: any
     ) {
+        this._document = document
         this._checkQueryParams();
         this.active_lng = this._translate.currentLang;
         if (this._platformService.isBrowser) {
             if (this._cookieService.get('color')) {
-                document.documentElement.style
+                this._document.documentElement.style
                     .setProperty('--main-color', this._cookieService.get('color'));
                 this.color = this._cookieService.get('color')
-            } else {
-                this.color = '#3c3c62';
-                document.documentElement.style
+            }
+            else {
+                this.color = this.color ='#3c3c62'               
+                this._document.documentElement.style
                     .setProperty('--main-color', this.color);
+            }
+        } else {
+            if (this._cookieService.isCookie) {
+                if (this._cookieService.get('color')) {
+                    this._document.documentElement.style
+                        .setProperty('--main-color', this._cookieService.get('color'));
+                    this.color = this._cookieService.get('color')
+                }
+                else {
+                    this.color = this.color ='#3c3c62'
+                    //  getComputedStyle(document.documentElement)
+                    //     .getPropertyValue('--main-color');;
+                    this._document.documentElement.style
+                        .setProperty('--main-color', this.color);
+                }
             }
         }
     }
@@ -84,7 +105,7 @@ export class TopbarComponent implements OnInit {
 
     }
     public change($event) {
-        document.documentElement.style
+        this._document.documentElement.style
             .setProperty('--main-color', $event);
         this._cookieService.set('color', $event)
     }

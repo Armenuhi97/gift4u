@@ -51,7 +51,6 @@ export class BasketListItemComponent implements OnInit {
     }
 
     get currentPrice(): number {
-        // return this._basketItem.count * ((this._basketItem && this._basketItem.specificPrice) ? this._basketItem.specificPrice : +this._basketItem.price_with_vat);
         return this._basketItem.count * ((this._basketItem) ? +this._basketItem.price_with_vat : null);
     }
     get promocodeDiscountPrice(): number {

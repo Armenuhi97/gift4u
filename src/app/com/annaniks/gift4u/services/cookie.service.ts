@@ -17,7 +17,7 @@ export interface ICookieService {
 export class CookieService implements ICookieService {
   private readonly cookieSource = new Subject<{ readonly [key: string]: any }>()
   public readonly cookies$ = this.cookieSource.asObservable()
-
+  public isCookie:boolean;
   constructor(private platformService: PlatformService, @Optional() @Inject(REQUEST) private req: any) { }
 
   public set(name: string, value: any, options?: CookieAttributes): void {

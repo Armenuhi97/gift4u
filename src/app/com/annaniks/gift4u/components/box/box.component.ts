@@ -24,8 +24,6 @@ export class BoxComponent implements OnInit {
         { name: this.getTranslateWord('_default'), value: 'none' },
         { name:this.getTranslateWord('_min-max') , value: 'min' },
         { name: this.getTranslateWord('_max-min'), value: 'max' },
-        // { name: 'По популярности', value: 'none' },
-        // { name: 'По новизне', value: 'none' }
     ]
 
     constructor(

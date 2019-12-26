@@ -10,7 +10,6 @@
             </div>
         </div>
         <div class="content">
-            <!-- [routerLinkActiveOptions]="{exact: true}" -->
             <a class="item" *ngFor="let item of catalogItems" [class.active_item]="isLinkActive(item)">
                 <div [routerLink]="(activeTab=='catalog') ? '/catalog' : item.routerLink"
                     [queryParams]='{parentcategoryname:item.name,parentcategoryid:item.id}' class="label">

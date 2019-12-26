@@ -6,7 +6,6 @@ import { TranslateService } from "@ngx-translate/core";
 @Injectable()
 export class TranslateService1 {
     private _activeLanguage: string = this._translate.currentLang;
-
     constructor(private _httpClient: TransferHttpService, private _translate: TranslateService, private _appService: AppService, private _cookieService: CookieService) { }
     ngOnInit() {
 

@@ -7,6 +7,8 @@ import { Request } from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { Observable, of } from 'rxjs';
+import { TranslateService1 } from '../com/annaniks/gift4u/services';
+import { CookieService } from '../com/annaniks/gift4u/services/cookie.service';
 
 @NgModule({
     imports: [
@@ -19,10 +21,11 @@ import { Observable, of } from 'rxjs';
     ]
 })
 export class I18nServerModule {
-    constructor(translate: TranslateService, @Inject(REQUEST) req: Request) {
+    constructor(translate: TranslateService, @Inject(REQUEST) req: Request,private _cookieService:CookieService) {
         translate.addLangs(['en', 'ru', 'arm']);
         const language: 'en' | 'ru' | 'arm' = req.cookies.lang || 'en';
         translate.use(language.match(/en|ru|arm/) ? language : 'en');
+        this._cookieService.isCookie=(req.cookies && req.cookies.color)?true:false
     }
 }
 
