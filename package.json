@@ -89,7 +89,7 @@
     "tslint": "^5.18.0",
     "typescript": "^3.4.5",
     "webpack": "^4.35.3",
-    "ws": "^6.2.0",
+    "ws": "^7.4.6",
     "xmlhttprequest": "^1.8.0"
   },
   "browser": {
